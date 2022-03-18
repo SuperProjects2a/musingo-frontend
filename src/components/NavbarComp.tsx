@@ -1,37 +1,19 @@
-import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import NavbarComp from './components/NavbarComp'
-import Footer from './components/Footer'
-
-import { BrowserRouter, Router, Route, Link, Routes} from "react-router-dom";
+import React from 'react'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Container, Offcanvas, Button } from "react-bootstrap";
-import Home from "./components/Home"
-import Test from "./components/Test"
+import { BrowserRouter, Router, Route, Link, Routes} from "react-router-dom";
+import Home from "./Home";
+import Test from "./Test";
 
 
-// function App() {
-//   return (
-//     <div className="App">
-//       {/* <NavbarComp/> */}
-//       {/* <Footer/> */}
-
-
-      
-//     </div>
-//   );
-// }
-
-function App() {
+const NavbarComp = () => {
   return (
-    <BrowserRouter>
-      <div className="App">
-
+    <div>
+      <BrowserRouter>
       <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="px-4" sticky="top">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Container>
         <Navbar.Brand as={Link} to={"/"} style={{fontFamily: 'Nova Mono'}}>musingo</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             
@@ -53,27 +35,22 @@ function App() {
             <Nav.Link as={Link} to={"/Test"}>Doładuj konto</Nav.Link>
             <Nav.Link as={Link} to={"/Test"}>Zaloguj się</Nav.Link>
             <Nav.Link as={Link} to={"/Test"}>Dodaj ogłoszenie</Nav.Link>
-            <Nav.Link as={Link} to={"/Test"}>Dodaj ogłoszenie</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-
-        
-
+        </Container>
       </Navbar>
 
-      <div className="stickySearch">
-        <Container >
-          <Form className="d-flex py-3 col-12 gap-2" >
-              <FormControl
-                type="search"
-                placeholder="Szukaj przedmiotów"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-dark">Szukaj</Button>
+      <Navbar>
+        <Form className="d-flex p-3 col-12 gap-2" >
+            <FormControl
+              type="search"
+              placeholder="Szukaj przedmiotów"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-dark">Szukaj</Button>
           </Form>
-          </Container>
-      </div>
+      </Navbar>
       </>
 
       <div>
@@ -83,11 +60,9 @@ function App() {
         </Routes>
       </div>
 
-      <Footer/>
-      
-      </div>
-    </BrowserRouter>
-  );
+      </BrowserRouter>
+    </div>
+  )
 }
 
-export default App;
+export default NavbarComp
