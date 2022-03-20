@@ -35,3 +35,18 @@ code {
 .test {
   flex: 1;
 }
+
+.backgroundHomePage {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./images/hpImage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.linkHomePage {
+  color: #dc3545;
+  text-decoration: none;
+}
+.linkHomePage:hover {
+  color: #bb2d3b;
+}
