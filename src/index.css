@@ -35,3 +35,18 @@ code {
 .test {
   flex: 1;
 }
+
+.form-control:focus{
+  z-index: 5;
+}
+
+.labelText
+{
+  float: left;
+}
+
+.signContainer
+{
+  place-items: center center;
+}
+

@@ -2,6 +2,8 @@ import { Navbar, Nav, NavDropdown, FormControl, Container, InputGroup, Button, C
 import { Route, Link, Routes} from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
+import SignUp from "./SignUp"
+import SignIn from "./SignIn"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
  import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,8 +31,8 @@ const NavbarComp = () => {
             </NavDropdown>
             <Nav.Link as={Link} to={"/Test"}>Wiadomości</Nav.Link>
             <Nav.Link as={Link} to={"/Test"}>Doładuj konto</Nav.Link>
-            <Nav.Link as={Link} to={"/Test"}>Zaloguj się</Nav.Link>
-            <Nav.Link as={Link} to={"/Test"}>Dodaj ogłoszenie</Nav.Link>
+            <Nav.Link as={Link} to={"/SignIn"}>Zaloguj się</Nav.Link>
+            <Nav.Link as={Link} to={"/SignUp"}>Zarejestruj się</Nav.Link>
             <Nav.Link as={Link} to={"/Test"}>Dodaj ogłoszenie</Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -57,6 +59,8 @@ const NavbarComp = () => {
         <Routes>
         <Route path="/" element={<Home/>}></Route>
           <Route path="/Test" element={<Test/>}></Route>
+          <Route path="/SignUp" element={<SignUp/>}></Route>
+          <Route path="/SignIn" element={<SignIn/>}></Route>
         </Routes>
       </div>
       </>
