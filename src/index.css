@@ -28,6 +28,7 @@ code {
 .header {
   position: -webkit-sticky; /* Safari */
   position: sticky;
+  z-index: 1;
   top: 0;
   background-color: #e5e5e5;
 }
@@ -49,4 +50,14 @@ code {
 }
 .linkHomePage:hover {
   color: #bb2d3b;
+}
+
+.categories {
+  text-align: left;
+  color: #212529;
+  text-decoration: none;
+  font-weight: 500;
+}
+.categories:hover {
+  color: #212529;
 }
