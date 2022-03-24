@@ -1,90 +1,94 @@
-import React from 'react'
-import {Container, Form, Col, Button,Row} from 'react-bootstrap'
+import React from "react";
+import { Container, Form, Col, Button, Row } from "react-bootstrap";
 
 const SignUp = () => {
   return (
-    <Container className='d-grid h-100 signContainer' >
-        <Form>
+    <Container className="d-grid signContainer">
+      <Row>
+        <Col xs={{ span: 10, offset: 1 }}>
+          <Form className="bg-body rounded border border-light p-4 p-sm-3">
             <h1>Zarejestruj się</h1>
-            <Col xs={{span:10, offset: 1}} md={{span:8, offset: 2}}>
             <Form.Group>
-                <Form.Label className='labelText'>Imię</Form.Label>
-                <Form.Control type='text' size='lg' placeholder='Wprowadź imię'
-                autoComplete='name' />
-            </Form.Group>
-            <Form.Group>
-                <Form.Label className='labelText'>Nazwisko</Form.Label>
-                <Form.Control type='text' size='lg' placeholder='Wprowadź nazwisko'
-                autoComplete='surname' />
-            </Form.Group>
-            <Form.Group>
-                <Form.Label className='labelText'>Adres email</Form.Label>
-                <Form.Control type='email' size='lg' placeholder='Wprowadź adres email'
-                autoComplete='email' />
+              <Form.Label className="labelText">Imię</Form.Label>
+              <Form.Control
+                type="text"
+                size="lg"
+                placeholder="Wprowadź imię"
+                autoComplete="name"
+                className="formInputs"
+              />
             </Form.Group>
             <Form.Group>
-                <Form.Label className='labelText'>Hasło</Form.Label>
-                <Form.Control type='password' size='lg' placeholder='Wprowadź hasło'
-                autoComplete='password' />
+              <Form.Label className="labelText">Nazwisko</Form.Label>
+              <Form.Control
+                type="text"
+                size="lg"
+                placeholder="Wprowadź nazwisko"
+                autoComplete="surname"
+                className="formInputs"
+              />
             </Form.Group>
             <Form.Group>
-                <Form.Label className='labelText'>Data urodzenia</Form.Label>
-                <Form.Control type='date' size='lg' placeholder='Wprowadź date urodzenia'
-                autoComplete='birth' />
+              <Form.Label className="labelText">Adres email</Form.Label>
+              <Form.Control
+                type="email"
+                size="lg"
+                placeholder="Wprowadź adres email"
+                autoComplete="email"
+                className="formInputs"
+              />
             </Form.Group>
             <Form.Group>
-                <Form.Label className='labelText'>Płeć</Form.Label>
-                <Form.Control type='text' size='lg' placeholder='Wybierz płeć'
-                autoComplete='gender' />
+              <Form.Label className="labelText">Hasło</Form.Label>
+              <Form.Control
+                type="password"
+                size="lg"
+                placeholder="Wprowadź hasło"
+                autoComplete="password"
+                className="formInputs"
+              />
             </Form.Group>
             <Form.Group>
-                <Form.Label className='labelText'>Numer telefonu</Form.Label>
-                <Form.Control type='tel' size='lg' placeholder='Wprowadź numer telefonu'
-                autoComplete='phoneNumber' />
+              <Form.Label className="labelText">Powtórz hasło</Form.Label>
+              <Form.Control
+                type="password"
+                size="lg"
+                placeholder="Wprowadź ponownie hasło"
+                autoComplete="password"
+                className="formInputs"
+              />
             </Form.Group>
-            <Row>
-                <Col xs={8}>
-                <Form.Group>
-                <Form.Label className='labelText'>Ulica</Form.Label>
-                <Form.Control type='text' size='lg' placeholder='Wprowadź ulice'
-                autoComplete='street' />
+            <Form.Group>
+              <Form.Label className="labelText">Numer telefonu</Form.Label>
+              <Form.Control
+                type="tel"
+                size="lg"
+                placeholder="Wprowadź numer telefonu"
+                autoComplete="phoneNumber"
+                className="formInputs"
+              />
             </Form.Group>
-                </Col>
-                <Col xs={4}>
-                <Form.Group>
-                <Form.Label className='labelText'>Numer domu</Form.Label>
-                <Form.Control type='text' size='lg' placeholder=''
-                autoComplete='houseNumber' />
+            <Form.Group>
+              <Form.Check
+                type="checkbox"
+                label="Akceptuje Regulamin"
+                className="labelText mt-2"
+              />
             </Form.Group>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={8}>
-                <Form.Group>
-                <Form.Label className='labelText'>Miasto</Form.Label>
-                <Form.Control type='tel' size='lg' placeholder='Wybierz miasto'
-                autoComplete='City' />
-            </Form.Group>
-                </Col>
-                <Col xs={4}>
-                <Form.Group>
-                <Form.Label className='labelText'>Kod pocztowy</Form.Label>
-                <Form.Control type='text' size='lg' placeholder='__-___'
-                autoComplete='postCode' />
-            </Form.Group>
-                </Col>
-            </Row>
-              <br />
-            <div className='d-grid'>
-            <Button variant="primary" size='lg'>Zarejestruj się</Button>
+
+            <div className="d-grid mt-5">
+              <Button variant="dark" size="lg">
+                Zarejestruj się
+              </Button>
             </div>
             <p>
-                Masz już konto? <a href='#'>Zaloguj się</a>
+              Masz już konto? <a href="#">Zaloguj się</a>
             </p>
-            </Col>
-        </Form>
+          </Form>
+        </Col>
+      </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
