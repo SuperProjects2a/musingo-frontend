@@ -62,37 +62,6 @@ code {
   color: #212529;
 }
 
-/* .formChange {
-  box-shadow: 0 0 0 0.25rem red;
-} */
-
-/* .formChange:focus {
-  outline: none;
-  border: 1px solid red;
-} */
-
-/* textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-.uneditable-input:focus {
-  border-color: rgba(165, 161, 161, 0.8);
-  box-shadow: 0 1px 1px rgba(56, 54, 54, 0.075) inset,
-    0 0 8px rgba(0, 0, 0, 0.6);
-  outline: 0 none;
-} */
-
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -113,4 +82,22 @@ input[type="color"]:focus,
   -webkit-box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.6);
   -moz-box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.6);
   box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.6);
+}
+
+.scrollTest {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  /* display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto; */
+  /* overflow: auto;
+  display: block;
+  table-layout: auto;
+  overflow-x: auto; */
+}
+
+.cardTest {
+  /* flex: 0 0 auto; */
+  display: inline-block;
 }

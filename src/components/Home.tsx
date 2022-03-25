@@ -13,7 +13,18 @@ import {
   Image,
   Figure,
   Card,
+  Carousel,
 } from "react-bootstrap";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import React from "react";
+import Slider from "react-slick";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+
 import guitarCategory from "../images/guitar-category.jpg";
 import windCategory from "../images/wind-category.jpg";
 import keyboarCategory from "../images/keyboard-category.jpg";
@@ -40,7 +51,58 @@ const categories = [
 
 const abc: string = "../images/hpImage.jpg";
 
+// const PreviousBtn = (className: string, onClick) => {
+//   // console.log(props);
+//   // const { className, onClick } = props;
+//   return (
+//     <div className={className} onClick={onClick}>
+//       {/* <ArrowBackIos style={{ color: "blue", fontSize: "30px" }} /> */}
+//     </div>
+//   );
+// };
+
 const Home = () => {
+  // var Slider = require("react-slick");
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 3,
+    arrows: true,
+    // nextArrow: <FontAwesomeIcon icon={faAngleLeft} />,
+    // prevArrow: <FontAwesomeIcon icon={faAngleRight} />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          infinite: false,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  // const ref = useRef(null);
+  // const scroll = (scrollOffset :number) => {
+  //   ref.current.scrollLeft += scrollOffset;
+  // };
   return (
     <>
       <div className="backgroundHomePage p-5 text-light">
@@ -76,7 +138,6 @@ const Home = () => {
           </Row>
         </Container>
       </div>
-
       <Container className="d-sm-block d-md-none bg-light pb-4" fluid>
         <Row className="py-4">
           <h3>Kategorie</h3>
@@ -99,7 +160,7 @@ const Home = () => {
         </Row>
         <Row className="d-flex justify-content-center pb-lg-2">
           <Row className="d-flex justify-content-center pb-lg-2">
-            {categories
+            {/* {categories
               .filter((item, index) => index < 5)
               .map((filteredItem) => (
                 <Col sm={2}>
@@ -112,10 +173,10 @@ const Home = () => {
                     <h5 className="py-1">{filteredItem.text}</h5>
                   </Link>
                 </Col>
-              ))}
+              ))} */}
           </Row>
           <Row className="d-flex justify-content-center pb-lg-2">
-            {categories
+            {/* {categories
               .filter((item, index) => index > 4)
               .map((filteredItem) => (
                 <Col sm={2}>
@@ -128,16 +189,127 @@ const Home = () => {
                     <h5 className="py-1">{filteredItem.text}</h5>
                   </Link>
                 </Col>
-              ))}
+              ))} */}
           </Row>
         </Row>
       </Container>
-
+      <Container className=" pb-4" fluid>
+        <h3 className="py-4">Wyróżnione</h3>
+        <div className="scrollTest">
+          {/* <Col>
+            <button onClick={() => scroll(-20)}>LEFT</button>
+            <button onClick={() => scroll(20)}>RIGHT</button>
+          </Col> */}
+          <Col xs={4} className="cardTest" style={{ backgroundColor: "white" }}>
+            wfihwhwi
+          </Col>
+          <Col xs={4} className="cardTest" style={{ backgroundColor: "white" }}>
+            wfihwhwi
+          </Col>
+          <Col xs={4} className="cardTest" style={{ backgroundColor: "white" }}>
+            wfihwhwi
+          </Col>
+          <Col xs={4} className="cardTest" style={{ backgroundColor: "white" }}>
+            wfihwhwi
+          </Col>
+        </div>
+      </Container>
       <Container className=" pb-4" fluid>
         <Row className="py-4">
-          <h3>Wyróżnione</h3>
+          <h3>Ostatnio dodane</h3>
         </Row>
       </Container>
+      {/* ------------------------ */}
+
+      <Container className="p-5" fluid>
+        <Slider {...settings}>
+          <div>
+            <Card>
+              <Card.Body>
+                {" "}
+                <h3>1</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+            <Card>
+              <Card.Body>
+                {" "}
+                <h3>2</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+            <Card>
+              <Card.Body>
+                {" "}
+                <h3>3</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+            <Card>
+              <Card.Body>
+                {" "}
+                <h3>4</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+            <Card>
+              <Card.Body>
+                {" "}
+                <h3>5</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+            <Card>
+              <Card.Body>
+                {" "}
+                <h3>6</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+        </Slider>
+      </Container>
+
+      {/* <Container>
+        <Slider {...settings}>
+          <div>
+            <Card style={{ width: "90%" }}>
+              <Card.Body>
+                {" "}
+                <h3>1</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+            <Card style={{ width: "90%" }}>
+              <Card.Body>
+                {" "}
+                <h3>2</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+            <Card style={{ width: "90%" }}>
+              <Card.Body>
+                <h3>3</h3>This is some text within a card body.
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+            <h3>4</h3>
+          </div>
+          <div>
+            <h3>5</h3>
+          </div>
+          <div>
+            <h3>6</h3>
+          </div>
+        </Slider>
+      </Container> */}
     </>
   );
 };
