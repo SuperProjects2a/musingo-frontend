@@ -6,7 +6,9 @@ const SignIn = () => {
     email: Yup.string()
       .email("Niepoprawny adres email")
       .required("Prosze wpisać adres email"),
-    password: Yup.string().required("Proszę wpisać hasło").min(8),
+    password: Yup.string()
+      .required("Proszę wpisać hasło")
+      .min(8, "Hasło składa się z minimum 8 znaków"),
   });
 
   return (
@@ -32,10 +34,9 @@ const SignIn = () => {
               <Form
                 className="bg-body rounded border border-light p-4 p-sm-3"
                 onSubmit={handleSubmit}
-                noValidate
               >
                 <h1>Zaloguj się</h1>
-                <Form.Group controlId="validationFormik101">
+                <Form.Group className="position-relative">
                   <Form.Label className="labelText">Adres email</Form.Label>
                   <Form.Control
                     name="email"
@@ -43,7 +44,7 @@ const SignIn = () => {
                     size="lg"
                     placeholder="Wprowadź adres email"
                     autoComplete="email"
-                    className="position-relative formInputs"
+                    className="formInputs"
                     value={values.email}
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -55,7 +56,7 @@ const SignIn = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group controlId="validationFormik102">
+                <Form.Group className="position-relative">
                   <Form.Label className="labelText">Hasło</Form.Label>
                   <Form.Control
                     name="password"
@@ -63,7 +64,7 @@ const SignIn = () => {
                     size="lg"
                     placeholder="Wprowadź hasło"
                     autoComplete="password"
-                    className="position-relative formInputs"
+                    className="formInputs"
                     value={values.password}
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -75,7 +76,7 @@ const SignIn = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <div className="d-grid mt-4">
+                <div className="d-grid mt-5">
                   <Button size="lg" variant="dark" type="submit">
                     Zaloguj się
                   </Button>
