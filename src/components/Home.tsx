@@ -156,7 +156,7 @@ const Home = () => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -253,30 +253,24 @@ const Home = () => {
           </Row>
         </Row>
       </Container> */}
-      <Container className=" pb-4" fluid>
-        <h3 className="py-4">Wyróżnione</h3>
+      <Container className=" py-4" fluid>
+        <h3 className="">Wyróżnione</h3>
+
+        <Row className="px-5 py-1 mx-1" fluid>
+          <Slider {...settings}>
+            {announcements.map((announcement, index) => (
+              <Col className="px-2 px-sm-1">
+                <AnnouncementCard
+                  linkA={announcement.link}
+                  title={announcement.title}
+                  price={announcement.price}
+                  city={announcement.city}
+                />
+              </Col>
+            ))}
+          </Slider>
+        </Row>
       </Container>
-      <Container>
-        <AnnouncementCard
-          linkA={`${announcement.link}`}
-          title={`${announcement.title}`}
-          price={announcement.price}
-          city={`${announcement.city}`}
-        />
-      </Container>
-      {/* <Container className="px-5 py-1" fluid>
-        <Slider {...settings}>
-          {announcements.map((announcement, index) => (
-            <AnnouncementCard
-              linkA={`${announcement.link}`}
-              title={`${announcement.title}`}
-              price={announcement.price}
-              city={`${announcement.city}`}
-            />
-            // <AnnouncementCard />
-          ))}
-        </Slider>
-      </Container> */}
 
       <Container className="py-2" fluid>
         <h3 className="">Ostatnio dodane</h3>
