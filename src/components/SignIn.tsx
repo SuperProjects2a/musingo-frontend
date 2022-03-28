@@ -21,7 +21,11 @@ const SignIn = () => {
               password: "",
             }}
             validationSchema={loginSchema}
-            onSubmit={console.log}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(true);
+              resetForm();
+              setSubmitting(false);
+            }}
           >
             {({
               handleSubmit,
@@ -30,6 +34,7 @@ const SignIn = () => {
               values,
               touched,
               errors,
+              isSubmitting,
             }) => (
               <Form
                 className="bg-body rounded border border-light p-4 p-sm-3"
@@ -48,7 +53,6 @@ const SignIn = () => {
                     value={values.email}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isValid={touched.email && !errors.email}
                     isInvalid={!!errors.email}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
@@ -63,12 +67,10 @@ const SignIn = () => {
                     type="password"
                     size="lg"
                     placeholder="Wprowadź hasło"
-                    autoComplete="password"
                     className="formInputs"
                     value={values.password}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isValid={touched.password && !errors.password}
                     isInvalid={!!errors.password}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
@@ -77,7 +79,12 @@ const SignIn = () => {
                 </Form.Group>
 
                 <div className="d-grid mt-5">
-                  <Button size="lg" variant="dark" type="submit">
+                  <Button
+                    size="lg"
+                    variant="dark"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
                     Zaloguj się
                   </Button>
                 </div>
