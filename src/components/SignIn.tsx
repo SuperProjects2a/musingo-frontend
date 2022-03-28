@@ -1,7 +1,12 @@
-import React from "react";
 import { Container, Form, Col, Button, Row } from "react-bootstrap";
-
+import { Formik } from "formik";
+import * as Yup from "yup";
 const SignIn = () => {
+  const schema = Yup.object().shape({
+    email: Yup.string().email().required(),
+    password: Yup.string().required(),
+  });
+
   return (
     <Container className="d-grid signContainer">
       <Row>
@@ -11,26 +16,31 @@ const SignIn = () => {
             <Form.Group>
               <Form.Label className="labelText">Adres email</Form.Label>
               <Form.Control
+                name="email"
                 type="email"
                 size="lg"
                 placeholder="Wprowadź adres email"
                 autoComplete="email"
                 className="position-relative formInputs"
+                required
               />
             </Form.Group>
+
             <Form.Group>
               <Form.Label className="labelText">Hasło</Form.Label>
               <Form.Control
+                name="password"
                 type="password"
                 size="lg"
                 placeholder="Wprowadź hasło"
                 autoComplete="password"
                 className="position-relative formInputs"
+                required
               />
             </Form.Group>
 
             <div className="d-grid mt-4">
-              <Button size="lg" variant="dark">
+              <Button size="lg" variant="dark" type="submit">
                 Zaloguj się
               </Button>
             </div>
