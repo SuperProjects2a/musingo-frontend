@@ -19,12 +19,7 @@ import {
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React from "react";
 import Slider from "react-slick";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 import AnnouncementCard from "./AnnouncementCard";
 
@@ -38,7 +33,6 @@ import handsetCategory from "../images/handset-category.jpg";
 import accessoriesCategory from "../images/accessories-category.jpg";
 import bookNoteCategory from "../images/book-note-category.jpg";
 import otherCategory from "../images/other-category.jpg";
-import testIMG from "../images/test.jpg";
 
 const categories = [
   { link: "/Test", text: "Gitary", imgLink: guitarCategory },
@@ -100,20 +94,19 @@ const announcements = [
   },
 ];
 const Home = () => {
+  // SETTINGS KARUZELI
   var settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 7,
     slidesToScroll: 3,
     arrows: true,
-    // nextArrow: <FontAwesomeIcon icon={faAngleLeft} />,
-    // prevArrow: <FontAwesomeIcon icon={faAngleRight} />,
     responsive: [
       {
-        breakpoint: 1100,
+        breakpoint: 1280,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 2,
           infinite: true,
           dots: false,
@@ -124,8 +117,6 @@ const Home = () => {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 2,
-          infinite: false,
-          dots: false,
         },
       },
       {
@@ -133,20 +124,10 @@ const Home = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 2,
-          infinite: false,
-          dots: false,
         },
       },
       {
         breakpoint: 650,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -165,6 +146,7 @@ const Home = () => {
 
   return (
     <>
+      {/* BANER */}
       <div className="backgroundHomePage p-5 text-light">
         <Container className="py-lg-4 my-lg-3 py-md-2 my-md-2 my-sm-3">
           <Row className="py-4">
@@ -198,23 +180,27 @@ const Home = () => {
           </Row>
         </Container>
       </div>
+
+      {/* KATEGORIE MOB*/}
       <Container className="d-sm-block d-md-none bg-light pb-4" fluid>
         <Row className="py-4">
           <h3>Kategorie</h3>
         </Row>
         <Row className="d-flex justify-content-center pb-lg-2">
           {categories.map((category, index) => (
-            <Col xs={12} sm={4} key={index}>
+            <Col xs={12} sm={5} key={index}>
               <Link to={category.link} className="categories">
-                <h4 className="py-1" style={{ textAlign: "center" }}>
+                <h5 className="py-1" style={{ textAlign: "center" }}>
                   {category.text}
-                </h4>
+                </h5>
               </Link>
             </Col>
           ))}
         </Row>
       </Container>
-      {/* <Container className="d-none d-md-block bg-light pb-4" fluid>
+
+      {/* KATEGORIE DES*/}
+      <Container className="d-none d-md-block bg-light pb-4" fluid>
         <Row className="py-4">
           <h3>Kategorie</h3>
         </Row>
@@ -252,11 +238,12 @@ const Home = () => {
               ))}
           </Row>
         </Row>
-      </Container> */}
-      <Container className=" py-4" fluid>
-        <h3 className="">Wyróżnione</h3>
+      </Container>
 
-        <Row className="px-5 py-1 mx-1" fluid>
+      {/* WYROZNIONE */}
+      <Container className="pt-4 pb-2 px-4" fluid>
+        <h3 className="">Wyróżnione</h3>
+        <Row className="px-5 py-1 mx-3 mx-sm-1" fluid>
           <Slider {...settings}>
             {announcements.map((announcement, index) => (
               <Col className="px-2 px-sm-1">
@@ -272,128 +259,23 @@ const Home = () => {
         </Row>
       </Container>
 
-      <Container className="py-2" fluid>
+      {/* OSTATNIO DODANE */}
+      <Container className="pt-2 pb-4 px-4" fluid>
         <h3 className="">Ostatnio dodane</h3>
-      </Container>
-      <Container className="px-5 py-1" fluid>
-        <Slider {...settings}>
-          {announcements.map((announcement, index) => (
-            //let i = string.concat("https://picsum.photos/200/300?random=", {category.index});
-            <Link to={announcement.link} className="categories px-sm-2">
-              <Card>
-                <Card.Img
-                  variant="top"
-                  // src={category.imgLink}
-                  src={"https://picsum.photos/200/300?random=2"}
-                  style={{ height: "22vh", width: "100%", objectFit: "cover" }}
+        <Row className="px-5 py-1 mx-3 mx-sm-1" fluid>
+          <Slider {...settings}>
+            {announcements.map((announcement, index) => (
+              <Col className="px-2 px-sm-1">
+                <AnnouncementCard
+                  linkA={announcement.link}
+                  title={announcement.title}
+                  price={announcement.price}
+                  city={announcement.city}
                 />
-                <Card.Body>
-                  <Card.Title style={{ height: "10vh" }}>
-                    {/* <Card.Title> */}
-                    {/* {category.text} bowihihc                   */}
-                    {/* k[pqkdowjopj wpjmp wojfpowj wkwojfpo powj pwjjwpoj */}
-                    {/* if({category.text}.length > 10) {{category.text}.substring(0, 10)} */}
-                    {/* {announcement.title.length > 26 ? (
-                      <p>{announcement.title.substring(0, 23)}...</p>
-                    ) : ( */}
-                    {announcement.title.length > 20 ? (
-                      <p>{announcement.title.substring(0, 17)}...</p>
-                    ) : (
-                      <p>{announcement.title}</p>
-                    )}
-                  </Card.Title>
-                  <Card.Text className="pt-1">
-                    {/* <h5>k[pqkdowjopj wpjmp wojfpowj wkwojfpo powj pwjjwpoj</h5> */}
-                    <b>{announcement.price} zł</b>
-                    {/* <br />
-                    Bielsko-Biała */}
-
-                    <Card.Subtitle className="py-1">
-                      <small className="text-muted">{announcement.city}</small>
-                      {/* <br/>
-                      <small className="text-muted">dzisiaj 10:15</small> */}
-                    </Card.Subtitle>
-                  </Card.Text>
-                </Card.Body>
-                {/* <Card.Footer>
-                  <small className="text-muted">Bielsko-Biała</small>
-                  <br />
-                  <small className="text-muted">dzisiaj 10:15</small>
-                </Card.Footer> */}
-              </Card>
-            </Link>
-          ))}
-
-          {/* <Link to={"/Test"} className="categories p-2">
-            <Card>
-              <Card.Img
-                variant="top"
-                src={testIMG}
-                style={{ height: "20vw", width: "100%", objectFit: "cover" }}
-              />
-              <Card.Body>
-                <Card.Title style={{ height: "50px" }}> bowihihc</Card.Title>
-                <Card.Text className="pt-2">
-                  <b>400 zł</b>
-                  <br />
-                  Bielsko-Biała
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">dzisiaj 10:15</small>
-              </Card.Footer>
-            </Card>
-          </Link> */}
-
-          {/* <div>
-            <Card>
-              <Card.Body>
-                {" "}
-                <h3>1</h3>This is some text within a card body.
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card>
-              <Card.Body>
-                {" "}
-                <h3>2</h3>This is some text within a card body.
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card>
-              <Card.Body>
-                {" "}
-                <h3>3</h3>This is some text within a card body.
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card>
-              <Card.Body>
-                {" "}
-                <h3>4</h3>This is some text within a card body.
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card>
-              <Card.Body>
-                {" "}
-                <h3>5</h3>This is some text within a card body.
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card>
-              <Card.Body>
-                {" "}
-                <h3>6</h3>This is some text within a card body.
-              </Card.Body>
-            </Card>
-          </div> */}
-        </Slider>
+              </Col>
+            ))}
+          </Slider>
+        </Row>
       </Container>
     </>
   );

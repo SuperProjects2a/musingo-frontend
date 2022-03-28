@@ -1,8 +1,9 @@
 // import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Card } from "react-bootstrap";
+import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FC } from "react";
+
 interface Announcement {
   linkA: string;
   title: string;
@@ -10,55 +11,37 @@ interface Announcement {
   city: string;
 }
 
-// class announcement {
-// linkA: string;
-// title: string;
-// price: number;
-// city: string;
-//   constructor(linkA: string, title: string, price: number, city: string) {
-//     this.linkA = linkA;
-//     this.title = title;
-//     this.price = price;
-//     this.city = city;
-//   }
-// }
-// const AnnouncementCard = (linkA: any, title: any, price: any, city: any) => {
 const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
-  // const AnnouncementCard = (props:announcements) => {
   return (
     <>
       <Link to={linkA} className="categories">
         <Card>
           <Card.Img
             variant="top"
-            // src={category.imgLink}
-            // src={"https://picsum.photos/200/300?random=2"}
             src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
             style={{
-              // height: "22vh",
-              height: " calc(10vh + 12vw)",
+              height: " calc(11vh + 4vw)",
+              minHeight: "150px",
               width: "100%",
               objectFit: "cover",
               borderRadius: "10px",
             }}
-            className="pt-2 px-2"
+            className="pt-2 px-2 announcementImg"
           />
           <Card.Body>
-            {/* <Card.Title style={{ height: "10vh" }}> */}
-            <Card.Title style={{ height: "calc(7vh + 3vw)" }}>
-              {/* <Card.Title> */}
-              {/* {category.text} bowihihc                   */}
-              {/* k[pqkdowjopj wpjmp wojfpowj wkwojfpo powj pwjjwpoj */}
-              {/* if({category.text}.length > 10) {{category.text}.substring(0, 10)} */}
-              {/* {announcement.title.length > 26 ? (
-                      <p>{announcement.title.substring(0, 23)}...</p>
-                    ) : ( */}
-              {title.length > 20 ? (
-                <p>{title.substring(0, 17)}...</p>
-              ) : (
-                <p>{title}</p>
-              )}
-            </Card.Title>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip id="tooltip-disabled">{title}</Tooltip>}
+            >
+              <Card.Title style={{ height: "60px" }}>
+                {title.length > 20 ? (
+                  <p>{title.substring(0, 17)}...</p>
+                ) : (
+                  <p>{title}</p>
+                )}
+              </Card.Title>
+            </OverlayTrigger>
             <Card.Text className="pt-1">
               <b>{price} zł</b>
               <Card.Subtitle className="py-1">
