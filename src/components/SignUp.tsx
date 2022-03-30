@@ -6,14 +6,21 @@ import * as Yup from "yup";
 const SignUp = () => {
   const registerSchema = Yup.object().shape({
     name: Yup.string()
+      .required("To pole jest wymagane")
       .min(3, "Wprowadź prawidłowe imię")
       .max(24, "Wprowadź prawidłowe imię")
-      .matches(/^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}/, "Wprowadź prawidłowe imię")
-      .required("To pole jest wymagane"),
+      .matches(
+        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}$/i,
+        "Wprowadzono niedozwolone znaki"
+      ),
+
     surname: Yup.string()
       .min(3, "Wprowadź prawidłowe nazwisko")
       .max(24, "Wprowadź prawidłowe nazwisko")
-      .matches(/^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}/, "Wprowadź prawidłowe imię")
+      .matches(
+        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}$/i,
+        "Wprowadzono niedozwolone znaki"
+      )
       .required("To pole jest wymagane"),
     email: Yup.string()
       .email("Niepoprawny adres email")
@@ -62,17 +69,28 @@ const SignUp = () => {
               errors,
               isSubmitting,
             }) => (
-              <Form className="bg-body rounded border border-light p-4 p-sm-3">
+              <Form
+                className="bg-body rounded border border-light p-4 p-sm-3"
+                onSubmit={handleSubmit}
+              >
                 <h1>Zarejestruj się</h1>
                 <Form.Group>
                   <Form.Label className="labelText">Imię</Form.Label>
                   <Form.Control
+                    name="name"
                     type="text"
                     size="lg"
                     placeholder="Wprowadź imię"
                     autoComplete="name"
                     className="formInputs"
+                    value={values.name}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={!!errors.name}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.name}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label className="labelText">Nazwisko</Form.Label>
