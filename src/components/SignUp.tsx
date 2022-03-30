@@ -29,91 +29,125 @@ const SignUp = () => {
       .required("To pole jest wymagane")
       .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
       .max(9, "Wprowdź poprawny numer"),
-    tos: Yup.bool().required("Proszę zaakceptować regulamin strony"),
+    tos: Yup.bool()
+      .required()
+      .oneOf([true], "Regulamin musi zostać zaakceptowany"),
   });
   return (
     <Container className="d-grid signContainer">
       <Row>
         <Col xs={{ span: 10, offset: 1 }}>
-          <Form className="bg-body rounded border border-light p-4 p-sm-3">
-            <h1>Zarejestruj się</h1>
-            <Form.Group>
-              <Form.Label className="labelText">Imię</Form.Label>
-              <Form.Control
-                type="text"
-                size="lg"
-                placeholder="Wprowadź imię"
-                autoComplete="name"
-                className="formInputs"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="labelText">Nazwisko</Form.Label>
-              <Form.Control
-                type="text"
-                size="lg"
-                placeholder="Wprowadź nazwisko"
-                autoComplete="surname"
-                className="formInputs"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="labelText">Adres email</Form.Label>
-              <Form.Control
-                type="email"
-                size="lg"
-                placeholder="Wprowadź adres email"
-                autoComplete="email"
-                className="formInputs"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="labelText">Hasło</Form.Label>
-              <Form.Control
-                type="password"
-                size="lg"
-                placeholder="Wprowadź hasło"
-                autoComplete="password"
-                className="formInputs"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="labelText">Powtórz hasło</Form.Label>
-              <Form.Control
-                type="password"
-                size="lg"
-                placeholder="Wprowadź ponownie hasło"
-                autoComplete="password"
-                className="formInputs"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="labelText">Numer telefonu</Form.Label>
-              <Form.Control
-                type="tel"
-                size="lg"
-                placeholder="Wprowadź numer telefonu"
-                autoComplete="phoneNumber"
-                className="formInputs"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Check
-                type="checkbox"
-                label="Akceptuje Regulamin"
-                className="labelText mt-2"
-              />
-            </Form.Group>
+          <Formik
+            initialValues={{
+              name: "",
+              surname: "",
+              email: "",
+              password: "",
+              phoneNumber: "",
+              tos: false,
+            }}
+            validationSchema={registerSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(true);
+              resetForm();
+              setSubmitting(false);
+            }}
+          >
+            {({
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              touched,
+              errors,
+              isSubmitting,
+            }) => (
+              <Form className="bg-body rounded border border-light p-4 p-sm-3">
+                <h1>Zarejestruj się</h1>
+                <Form.Group>
+                  <Form.Label className="labelText">Imię</Form.Label>
+                  <Form.Control
+                    type="text"
+                    size="lg"
+                    placeholder="Wprowadź imię"
+                    autoComplete="name"
+                    className="formInputs"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label className="labelText">Nazwisko</Form.Label>
+                  <Form.Control
+                    type="text"
+                    size="lg"
+                    placeholder="Wprowadź nazwisko"
+                    autoComplete="surname"
+                    className="formInputs"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label className="labelText">Adres email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    size="lg"
+                    placeholder="Wprowadź adres email"
+                    autoComplete="email"
+                    className="formInputs"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label className="labelText">Hasło</Form.Label>
+                  <Form.Control
+                    type="password"
+                    size="lg"
+                    placeholder="Wprowadź hasło"
+                    autoComplete="password"
+                    className="formInputs"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label className="labelText">Powtórz hasło</Form.Label>
+                  <Form.Control
+                    type="password"
+                    size="lg"
+                    placeholder="Wprowadź ponownie hasło"
+                    autoComplete="password"
+                    className="formInputs"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label className="labelText">Numer telefonu</Form.Label>
+                  <Form.Control
+                    type="tel"
+                    size="lg"
+                    placeholder="Wprowadź numer telefonu"
+                    autoComplete="phoneNumber"
+                    className="formInputs"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="Akceptuje Regulamin"
+                    className="labelText mt-2"
+                  />
+                </Form.Group>
 
-            <div className="d-grid mt-5">
-              <Button variant="dark" size="lg">
-                Zarejestruj się
-              </Button>
-            </div>
-            <p>
-              Masz już konto? <a href="#">Zaloguj się</a>
-            </p>
-          </Form>
+                <div className="d-grid mt-5">
+                  <Button
+                    variant="dark"
+                    size="lg"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    Zarejestruj się
+                  </Button>
+                </div>
+                <p>
+                  Masz już konto? <a href="#">Zaloguj się</a>
+                </p>
+              </Form>
+            )}
+          </Formik>
         </Col>
       </Row>
     </Container>
