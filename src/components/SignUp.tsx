@@ -1,7 +1,36 @@
 import React from "react";
 import { Container, Form, Col, Button, Row } from "react-bootstrap";
+import { Formik } from "formik";
+import * as Yup from "yup";
 
 const SignUp = () => {
+  const registerSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, "Wprowadź prawidłowe imię")
+      .max(24, "Wprowadź prawidłowe imię")
+      .matches(/^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}/, "Wprowadź prawidłowe imię")
+      .required("To pole jest wymagane"),
+    surname: Yup.string()
+      .min(3, "Wprowadź prawidłowe nazwisko")
+      .max(24, "Wprowadź prawidłowe nazwisko")
+      .matches(/^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}/, "Wprowadź prawidłowe imię")
+      .required("To pole jest wymagane"),
+    email: Yup.string()
+      .email("Niepoprawny adres email")
+      .required("To pole jest wymagane"),
+    password: Yup.string()
+      .required("To pole jest wymagane")
+      .min(8, "Hasło musi składać się z minimum 8 znaków")
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        "Hasło musi zawierać 8 znaków, małą i dużą literę, znak specjalny i cyfre"
+      ),
+    phoneNumber: Yup.string()
+      .required("To pole jest wymagane")
+      .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
+      .max(9, "Wprowdź poprawny numer"),
+    tos: Yup.bool().required("Proszę zaakceptować regulamin strony"),
+  });
   return (
     <Container className="d-grid signContainer">
       <Row>
