@@ -36,3 +36,8 @@ code {
 .test {
   flex: 1;
 }
+
+.formInputs {
+  background-color: #e4e6eb !important;
+  color: #56595c !important;
+}
