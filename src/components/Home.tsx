@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Link, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Button, Col, Row, Image } from "react-bootstrap";
 
 import "slick-carousel/slick/slick.css";
@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import AnnouncementCard from "./AnnouncementCard";
-import Search from "./Search";
 
 import guitarCategory from "../images/guitar-category.jpg";
 import windCategory from "../images/wind-category.jpg";
