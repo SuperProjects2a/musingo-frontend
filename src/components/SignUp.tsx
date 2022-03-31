@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Col, Button, Row } from "react-bootstrap";
+import { Form, Col, Button, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -45,9 +45,9 @@ const SignUp = () => {
       .oneOf([true], "Regulamin musi zostać zaakceptowany"),
   });
   return (
-    <Container className=" d-grid signContainer">
+    <div className="formDiv p-4">
       <Row>
-        <Col xs={{ span: 10, offset: 1 }}>
+        <Col>
           <Formik
             initialValues={{
               name: "",
@@ -74,10 +74,7 @@ const SignUp = () => {
               errors,
               isSubmitting,
             }) => (
-              <Form
-                className="bg-body rounded border border-light p-4 p-sm-3"
-                onSubmit={handleSubmit}
-              >
+              <Form onSubmit={handleSubmit}>
                 <h1>Zarejestruj się</h1>
                 <Form.Group>
                   <Form.Label className="labelText">Imię</Form.Label>
@@ -212,15 +209,12 @@ const SignUp = () => {
                     Zarejestruj się
                   </Button>
                 </div>
-                <p>
-                  Masz już konto? <a href="#">Zaloguj się</a>
-                </p>
               </Form>
             )}
           </Formik>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

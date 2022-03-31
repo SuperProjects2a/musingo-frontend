@@ -1,4 +1,4 @@
-import { Container, Form, Col, Button, Row } from "react-bootstrap";
+import { Form, Col, Button, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 const SignIn = () => {
@@ -10,9 +10,9 @@ const SignIn = () => {
   });
 
   return (
-    <Container className="d-grid signContainer">
+    <div className="formDiv p-4">
       <Row>
-        <Col xs={{ span: 10, offset: 1 }}>
+        <Col>
           <Formik
             initialValues={{
               email: "",
@@ -34,10 +34,7 @@ const SignIn = () => {
               errors,
               isSubmitting,
             }) => (
-              <Form
-                className="bg-body rounded border border-light p-4 p-sm-3"
-                onSubmit={handleSubmit}
-              >
+              <Form onSubmit={handleSubmit}>
                 <h1>Zaloguj się</h1>
                 <Form.Group className="position-relative">
                   <Form.Label className="labelText">Adres email</Form.Label>
@@ -89,7 +86,7 @@ const SignIn = () => {
           </Formik>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 
