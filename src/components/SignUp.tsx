@@ -38,13 +38,14 @@ const SignUp = () => {
     phoneNumber: Yup.string()
       .required("To pole jest wymagane")
       .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
+      .min(9, "Wprowdź poprawny numer")
       .max(9, "Wprowdź poprawny numer"),
-    tos: Yup.bool()
+    tos: Yup.boolean()
       .required()
       .oneOf([true], "Regulamin musi zostać zaakceptowany"),
   });
   return (
-    <Container className="d-grid signContainer">
+    <Container className=" d-grid signContainer">
       <Row>
         <Col xs={{ span: 10, offset: 1 }}>
           <Formik
@@ -166,21 +167,39 @@ const SignUp = () => {
                 <Form.Group>
                   <Form.Label className="labelText">Numer telefonu</Form.Label>
                   <Form.Control
+                    name="phoneNumber"
                     type="tel"
                     placeholder="Wprowadź numer telefonu"
                     autoComplete="phoneNumber"
                     className="formInputs"
+                    value={values.phoneNumber}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={!!errors.phoneNumber}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.phoneNumber}
+                  </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group>
-                  <Form.Check
-                    type="checkbox"
-                    label="Akceptuje Regulamin"
-                    className="labelText mt-2"
-                  />
-                </Form.Group>
+                <Row>
+                  <Col>
+                    <Form.Group>
+                      <Form.Check
+                        name="tos"
+                        type="checkbox"
+                        label="Akceptuje Regulamin"
+                        className="labelText mt-2"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        isInvalid={!!errors.tos}
+                        feedback={errors.tos}
+                        feedbackType="invalid"
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
 
-                <div className="d-grid mt-5">
+                <div className="d-grid">
                   <Button
                     variant="dark"
                     size="lg"
