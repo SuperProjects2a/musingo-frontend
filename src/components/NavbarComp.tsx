@@ -9,6 +9,7 @@ import {
   Button,
   Col,
   Form,
+  Row,
 } from "react-bootstrap";
 import { Route, Link, Routes } from "react-router-dom";
 import Home from "./Home";
@@ -87,19 +88,39 @@ const NavbarComp = () => {
           </Navbar.Collapse>
         </Navbar>
 
-        <Container className="py-3">
-          <Col
-            xs={{ span: 10, offset: 1 }}
-            sm={{ span: 10, offset: 1 }}
-            md={{ span: 8, offset: 2 }}
-          >
-            <InputGroup>
-              <Form.Control type="text" placeholder="Szukaj przedmiotów" />
-              <Button variant="outline-dark" id="button-addon2">
-                <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-              </Button>
-            </InputGroup>
-          </Col>
+        <Container className="py-3" fluid>
+          <Row>
+            <Col
+              className="px-3 px-md-5 px-lg-0"
+              lg={{ span: 8, offset: 2 }}
+              xl={{ span: 6, offset: 3 }}
+            >
+              <InputGroup>
+                <Form.Control
+                  type="text"
+                  placeholder="Szukaj przedmiotów"
+                  className="navBorder"
+                  style={{ width: "45%" }}
+                />
+                <Form.Select
+                  aria-label="Default select example"
+                  className="selectColor navBorder"
+                >
+                  <option>Cała Polska</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+                <Button
+                  variant="light"
+                  id="button-addon2"
+                  className="navBorder selectColor"
+                >
+                  <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+                </Button>
+              </InputGroup>
+            </Col>
+          </Row>
         </Container>
       </div>
 

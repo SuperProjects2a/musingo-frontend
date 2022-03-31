@@ -33,6 +33,12 @@ code {
   background-color: #e5e5e5;
 }
 
+.navBorder{
+  border-color: #CED4DA!important;
+  /* background-color: white !important; */
+
+}
+
 .test {
   flex: 1;
 }
