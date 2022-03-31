@@ -84,6 +84,17 @@ input[type="color"]:focus,
   box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.6);
 }
 
+.selectColor:focus {
+  border-color: rgba(0, 0, 0, 0.8)!important;
+  -webkit-box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.6)!important;
+  -moz-box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.6)!important;
+  box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.6)!important;
+}
+/* .selectColor:focus-visible{
+
+} */
+
+
 .scrollTest {
   overflow-x: scroll;
   overflow-y: hidden;

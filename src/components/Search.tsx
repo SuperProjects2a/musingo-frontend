@@ -26,7 +26,10 @@ const Search = () => {
               xl={2}
             >
               <Form.Label>Kategoria</Form.Label>
-              <Form.Select aria-label="Default select example">
+              <Form.Select
+                aria-label="Default select example"
+                className="selectColor"
+              >
                 <option>Wybierz kategorię</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -43,7 +46,7 @@ const Search = () => {
               <Form.Label>Cena</Form.Label>
               <InputGroup>
                 <Form.Control type="number" placeholder="od" />
-                <Form.Control type="number" placeholder="od" />
+                <Form.Control className="mx-2" type="number" placeholder="od" />
               </InputGroup>
             </Col>
             <Col
@@ -53,7 +56,10 @@ const Search = () => {
               xl={{ span: 2, offset: 6 }}
             >
               <Form.Label>Sortowanie</Form.Label>
-              <Form.Select aria-label="Default select example">
+              <Form.Select
+                aria-label="Default select example"
+                className="selectColor"
+              >
                 <option>S</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -64,7 +70,7 @@ const Search = () => {
         </Form>
       </div>
       <hr />
-      <div className="px-2 px-sm-3 px-md-4">ifiuwg</div>
+      <div className="px-2 px-sm-3 px-md-4">aaa</div>
     </Container>
   );
 };
