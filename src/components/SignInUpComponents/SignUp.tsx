@@ -93,7 +93,7 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="labelText">Nazwisko</Form.Label>
+                  <Form.Label className="mt-2 labelText">Nazwisko</Form.Label>
                   <Form.Control
                     name="surname"
                     type="text"
@@ -110,7 +110,9 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="labelText">Adres email</Form.Label>
+                  <Form.Label className="mt-2 labelText">
+                    Adres email
+                  </Form.Label>
                   <Form.Control
                     name="email"
                     type="email"
@@ -127,7 +129,7 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="labelText">Hasło</Form.Label>
+                  <Form.Label className="mt-2 labelText">Hasło</Form.Label>
                   <Form.Control
                     name="password"
                     type="password"
@@ -144,7 +146,9 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="labelText">Powtórz hasło</Form.Label>
+                  <Form.Label className="mt-2 labelText">
+                    Powtórz hasło
+                  </Form.Label>
                   <Form.Control
                     name="passwordConfirmation"
                     type="password"
@@ -164,7 +168,9 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="labelText">Numer telefonu</Form.Label>
+                  <Form.Label className=" mt-2 labelText">
+                    Numer telefonu
+                  </Form.Label>
                   <Form.Control
                     name="phoneNumber"
                     type="tel"
@@ -198,7 +204,7 @@ const SignUp = () => {
                   </Col>
                 </Row>
 
-                <div className="d-grid">
+                <div className="mt-3 d-grid">
                   <Button
                     variant="dark"
                     size="lg"

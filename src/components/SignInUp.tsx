@@ -5,7 +5,7 @@ import SignUp from "./SignInUpComponents/SignUp";
 const SignInUp = () => {
   return (
     <div className="formDiv">
-      <Tabs defaultActiveKey="Zaloguj się" className="mb-3">
+      <Tabs defaultActiveKey="Zaloguj się" className="nav-fill mb-3">
         <Tab eventKey="Zaloguj się" title="Zaloguj się">
           <SignIn />
         </Tab>

@@ -54,7 +54,7 @@ const SignIn = () => {
                 </Form.Group>
 
                 <Form.Group className="position-relative">
-                  <Form.Label className="labelText">Hasło</Form.Label>
+                  <Form.Label className="mt-2 labelText">Hasło</Form.Label>
                   <Form.Control
                     name="password"
                     type="password"
@@ -70,7 +70,7 @@ const SignIn = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <div className="d-grid mt-2">
+                <div className="d-grid mt-3">
                   <Button
                     size="lg"
                     variant="dark"
