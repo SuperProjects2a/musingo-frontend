@@ -32,6 +32,9 @@ const SignUp = () => {
         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
         "Hasło musi zawierać 8 znaków, małą i dużą literę, znak specjalny i cyfre"
       ),
+    passwordConfirmation: Yup.string()
+      .required("To pole jest wymagane")
+      .oneOf([Yup.ref("password"), null], "Hasło musza się zgadzać"),
     phoneNumber: Yup.string()
       .required("To pole jest wymagane")
       .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
@@ -50,6 +53,7 @@ const SignUp = () => {
               surname: "",
               email: "",
               password: "",
+              passwordConfirmation: "",
               phoneNumber: "",
               tos: false,
             }}
@@ -79,7 +83,6 @@ const SignUp = () => {
                   <Form.Control
                     name="name"
                     type="text"
-                    size="lg"
                     placeholder="Wprowadź imię"
                     autoComplete="name"
                     className="formInputs"
@@ -95,48 +98,75 @@ const SignUp = () => {
                 <Form.Group>
                   <Form.Label className="labelText">Nazwisko</Form.Label>
                   <Form.Control
+                    name="surname"
                     type="text"
-                    size="lg"
                     placeholder="Wprowadź nazwisko"
                     autoComplete="surname"
                     className="formInputs"
+                    value={values.surname}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={!!errors.surname}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.surname}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label className="labelText">Adres email</Form.Label>
                   <Form.Control
+                    name="email"
                     type="email"
-                    size="lg"
                     placeholder="Wprowadź adres email"
                     autoComplete="email"
                     className="formInputs"
+                    value={values.email}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={!!errors.email}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label className="labelText">Hasło</Form.Label>
                   <Form.Control
+                    name="password"
                     type="password"
-                    size="lg"
                     placeholder="Wprowadź hasło"
                     autoComplete="password"
                     className="formInputs"
+                    value={values.password}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={!!errors.password}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label className="labelText">Powtórz hasło</Form.Label>
                   <Form.Control
+                    name="passwordConfirmation"
                     type="password"
-                    size="lg"
                     placeholder="Wprowadź ponownie hasło"
-                    autoComplete="password"
+                    autoComplete="passwordConfirmation"
                     className="formInputs"
+                    value={values.passwordConfirmation}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={!!errors.passwordConfirmation}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.passwordConfirmation}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label className="labelText">Numer telefonu</Form.Label>
                   <Form.Control
                     type="tel"
-                    size="lg"
                     placeholder="Wprowadź numer telefonu"
                     autoComplete="phoneNumber"
                     className="formInputs"

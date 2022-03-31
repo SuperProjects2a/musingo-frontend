@@ -6,9 +6,7 @@ const SignIn = () => {
     email: Yup.string()
       .email("Niepoprawny adres email")
       .required("Prosze wpisać adres email"),
-    password: Yup.string()
-      .required("Proszę wpisać hasło")
-      .min(8, "Hasło składa się z minimum 8 znaków"),
+    password: Yup.string().required("Proszę wpisać hasło"),
   });
 
   return (
