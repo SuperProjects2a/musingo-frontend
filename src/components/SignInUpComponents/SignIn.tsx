@@ -10,7 +10,7 @@ const SignIn = () => {
   });
 
   return (
-    <div className="formDiv p-4">
+    <div className="p-4">
       <Row>
         <Col>
           <Formik
@@ -35,7 +35,6 @@ const SignIn = () => {
               isSubmitting,
             }) => (
               <Form onSubmit={handleSubmit}>
-                <h1>Zaloguj się</h1>
                 <Form.Group className="position-relative">
                   <Form.Label className="labelText">Adres email</Form.Label>
                   <Form.Control

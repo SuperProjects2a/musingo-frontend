@@ -45,7 +45,7 @@ const SignUp = () => {
       .oneOf([true], "Regulamin musi zostać zaakceptowany"),
   });
   return (
-    <div className="formDiv p-4">
+    <div className="p-4">
       <Row>
         <Col>
           <Formik
@@ -75,7 +75,6 @@ const SignUp = () => {
               isSubmitting,
             }) => (
               <Form onSubmit={handleSubmit}>
-                <h1>Zarejestruj się</h1>
                 <Form.Group>
                   <Form.Label className="labelText">Imię</Form.Label>
                   <Form.Control
