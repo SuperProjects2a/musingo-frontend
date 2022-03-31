@@ -50,7 +50,7 @@ const SignIn = () => {
                     value={values.email}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isInvalid={!!errors.email}
+                    isInvalid={touched.email && !!errors.email}
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.email}
@@ -67,7 +67,7 @@ const SignIn = () => {
                     value={values.password}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isInvalid={!!errors.password}
+                    isInvalid={touched.password && !!errors.password}
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.password}

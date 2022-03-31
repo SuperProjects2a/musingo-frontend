@@ -90,7 +90,7 @@ const SignUp = () => {
                     value={values.name}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isInvalid={!!errors.name}
+                    isInvalid={touched.name && !!errors.name}
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.name}
@@ -107,7 +107,7 @@ const SignUp = () => {
                     value={values.surname}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isInvalid={!!errors.surname}
+                    isInvalid={touched.surname && !!errors.surname}
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.surname}
@@ -124,7 +124,7 @@ const SignUp = () => {
                     value={values.email}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isInvalid={!!errors.email}
+                    isInvalid={touched.email && !!errors.email}
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.email}
@@ -141,7 +141,7 @@ const SignUp = () => {
                     value={values.password}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isInvalid={!!errors.password}
+                    isInvalid={touched.password && !!errors.password}
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.password}
@@ -158,7 +158,10 @@ const SignUp = () => {
                     value={values.passwordConfirmation}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isInvalid={!!errors.passwordConfirmation}
+                    isInvalid={
+                      touched.passwordConfirmation &&
+                      !!errors.passwordConfirmation
+                    }
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.passwordConfirmation}
@@ -175,7 +178,7 @@ const SignUp = () => {
                     value={values.phoneNumber}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    isInvalid={!!errors.phoneNumber}
+                    isInvalid={touched.phoneNumber && !!errors.phoneNumber}
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.phoneNumber}
@@ -191,7 +194,7 @@ const SignUp = () => {
                         className="labelText mt-2"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        isInvalid={!!errors.tos}
+                        isInvalid={touched.tos && !!errors.tos}
                         feedback={errors.tos}
                         feedbackType="invalid"
                       />
