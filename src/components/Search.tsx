@@ -2,6 +2,9 @@ import React from "react";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Container, Form, Col, Row, InputGroup, Image } from "react-bootstrap";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import AnnouncementCard from "./AnnouncementCard";
 
 interface Property {
@@ -13,6 +16,54 @@ interface Property {
 // const Search: FC<typeof category> = (category) => {
 // const Search: FC<Property> = (category) => {
 const Search = () => {
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 3,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   const announcements = [
     {
       link: "/Test",
@@ -66,8 +117,8 @@ const Search = () => {
     },
   ];
   return (
-    <Container fluid>
-      <div className="px-2 px-sm-3 px-md-4" style={{ textAlign: "left" }}>
+    <Container fluid style={{ textAlign: "left" }}>
+      <div className="px-2 px-sm-3 px-md-4">
         <h4>
           <b>Filtry</b>
         </h4>
@@ -127,19 +178,32 @@ const Search = () => {
           </Row>
         </Form>
       </div>
-      <hr />
-      <Row className="px-2 px-sm-3 px-md-4">
-        {announcements.map((announcement, index) => (
-          <Col className="px-2 px-sm-1">
-            <AnnouncementCard
-              linkA={announcement.link}
-              title={announcement.title}
-              price={announcement.price}
-              city={announcement.city}
-            />
-          </Col>
-        ))}
-      </Row>
+      <div className="px-2 px-sm-3 px-md-4 pb-3">
+        <div className="py-4">
+          <h5 style={{ textAlign: "left" }}>
+            <b>Wyróżnione</b>
+          </h5>
+          <Row className=" py-1 px-4" fluid>
+            <Slider {...settings}>
+              {announcements.map((announcement, index) => (
+                <Col className="px-2 px-sm-1">
+                  <AnnouncementCard
+                    linkA={announcement.link}
+                    title={announcement.title}
+                    price={announcement.price}
+                    city={announcement.city}
+                  />
+                </Col>
+              ))}
+            </Slider>
+          </Row>
+        </div>
+        <div>
+          <h5 style={{ textAlign: "left" }}>
+            <b>Pozostałe</b>
+          </h5>
+        </div>
+      </div>
     </Container>
   );
 };
