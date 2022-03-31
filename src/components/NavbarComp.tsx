@@ -12,6 +12,7 @@ import {
 import { Route, Link, Routes } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
+import Search from "./Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -105,6 +106,7 @@ const NavbarComp = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Test" element={<Test />}></Route>
+          <Route path="/Search" element={<Search />}></Route>
         </Routes>
       </div>
     </>

@@ -24,9 +24,9 @@ const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
               minHeight: "150px",
               width: "100%",
               objectFit: "cover",
-              borderRadius: "10px",
+              borderRadius: "12px 12px 0 0",
             }}
-            className="pt-2 px-2 announcementImg"
+            className="pt-2 px-2"
           />
           <Card.Body>
             <OverlayTrigger

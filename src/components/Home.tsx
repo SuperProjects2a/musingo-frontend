@@ -1,27 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Link, Routes } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  FormControl,
-  Container,
-  InputGroup,
-  Button,
-  Col,
-  Row,
-  Image,
-  Figure,
-  Card,
-  Carousel,
-  CardGroup,
-} from "react-bootstrap";
+import { Container, Button, Col, Row, Image } from "react-bootstrap";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import AnnouncementCard from "./AnnouncementCard";
+import Search from "./Search";
 
 import guitarCategory from "../images/guitar-category.jpg";
 import windCategory from "../images/wind-category.jpg";
@@ -35,7 +21,7 @@ import bookNoteCategory from "../images/book-note-category.jpg";
 import otherCategory from "../images/other-category.jpg";
 
 const categories = [
-  { link: "/Test", text: "Gitary", imgLink: guitarCategory },
+  { link: "/Search", text: "Gitary", imgLink: guitarCategory },
   { link: "/Test", text: "Dęte", imgLink: windCategory },
   { link: "/Test", text: "Klawiszowe", imgLink: keyboarCategory },
   { link: "/Test", text: "Perkusyjne", imgLink: percussionCategory },
