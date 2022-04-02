@@ -7,7 +7,6 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
 
@@ -15,7 +14,7 @@ const AddOffer = () => {
   const addOfferSchema = Yup.object().shape({
     title: Yup.string()
       .required("To pole nie może zostać puste")
-      .min(15, "Minimalna długość tytułu to przynajmniej 15 znaków")
+      .min(5, "Minimalna długość tytułu to przynajmniej 5 znaków")
       .max(50, "Maksymalna długość tytułu to 50 znaków."),
     description: Yup.string().required("To pole nie może zostać puste"),
     phoneNumber: Yup.string()
@@ -29,12 +28,12 @@ const AddOffer = () => {
     city: Yup.string()
       .required("To pole nie może zostać puste")
       .matches(
-        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]*$/i,
+        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ\-]*$/i,
         "Wprowadź prawidłową nazwę miejscowości"
-      ),
+      ), 
     price: Yup.number()
       .required("Wprowdź poprawną cenę")
-      .min(1, "Wprowdź poprawną cenę"),
+      .min(0.01, "Wprowdź poprawną cenę"),
     category: Yup.string()
       .required("To pole nie może zostać puste")
       .matches(
@@ -90,20 +89,19 @@ const AddOffer = () => {
                       <strong>Zdjęcia</strong>
                     </h4>
                     <Form.Label>Dodaj zdjęcia</Form.Label>
-                    <InputGroup className="mb-3">
-                      <Form.Control
-                        type="file"
-                        multiple
-                        accept=".png,.jpg,.jpeg,.webp"
-                        className="formInputs"
-                      />
-                      <Button
-                        variant="dark"
-                        className=" my-2 my-sm-0"
-                      >
-                        Wgraj zdjęcia
-                      </Button>
-                    </InputGroup>
+                    <Row className="mb-3">
+                      <Col xs={12} sm={8}>
+                        <Form.Control
+                          type="file"
+                          multiple
+                          accept=".png,.jpg,.jpeg,.webp"
+                          className="formInputs"
+                        />
+                      </Col>
+                      <Col xs={5} sm={4} className="pt-2 pt-sm-0">
+                        <Button variant="dark">Wgraj zdjęcia</Button>
+                      </Col>
+                    </Row>
                     <Form.Text>
                       Możesz dodać maksymalnie <strong>5</strong> zdjęć w
                       formacie: <strong>.png .jpg .jpeg .bpm</strong>
@@ -169,6 +167,8 @@ const AddOffer = () => {
                             type="number"
                             placeholder="np. 50"
                             name="price"
+                            min="0.01"
+                            step=".01"
                             autoComplete="price"
                             value={Number(values.price).toString()}
                             onBlur={handleBlur}
@@ -290,7 +290,8 @@ const AddOffer = () => {
                       </Form.Group>
                     </Col>
                     <Col
-                      lg={{ span: 4, offset: 10 }}
+                      xl={{ span: 2, offset: 10 }}
+                      lg={{ span: 3, offset: 9 }}
                       md={{ span: 4, offset: 8 }}
                     >
                       <Button
