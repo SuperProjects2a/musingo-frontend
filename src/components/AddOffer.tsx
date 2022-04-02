@@ -30,7 +30,7 @@ const AddOffer = () => {
       .required("To pole nie może zostać puste")
       .matches(
         /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]*$/i,
-        "Wprowadzono nieprawidłową nazwę miejscowości"
+        "Wprowadź prawidłową nazwę miejscowości"
       ),
     price: Yup.number()
       .required("Wprowdź poprawną cenę")
@@ -44,8 +44,7 @@ const AddOffer = () => {
     tos: Yup.boolean()
       .required()
       .oneOf([true], "Wymagana zgoda na przetwarzanie danych osobowych"),
-  }
-  );
+  });
 
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
@@ -75,7 +74,6 @@ const AddOffer = () => {
                 resetForm();
                 setSubmitting(false);
               }}
-              
             >
               {({
                 handleSubmit,
@@ -118,7 +116,7 @@ const AddOffer = () => {
                     </h4>
                     <Col sm="6">
                       <Form.Group className="py-2">
-                        <Form.Label className="labelText" >
+                        <Form.Label className="labelText">
                           Tytuł ogłoszenia
                         </Form.Label>
                         <Form.Control
@@ -142,7 +140,6 @@ const AddOffer = () => {
                         <Form.Select
                           name="category"
                           className="formInputs"
-                          arial-label="cos"
                           autoComplete="category"
                           value={values.category}
                           onBlur={handleBlur}
@@ -167,11 +164,10 @@ const AddOffer = () => {
                       </Form.Group>
                       <Form.Group className="sm-5 py-2">
                         <Form.Label className="labelText">Cena</Form.Label>
-                        <Col sm="5" >
+                        <Col sm="5">
                           <Form.Control
                             className="formInputs"
                             type="number"
-                            min="1"
                             placeholder="np. 50"
                             name="price"
                             autoComplete="price"
@@ -211,47 +207,47 @@ const AddOffer = () => {
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Form.Group>
-                  <Form.Group >
+                  <Form.Group>
                     <Col sm="6">
                       <h4>
                         <strong>Dane kontaktowe</strong>
                       </h4>
                       <Form.Group className="py-2">
-                      <Form.Label className="labelText">Miasto</Form.Label>
-                      <Form.Control
-                        className="formInputs"
-                        type="text"
-                        placeholder="Wprowadź nazwe miejscowości"
-                        name="city"
-                        autoComplete="city"
-                        value={values.city}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        isInvalid={touched.city && !!errors.city}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.city}
-                      </Form.Control.Feedback>
+                        <Form.Label className="labelText">Miasto</Form.Label>
+                        <Form.Control
+                          className="formInputs"
+                          type="text"
+                          placeholder="Wprowadź nazwe miejscowości"
+                          name="city"
+                          autoComplete="city"
+                          value={values.city}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          isInvalid={touched.city && !!errors.city}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.city}
+                        </Form.Control.Feedback>
                       </Form.Group>
-                        <Form.Group className="py-2">
-                          <Form.Label className="labelText">
-                            Adres E-mail
-                          </Form.Label>
-                          <Form.Control
-                            className="formInputs"
-                            type="text"
-                            placeholder="Wprowadź adres e-mail"
-                            name="email"
-                            autoComplete="email"
-                            value={values.email}
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            isInvalid={touched.email && !!errors.email}
-                          />
-                          <Form.Control.Feedback type="invalid">
-                            {errors.email}
-                          </Form.Control.Feedback>
-                        </Form.Group>
+                      <Form.Group className="py-2">
+                        <Form.Label className="labelText">
+                          Adres E-mail
+                        </Form.Label>
+                        <Form.Control
+                          className="formInputs"
+                          type="text"
+                          placeholder="Wprowadź adres e-mail"
+                          name="email"
+                          autoComplete="email"
+                          value={values.email}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          isInvalid={touched.email && !!errors.email}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.email}
+                        </Form.Control.Feedback>
+                      </Form.Group>
                       <Form.Group className="py-2">
                         <Form.Label className="labelText">
                           Numer telefonu
