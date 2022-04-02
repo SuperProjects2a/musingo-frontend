@@ -99,7 +99,6 @@ const AddOffer = () => {
                       />
                       <Button
                         variant="dark"
-                        type="submit"
                         className=" my-2 my-sm-0"
                       >
                         Wgraj zdjęcia
