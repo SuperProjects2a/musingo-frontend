@@ -28,9 +28,9 @@ const AddOffer = () => {
     city: Yup.string()
       .required("To pole nie może zostać puste")
       .matches(
-        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ\-]*$/i,
+        /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ\-]+\s)*[-\a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]+$/i,
         "Wprowadź prawidłową nazwę miejscowości"
-      ), 
+      ),
     price: Yup.number()
       .required("Wprowdź poprawną cenę")
       .min(0.01, "Wprowdź poprawną cenę"),
@@ -170,7 +170,7 @@ const AddOffer = () => {
                             min="0.01"
                             step=".01"
                             autoComplete="price"
-                            value={Number(values.price).toString()}
+                            value={Number(values.price).toFixed(2).toString()}
                             onBlur={handleBlur}
                             onChange={handleChange}
                             isInvalid={touched.price && !!errors.price}
