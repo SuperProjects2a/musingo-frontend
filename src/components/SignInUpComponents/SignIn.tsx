@@ -34,9 +34,9 @@ const SignIn = () => {
               errors,
               isSubmitting,
             }) => (
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
                 <Form.Group className="position-relative">
-                  <Form.Label className="labelText">Adres email</Form.Label>
+                  <Form.Label>Adres email</Form.Label>
                   <Form.Control
                     name="email"
                     type="text"
@@ -54,7 +54,7 @@ const SignIn = () => {
                 </Form.Group>
 
                 <Form.Group className="position-relative">
-                  <Form.Label className="mt-2 labelText">Hasło</Form.Label>
+                  <Form.Label className="mt-2">Hasło</Form.Label>
                   <Form.Control
                     name="password"
                     type="password"
@@ -70,7 +70,7 @@ const SignIn = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <div className="d-grid mt-3">
+                <div className="d-grid mt-4">
                   <Button
                     size="lg"
                     variant="dark"

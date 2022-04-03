@@ -74,9 +74,9 @@ const SignUp = () => {
               errors,
               isSubmitting,
             }) => (
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
                 <Form.Group>
-                  <Form.Label className="labelText">Imię</Form.Label>
+                  <Form.Label>Imię</Form.Label>
                   <Form.Control
                     name="name"
                     type="text"
@@ -93,7 +93,7 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="mt-2 labelText">Nazwisko</Form.Label>
+                  <Form.Label className="mt-2 ">Nazwisko</Form.Label>
                   <Form.Control
                     name="surname"
                     type="text"
@@ -110,9 +110,7 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="mt-2 labelText">
-                    Adres email
-                  </Form.Label>
+                  <Form.Label className="mt-2 ">Adres email</Form.Label>
                   <Form.Control
                     name="email"
                     type="email"
@@ -129,7 +127,7 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="mt-2 labelText">Hasło</Form.Label>
+                  <Form.Label className="mt-2 ">Hasło</Form.Label>
                   <Form.Control
                     name="password"
                     type="password"
@@ -146,9 +144,7 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className="mt-2 labelText">
-                    Powtórz hasło
-                  </Form.Label>
+                  <Form.Label className="mt-2 ">Powtórz hasło</Form.Label>
                   <Form.Control
                     name="passwordConfirmation"
                     type="password"
@@ -168,9 +164,7 @@ const SignUp = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label className=" mt-2 labelText">
-                    Numer telefonu
-                  </Form.Label>
+                  <Form.Label className=" mt-2 ">Numer telefonu</Form.Label>
                   <Form.Control
                     name="phoneNumber"
                     type="tel"
@@ -193,7 +187,7 @@ const SignUp = () => {
                         name="tos"
                         type="checkbox"
                         label="Akceptuje Regulamin"
-                        className="labelText mt-2"
+                        className="mt-2"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         isInvalid={touched.tos && !!errors.tos}

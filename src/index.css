@@ -133,3 +133,41 @@ input[type="color"]:focus,
     margin: auto;
   }
 }
+
+.nav-tabs .nav-link{
+  color:rgba(0, 0, 0, 0.7) !important;
+  font-size: large !important;
+}
+.nav-tabs .nav-link:focus{
+  border: none !important;
+  border-bottom: 3px solid black !important;
+  font-weight: 700 !important;
+}
+
+.nav-tabs .nav-link:hover{
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  }
+
+.nav-tabs .nav-link:active{
+  border: none !important;
+  border-bottom: 3px solid black !important;
+  color:rgba(0, 0, 0, 0.7) !important;
+  font-weight: 700 !important;
+}
+
+.nav-tabs{
+  border:none !important;
+}
+
+.backgroundSignInUp {
+  background:url(./images/bgsigninup.jpg);
+  background-repeat: no-repeat;
+  background-size:100% 100%
+}
+
+
+
+
+
