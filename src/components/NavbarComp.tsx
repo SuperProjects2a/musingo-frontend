@@ -7,10 +7,12 @@ import {
   InputGroup,
   Button,
   Col,
+  Form,
 } from "react-bootstrap";
 import { Route, Link, Routes } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
+import AddOffer from "./AddOffer";
 import SignInUp from "./SignInUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -75,7 +77,7 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to={"/SignInUp"}>
                 Zaloguj się
               </Nav.Link>
-              <Nav.Link as={Link} to={"/Test"}>
+              <Nav.Link as={Link} to={"/AddOffer"}>
                 Dodaj ogłoszenie
               </Nav.Link>
             </Nav>
@@ -89,11 +91,7 @@ const NavbarComp = () => {
             md={{ span: 8, offset: 2 }}
           >
             <InputGroup>
-              <FormControl
-                placeholder="Szukaj przedmiotów"
-                aria-label="Recipient's username"
-                aria-describedby="basic-addon2"
-              />
+              <Form.Control type="text" placeholder="Szukaj przedmiotów" />
               <Button variant="outline-dark" id="button-addon2">
                 <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
               </Button>
@@ -106,6 +104,7 @@ const NavbarComp = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Test" element={<Test />}></Route>
+          <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
         </Routes>
       </div>
