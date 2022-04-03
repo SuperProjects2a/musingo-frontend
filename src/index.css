@@ -107,7 +107,7 @@ input[type="color"]:focus,
 }
 
 .formInputs {
-  background-color: #d9e0e2 !important;
+  background-color: #dadada5e !important;
   color: #56595c !important;
 }
 
@@ -135,36 +135,21 @@ input[type="color"]:focus,
 }
 
 .nav-tabs .nav-link{
-  color:rgba(0, 0, 0, 0.7) !important;
-  font-size: large !important;
-}
-.nav-tabs .nav-link:focus{
   border: none !important;
-  border-bottom: 3px solid black !important;
-  font-weight: 700 !important;
-}
-
-.nav-tabs .nav-link:hover{
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  }
-
-.nav-tabs .nav-link:active{
-  border: none !important;
-  border-bottom: 3px solid black !important;
   color:rgba(0, 0, 0, 0.7) !important;
-  font-weight: 700 !important;
 }
 
-.nav-tabs{
-  border:none !important;
+.nav-tabs .nav-link.active{
+  border: none !important;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.8) !important;
+  color:rgba(0, 0, 0, 0.8) !important;
+  font-weight: 700 !important;
 }
 
 .backgroundSignInUp {
   background:url(./images/bgsigninup.jpg);
   background-repeat: no-repeat;
-  background-size:100% 100%
+  background-size: 100% 100%
 }
 
 

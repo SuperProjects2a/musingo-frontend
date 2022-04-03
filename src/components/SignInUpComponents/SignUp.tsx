@@ -198,7 +198,7 @@ const SignUp = () => {
                   </Col>
                 </Row>
 
-                <div className="mt-3 d-grid">
+                <div className="my-3 d-grid">
                   <Button
                     variant="dark"
                     size="lg"
