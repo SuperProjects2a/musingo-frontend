@@ -13,7 +13,7 @@ import { Formik } from "formik";
 const AddOffer = () => {
   const addOfferSchema = Yup.object().shape({
     title: Yup.string()
-      .required("To pole nie może zostać puste")
+      .required("Wprowadź tytuł sprzedawanego przedmiotu")
       .min(5, "Minimalna długość tytułu to przynajmniej 5 znaków")
       .max(50, "Maksymalna długość tytułu to 50 znaków."),
     description: Yup.string().required("To pole nie może zostać puste"),
@@ -31,14 +31,15 @@ const AddOffer = () => {
         /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ\-]+\s)*[-\a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]+$/i,
         "Wprowadź prawidłową nazwę miejscowości"
       ),
-    price: Yup.number()
+    price: Yup.string()
       .required("Wprowdź poprawną cenę")
+      .matches(/^[0,1,2,3,4,5,6,7,8,9,0]\d+$/, "Wprowdź poprawną cenę")
       .min(0.01, "Wprowdź poprawną cenę"),
     category: Yup.string()
-      .required("To pole nie może zostać puste")
+      .required("Wybierz kategorię")
       .matches(
         /^[gitary, dete, klawiszowe, perkusyjne, smyczkowe, mikrofony, sluchawki,  akcesoria, inne]*$/i,
-        "Nie wybrano kategorii"
+        "Wybierz kategorię"
       ),
     tos: Yup.boolean()
       .required()
@@ -51,7 +52,7 @@ const AddOffer = () => {
         className="justify-content-center"
         style={{ textAlign: "left" }}
       >
-        <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5">
+        <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5 mt-sm-5 mb-sm-5">
           <Card.Header className="px-sm-4 px-md-5 py-3" as="h4">
             Dodaj ogłoszenie
           </Card.Header>
@@ -121,7 +122,7 @@ const AddOffer = () => {
                           className="formInputs"
                           color="red"
                           type="text"
-                          placeholder="np. IPhone 11 na gwarancji"
+                          placeholder="np. Drewniana gitara klasyczna z futerałem i akcesoriami"
                           autoComplete="title"
                           value={values.title}
                           onBlur={handleBlur}
@@ -164,13 +165,11 @@ const AddOffer = () => {
                         <Col sm="5">
                           <Form.Control
                             className="formInputs"
-                            type="number"
+                            type="text"
                             placeholder="np. 50"
                             name="price"
-                            min="0.01"
-                            step=".01"
                             autoComplete="price"
-                            value={Number(values.price).toFixed(2).toString()}
+                            value={values.price}
                             onBlur={handleBlur}
                             onChange={handleChange}
                             isInvalid={touched.price && !!errors.price}
