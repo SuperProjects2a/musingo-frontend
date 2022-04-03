@@ -16,9 +16,9 @@ const AddOffer = () => {
       .required("Wprowadź tytuł sprzedawanego przedmiotu")
       .min(5, "Minimalna długość tytułu to przynajmniej 5 znaków")
       .max(50, "Maksymalna długość tytułu to 50 znaków."),
-    description: Yup.string().required("To pole nie może zostać puste"),
+    description: Yup.string().required("To pole jest wymagane"),
     phoneNumber: Yup.string()
-      .required("To pole nie może zostać puste")
+      .required("To pole jest wymagane")
       .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
       .min(9, "Wprowdź poprawny numer telefonu")
       .max(9, "Wprowdź poprawny numer telefonu"),
@@ -26,14 +26,14 @@ const AddOffer = () => {
       .email("Wprowadź poprawny adres E-mail")
       .required("To pole jest wymagane"),
     city: Yup.string()
-      .required("To pole nie może zostać puste")
+      .required("To pole jest wymagane")
       .matches(
         /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ\-]+\s)*[-\a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]+$/i,
         "Wprowadź prawidłową nazwę miejscowości"
       ),
     price: Yup.string()
       .required("Wprowdź poprawną cenę")
-      .matches(/^[0,1,2,3,4,5,6,7,8,9,0]\d+$/, "Wprowdź poprawną cenę")
+      .matches(/^[1-9][0-9]*$/, "Wprowdź poprawną cenę")
       .min(0.01, "Wprowdź poprawną cenę"),
     category: Yup.string()
       .required("Wybierz kategorię")
