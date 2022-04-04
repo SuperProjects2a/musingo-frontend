@@ -101,20 +101,4 @@ input[type="color"]:focus,
 } */
 
 
-.scrollTest {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  /* display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto; */
-  /* overflow: auto;
-  display: block;
-  table-layout: auto;
-  overflow-x: auto; */
-}
 
-.cardTest {
-  /* flex: 0 0 auto; */
-  display: inline-block;
-}

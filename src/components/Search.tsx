@@ -1,11 +1,29 @@
 import React from "react";
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { Container, Form, Col, Row, InputGroup, Image } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Col,
+  Row,
+  InputGroup,
+  Image,
+  Card,
+} from "react-bootstrap";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import AnnouncementCard from "./AnnouncementCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { faBoxArchive } from "@fortawesome/free-solid-svg-icons";
+import { faFaceFrown } from "@fortawesome/free-solid-svg-icons";
+import { faLinkSlash } from "@fortawesome/free-solid-svg-icons";
+import { faFileCircleQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
+import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
+
+// import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
 interface Property {
   category: string;
@@ -179,6 +197,50 @@ const Search = () => {
         </Form>
       </div>
       <div className="px-2 px-sm-3 px-md-4 pb-3">
+        {announcements.length > 20 ? (
+          <div className="py-4">
+            <h5 style={{ textAlign: "left" }}>
+              <b>Wyróżnione</b>
+            </h5>
+            <Row className=" py-1 px-4" fluid>
+              <Slider {...settings}>
+                {announcements.map((announcement, index) => (
+                  <Col className="px-2 px-sm-1">
+                    <AnnouncementCard
+                      linkA={announcement.link}
+                      title={announcement.title}
+                      price={announcement.price}
+                      city={announcement.city}
+                    />
+                  </Col>
+                ))}
+              </Slider>
+            </Row>
+          </div>
+        ) : (
+          <div className="px-2 px-sm-3 px-md-4 pb-3"></div>
+        )}
+        <div>
+          {announcements.length > 10 ? (
+            <h5 style={{ textAlign: "left" }}>
+              <b>Pozostałe</b>
+            </h5>
+          ) : (
+            <Container className="py-4">
+              <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
+                <FontAwesomeIcon
+                  icon={faToiletPaperSlash}
+                  style={{ height: "100px" }}
+                  className="py-3"
+                />
+                <h5>Brak wyszukiwanego przedmiotu</h5>
+                <p>Spróbuj wyszukać pod inną nazwą</p>
+              </div>
+            </Container>
+          )}
+        </div>
+      </div>
+      {/* <div className="px-2 px-sm-3 px-md-4 pb-3">
         <div className="py-4">
           <h5 style={{ textAlign: "left" }}>
             <b>Wyróżnione</b>
@@ -203,7 +265,7 @@ const Search = () => {
             <b>Pozostałe</b>
           </h5>
         </div>
-      </div>
+      </div> */}
     </Container>
   );
 };
