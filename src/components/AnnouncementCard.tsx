@@ -46,6 +46,8 @@ const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
               <b>{price} zł</b>
               <Card.Subtitle className="py-1">
                 <small className="text-muted">{city}</small>
+                <br />
+                <small className="text-muted">dzisiaj 10:15</small>
               </Card.Subtitle>
             </Card.Text>
           </Card.Body>

@@ -221,10 +221,49 @@ const Search = () => {
           <div className="px-2 px-sm-3 px-md-4 pb-3"></div>
         )}
         <div>
-          {announcements.length > 10 ? (
-            <h5 style={{ textAlign: "left" }}>
-              <b>Pozostałe</b>
-            </h5>
+          {announcements.length > 0 ? (
+            <>
+              <h5 style={{ textAlign: "left" }}>
+                <b>Pozostałe</b>
+              </h5>
+              <div>
+                <Row>
+                  {announcements.map((announcement, index) => (
+                    <Col
+                      xs={{ span: 8, offset: 2 }}
+                      sm={{ span: 6, offset: 0 }}
+                      md={4}
+                      lg={3}
+                      xl={2}
+                      className="py-1 px-3 px-sm-2"
+                    >
+                      <AnnouncementCard
+                        linkA={announcement.link}
+                        title={announcement.title}
+                        price={announcement.price}
+                        city={announcement.city}
+                      />
+                    </Col>
+                  ))}
+                  {/* <Col xs={3}>
+                    <Image
+                      src={`https://picsum.photos/200/300?random=${
+                        Math.random() * 100
+                      }`}
+                      style={{
+                        // height: " calc(14vh + 2vw)",
+                        // minHeight: "150px",
+                        // maxHeight: "200px",
+                        width: "100%",
+                        // width: "100%",
+                        height: "200px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Col> */}
+                </Row>
+              </div>
+            </>
           ) : (
             <Container className="py-4">
               <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
