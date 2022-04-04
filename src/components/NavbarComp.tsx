@@ -13,6 +13,7 @@ import { Route, Link, Routes } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
 import AddOffer from "./AddOffer";
+import DisplayOffer from "./DisplayOffer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -104,6 +105,7 @@ const NavbarComp = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/Test" element={<Test />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
+          <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
         </Routes>
       </div>
     </>

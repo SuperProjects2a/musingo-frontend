@@ -48,7 +48,7 @@ const categories = [
 ];
 const announcements = [
   {
-    link: "/Test",
+    link: "/DisplayOffer",
     title: "Gitara elektryczna, stan rewelacyjny",
     price: 1000,
     city: "Bielsko-Biała",
