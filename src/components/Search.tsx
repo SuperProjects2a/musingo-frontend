@@ -27,6 +27,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Posts from "./Posts";
 import PaginationSearch from "./PaginationSearch";
+import data from "./data.json";
 
 // import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
@@ -38,27 +39,54 @@ import PaginationSearch from "./PaginationSearch";
 
 // const Search: FC<typeof category> = (category) => {
 // const Search: FC<Property> = (category) => {
+
+interface IAnnouncement {
+  link: string;
+  title: string;
+  price: number;
+  city: string;
+}
+
 const Search = () => {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage] = useState(10);
+
+  // const [announcements, setAnnouncements] = useState<Announcement[] | null>(null);
+  // const [announcements, setAnnouncements] = useState<FC<Announcement[]> | []>([]);
+  const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
+    [] as IAnnouncement[]
+  );
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(2);
+
+  const dataJSON = "./data.json";
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    // const fetchPosts = async () => {
+    //   setLoading(true);
+    //   const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+    //   setPosts(res.data);
+    //   setLoading(false);
+    // };
+    const fetchAnnouncements = async () => {
       setLoading(true);
-      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-      setPosts(res.data);
+      setAnnouncements(data);
       setLoading(false);
     };
 
-    fetchPosts();
+    fetchAnnouncements();
   }, []);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentAnnouncements = announcements.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
 
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
@@ -112,7 +140,7 @@ const Search = () => {
     ],
   };
 
-  const announcements = [
+  const announcementsArray = [
     {
       link: "/Test",
       title: "Gitara elektryczna, stan rewelacyjny",
@@ -228,14 +256,14 @@ const Search = () => {
         </Form>
       </div>
       <div className="px-2 px-sm-3 px-md-4 pb-3">
-        {announcements.length > 20 ? (
+        {announcementsArray.length > 20 ? (
           <div className="py-4">
             <h5 style={{ textAlign: "left" }}>
               <b>Wyróżnione</b>
             </h5>
             <Row className=" py-1 px-4" fluid>
               <Slider {...settings}>
-                {announcements.map((announcement, index) => (
+                {announcementsArray.map((announcement, index) => (
                   <Col className="px-2 px-sm-1">
                     <AnnouncementCard
                       linkA={announcement.link}
@@ -252,14 +280,14 @@ const Search = () => {
           <div className="px-2 px-sm-3 px-md-4 pb-3"></div>
         )}
         <div>
-          {announcements.length > 0 ? (
+          {announcementsArray.length > 0 ? (
             <>
               <h5 style={{ textAlign: "left" }}>
                 <b>Ogłoszenia</b>
               </h5>
               <div>
                 <Row>
-                  {announcements.map((announcement, index) => (
+                  {/* {announcementsArray.map((announcement, index) => (
                     <Col
                       xs={{ span: 6, offset: 0 }}
                       sm={{ span: 4, offset: 0 }}
@@ -275,7 +303,7 @@ const Search = () => {
                         city={announcement.city}
                       />
                     </Col>
-                  ))}
+                  ))} */}
                   {/* <Col xs={3}>
                     <Image
                       src={`https://picsum.photos/200/300?random=${
@@ -293,9 +321,10 @@ const Search = () => {
                     />
                   </Col> */}
                 </Row>
+                <Posts announcements={currentAnnouncements} loading={loading} />
                 <PaginationSearch
                   postsPerPage={postsPerPage}
-                  totalPosts={posts.length}
+                  totalPosts={announcements.length}
                   paginate={paginate}
                   currentPage={currentPage}
                 ></PaginationSearch>
@@ -344,7 +373,7 @@ const Search = () => {
         </div>
       </div> */}
 
-      <div className="container mt-5">
+      {/* <div className="container mt-5">
         <h1 className="text-primary mb-3">My Blog</h1>
         <Posts posts={currentPosts} loading={loading} />
         <PaginationSearch
@@ -353,7 +382,7 @@ const Search = () => {
           paginate={paginate}
           currentPage={currentPage}
         />
-      </div>
+      </div> */}
     </Container>
   );
 };

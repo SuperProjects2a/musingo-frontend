@@ -4,14 +4,14 @@ import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FC } from "react";
 
-interface Announcement {
+interface IAnnouncement {
   linkA: string;
   title: string;
   price: number;
   city: string;
 }
 
-const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
+const AnnouncementCard: FC<IAnnouncement> = ({ linkA, title, price, city }) => {
   return (
     <>
       <Link to={linkA} className="categories">
