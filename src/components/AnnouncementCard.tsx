@@ -60,7 +60,12 @@ const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
             >
               <Card.Title style={{ height: "60px" }}>
                 {title.length > 20 ? (
-                  <p>{title.substring(0, 17)}...</p>
+                  /\s+$/.test(title.substring(0, 17)) == true ||
+                  /[-_(),.]$/.test(title.substring(0, 17)) == true ? (
+                    <p>{title.substring(0, 16)}...</p>
+                  ) : (
+                    <p>{title.substring(0, 17)}...</p>
+                  )
                 ) : (
                   <p>{title}</p>
                 )}
