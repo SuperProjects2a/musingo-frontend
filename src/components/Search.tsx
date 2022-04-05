@@ -26,6 +26,7 @@ import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Posts from "./Posts";
+import Pag from "./Pagination";
 
 // import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
@@ -53,6 +54,14 @@ const Search = () => {
 
     fetchPosts();
   }, []);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   var settings = {
     dots: false,
@@ -331,7 +340,12 @@ const Search = () => {
 
       <div className="container mt-5">
         <h1 className="text-primary mb-3">My Blog</h1>
-        <Posts posts={posts} loading={loading} />
+        <Posts posts={currentPosts} loading={loading} />
+        <Pag
+          postsPerPage={postsPerPage}
+          totalPosts={posts.length}
+          paginate={paginate}
+        />
       </div>
     </Container>
   );

@@ -1,15 +1,6 @@
+import { pseudoRandomBytes } from "crypto";
 import React from "react";
 import { FC } from "react";
-
-// interface Post {
-//   posts: [posts];
-//   loading: boolean;
-// }
-
-// interface posts {
-//   id: number;
-//   title: string;
-// }
 
 interface Post {
   posts: Array<posts>;
@@ -32,7 +23,7 @@ const Posts: FC<Post> = ({ posts, loading }) => {
     <ul className="list-group mb-4">
       {posts.map((post) => (
         <li key={post.id} className="list-group-item">
-          {post.title}
+          {post.id} {post.title}
         </li>
       ))}
     </ul>
