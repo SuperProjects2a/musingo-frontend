@@ -31,7 +31,7 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
   }
 
   return (
-    <div>
+    <Row>
       {announcements.map((announcement, index) => (
         <Col
           xs={{ span: 6, offset: 0 }}
@@ -49,7 +49,7 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
           />
         </Col>
       ))}
-    </div>
+    </Row>
   );
 };
 

@@ -42,7 +42,10 @@ const PaginationSearch: FC<Pag> = ({
         )}
 
         {pageNumbers.map((number) => (
-          <Pagination.Item onClick={() => paginate(number)}>
+          <Pagination.Item
+            onClick={() => paginate(number)}
+            active={currentPage == number}
+          >
             {number}
           </Pagination.Item>
         ))}
