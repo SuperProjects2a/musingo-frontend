@@ -24,204 +24,216 @@ const PaginationSearch: FC<Pag> = ({
 
   return (
     <Container className="d-flex justify-content-center">
-      {/* DESK */}
-      <div className="d-none d-sm-block">
-        <Pagination>
-          {currentPage > 1 ? (
-            <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
-          ) : (
-            <Pagination.Prev disabled />
-          )}
+      {pageNumbers.length > 1 ? (
+        <>
+          <div className="d-none d-sm-block">
+            <Pagination>
+              {currentPage > 1 ? (
+                <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
+              ) : (
+                <Pagination.Prev disabled />
+              )}
 
-          {pageNumbers.length > 10 ? (
-            <>
-              {/* {currentPage > 4 ? (
+              {pageNumbers.length > 10 ? (
+                <>
+                  {/* {currentPage > 4 ? (
               currentPage < pageNumbers.length - 3 ? ( */}
-              {currentPage > 6 ? (
-                currentPage < pageNumbers.length - 5 ? (
-                  <>
-                    <Pagination.Item onClick={() => paginate(1)}>
-                      {1}
-                    </Pagination.Item>
-                    <Pagination.Ellipsis />
-                    {pageNumbers
-                      .filter(
-                        (number) =>
-                          number > currentPage - 4 && number < currentPage + 4
-                      )
-                      .map((number) => (
-                        <Pagination.Item
-                          onClick={() => paginate(number)}
-                          active={currentPage == number}
-                        >
-                          {number}
+                  {currentPage > 6 ? (
+                    currentPage < pageNumbers.length - 5 ? (
+                      <>
+                        <Pagination.Item onClick={() => paginate(1)}>
+                          {1}
                         </Pagination.Item>
-                      ))}
-                    <Pagination.Ellipsis />
-                    <Pagination.Item
-                      onClick={() => paginate(pageNumbers.length)}
-                    >
-                      {pageNumbers.length}
-                    </Pagination.Item>
-                  </>
-                ) : (
-                  <>
-                    <Pagination.Item onClick={() => paginate(1)}>
-                      {1}
-                    </Pagination.Item>
-                    <Pagination.Ellipsis />
-                    {pageNumbers
-                      .filter(
-                        (number) =>
-                          number >
-                          currentPage -
-                            5 -
-                            (4 - (pageNumbers.length - currentPage))
-                      )
-                      .map((number) => (
+                        <Pagination.Ellipsis disabled />
+                        {pageNumbers
+                          .filter(
+                            (number) =>
+                              number > currentPage - 4 &&
+                              number < currentPage + 4
+                          )
+                          .map((number) => (
+                            <Pagination.Item
+                              onClick={() => paginate(number)}
+                              active={currentPage == number}
+                            >
+                              {number}
+                            </Pagination.Item>
+                          ))}
+                        <Pagination.Ellipsis disabled />
                         <Pagination.Item
-                          onClick={() => paginate(number)}
-                          active={currentPage == number}
+                          onClick={() => paginate(pageNumbers.length)}
                         >
-                          {number}
+                          {pageNumbers.length}
                         </Pagination.Item>
-                      ))}
-                  </>
-                )
+                      </>
+                    ) : (
+                      <>
+                        <Pagination.Item onClick={() => paginate(1)}>
+                          {1}
+                        </Pagination.Item>
+                        <Pagination.Ellipsis disabled />
+                        {pageNumbers
+                          .filter(
+                            (number) =>
+                              number >
+                              currentPage -
+                                5 -
+                                (4 - (pageNumbers.length - currentPage))
+                          )
+                          .map((number) => (
+                            <Pagination.Item
+                              onClick={() => paginate(number)}
+                              active={currentPage == number}
+                            >
+                              {number}
+                            </Pagination.Item>
+                          ))}
+                      </>
+                    )
+                  ) : (
+                    <>
+                      {pageNumbers
+                        .filter(
+                          (number) =>
+                            number < currentPage + 4 + (6 - currentPage)
+                        )
+                        .map((number) => (
+                          <Pagination.Item
+                            onClick={() => paginate(number)}
+                            active={currentPage == number}
+                            className="paginationColor"
+                          >
+                            {number}
+                          </Pagination.Item>
+                        ))}
+                      <Pagination.Ellipsis disabled />
+                      <Pagination.Item
+                        onClick={() => paginate(pageNumbers.length)}
+                      >
+                        {pageNumbers.length}
+                      </Pagination.Item>
+                    </>
+                  )}
+                </>
               ) : (
                 <>
-                  {pageNumbers
-                    .filter(
-                      (number) => number < currentPage + 4 + (6 - currentPage)
-                    )
-                    .map((number) => (
-                      <Pagination.Item
-                        onClick={() => paginate(number)}
-                        active={currentPage == number}
-                      >
-                        {number}
-                      </Pagination.Item>
-                    ))}
-                  <Pagination.Ellipsis />
-                  <Pagination.Item onClick={() => paginate(pageNumbers.length)}>
-                    {pageNumbers.length}
-                  </Pagination.Item>
+                  {pageNumbers.map((number) => (
+                    <Pagination.Item
+                      onClick={() => paginate(number)}
+                      active={currentPage == number}
+                    >
+                      {number}
+                    </Pagination.Item>
+                  ))}
                 </>
               )}
-            </>
-          ) : (
-            <>
-              {pageNumbers.map((number) => (
-                <Pagination.Item
-                  onClick={() => paginate(number)}
-                  active={currentPage == number}
-                >
-                  {number}
-                </Pagination.Item>
-              ))}
-            </>
-          )}
-          {currentPage < pageNumbers.length ? (
-            <Pagination.Next onClick={() => paginate(currentPage + 1)} />
-          ) : (
-            <Pagination.Next disabled />
-          )}
-        </Pagination>
-      </div>
+              {currentPage < pageNumbers.length ? (
+                <Pagination.Next onClick={() => paginate(currentPage + 1)} />
+              ) : (
+                <Pagination.Next disabled />
+              )}
+            </Pagination>
+          </div>
 
-      {/* MOBILNE */}
-      <div className="d-block d-sm-none">
-        <Pagination>
-          {currentPage > 1 ? (
-            <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
-          ) : (
-            <Pagination.Prev disabled />
-          )}
+          <div className="d-block d-sm-none">
+            <Pagination>
+              {currentPage > 1 ? (
+                <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
+              ) : (
+                <Pagination.Prev disabled />
+              )}
 
-          {pageNumbers.length > 7 ? (
-            <>
-              {currentPage > 2 ? (
-                currentPage < pageNumbers.length - 1 ? (
-                  <>
-                    <Pagination.Item onClick={() => paginate(1)}>
-                      {1}
-                    </Pagination.Item>
-                    <Pagination.Ellipsis />
-                    <Pagination.Item
-                      onClick={() => paginate(currentPage)}
-                      active
-                    >
-                      {currentPage}
-                    </Pagination.Item>
-                    <Pagination.Ellipsis />
-                    <Pagination.Item
-                      onClick={() => paginate(pageNumbers.length)}
-                    >
-                      {pageNumbers.length}
-                    </Pagination.Item>
-                  </>
-                ) : (
-                  <>
-                    <Pagination.Item onClick={() => paginate(1)}>
-                      {1}
-                    </Pagination.Item>
-                    <Pagination.Ellipsis />
-                    {pageNumbers
-                      .filter(
-                        (number) =>
-                          number >
-                          currentPage - (3 - (pageNumbers.length - currentPage))
-                      )
-                      .map((number) => (
-                        <Pagination.Item
-                          onClick={() => paginate(number)}
-                          active={currentPage == number}
-                        >
-                          {number}
+              {pageNumbers.length > 7 ? (
+                <>
+                  {currentPage > 2 ? (
+                    currentPage < pageNumbers.length - 1 ? (
+                      <>
+                        <Pagination.Item onClick={() => paginate(1)}>
+                          {1}
                         </Pagination.Item>
-                      ))}
-                  </>
-                )
+                        <Pagination.Ellipsis disabled />
+                        <Pagination.Item
+                          onClick={() => paginate(currentPage)}
+                          active
+                        >
+                          {currentPage}
+                        </Pagination.Item>
+                        <Pagination.Ellipsis disabled />
+                        <Pagination.Item
+                          onClick={() => paginate(pageNumbers.length)}
+                        >
+                          {pageNumbers.length}
+                        </Pagination.Item>
+                      </>
+                    ) : (
+                      <>
+                        <Pagination.Item onClick={() => paginate(1)}>
+                          {1}
+                        </Pagination.Item>
+                        <Pagination.Ellipsis disabled />
+                        {pageNumbers
+                          .filter(
+                            (number) =>
+                              number >
+                              currentPage -
+                                (3 - (pageNumbers.length - currentPage))
+                          )
+                          .map((number) => (
+                            <Pagination.Item
+                              onClick={() => paginate(number)}
+                              active={currentPage == number}
+                            >
+                              {number}
+                            </Pagination.Item>
+                          ))}
+                      </>
+                    )
+                  ) : (
+                    <>
+                      {pageNumbers
+                        .filter(
+                          (number) => number < currentPage + (4 - currentPage)
+                        )
+                        .map((number) => (
+                          <Pagination.Item
+                            onClick={() => paginate(number)}
+                            active={currentPage == number}
+                          >
+                            {number}
+                          </Pagination.Item>
+                        ))}
+                      <Pagination.Ellipsis disabled />
+                      <Pagination.Item
+                        onClick={() => paginate(pageNumbers.length)}
+                      >
+                        {pageNumbers.length}
+                      </Pagination.Item>
+                    </>
+                  )}
+                </>
               ) : (
                 <>
-                  {pageNumbers
-                    .filter(
-                      (number) => number < currentPage + (4 - currentPage)
-                    )
-                    .map((number) => (
-                      <Pagination.Item
-                        onClick={() => paginate(number)}
-                        active={currentPage == number}
-                      >
-                        {number}
-                      </Pagination.Item>
-                    ))}
-                  <Pagination.Ellipsis />
-                  <Pagination.Item onClick={() => paginate(pageNumbers.length)}>
-                    {pageNumbers.length}
-                  </Pagination.Item>
+                  {pageNumbers.map((number) => (
+                    <Pagination.Item
+                      onClick={() => paginate(number)}
+                      active={currentPage == number}
+                    >
+                      {number}
+                    </Pagination.Item>
+                  ))}
                 </>
               )}
-            </>
-          ) : (
-            <>
-              {pageNumbers.map((number) => (
-                <Pagination.Item
-                  onClick={() => paginate(number)}
-                  active={currentPage == number}
-                >
-                  {number}
-                </Pagination.Item>
-              ))}
-            </>
-          )}
-          {currentPage < pageNumbers.length ? (
-            <Pagination.Next onClick={() => paginate(currentPage + 1)} />
-          ) : (
-            <Pagination.Next disabled />
-          )}
-        </Pagination>
-      </div>
+              {currentPage < pageNumbers.length ? (
+                <Pagination.Next onClick={() => paginate(currentPage + 1)} />
+              ) : (
+                <Pagination.Next disabled />
+              )}
+            </Pagination>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </Container>
   );
 };

@@ -102,3 +102,21 @@ input[type="color"]:focus,
 
 
 
+.page-link {
+ color: #292b2c!important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #292b2c!important;
+  color: #f7f7f7!important;
+  border: none !important;
+  }
+
+  .pagination .page-item .page-link:focus {
+    border-color: rgba(0, 0, 0, 0.6)!important;
+    -webkit-box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.3)!important;
+    -moz-box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.3)!important;
+    box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0.3)!important;
+  }
+
+
