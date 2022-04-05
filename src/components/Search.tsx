@@ -1,4 +1,3 @@
-import React from "react";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -9,6 +8,7 @@ import {
   InputGroup,
   Image,
   Card,
+  Pagination,
 } from "react-bootstrap";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -23,17 +23,37 @@ import { faFileCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
 
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Posts from "./Posts";
+
 // import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
-interface Property {
-  category: string;
-}
+// interface Property {
+//   category: string;
+// }
 
 //let category: string;
 
 // const Search: FC<typeof category> = (category) => {
 // const Search: FC<Property> = (category) => {
 const Search = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+      setPosts(res.data);
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, []);
+
   var settings = {
     dots: false,
     infinite: true,
@@ -82,6 +102,7 @@ const Search = () => {
       },
     ],
   };
+
   const announcements = [
     {
       link: "/Test",
@@ -134,6 +155,7 @@ const Search = () => {
       city: "Katowice",
     },
   ];
+
   return (
     <Container fluid style={{ textAlign: "left" }}>
       <div className="px-2 px-sm-3 px-md-4">
@@ -279,6 +301,7 @@ const Search = () => {
           )}
         </div>
       </div>
+
       {/* <div className="px-2 px-sm-3 px-md-4 pb-3">
         <div className="py-4">
           <h5 style={{ textAlign: "left" }}>
@@ -305,6 +328,11 @@ const Search = () => {
           </h5>
         </div>
       </div> */}
+
+      <div className="container mt-5">
+        <h1 className="text-primary mb-3">My Blog</h1>
+        <Posts posts={posts} loading={loading} />
+      </div>
     </Container>
   );
 };
