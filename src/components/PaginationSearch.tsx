@@ -36,8 +36,6 @@ const PaginationSearch: FC<Pag> = ({
 
               {pageNumbers.length > 10 ? (
                 <>
-                  {/* {currentPage > 4 ? (
-              currentPage < pageNumbers.length - 3 ? ( */}
                   {currentPage > 6 ? (
                     currentPage < pageNumbers.length - 5 ? (
                       <>

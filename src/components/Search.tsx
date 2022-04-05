@@ -35,10 +35,9 @@ const Search = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage] = useState(24);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(4);
 
   useEffect(() => {
     // const fetchPosts = async () => {
@@ -67,7 +66,7 @@ const Search = () => {
   // Change page
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   };
 
   var settings = {
