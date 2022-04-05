@@ -37,7 +37,8 @@ const Search = () => {
   );
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(24);
+  // const [postsPerPage] = useState(24);
+  const [postsPerPage] = useState(1);
 
   useEffect(() => {
     // const fetchPosts = async () => {
@@ -66,7 +67,7 @@ const Search = () => {
   // Change page
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   };
 
   var settings = {
