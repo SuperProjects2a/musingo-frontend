@@ -1,26 +1,17 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
 import {
   Container,
   Form,
   Col,
   Row,
   InputGroup,
-  Image,
-  Card,
-  Pagination,
+  Spinner,
 } from "react-bootstrap";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import AnnouncementCard from "./AnnouncementCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { faBoxArchive } from "@fortawesome/free-solid-svg-icons";
-import { faFaceFrown } from "@fortawesome/free-solid-svg-icons";
-import { faLinkSlash } from "@fortawesome/free-solid-svg-icons";
-import { faFileCircleQuestion } from "@fortawesome/free-solid-svg-icons";
-import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
 
 import React, { useState, useEffect } from "react";
@@ -29,16 +20,9 @@ import Posts from "./Posts";
 import PaginationSearch from "./PaginationSearch";
 import data from "./data.json";
 
-// import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-
 // interface Property {
 //   category: string;
 // }
-
-//let category: string;
-
-// const Search: FC<typeof category> = (category) => {
-// const Search: FC<Property> = (category) => {
 
 interface IAnnouncement {
   link: string;
@@ -48,21 +32,12 @@ interface IAnnouncement {
 }
 
 const Search = () => {
-  // const [posts, setPosts] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage] = useState(10);
-
-  // const [announcements, setAnnouncements] = useState<Announcement[] | null>(null);
-  // const [announcements, setAnnouncements] = useState<FC<Announcement[]> | []>([]);
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(2);
-
-  const dataJSON = "./data.json";
+  const [postsPerPage] = useState(24);
 
   useEffect(() => {
     // const fetchPosts = async () => {
@@ -89,7 +64,10 @@ const Search = () => {
   );
 
   // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
 
   var settings = {
     dots: false,
@@ -140,61 +118,9 @@ const Search = () => {
     ],
   };
 
-  const announcementsArray = [
-    {
-      link: "/Test",
-      title: "Gitara elektryczna, stan rewelacyjny",
-      price: 1000,
-      city: "Bielsko-Biała",
-    },
-    { link: "/Test", title: "Flet", price: 100, city: "Warszawa" },
-    {
-      link: "/Test",
-      title: "Nauka gry na fortepianie",
-      price: 200,
-      city: "Kozy",
-    },
-    {
-      link: "/Test",
-      title: "Budowa organów kościelnych",
-      price: 1000000,
-      city: "Gdańsk",
-    },
-    {
-      link: "/Test",
-      title: "Książka do nauki muzyki, 10-12 lat",
-      price: 20,
-      city: "Lublin",
-    },
-    { link: "/Test", title: "Ukulele", price: 300, city: "Olsztyn" },
-    {
-      link: "/Test",
-      title: "Perkusja z podpisem zespołu XYZ",
-      price: 10000,
-      city: "Kraków",
-    },
-    {
-      link: "/Test",
-      title: "Kontrabas używany do nauki w szkole",
-      price: 2500,
-      city: "Wrocław",
-    },
-    {
-      link: "/Test",
-      title: "Skrzypce, nieużywane",
-      price: 7850,
-      city: "Poznań",
-    },
-    {
-      link: "/Test",
-      title: "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
-      price: 560,
-      city: "Katowice",
-    },
-  ];
-
   return (
     <Container fluid style={{ textAlign: "left" }}>
+      {/* FILTRY */}
       <div className="px-2 px-sm-3 px-md-4">
         <h4>
           <b>Filtry</b>
@@ -255,47 +181,30 @@ const Search = () => {
           </Row>
         </Form>
       </div>
-      <div className="px-2 px-sm-3 px-md-4 pb-3">
-        {announcementsArray.length > 20 ? (
-          <div className="py-4">
-            <h5 style={{ textAlign: "left" }}>
-              <b>Wyróżnione</b>
-            </h5>
-            <Row className=" py-1 px-4" fluid>
-              <Slider {...settings}>
-                {announcementsArray.map((announcement, index) => (
-                  <Col className="px-2 px-sm-1">
-                    <AnnouncementCard
-                      linkA={announcement.link}
-                      title={announcement.title}
-                      price={announcement.price}
-                      city={announcement.city}
-                    />
-                  </Col>
-                ))}
-              </Slider>
-            </Row>
-          </div>
-        ) : (
-          <div className="px-2 px-sm-3 px-md-4 pb-3"></div>
-        )}
-        <div>
-          {announcementsArray.length > 0 ? (
-            <>
+
+      {/* OGŁOSZENIA */}
+      {loading == true ? (
+        <Col
+          xs={{ offset: 5 }}
+          lg={{ offset: 6 }}
+          className="px-sm-5 px-lg-0 py-5 mb-5"
+        >
+          <Spinner
+            animation="border"
+            style={{ height: "50px", width: "50px" }}
+          />
+        </Col>
+      ) : (
+        <div className="px-2 px-sm-3 px-md-4 pb-3">
+          {announcements.length > 0 ? (
+            <div className="py-4">
               <h5 style={{ textAlign: "left" }}>
-                <b>Ogłoszenia</b>
+                <b>Wyróżnione</b>
               </h5>
-              <div>
-                <Row>
-                  {/* {announcementsArray.map((announcement, index) => (
-                    <Col
-                      xs={{ span: 6, offset: 0 }}
-                      sm={{ span: 4, offset: 0 }}
-                      md={3}
-                      lg={3}
-                      xl={2}
-                      className="p-1 p-xl-2"
-                    >
+              <Row className=" py-1 px-4" fluid>
+                <Slider {...settings}>
+                  {announcements.map((announcement, index) => (
+                    <Col className="px-2 px-sm-1">
                       <AnnouncementCard
                         linkA={announcement.link}
                         title={announcement.title}
@@ -303,86 +212,52 @@ const Search = () => {
                         city={announcement.city}
                       />
                     </Col>
-                  ))} */}
-                  {/* <Col xs={3}>
-                    <Image
-                      src={`https://picsum.photos/200/300?random=${
-                        Math.random() * 100
-                      }`}
-                      style={{
-                        // height: " calc(14vh + 2vw)",
-                        // minHeight: "150px",
-                        // maxHeight: "200px",
-                        width: "100%",
-                        // width: "100%",
-                        height: "200px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </Col> */}
-                </Row>
-                <Posts announcements={currentAnnouncements} loading={loading} />
-                <PaginationSearch
-                  postsPerPage={postsPerPage}
-                  totalPosts={announcements.length}
-                  paginate={paginate}
-                  currentPage={currentPage}
-                ></PaginationSearch>
-              </div>
-            </>
+                  ))}
+                </Slider>
+              </Row>
+            </div>
           ) : (
-            <Container className="py-4">
-              <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
-                <FontAwesomeIcon
-                  icon={faToiletPaperSlash}
-                  style={{ height: "100px" }}
-                  className="py-3"
-                />
-                <h5>Nie znaleźliśmy pasujących przedmiotów.</h5>
-                <p>Spróbuj wyszukać pod inną nazwą</p>
-              </div>
-            </Container>
+            <div className="px-2 px-sm-3 px-md-4 pb-3"></div>
           )}
-        </div>
-      </div>
-
-      {/* <div className="px-2 px-sm-3 px-md-4 pb-3">
-        <div className="py-4">
-          <h5 style={{ textAlign: "left" }}>
-            <b>Wyróżnione</b>
-          </h5>
-          <Row className=" py-1 px-4" fluid>
-            <Slider {...settings}>
-              {announcements.map((announcement, index) => (
-                <Col className="px-2 px-sm-1">
-                  <AnnouncementCard
-                    linkA={announcement.link}
-                    title={announcement.title}
-                    price={announcement.price}
-                    city={announcement.city}
+          <div>
+            {announcements.length > 0 ? (
+              <>
+                <h5 style={{ textAlign: "left" }}>
+                  <b>Ogłoszenia</b>
+                </h5>
+                <div>
+                  <Row>
+                    <Posts
+                      announcements={currentAnnouncements}
+                      loading={loading}
+                    />
+                  </Row>
+                  <Row className="py-2">
+                    <PaginationSearch
+                      postsPerPage={postsPerPage}
+                      totalPosts={announcements.length}
+                      paginate={paginate}
+                      currentPage={currentPage}
+                    ></PaginationSearch>
+                  </Row>
+                </div>
+              </>
+            ) : (
+              <Container className="py-4">
+                <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
+                  <FontAwesomeIcon
+                    icon={faToiletPaperSlash}
+                    style={{ height: "100px" }}
+                    className="py-3"
                   />
-                </Col>
-              ))}
-            </Slider>
-          </Row>
+                  <h5>Nie znaleźliśmy pasujących przedmiotów.</h5>
+                  <p>Spróbuj wyszukać pod inną nazwą</p>
+                </div>
+              </Container>
+            )}
+          </div>
         </div>
-        <div>
-          <h5 style={{ textAlign: "left" }}>
-            <b>Pozostałe</b>
-          </h5>
-        </div>
-      </div> */}
-
-      {/* <div className="container mt-5">
-        <h1 className="text-primary mb-3">My Blog</h1>
-        <Posts posts={currentPosts} loading={loading} />
-        <PaginationSearch
-          postsPerPage={postsPerPage}
-          totalPosts={posts.length}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
-      </div> */}
+      )}
     </Container>
   );
 };

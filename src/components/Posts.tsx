@@ -10,6 +10,7 @@ import {
   Image,
   Card,
   Pagination,
+  Spinner,
 } from "react-bootstrap";
 import AnnouncementCard from "./AnnouncementCard";
 
@@ -27,7 +28,11 @@ interface IAnnouncement {
 
 const Posts: FC<IPost> = ({ announcements, loading }) => {
   if (loading) {
-    return <h2>Loading...</h2>;
+    return (
+      <Col xs={{ offset: 5 }} lg={{ offset: 6 }} className="px-sm-5 px-lg-0">
+        <Spinner animation="border" />
+      </Col>
+    );
   }
 
   return (
