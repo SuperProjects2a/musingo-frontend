@@ -224,18 +224,18 @@ const Search = () => {
           {announcements.length > 0 ? (
             <>
               <h5 style={{ textAlign: "left" }}>
-                <b>Pozostałe</b>
+                <b>Ogłoszenia</b>
               </h5>
               <div>
                 <Row>
                   {announcements.map((announcement, index) => (
                     <Col
-                      xs={{ span: 8, offset: 2 }}
-                      sm={{ span: 6, offset: 0 }}
-                      md={4}
+                      xs={{ span: 6, offset: 0 }}
+                      sm={{ span: 4, offset: 0 }}
+                      md={3}
                       lg={3}
                       xl={2}
-                      className="py-1 px-3 px-sm-2"
+                      className="p-1 p-xl-2"
                     >
                       <AnnouncementCard
                         linkA={announcement.link}
@@ -272,7 +272,7 @@ const Search = () => {
                   style={{ height: "100px" }}
                   className="py-3"
                 />
-                <h5>Brak wyszukiwanego przedmiotu</h5>
+                <h5>Nie znaleźliśmy pasujących przedmiotów.</h5>
                 <p>Spróbuj wyszukać pod inną nazwą</p>
               </div>
             </Container>
