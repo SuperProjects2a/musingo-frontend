@@ -15,6 +15,7 @@ import Test from "./Test";
 import SignInUp from "./SignInUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import UserProfile from "./UserProfile";
 
 const NavbarComp = () => {
   return (
@@ -79,6 +80,9 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to={"/Test"}>
                 Dodaj ogłoszenie
               </Nav.Link>
+              <Nav.Link as={Link} to={"/UserProfile"}>
+                Moje konto
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -104,6 +108,7 @@ const NavbarComp = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/Test" element={<Test />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
+          <Route path="/UserProfile" element={<UserProfile />}></Route>
         </Routes>
       </div>
     </>
