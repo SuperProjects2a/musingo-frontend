@@ -32,6 +32,54 @@ interface IAnnouncement {
   city: string;
 }
 
+const announcementsArray = [
+  {
+    link: "/Test",
+    title: "Gitara elektryczna, stan rewelacyjny",
+    price: 1000,
+    city: "Bielsko-Biała",
+  },
+  { link: "/Test", title: "Flet", price: 100, city: "Warszawa" },
+  {
+    link: "/Test",
+    title: "Nauka gry na fortepianie",
+    price: 200,
+    city: "Kozy",
+  },
+  {
+    link: "/Test",
+    title: "Budowa organów kościelnych",
+    price: 1000000,
+    city: "Gdańsk",
+  },
+  {
+    link: "/Test",
+    title: "Książka do nauki muzyki, 10-12 lat",
+    price: 20,
+    city: "Lublin",
+  },
+  { link: "/Test", title: "Ukulele", price: 300, city: "Olsztyn" },
+  {
+    link: "/Test",
+    title: "Perkusja z podpisem zespołu XYZ",
+    price: 10000,
+    city: "Kraków",
+  },
+  {
+    link: "/Test",
+    title: "Kontrabas używany do nauki w szkole",
+    price: 2500,
+    city: "Wrocław",
+  },
+  { link: "/Test", title: "Skrzypce, nieużywane", price: 7850, city: "Poznań" },
+  {
+    link: "/Test",
+    title: "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
+    price: 560,
+    city: "Katowice",
+  },
+];
+
 const Search = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
@@ -183,10 +231,6 @@ const Search = () => {
         </Form>
       </div>
 
-      <Container>
-        <AnnouncementsCarousel />
-      </Container>
-
       {/* OGŁOSZENIA */}
       {loading == true ? (
         <Col
@@ -206,7 +250,8 @@ const Search = () => {
               <h5 style={{ textAlign: "left" }}>
                 <b>Wyróżnione</b>
               </h5>
-              <Row className=" py-1 px-4" fluid>
+              <Row className="d-flex justify-content-center">
+                <AnnouncementsCarousel announcements={announcements} />
                 {/* <Slider {...settings}>
                   {announcements.map((announcement, index) => (
                     <Col className="px-2 px-sm-1">
@@ -231,7 +276,7 @@ const Search = () => {
                   <b>Ogłoszenia</b>
                 </h5>
                 <div>
-                  <Row>
+                  <Row className="d-flex justify-content-center">
                     <Posts
                       announcements={currentAnnouncements}
                       loading={loading}
