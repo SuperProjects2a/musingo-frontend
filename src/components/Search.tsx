@@ -202,7 +202,10 @@ const Search = () => {
                 <b>Wyróżnione</b>
               </h5>
               <Row className="d-flex justify-content-center">
-                <AnnouncementsCarousel announcements={announcements} />
+                <AnnouncementsCarousel
+                  announcements={announcements}
+                  loading={loading}
+                />
               </Row>
             </div>
           ) : (
