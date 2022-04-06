@@ -77,7 +77,6 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to={"/SignInUp"}>
                 Zaloguj się
               </Nav.Link>
-              <Nav.Link as={Link} to={"/Test"}>
               <Nav.Link as={Link} to={"/AddOffer"}>
                 Dodaj ogłoszenie
               </Nav.Link>
