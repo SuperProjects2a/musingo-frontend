@@ -20,6 +20,7 @@ import axios from "axios";
 import Posts from "./Posts";
 import PaginationSearch from "./PaginationSearch";
 import data from "./data.json";
+import { getValue } from "@testing-library/user-event/dist/utils";
 
 // interface Property {
 //   category: string;
@@ -81,6 +82,32 @@ const announcementsArray = [
 ];
 
 const Search = () => {
+  //   const state = {
+  //     value: ''
+  // }
+
+  // const onChange =( e :any) => {
+  //     //replace non-digits with blank
+  //     const value = e.target.value.replace(/[^\d]/,'');
+
+  //     if(parseInt(value) !== undefined) {
+  //         this.setState({ value });
+  //     }
+  // }
+
+  const [minPrice, setMinPrice] = useState<number | undefined>();
+  const [maxPrice, setMaxPrice] = useState<number | undefined>();
+
+  // const onChange = (e: any) => {
+  //   // const value = e.target.value.replace(/[^\d]/, "");
+  //   // const value = e.target.value.replace(",", "");
+  //   const value = e.target.value;
+
+  //   if (+value >= 0) {
+  //     setPrice(value);
+  //   }
+  // };
+
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
@@ -153,12 +180,24 @@ const Search = () => {
             >
               <Form.Label>Cena</Form.Label>
               <InputGroup>
-                <Form.Control type="number" min="0" placeholder="od" />
+                {/* <Form.Control type="number" min="0" placeholder="od" /> */}
                 <Form.Control
+                  type="number"
+                  min="0"
+                  placeholder="od"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(parseInt(e.target.value))}
+                />
+                <Form.Control
+                  id="priceControl"
                   className="mx-2"
                   type="number"
                   min="0"
                   placeholder="od"
+                  // aria-valuemin={0}
+                  value={maxPrice}
+                  // onChange={(e) => setPrice(parseInt(e.target.value))}
+                  onChange={(e) => setMaxPrice(parseInt(e.target.value))}
                 />
               </InputGroup>
             </Col>
