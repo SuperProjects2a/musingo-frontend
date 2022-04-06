@@ -136,12 +136,12 @@ input[type="color"]:focus,
   }
 }
 
-.nav-tabs .nav-link{
+.nav-tabs .nav-link {
   border: none !important;
   color:rgba(0, 0, 0, 0.7) !important;
 }
 
-.nav-tabs .nav-link.active{
+.nav-tabs .nav-link.active {
   border: none !important;
   border-bottom: 3px solid rgba(0, 0, 0, 0.8) !important;
   color:rgba(0, 0, 0, 0.8) !important;
@@ -154,16 +154,12 @@ input[type="color"]:focus,
   background-size: cover;
 }
 
-.bgSignUp
-{
+.bgSignUp {
   width:100%;
   height: 900px;
 }
 
-.bgSignIn
-{
+.bgSignIn {
   width:100%;
   height: 450px;
 }
-
-
