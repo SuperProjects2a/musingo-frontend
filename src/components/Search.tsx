@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import AnnouncementCard from "./AnnouncementCard";
+import AnnouncementsCarousel from "./AnnouncementsCarousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -182,6 +183,10 @@ const Search = () => {
         </Form>
       </div>
 
+      <Container>
+        <AnnouncementsCarousel />
+      </Container>
+
       {/* OGŁOSZENIA */}
       {loading == true ? (
         <Col
@@ -202,7 +207,7 @@ const Search = () => {
                 <b>Wyróżnione</b>
               </h5>
               <Row className=" py-1 px-4" fluid>
-                <Slider {...settings}>
+                {/* <Slider {...settings}>
                   {announcements.map((announcement, index) => (
                     <Col className="px-2 px-sm-1">
                       <AnnouncementCard
@@ -213,7 +218,7 @@ const Search = () => {
                       />
                     </Col>
                   ))}
-                </Slider>
+                </Slider> */}
               </Row>
             </div>
           ) : (

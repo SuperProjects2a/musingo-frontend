@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import AnnouncementCard from "./AnnouncementCard";
+import AnnouncementsCarousel from "./AnnouncementsCarousel";
 
 import guitarCategory from "../images/guitar-category.jpg";
 import windCategory from "../images/wind-category.jpg";
@@ -165,7 +166,6 @@ const Home = () => {
           </Row>
         </Container>
       </div>
-
       {/* KATEGORIE MOB*/}
       <Container className="d-sm-block d-md-none bg-light pb-4" fluid>
         <Row className="py-4">
