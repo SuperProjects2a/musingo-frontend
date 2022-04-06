@@ -37,7 +37,7 @@ const Search = () => {
   );
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(4);
+  const [postsPerPage] = useState(24);
 
   useEffect(() => {
     // const fetchPosts = async () => {
