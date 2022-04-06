@@ -118,55 +118,6 @@ const Search = () => {
     window.scrollTo(0, 0);
   };
 
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 3,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 650,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   return (
     <Container fluid style={{ textAlign: "left" }}>
       {/* FILTRY */}
@@ -252,18 +203,6 @@ const Search = () => {
               </h5>
               <Row className="d-flex justify-content-center">
                 <AnnouncementsCarousel announcements={announcements} />
-                {/* <Slider {...settings}>
-                  {announcements.map((announcement, index) => (
-                    <Col className="px-2 px-sm-1">
-                      <AnnouncementCard
-                        linkA={announcement.link}
-                        title={announcement.title}
-                        price={announcement.price}
-                        city={announcement.city}
-                      />
-                    </Col>
-                  ))}
-                </Slider> */}
               </Row>
             </div>
           ) : (

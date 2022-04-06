@@ -1,13 +1,6 @@
 import React from "react";
 import { FC } from "react";
-import {
-  Container,
-  Form,
-  Col,
-  Row,
-  InputGroup,
-  Spinner,
-} from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
