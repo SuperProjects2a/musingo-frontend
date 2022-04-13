@@ -110,6 +110,5 @@ input[type="color"]:focus,
 .carousel_item{
   width: 66vw;
   height: 55vh;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
 }
-
