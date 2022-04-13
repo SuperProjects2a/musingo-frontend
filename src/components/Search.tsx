@@ -21,6 +21,10 @@ import Posts from "./Posts";
 import PaginationSearch from "./PaginationSearch";
 import data from "./data.json";
 import { getValue } from "@testing-library/user-event/dist/utils";
+import { Console } from "console";
+
+import * as Yup from "yup";
+import { Formik } from "formik";
 
 // interface Property {
 //   category: string;
@@ -33,80 +37,12 @@ interface IAnnouncement {
   city: string;
 }
 
-const announcementsArray = [
-  {
-    link: "/Test",
-    title: "Gitara elektryczna, stan rewelacyjny",
-    price: 1000,
-    city: "Bielsko-Biała",
-  },
-  { link: "/Test", title: "Flet", price: 100, city: "Warszawa" },
-  {
-    link: "/Test",
-    title: "Nauka gry na fortepianie",
-    price: 200,
-    city: "Kozy",
-  },
-  {
-    link: "/Test",
-    title: "Budowa organów kościelnych",
-    price: 1000000,
-    city: "Gdańsk",
-  },
-  {
-    link: "/Test",
-    title: "Książka do nauki muzyki, 10-12 lat",
-    price: 20,
-    city: "Lublin",
-  },
-  { link: "/Test", title: "Ukulele", price: 300, city: "Olsztyn" },
-  {
-    link: "/Test",
-    title: "Perkusja z podpisem zespołu XYZ",
-    price: 10000,
-    city: "Kraków",
-  },
-  {
-    link: "/Test",
-    title: "Kontrabas używany do nauki w szkole",
-    price: 2500,
-    city: "Wrocław",
-  },
-  { link: "/Test", title: "Skrzypce, nieużywane", price: 7850, city: "Poznań" },
-  {
-    link: "/Test",
-    title: "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
-    price: 560,
-    city: "Katowice",
-  },
-];
-
 const Search = () => {
-  //   const state = {
-  //     value: ''
-  // }
-
-  // const onChange =( e :any) => {
-  //     //replace non-digits with blank
-  //     const value = e.target.value.replace(/[^\d]/,'');
-
-  //     if(parseInt(value) !== undefined) {
-  //         this.setState({ value });
-  //     }
-  // }
-
   const [minPrice, setMinPrice] = useState<number | undefined>();
+  // const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number | undefined>();
-
-  // const onChange = (e: any) => {
-  //   // const value = e.target.value.replace(/[^\d]/, "");
-  //   // const value = e.target.value.replace(",", "");
-  //   const value = e.target.value;
-
-  //   if (+value >= 0) {
-  //     setPrice(value);
-  //   }
-  // };
+  // const [maxPrice, setMaxPrice] = useState<number>(0);
+  const [validated, setValidated] = useState(false);
 
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
@@ -128,8 +64,27 @@ const Search = () => {
       setLoading(false);
     };
 
+    // if (minPrice != undefined && maxPrice != undefined) {
+    //   if (maxPrice < minPrice) {
+    //     setMaxPrice(maxPrice * 10);
+    //     return;
+    //   }
+    //   if (minPrice > maxPrice) {
+    //     setMinPrice(0);
+    //     return;
+    //   }
+    // }
+
+    setValidated(false);
+    if (minPrice != undefined && maxPrice != undefined) {
+      if (maxPrice < minPrice) {
+        setValidated(true);
+      }
+    }
+
     fetchAnnouncements();
-  }, []);
+    // }, []);
+  }, [minPrice, maxPrice]);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -144,6 +99,11 @@ const Search = () => {
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
+
+  const searchSchema = Yup.object().shape({
+    price: Yup.number().min(minPrice != undefined ? minPrice : 0, "llal"),
+    //.when(minPrice != undefined && minPrice> maxPrice, "lalal")
+  });
 
   return (
     <Container fluid style={{ textAlign: "left" }}>
@@ -179,27 +139,56 @@ const Search = () => {
               className="pt-1 pt-sm-0"
             >
               <Form.Label>Cena</Form.Label>
+              {/* <Form noValidate validated={validated}> */}
               <InputGroup>
                 {/* <Form.Control type="number" min="0" placeholder="od" /> */}
-                <Form.Control
+                {/* <Form.Control
                   type="number"
                   min="0"
                   placeholder="od"
                   value={minPrice}
                   onChange={(e) => setMinPrice(parseInt(e.target.value))}
-                />
+                /> */}
                 <Form.Control
-                  id="priceControl"
-                  className="mx-2"
                   type="number"
                   min="0"
                   placeholder="od"
+                  value={minPrice}
+                  // onChange={(e) => onChangeMinPrice(parseInt(e.target.value))}
+                  onChange={(e) => {
+                    // onChangeMinPrice(e.target.value);
+                    setMinPrice(parseInt(e.target.value));
+                    // console.log("oc " + e.target.value);
+                    // console.log("pooc " + minPrice);
+                  }}
+                />
+                <Form.Control
+                  className="mx-2"
+                  type="number"
+                  min="0"
+                  placeholder="do"
                   // aria-valuemin={0}
                   value={maxPrice}
                   // onChange={(e) => setPrice(parseInt(e.target.value))}
                   onChange={(e) => setMaxPrice(parseInt(e.target.value))}
                 />
+
+                {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  Please choose a username.
+                </Form.Control.Feedback> */}
               </InputGroup>
+              {validated == true ? (
+                <Row>
+                  <Form.Text className="text-danger">
+                    <small>Wartość "od" nie może być większa niż "do".</small>
+                  </Form.Text>
+                </Row>
+              ) : (
+                <></>
+              )}
+
+              {/* </Form> */}
             </Col>
             <Col
               xs={{ span: 6, order: 2 }}
