@@ -1,4 +1,3 @@
-import { FC } from "react";
 import {
   Container,
   Form,
@@ -7,28 +6,16 @@ import {
   InputGroup,
   Spinner,
 } from "react-bootstrap";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import AnnouncementCard from "./AnnouncementCard";
-import AnnouncementsCarousel from "./AnnouncementsCarousel";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
+import AnnouncementsCarousel from "./AnnouncementsCarousel";
 import Posts from "./Posts";
 import PaginationSearch from "./PaginationSearch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
 import data from "./data.json";
-import { getValue } from "@testing-library/user-event/dist/utils";
-import { Console } from "console";
 
-import * as Yup from "yup";
-import { Formik } from "formik";
-
-interface Property {
-  category?: string;
-}
+import axios from "axios";
 
 interface IAnnouncement {
   link: string;
@@ -37,12 +24,9 @@ interface IAnnouncement {
   city: string;
 }
 
-// const Search = () => {
-const Search: FC<Property> = ({ category }) => {
+const Search = () => {
   const [minPrice, setMinPrice] = useState<number | undefined>();
-  // const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number | undefined>();
-  // const [maxPrice, setMaxPrice] = useState<number>(0);
   const [validated, setValidated] = useState(false);
 
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
@@ -65,17 +49,6 @@ const Search: FC<Property> = ({ category }) => {
       setLoading(false);
     };
 
-    // if (minPrice != undefined && maxPrice != undefined) {
-    //   if (maxPrice < minPrice) {
-    //     setMaxPrice(maxPrice * 10);
-    //     return;
-    //   }
-    //   if (minPrice > maxPrice) {
-    //     setMinPrice(0);
-    //     return;
-    //   }
-    // }
-
     setValidated(false);
     if (minPrice != undefined && maxPrice != undefined) {
       if (maxPrice < minPrice) {
@@ -84,7 +57,6 @@ const Search: FC<Property> = ({ category }) => {
     }
 
     fetchAnnouncements();
-    // }, []);
   }, [minPrice, maxPrice]);
 
   // Get current posts
@@ -100,11 +72,6 @@ const Search: FC<Property> = ({ category }) => {
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
-
-  const searchSchema = Yup.object().shape({
-    price: Yup.number().min(minPrice != undefined ? minPrice : 0, "llal"),
-    //.when(minPrice != undefined && minPrice> maxPrice, "lalal")
-  });
 
   return (
     <Container fluid style={{ textAlign: "left" }}>
@@ -132,13 +99,6 @@ const Search: FC<Property> = ({ category }) => {
                 <option value="3">Three</option>
               </Form.Select>
             </Col>
-            {/* <Col
-              xs={{ span: 5, order: 3 }}
-              sm={{ span: 4, order: 2 }}
-              lg={3}
-              xl={2}
-              className="pt-1 pt-sm-0"
-            > */}
             <Col
               xs={{ span: 10, order: 3 }}
               sm={{ span: 4, order: 2 }}
@@ -147,28 +107,15 @@ const Search: FC<Property> = ({ category }) => {
               className="pt-1 pt-sm-0"
             >
               <Form.Label>Cena</Form.Label>
-              {/* <Form noValidate validated={validated}> */}
               <Col xs={9} sm={12} lg={10}>
                 <InputGroup>
-                  {/* <Form.Control type="number" min="0" placeholder="od" /> */}
-                  {/* <Form.Control
-                  type="number"
-                  min="0"
-                  placeholder="od"
-                  value={minPrice}
-                  onChange={(e) => setMinPrice(parseInt(e.target.value))}
-                /> */}
                   <Form.Control
                     type="number"
                     min="0"
                     placeholder="od"
                     value={minPrice}
-                    // onChange={(e) => onChangeMinPrice(parseInt(e.target.value))}
                     onChange={(e) => {
-                      // onChangeMinPrice(e.target.value);
                       setMinPrice(parseInt(e.target.value));
-                      // console.log("oc " + e.target.value);
-                      // console.log("pooc " + minPrice);
                     }}
                   />
                   <Form.Control
@@ -176,16 +123,9 @@ const Search: FC<Property> = ({ category }) => {
                     type="number"
                     min="0"
                     placeholder="do"
-                    // aria-valuemin={0}
                     value={maxPrice}
-                    // onChange={(e) => setPrice(parseInt(e.target.value))}
                     onChange={(e) => setMaxPrice(parseInt(e.target.value))}
                   />
-
-                  {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                <Form.Control.Feedback type="invalid">
-                  Please choose a username.
-                </Form.Control.Feedback> */}
                 </InputGroup>
               </Col>
               {validated == true ? (
@@ -197,15 +137,7 @@ const Search: FC<Property> = ({ category }) => {
               ) : (
                 <></>
               )}
-
-              {/* </Form> */}
             </Col>
-            {/* <Col
-              xs={{ span: 6, order: 2 }}
-              sm={{ span: 4, order: 3 }}
-              lg={{ span: 3, offset: 3 }}
-              xl={{ span: 2, offset: 6 }}
-            > */}
             <Col
               xs={{ span: 6, order: 2 }}
               sm={{ span: 4, order: 3 }}

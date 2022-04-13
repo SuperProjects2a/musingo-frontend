@@ -2,8 +2,6 @@ import {
   Navbar,
   Nav,
   NavDropdown,
-  DropdownButton,
-  Dropdown,
   Container,
   InputGroup,
   Button,
@@ -102,7 +100,6 @@ const NavbarComp = () => {
                 className="navBorder"
                 style={{ width: "45%" }}
               />
-
               <Link to="/Search">
                 <Button
                   variant="light"
@@ -115,53 +112,6 @@ const NavbarComp = () => {
             </InputGroup>
           </Col>
         </Container>
-
-        {/* <Container className="py-3" fluid>
-          <Row>
-            <Col
-              className="px-3 px-md-5 px-lg-0"
-              lg={{ span: 8, offset: 2 }}
-              xl={{ span: 6, offset: 3 }}
-            >
-              <InputGroup>
-                <Form.Control
-                  type="text"
-                  placeholder="Szukaj przedmiotów"
-                  className="navBorder"
-                  style={{ width: "45%" }}
-                  // onSubmit={() => {
-                  //   console.log("submit");
-                  // }}
-                  // onKeyUp={() => {
-                  //   console.log("up");
-                  // }}
-                  // onKeyPress={() => {
-                  //   console.log("test");
-                  // }}
-                />
-
-                <Form.Select
-                  aria-label="Default select example"
-                  className="selectColor navBorder"
-                >
-                  <option>Cała Polska</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Form.Select>
-                <Link to="/Search">
-                  <Button
-                    variant="light"
-                    id="button-addon2"
-                    className="navBorder selectColor"
-                  >
-                    <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-                  </Button>
-                </Link>
-              </InputGroup>
-            </Col>
-          </Row>
-        </Container> */}
       </div>
 
       <div>
