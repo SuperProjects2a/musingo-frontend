@@ -131,53 +131,62 @@ const Search = () => {
                 <option value="3">Three</option>
               </Form.Select>
             </Col>
-            <Col
+            {/* <Col
               xs={{ span: 5, order: 3 }}
               sm={{ span: 4, order: 2 }}
               lg={3}
               xl={2}
               className="pt-1 pt-sm-0"
+            > */}
+            <Col
+              xs={{ span: 10, order: 3 }}
+              sm={{ span: 4, order: 2 }}
+              lg={4}
+              xl={3}
+              className="pt-1 pt-sm-0"
             >
               <Form.Label>Cena</Form.Label>
               {/* <Form noValidate validated={validated}> */}
-              <InputGroup>
-                {/* <Form.Control type="number" min="0" placeholder="od" /> */}
-                {/* <Form.Control
+              <Col xs={9} sm={12} lg={10}>
+                <InputGroup>
+                  {/* <Form.Control type="number" min="0" placeholder="od" /> */}
+                  {/* <Form.Control
                   type="number"
                   min="0"
                   placeholder="od"
                   value={minPrice}
                   onChange={(e) => setMinPrice(parseInt(e.target.value))}
                 /> */}
-                <Form.Control
-                  type="number"
-                  min="0"
-                  placeholder="od"
-                  value={minPrice}
-                  // onChange={(e) => onChangeMinPrice(parseInt(e.target.value))}
-                  onChange={(e) => {
-                    // onChangeMinPrice(e.target.value);
-                    setMinPrice(parseInt(e.target.value));
-                    // console.log("oc " + e.target.value);
-                    // console.log("pooc " + minPrice);
-                  }}
-                />
-                <Form.Control
-                  className="mx-2"
-                  type="number"
-                  min="0"
-                  placeholder="do"
-                  // aria-valuemin={0}
-                  value={maxPrice}
-                  // onChange={(e) => setPrice(parseInt(e.target.value))}
-                  onChange={(e) => setMaxPrice(parseInt(e.target.value))}
-                />
+                  <Form.Control
+                    type="number"
+                    min="0"
+                    placeholder="od"
+                    value={minPrice}
+                    // onChange={(e) => onChangeMinPrice(parseInt(e.target.value))}
+                    onChange={(e) => {
+                      // onChangeMinPrice(e.target.value);
+                      setMinPrice(parseInt(e.target.value));
+                      // console.log("oc " + e.target.value);
+                      // console.log("pooc " + minPrice);
+                    }}
+                  />
+                  <Form.Control
+                    className="mx-2"
+                    type="number"
+                    min="0"
+                    placeholder="do"
+                    // aria-valuemin={0}
+                    value={maxPrice}
+                    // onChange={(e) => setPrice(parseInt(e.target.value))}
+                    onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                  />
 
-                {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                  {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">
                   Please choose a username.
                 </Form.Control.Feedback> */}
-              </InputGroup>
+                </InputGroup>
+              </Col>
               {validated == true ? (
                 <Row>
                   <Form.Text className="text-danger">
@@ -190,11 +199,17 @@ const Search = () => {
 
               {/* </Form> */}
             </Col>
-            <Col
+            {/* <Col
               xs={{ span: 6, order: 2 }}
               sm={{ span: 4, order: 3 }}
               lg={{ span: 3, offset: 3 }}
               xl={{ span: 2, offset: 6 }}
+            > */}
+            <Col
+              xs={{ span: 6, order: 2 }}
+              sm={{ span: 4, order: 3 }}
+              lg={{ span: 3, offset: 2 }}
+              xl={{ span: 2, offset: 5 }}
             >
               <Form.Label>Sortowanie</Form.Label>
               <Form.Select
