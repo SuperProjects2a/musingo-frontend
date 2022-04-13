@@ -6,8 +6,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import AnnouncementCard from "./AnnouncementCard";
-import AnnouncementsCarousel from "./AnnouncementsCarousel";
+import AnnouncementCard from "./announcement/AnnouncementCard";
+import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
 
 import guitarCategory from "../images/guitar-category.jpg";
 import windCategory from "../images/wind-category.jpg";

@@ -8,9 +8,9 @@ import {
 } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 
-import AnnouncementsCarousel from "./AnnouncementsCarousel";
-import Posts from "./Posts";
-import PaginationSearch from "./PaginationSearch";
+import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
+import Posts from "./announcement/Posts";
+import PaginationSearch from "./announcement/PaginationSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
 import data from "./data.json";
