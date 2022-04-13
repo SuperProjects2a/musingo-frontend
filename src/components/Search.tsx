@@ -26,9 +26,9 @@ import { Console } from "console";
 import * as Yup from "yup";
 import { Formik } from "formik";
 
-// interface Property {
-//   category: string;
-// }
+interface Property {
+  category?: string;
+}
 
 interface IAnnouncement {
   link: string;
@@ -37,7 +37,8 @@ interface IAnnouncement {
   city: string;
 }
 
-const Search = () => {
+// const Search = () => {
+const Search: FC<Property> = ({ category }) => {
   const [minPrice, setMinPrice] = useState<number | undefined>();
   // const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number | undefined>();
@@ -295,6 +296,10 @@ const Search = () => {
       )}
     </Container>
   );
+};
+
+Search.defaultProps = {
+  category: "Rahul",
 };
 
 export default Search;

@@ -87,8 +87,36 @@ const NavbarComp = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        <Container className="py-3 d-flex justify-content-center" fluid>
+          <Col
+            className="px-2 px-sm-3 px-md-5 px-lg-0"
+            xs={12}
+            md={11}
+            lg={8}
+            xl={7}
+          >
+            <InputGroup>
+              <Form.Control
+                type="text"
+                placeholder="Szukaj przedmiotów"
+                className="navBorder"
+                style={{ width: "45%" }}
+              />
 
-        <Container className="py-3" fluid>
+              <Link to="/Search">
+                <Button
+                  variant="light"
+                  id="button-addon2"
+                  className="navBorder selectColor"
+                >
+                  <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+                </Button>
+              </Link>
+            </InputGroup>
+          </Col>
+        </Container>
+
+        {/* <Container className="py-3" fluid>
           <Row>
             <Col
               className="px-3 px-md-5 px-lg-0"
@@ -101,7 +129,17 @@ const NavbarComp = () => {
                   placeholder="Szukaj przedmiotów"
                   className="navBorder"
                   style={{ width: "45%" }}
+                  // onSubmit={() => {
+                  //   console.log("submit");
+                  // }}
+                  // onKeyUp={() => {
+                  //   console.log("up");
+                  // }}
+                  // onKeyPress={() => {
+                  //   console.log("test");
+                  // }}
                 />
+
                 <Form.Select
                   aria-label="Default select example"
                   className="selectColor navBorder"
@@ -111,17 +149,19 @@ const NavbarComp = () => {
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </Form.Select>
-                <Button
-                  variant="light"
-                  id="button-addon2"
-                  className="navBorder selectColor"
-                >
-                  <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-                </Button>
+                <Link to="/Search">
+                  <Button
+                    variant="light"
+                    id="button-addon2"
+                    className="navBorder selectColor"
+                  >
+                    <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+                  </Button>
+                </Link>
               </InputGroup>
             </Col>
           </Row>
-        </Container>
+        </Container> */}
       </div>
 
       <div>
@@ -129,6 +169,10 @@ const NavbarComp = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/Test" element={<Test />}></Route>
           <Route path="/Search" element={<Search />}></Route>
+          <Route
+            path="/Search-Gitary"
+            element={<Search category="gitary" />}
+          ></Route>
         </Routes>
       </div>
     </>
