@@ -11,78 +11,122 @@ import {
 } from "react-bootstrap";
 import { Formik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLocationDot,
-  faStar,
-  faExpand,
-  faCircleDot,
-  faAngleRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const DisplayOffer = () => {
   return (
-    <div>
-      <Row md={3} lg={3}>
-        {/* IMAGE BOX */}
-        <Card className="rounded border border-light mx-sm-2 mx-md-2 mx-lg-5 mt-sm-5 mb-sm-5 px-3">
-          <Card.Img
-            variant="top"
-            src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
-            style={{
-              height: " calc(11vh + 4vw)",
-              minHeight: "450px",
-              width: "200%",
-              objectFit: "cover",
-              borderRadius: "10px",
-            }}
-            className="pt-2 px-2"
-          />
-          <Row>
-            <Button className="my-2 my-sm-0 " variant="dark">
-              <strong>Kup teraz</strong>
-            </Button>
-            <FontAwesomeIcon className="px-2 mt-3" icon={faCircleDot} />
-            <FontAwesomeIcon className="px-2 mb-3" icon={faExpand} />
-            <FontAwesomeIcon className="px-2 mb-3" icon={faAngleRight} />
-          </Row>
-        </Card>
+    <div className="display_offer_container">
+      <Row>
+        <Col xxl={9} xl={9} lg={5} md={7}>
+          {/* IMAGE BOX */}
+          <Card className="mx-sm-5 mx-md-5 mx-lg-5">
+            <Card.Body>
+              <Carousel variant="dark">
+                <Carousel.Item>
+                  <img
+                    className="carousel_item"
+                    src={`https://picsum.photos/200/300?random=${
+                      Math.random() * 100
+                    }`}
+                    alt="First slide"
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="carousel_item"
+                    src={`https://picsum.photos/200/300?random=${
+                      Math.random() * 100
+                    }`}
+                    alt="Second slide"
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="carousel_item"
+                    src={`https://picsum.photos/200/300?random=${
+                      Math.random() * 100
+                    }`}
+                    alt="Third slide"
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="carousel_item"
+                    src={`https://picsum.photos/200/300?random=${
+                      Math.random() * 100
+                    }`}
+                    alt="Fourth slide"
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="carousel_item"
+                    src={`https://picsum.photos/200/300?random=${
+                      Math.random() * 100
+                    }`}
+                    alt="Fifth slide"
+                  />
+                </Carousel.Item>
+              </Carousel>
+              <Button
+                className="pt-2 my-2 my-sm-0"
+                variant="outline-dark light"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-aspect-ratio"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5v-9zM1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z" />
+                  <path d="M2 4.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H3v2.5a.5.5 0 0 1-1 0v-3zm12 7a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H13V8.5a.5.5 0 0 1 1 0v3z" />
+                </svg>
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
         <Col>
           {/* USER INFO */}
           <Card
-            style={{ width: "20rem", textAlign: "left" }}
-            className="rounded border border-light mx-sm-2 mx-md-2 mx-lg-5 mt-sm-5 mb-sm-5 px-3"
+            style={{ textAlign: "left" }}
+            className="mx-sm-5 mx-md-5 mx-lg-5 px-3"
           >
-            <Row sm={2} md={2} lg={2}>
+            <Row xl={1} xxl={2} lg={2}>
               <Card.Img
                 variant="top"
                 src={`https://picsum.photos/200/300?random=${
                   Math.random() * 100
                 }`}
                 style={{
-                  height: "150px",
-                  width: "150px",
+                  height: "120px",
+                  width: "120px",
                   objectFit: "cover",
                   borderRadius: "30px",
                 }}
-                className="pt-2 px-2"
+                className="pt-3 px-2"
               />
               <Card.Title className="mt-2">
                 Tadeusz Norek
                 <Col>
-                  <FontAwesomeIcon className="mt-2" icon={faStar} />
+                  <FontAwesomeIcon className="mt-2 mx-2" icon={faStar} />
                   3.5
                   <small className="text-muted">
                     <strong>/5</strong>
                   </small>
-                  <Card.Subtitle className="py-1">
+                  <Card.Subtitle className="py-1 mx-3">
                     <small className="text-muted">
                       <strong>27 ocen</strong>
                     </small>
                   </Card.Subtitle>
                   <Col>
-                    <FontAwesomeIcon className="mt-2" icon={faLocationDot} />
+                    <FontAwesomeIcon
+                      className="mt-2 mx-2"
+                      icon={faLocationDot}
+                    />
                     Miasto
-                    <Card.Subtitle className="py-1">
+                    <Card.Subtitle className="py-1 mx-3">
                       <small className="text-muted">Wojewódzctwo</small>
                     </Card.Subtitle>
                   </Col>
@@ -100,10 +144,7 @@ const DisplayOffer = () => {
               </Row>
             </Card.Body>
           </Card>
-          <Card
-            className="justify-content-center rounded border border-light mx-sm-2 mx-md-2 mx-lg-5 mt-sm-5 mb-sm-5 px-3"
-            style={{ width: "20rem" }}
-          >
+          <Card className="mx-sm-5 mx-md-5 mx-lg-5 px-3">
             <Card.Body>
               <Row>
                 <Button className="my-2 my-sm-0" variant="outline-dark light">
@@ -118,7 +159,7 @@ const DisplayOffer = () => {
         </Col>
       </Row>
       <Card
-        className="justify-content-center rounded border border-light mx-sm-2 mx-md-2 mx-lg-5 mt-sm-5 mb-sm-5 px-3"
+        className="mx-sm-5 mx-md-5 mx-lg-5 mt-sm-5 mb-sm-5 px-3"
         style={{ textAlign: "left" }}
       >
         <Card.Body>

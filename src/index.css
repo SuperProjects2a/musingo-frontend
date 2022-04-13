@@ -101,3 +101,16 @@ input[type="color"]:focus,
   /* flex: 0 0 auto; */
   display: inline-block;
 }
+
+.display_offer_container {
+    z-index: 1;
+    margin: 15px;
+}
+
+.carousel_item{
+  width: 40vw;
+  height: 40vh;
+  margin-bottom: 20px;
+  transform: translateY(-5%);
+}
+
