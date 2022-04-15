@@ -84,7 +84,7 @@ const DisplayOffer = () => {
             style={{ textAlign: "left" }}
             className="mx-sm-5 mx-md-5 mx-lg-5 px-3"
           >
-            <Row>
+            <Row sm={2}>
               <Card.Img
                 variant="top"
                 src={`https://picsum.photos/200/300?random=${
@@ -98,8 +98,9 @@ const DisplayOffer = () => {
                 }}
                 className="pt-3 px-2"
               />
-              <Card.Title className="mt-2">
-                Tadeusz Norek
+
+              <Col className="personal_info_container mt-3">
+                <strong>Tadeusz Norek</strong>
                 <Col>
                   <FontAwesomeIcon className="mt-2 mx-2" icon={faStar} />
                   3.5
@@ -111,18 +112,15 @@ const DisplayOffer = () => {
                       <strong>27 ocen</strong>
                     </small>
                   </Card.Subtitle>
-                  <Col>
-                    <FontAwesomeIcon
-                      className="mt-2 mx-2"
-                      icon={faLocationDot}
-                    />
-                    Miasto
-                    <Card.Subtitle className="py-1 mx-3">
-                      <small className="text-muted">Wojewódzctwo</small>
-                    </Card.Subtitle>
-                  </Col>
                 </Col>
-              </Card.Title>
+                <Col>
+                  <FontAwesomeIcon className="mt-2 mx-2" icon={faLocationDot} />
+                  Miasto
+                  <Card.Subtitle className="py-1 mx-3">
+                    <small className="text-muted">Wojewódzctwo</small>
+                  </Card.Subtitle>
+                </Col>
+              </Col>
             </Row>
             <Card.Body>
               <Row>
