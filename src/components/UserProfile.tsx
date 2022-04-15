@@ -1,5 +1,6 @@
 import { Tabs, Tab } from "react-bootstrap";
 import ProfileManagement from "./UserProfileComponents/ProfileManagement";
+import Fundings from "./UserProfileComponents/Fundings";
 
 const UserProfile = () => {
   return (
@@ -9,7 +10,9 @@ const UserProfile = () => {
         <Tab eventKey="Ustawienia konta" title="Ustawienia konta">
           <ProfileManagement />
         </Tab>
-        <Tab eventKey="Konto" title="Konto"></Tab>
+        <Tab eventKey="Konto" title="Konto">
+          <Fundings />
+        </Tab>
         <Tab eventKey="Ogłoszenia" title="Ogłoszenia"></Tab>
         <Tab eventKey="Otrzymane oceny" title="Otrzymane oceny"></Tab>
         <Tab eventKey="Wiadomosci" title="Wiadomosci"></Tab>

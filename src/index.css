@@ -208,5 +208,16 @@ input[type="color"]:focus,
   width:330px;
 }
 
+.chargeButton{
+  margin-top: 33px !important;
+  margin-left: 10px !important;
+}
+
+@media (max-width: 443px) {
+  .chargeButton {
+    margin-top: 10px !important;
+    margin-left: 0px !important;
+  }
+}
 
 
