@@ -269,10 +269,10 @@ const Home = () => {
         </Row>
       </Container> */}
 
-      <Container className="pt-4 pb-2 px-5" fluid>
-        {announcements.length > 0 ? (
+      <Container className="py-4 px-4" fluid>
+        {announcements.length > 0 && (
           <div>
-            <h3>Wyróżnione</h3>
+            <h3 className="p-1">Wyróżnione</h3>
             <Row className="d-flex justify-content-center">
               <AnnouncementsCarousel
                 announcements={announcements}
@@ -281,15 +281,14 @@ const Home = () => {
               />
             </Row>
           </div>
-        ) : (
-          <></>
         )}
       </Container>
 
-      <Container className="pt-4 pb-2 px-5" fluid>
-        {announcementsA.length > 0 ? (
+      {/* OSTATNIO DODANE */}
+      <Container className="pt-2 pb-4 px-4" fluid>
+        {announcements.length > 0 && (
           <div>
-            <h3>Wyróżnione</h3>
+            <h3 className="p-1">Ostatnio dodane</h3>
             <Row className="d-flex justify-content-center">
               <AnnouncementsCarousel
                 announcements={announcementsA}
@@ -298,29 +297,8 @@ const Home = () => {
               />
             </Row>
           </div>
-        ) : (
-          <></>
         )}
       </Container>
-
-      {/* OSTATNIO DODANE */}
-      {/* <Container className="pt-2 pb-4 px-4" fluid>
-        <h3 className="">Ostatnio dodane</h3>
-        <Row className="px-5 py-1 mx-3 mx-sm-1" fluid>
-          <Slider {...settings}>
-            {announcements.map((announcement, index) => (
-              <Col className="px-2 px-sm-1">
-                <AnnouncementCard
-                  linkA={announcement.link}
-                  title={announcement.title}
-                  price={announcement.price}
-                  city={announcement.city}
-                />
-              </Col>
-            ))}
-          </Slider>
-        </Row>
-      </Container> */}
     </>
   );
 };

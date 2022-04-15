@@ -72,7 +72,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
   return (
     <>
       {announcements.length > 6 ? (
-        <Row className=" py-1 px-5 px-sm-4" fluid>
+        <Row className=" py-1 px-4 px-sm-4" fluid>
           <Slider {...settings}>
             {announcements.map((announcement, index) => (
               <Col className="px-1 px-sm-1">
@@ -99,7 +99,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                           <>
                             {/* 6 */}
                             <Row
-                              className="py-1 px-5 px-sm-4 d-block d-xl-none"
+                              className="py-1 px-4 px-sm-4 d-block d-xl-none"
                               fluid
                             >
                               <Slider {...settings}>
@@ -115,7 +115,10 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 ))}
                               </Slider>
                             </Row>
-                            <Row className="d-flex justify-content-center d-none d-xl-block">
+                            <Row
+                              className="d-flex justify-content-center d-none d-xl-block"
+                              style={{ paddingLeft: "40px" }}
+                            >
                               <Posts
                                 announcements={announcements}
                                 loading={loading}
@@ -125,11 +128,8 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                         ) : (
                           <>
                             {/* 5 */}
-                            <Col className="d-none d-sm-block">sm</Col>
-                            <Col className="d-none d-md-block">md</Col>
-                            <Col className="d-none d-lg-block">lg</Col>
                             <Row
-                              className="py-1 px-5 px-sm-4 d-block d-lg-none"
+                              className="py-1 px-4 px-sm-4 d-block d-xl-none"
                               fluid
                             >
                               <Slider {...settings}>
@@ -145,15 +145,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 ))}
                               </Slider>
                             </Row>
-                            <Row className="d-none d-lg-block">
+                            <Row className="d-none d-xl-block">
                               <Row>
-                                {announcements.length === 4 ? (
-                                  <Col xl={2}></Col>
-                                ) : (
-                                  <Col xl={1}></Col>
-                                )}
+                                <Col xl={1}></Col>
                                 {announcements.map((announcement, index) => (
-                                  <Col lg={3} xl={2} className="p-1 p-xl-2">
+                                  <Col lg={3} xl={2} className="p-1">
                                     <AnnouncementCard
                                       linkA={announcement.link}
                                       title={announcement.title}
@@ -168,9 +164,9 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                         )
                       ) : (
                         <>
-                          {/* 3 */}
+                          {/* 4 */}
                           <Row
-                            className="py-1 px-5 px-sm-4 d-block d-sm-none"
+                            className="py-1 px-4 px-sm-4 d-block d-lg-none"
                             fluid
                           >
                             <Slider {...settings}>
@@ -186,21 +182,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                               ))}
                             </Slider>
                           </Row>
-                          <Row className="d-flex justify-content-center d-none d-sm-block">
-                            <Row className="mx-sm-1 mx-md-0">
-                              <Col
-                                md={1}
-                                xl={3}
-                                className="mx-md-3 mx-lg-4 mx-xl-1"
-                              ></Col>
+                          <Row className="d-none d-lg-block">
+                            <Row className="mx-lg-1 mx-xl-0">
+                              <Col xl={2}></Col>
                               {announcements.map((announcement, index) => (
-                                <Col
-                                  sm={4}
-                                  md={3}
-                                  lg={3}
-                                  xl={2}
-                                  className="p-1"
-                                >
+                                <Col lg={3} xl={2} className="p-1">
                                   <AnnouncementCard
                                     linkA={announcement.link}
                                     title={announcement.title}
@@ -215,9 +201,9 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                       )
                     ) : (
                       <>
-                        {/* 2 */}
+                        {/* 3 */}
                         <Row
-                          className="py-1 px-5 px-sm-4 d-block d-sm-none"
+                          className="py-1 px-4 px-sm-4 d-block d-sm-none"
                           fluid
                         >
                           <Slider {...settings}>
@@ -234,8 +220,12 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                           </Slider>
                         </Row>
                         <Row className="d-flex justify-content-center d-none d-sm-block">
-                          <Row>
-                            <Col sm={2} md={3} xl={4} className="mx-1"></Col>
+                          <Row className="mx-sm-1 mx-md-0">
+                            <Col
+                              md={1}
+                              xl={3}
+                              className="mx-md-3 mx-lg-4 mx-xl-1"
+                            ></Col>
                             {announcements.map((announcement, index) => (
                               <Col sm={4} md={3} lg={3} xl={2} className="p-1">
                                 <AnnouncementCard
@@ -253,24 +243,28 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                   ) : (
                     <>
                       {/* 2 */}
-                      <Row className="d-flex justify-content-center">
-                        <Row>
-                          <Col
-                            xs={2}
-                            sm={4}
-                            md={4}
-                            xl={5}
-                            className="mx-md-3 mx-lg-4 mx-xl-0"
-                          ></Col>
+                      <Row
+                        className="py-1 px-4 px-sm-4 d-block d-sm-none"
+                        fluid
+                      >
+                        <Slider {...settings}>
                           {announcements.map((announcement, index) => (
-                            <Col
-                              xs={8}
-                              sm={4}
-                              md={3}
-                              lg={3}
-                              xl={2}
-                              className="p-1"
-                            >
+                            <Col className="px-1 px-sm-1">
+                              <AnnouncementCard
+                                linkA={announcement.link}
+                                title={announcement.title}
+                                price={announcement.price}
+                                city={announcement.city}
+                              />
+                            </Col>
+                          ))}
+                        </Slider>
+                      </Row>
+                      <Row className="d-flex justify-content-center d-none d-sm-block">
+                        <Row>
+                          <Col sm={2} md={3} xl={4} className="mx-1"></Col>
+                          {announcements.map((announcement, index) => (
+                            <Col sm={4} md={3} lg={3} xl={2} className="p-1">
                               <AnnouncementCard
                                 linkA={announcement.link}
                                 title={announcement.title}
@@ -284,7 +278,37 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                     </>
                   )
                 ) : (
-                  <></>
+                  <>
+                    {/* 1 */}
+                    <Row className="d-flex justify-content-center">
+                      <Row>
+                        <Col
+                          xs={2}
+                          sm={4}
+                          md={4}
+                          xl={5}
+                          className="mx-md-3 mx-lg-4 mx-xl-0"
+                        ></Col>
+                        {announcements.map((announcement, index) => (
+                          <Col
+                            xs={8}
+                            sm={4}
+                            md={3}
+                            lg={3}
+                            xl={2}
+                            className="p-1"
+                          >
+                            <AnnouncementCard
+                              linkA={announcement.link}
+                              title={announcement.title}
+                              price={announcement.price}
+                              city={announcement.city}
+                            />
+                          </Col>
+                        ))}
+                      </Row>
+                    </Row>
+                  </>
                 )}
               </>
             ) : (
