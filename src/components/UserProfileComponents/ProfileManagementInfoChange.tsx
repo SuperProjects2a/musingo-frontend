@@ -22,9 +22,9 @@ const userDataChangeSchema = Yup.object().shape({
     ),
   houseNumber: Yup.string()
     .required("To pole jest wymagane przy zmianie")
-    .matches(/^[1-9][0-9]{0,5}$/, "Wprowadź poprawny numer telefonu"),
+    .matches(/^[1-9][0-9]{0,5}$/, "Wprowadź poprawny numer domu"),
 
-  postcode: Yup.string()
+  postCode: Yup.string()
     .required("To pole jest wymagane przy zmianie")
     .matches(/^[1-9][0-9]\-[1-9][0-9]{2,2}$/i, "Wprowadź poprawny kod pocztowy")
     .required("To pole jest wymagane"),
@@ -47,7 +47,139 @@ const userDataChangeSchema = Yup.object().shape({
 });
 
 export const ContactDataChange = () => {
-  return <div>ProfileManagementInfoChange</div>;
+  return (
+    <div className="userInfoChangeForm pt-2">
+      <Row>
+        <Col>
+          <Formik
+            initialValues={{
+              city: "",
+              street: "",
+              houseNumber: "",
+              postCode: "",
+              phoneNumber: "",
+            }}
+            validationSchema={userDataChangeSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(true);
+              resetForm();
+              setSubmitting(false);
+            }}
+          >
+            {({
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              touched,
+              errors,
+              isSubmitting,
+            }) => (
+              <Form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
+                <Form.Group>
+                  <Form.Label>Miasto</Form.Label>
+                  <Form.Control
+                    name="city"
+                    type="text"
+                    placeholder="Wprowadź miasto"
+                    autoComplete="city"
+                    className="formInputs"
+                    value={values.city}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={touched.city && !!errors.city}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.city}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                  <Form.Label>Ulica</Form.Label>
+                  <Form.Control
+                    name="street"
+                    type="text"
+                    placeholder="Wprowadź nazwę ulicy"
+                    autoComplete="street"
+                    className="formInputs"
+                    value={values.street}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={touched.street && !!errors.street}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.street}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className="mt-2">
+                  <Form.Label>Numer domu/mieszkania</Form.Label>
+                  <Form.Control
+                    name="houseNumber"
+                    type="text"
+                    placeholder="Wprowadź numer"
+                    autoComplete="houseNumber"
+                    className="formInputs"
+                    value={values.houseNumber}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={touched.houseNumber && !!errors.houseNumber}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.houseNumber}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                  <Form.Label>Kod Pocztowy</Form.Label>
+                  <Form.Control
+                    name="postCode"
+                    type="text"
+                    placeholder="Wprowadź kod pocztowy"
+                    autoComplete="postCode"
+                    className="formInputs"
+                    value={values.postCode}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={touched.postCode && !!errors.postCode}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.postCode}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label className=" mt-2 ">Numer telefonu</Form.Label>
+                  <Form.Control
+                    name="phoneNumber"
+                    type="tel"
+                    placeholder="Wprowadź numer telefonu"
+                    autoComplete="phoneNumber"
+                    className="formInputs"
+                    value={values.phoneNumber}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={touched.phoneNumber && !!errors.phoneNumber}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.phoneNumber}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <div className="my-3 d-grid">
+                  <Button
+                    variant="dark"
+                    size="lg"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    Zapisz zmiany
+                  </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Col>
+      </Row>
+    </div>
+  );
 };
 
 export const PasswordChange = () => {

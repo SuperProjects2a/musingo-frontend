@@ -203,5 +203,10 @@ input[type="color"]:focus,
   font-weight: 700 !important;
 }
 
+.userInfoChangeForm
+{
+  width:330px;
+}
+
 
 
