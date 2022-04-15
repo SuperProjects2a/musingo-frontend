@@ -288,5 +288,64 @@ export const PasswordChange = () => {
 };
 
 export const EmailChange = () => {
-  return <div>ProfileManagementInfoChange</div>;
+  return (
+    <div className="userInfoChangeForm pt-2">
+      <Row>
+        <Col>
+          <Formik
+            initialValues={{
+              email: "",
+            }}
+            validationSchema={userDataChangeSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(true);
+              resetForm();
+              setSubmitting(false);
+            }}
+          >
+            {({
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              touched,
+              errors,
+              isSubmitting,
+            }) => (
+              <Form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
+                <Form.Group>
+                  <Form.Label className="m-2 ">Nowy adres email</Form.Label>
+                  <Form.Control
+                    name="email"
+                    type="email"
+                    placeholder="Wprowadź nowy adres email"
+                    autoComplete="email"
+                    className="formInputs"
+                    value={values.email}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    isInvalid={touched.email && !!errors.email}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <div className="my-3 d-grid">
+                  <Button
+                    variant="dark"
+                    size="lg"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    Zapisz zmiany
+                  </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Col>
+      </Row>
+    </div>
+  );
 };
