@@ -214,7 +214,7 @@ export const PasswordChange = () => {
             }) => (
               <Form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
                 <Form.Group>
-                  <Form.Label className="mt-2 ">Stare hasło</Form.Label>
+                  <Form.Label>Stare hasło</Form.Label>
                   <Form.Control
                     name="oldPassword"
                     type="password"
@@ -314,7 +314,7 @@ export const EmailChange = () => {
             }) => (
               <Form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
                 <Form.Group>
-                  <Form.Label className="m-2 ">Nowy adres email</Form.Label>
+                  <Form.Label>Nowy adres email</Form.Label>
                   <Form.Control
                     name="email"
                     type="email"
