@@ -7,7 +7,7 @@ import OfferCarousel from "./OfferCarousel";
 const DisplayOffer = () => {
   return (
     <div className="offerContainerDisplayOffer">
-      <Row>
+      <Row>//test
         <OfferCarousel />
         <Col>
           {/* USER INFO */}
