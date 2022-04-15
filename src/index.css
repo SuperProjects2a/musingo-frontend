@@ -166,4 +166,42 @@ input[type="color"]:focus,
   height: 450px;
 }
 
+.userProfileNav
+{
+  width: 100%;
+  background-color: #fff ;
+}
+
+.userProfileNav h5
+{
+  text-align: left !important;
+  padding-left: 16px !important;
+  font-weight: 700 !important;
+}
+
+
+.userProfileNav .nav-tabs{
+  border: none !important;
+  color:rgba(0, 0, 0, 0.7) !important;
+}
+.userProfileNav .nav-tabs .nav-link.active
+{
+  border: none !important;
+  color:rgba(0, 0, 0, 0.8) !important;
+  font-weight: 700 !important;
+}
+
+.userProfileDiv
+{
+  background-color: #e5e5e5 !important;
+  width: 100%;
+  text-align: left !important;
+}
+
+.userProfileDiv .card-title
+{
+  font-weight: 700 !important;
+}
+
+
 
