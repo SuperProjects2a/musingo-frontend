@@ -107,7 +107,7 @@ const NavbarComp = () => {
           <Route path="/Test" element={<Test />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
-		            <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
+          <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
         </Routes>
       </div>
     </>

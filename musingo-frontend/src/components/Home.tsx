@@ -33,6 +33,7 @@ import handsetCategory from "../images/handset-category.jpg";
 import accessoriesCategory from "../images/accessories-category.jpg";
 import bookNoteCategory from "../images/book-note-category.jpg";
 import otherCategory from "../images/other-category.jpg";
+import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
 
 const categories = [
   { link: "/Test", text: "Gitary", imgLink: guitarCategory },
@@ -48,7 +49,7 @@ const categories = [
 ];
 const announcements = [
   {
-    link: "/Test",
+    link: "/DisplayOffer",
     title: "Gitara elektryczna, stan rewelacyjny",
     price: 1000,
     city: "Bielsko-Biała",
