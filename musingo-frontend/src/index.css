@@ -164,17 +164,17 @@ input[type="color"]:focus,
   height: 450px;
 }
 
-.display_offer_container {
+.offerContainerDisplayOffer {
   z-index: 1;
   margin: 15px;
 }
 
-.carousel_item{
+.carouselItemDisplayOffer{
 width: 65vw;
 height: 65vh;
 margin-bottom: 60px;
 }
 
-.personal_info_container{
+.personalInfoDisplayOffer{
   text-align: left;
 }
