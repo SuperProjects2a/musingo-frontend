@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  InputGroup,
-  Container,
-  Form,
-  Col,
-  Row,
-  Card,
-  Carousel,
-  Button,
-} from "react-bootstrap";
-import { Formik } from "formik";
+import { Col, Row, Card, Carousel, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 

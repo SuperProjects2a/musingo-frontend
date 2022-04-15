@@ -2,7 +2,6 @@ import {
   Navbar,
   Nav,
   NavDropdown,
-  FormControl,
   Container,
   InputGroup,
   Button,
@@ -12,8 +11,8 @@ import {
 import { Route, Link, Routes } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
-import AddOffer from "./AddOffer";
-import DisplayOffer from "./DisplayOffer";
+import AddOffer from "./AddOfferComponents/AddOffer";
+import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
