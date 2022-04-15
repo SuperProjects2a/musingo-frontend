@@ -6,8 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
+import React, { useState, useEffect } from "react";
 import AnnouncementCard from "./announcement/AnnouncementCard";
 import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
+import data from "../data.json";
 
 import guitarCategory from "../images/guitar-category.jpg";
 import windCategory from "../images/wind-category.jpg";
@@ -22,17 +24,17 @@ import otherCategory from "../images/other-category.jpg";
 
 const categories = [
   { link: "/Search", text: "Gitary", imgLink: guitarCategory },
-  { link: "/Test", text: "Dęte", imgLink: windCategory },
-  { link: "/Test", text: "Klawiszowe", imgLink: keyboarCategory },
-  { link: "/Test", text: "Perkusyjne", imgLink: percussionCategory },
-  { link: "/Test", text: "Smyczkowe", imgLink: stringCategory },
-  { link: "/Test", text: "Mikrofony", imgLink: microphonesCategory },
-  { link: "/Test", text: "Słuchawki", imgLink: handsetCategory },
-  { link: "/Test", text: "Akcesoria", imgLink: accessoriesCategory },
-  { link: "/Test", text: "Nuty, książki", imgLink: bookNoteCategory },
-  { link: "/Test", text: "Inne", imgLink: otherCategory },
+  { link: "/Search", text: "Dęte", imgLink: windCategory },
+  { link: "/Search", text: "Klawiszowe", imgLink: keyboarCategory },
+  { link: "/Search", text: "Perkusyjne", imgLink: percussionCategory },
+  { link: "/Search", text: "Smyczkowe", imgLink: stringCategory },
+  { link: "/Search", text: "Mikrofony", imgLink: microphonesCategory },
+  { link: "/Search", text: "Słuchawki", imgLink: handsetCategory },
+  { link: "/Search", text: "Akcesoria", imgLink: accessoriesCategory },
+  { link: "/Search", text: "Nuty, książki", imgLink: bookNoteCategory },
+  { link: "/Search", text: "Inne", imgLink: otherCategory },
 ];
-const announcements = [
+const announcementsA = [
   {
     link: "/Test",
     title: "Gitara elektryczna, stan rewelacyjny",
@@ -79,7 +81,30 @@ const announcements = [
     city: "Katowice",
   },
 ];
+
+interface IAnnouncement {
+  link: string;
+  title: string;
+  price: number;
+  city: string;
+}
+
 const Home = () => {
+  const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
+    [] as IAnnouncement[]
+  );
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      setLoading(true);
+      setAnnouncements(data);
+      setLoading(false);
+    };
+
+    fetchAnnouncements();
+  }, []);
+
   // SETTINGS KARUZELI
   var settings = {
     dots: false,
@@ -226,12 +251,8 @@ const Home = () => {
       </Container>
 
       {/* WYROZNIONE */}
-      <Container className="pt-4 pb-2 px-4" fluid>
+      {/* <Container className="pt-4 pb-2 px-4" fluid>
         <h3 className="">Wyróżnione</h3>
-        {/* <AnnouncementsCarousel
-          announcements={announcements}
-          loading={loading}
-        /> */}
         <Row className="px-5 py-1 mx-3 mx-sm-1" fluid>
           <Slider {...settings}>
             {announcements.map((announcement, index) => (
@@ -246,10 +267,44 @@ const Home = () => {
             ))}
           </Slider>
         </Row>
+      </Container> */}
+
+      <Container className="pt-4 pb-2 px-5" fluid>
+        {announcements.length > 0 ? (
+          <div>
+            <h3>Wyróżnione</h3>
+            <Row className="d-flex justify-content-center">
+              <AnnouncementsCarousel
+                announcements={announcements}
+                loading={loading}
+                center={true}
+              />
+            </Row>
+          </div>
+        ) : (
+          <></>
+        )}
+      </Container>
+
+      <Container className="pt-4 pb-2 px-5" fluid>
+        {announcementsA.length > 0 ? (
+          <div>
+            <h3>Wyróżnione</h3>
+            <Row className="d-flex justify-content-center">
+              <AnnouncementsCarousel
+                announcements={announcementsA}
+                loading={loading}
+                center={true}
+              />
+            </Row>
+          </div>
+        ) : (
+          <></>
+        )}
       </Container>
 
       {/* OSTATNIO DODANE */}
-      <Container className="pt-2 pb-4 px-4" fluid>
+      {/* <Container className="pt-2 pb-4 px-4" fluid>
         <h3 className="">Ostatnio dodane</h3>
         <Row className="px-5 py-1 mx-3 mx-sm-1" fluid>
           <Slider {...settings}>
@@ -265,7 +320,7 @@ const Home = () => {
             ))}
           </Slider>
         </Row>
-      </Container>
+      </Container> */}
     </>
   );
 };

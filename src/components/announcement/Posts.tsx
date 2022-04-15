@@ -28,14 +28,7 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
   return (
     <Row>
       {announcements.map((announcement, index) => (
-        <Col
-          xs={{ span: 6, offset: 0 }}
-          sm={{ span: 4, offset: 0 }}
-          md={3}
-          lg={3}
-          xl={2}
-          className="p-1 p-xl-2"
-        >
+        <Col xs={6} sm={4} md={3} lg={3} xl={2} className="p-1 p-xl-2">
           <AnnouncementCard
             linkA={announcement.link}
             title={announcement.title}

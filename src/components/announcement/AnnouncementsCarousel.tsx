@@ -124,7 +124,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                           </>
                         ) : (
                           <>
-                            {/* 4 */}
+                            {/* 5 */}
                             <Col className="d-none d-sm-block">sm</Col>
                             <Col className="d-none d-md-block">md</Col>
                             <Col className="d-none d-lg-block">lg</Col>
@@ -145,7 +145,6 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 ))}
                               </Slider>
                             </Row>
-
                             <Row className="d-none d-lg-block">
                               <Row>
                                 {announcements.length === 4 ? (

@@ -128,14 +128,12 @@ const Search = () => {
                   />
                 </InputGroup>
               </Col>
-              {validated == true ? (
+              {validated == true && (
                 <Row>
                   <Form.Text className="text-danger">
                     <small>Wartość "od" nie może być większa niż "do".</small>
                   </Form.Text>
                 </Row>
-              ) : (
-                <></>
               )}
             </Col>
             <Col
@@ -181,6 +179,7 @@ const Search = () => {
                 <AnnouncementsCarousel
                   announcements={announcements}
                   loading={loading}
+                  center={false}
                 />
               </Row>
             </div>
