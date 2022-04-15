@@ -228,6 +228,10 @@ const Home = () => {
       {/* WYROZNIONE */}
       <Container className="pt-4 pb-2 px-4" fluid>
         <h3 className="">Wyróżnione</h3>
+        {/* <AnnouncementsCarousel
+          announcements={announcements}
+          loading={loading}
+        /> */}
         <Row className="px-5 py-1 mx-3 mx-sm-1" fluid>
           <Slider {...settings}>
             {announcements.map((announcement, index) => (

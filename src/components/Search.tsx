@@ -13,7 +13,7 @@ import Posts from "./announcement/Posts";
 import PaginationSearch from "./announcement/PaginationSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-import data from "./data.json";
+import data from "../data.json";
 
 import axios from "axios";
 
