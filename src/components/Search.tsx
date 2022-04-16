@@ -94,9 +94,16 @@ const Search = () => {
                 className="selectColor"
               >
                 <option>Wybierz kategorię</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="1">Gitary</option>
+                <option value="2">Dęte</option>
+                <option value="3">Klawiszowe</option>
+                <option value="4">Perkusyjne</option>
+                <option value="5">Smyczkowe</option>
+                <option value="6">Mikrofony</option>
+                <option value="7">Słuchawki</option>
+                <option value="8">Akcesoria</option>
+                <option value="9">Nuty, książki</option>
+                <option value="10">Inne</option>
               </Form.Select>
             </Col>
             <Col
