@@ -8,7 +8,7 @@ import {
   Col,
   Form,
 } from "react-bootstrap";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Route, Link, Routes, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
@@ -19,17 +19,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarComp = () => {
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const handleOnClickEnter = useCallback(
     () => navigate("/Search", { replace: true }),
     [navigate]
   );
-  const _handleKeyDown = (e: any) => {
+  const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
-      console.log("do validate");
+      setSearchValue(e.target.value);
       handleOnClickEnter();
     }
   };
+  const handleBlur = (e: any) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <>
       <div className="header">
@@ -110,7 +115,10 @@ const NavbarComp = () => {
                 className="navBorder"
                 style={{ width: "45%" }}
                 onKeyDown={(e) => {
-                  _handleKeyDown(e);
+                  handleKeyDown(e);
+                }}
+                onBlur={(e) => {
+                  handleBlur(e);
                 }}
               />
               <Link to="/Search">
@@ -118,6 +126,7 @@ const NavbarComp = () => {
                   variant="light"
                   id="button-addon2"
                   className="navBorder selectColor"
+                  type="submit"
                 >
                   <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
                 </Button>
