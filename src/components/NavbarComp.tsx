@@ -8,8 +8,14 @@ import {
   Col,
   Form,
 } from "react-bootstrap";
-import React, { useCallback, useState } from "react";
-import { Route, Link, Routes, useNavigate } from "react-router-dom";
+import React, { useCallback, useState, useLayoutEffect } from "react";
+import {
+  Route,
+  Link,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
 import Search from "./Search";
@@ -19,6 +25,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarComp = () => {
+  const location = useLocation();
+  // Scroll to top if path changes
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const handleOnClickEnter = useCallback(
