@@ -3,9 +3,10 @@ import { Col, Card, Carousel, Button } from "react-bootstrap";
 
 const OfferCarousel = () => {
   return (
-    <Col md={7} lg={9} xl={9}>
+    // <Col md={7} lg={9} xl={9}>
+    <Col>
       {/* IMAGE BOX */}
-      <Card>
+      <Card className="p-2">
         <Card.Body>
           <Carousel variant="dark">
             <Carousel.Item>
