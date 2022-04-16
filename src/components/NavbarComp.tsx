@@ -7,9 +7,9 @@ import {
   Button,
   Col,
   Form,
-  Row,
 } from "react-bootstrap";
-import { Route, Link, Routes } from "react-router-dom";
+import React, { useCallback } from "react";
+import { Route, Link, Routes, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
 import Search from "./Search";
@@ -19,6 +19,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarComp = () => {
+  const navigate = useNavigate();
+  const handleOnClickEnter = useCallback(
+    () => navigate("/Search", { replace: true }),
+    [navigate]
+  );
+  const _handleKeyDown = (e: any) => {
+    if (e.key === "Enter") {
+      console.log("do validate");
+      handleOnClickEnter();
+    }
+  };
   return (
     <>
       <div className="header">
@@ -98,6 +109,9 @@ const NavbarComp = () => {
                 placeholder="Szukaj przedmiotów"
                 className="navBorder"
                 style={{ width: "45%" }}
+                onKeyDown={(e) => {
+                  _handleKeyDown(e);
+                }}
               />
               <Link to="/Search">
                 <Button

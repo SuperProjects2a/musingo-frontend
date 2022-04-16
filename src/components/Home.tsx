@@ -57,7 +57,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="pb-4">
       {/* BANER */}
       <div className="backgroundHomePage p-5 text-light">
         <Container className="py-lg-4 my-lg-3 py-md-2 my-md-2 my-sm-3">
@@ -111,7 +111,7 @@ const Home = () => {
       </Container>
 
       {/* KATEGORIE DES*/}
-      <Container className="d-none d-md-block bg-light pb-4" fluid>
+      <Container className="d-none d-md-block bg-light pb-4 mb-1" fluid>
         <Row className="py-4">
           <h3>Kategorie</h3>
         </Row>
@@ -152,10 +152,10 @@ const Home = () => {
       </Container>
 
       {/* WYROZNIONE */}
-      <Container className="py-4 px-4" fluid>
+      <Container className="pt-3 px-4" fluid>
         {announcements.length > 0 && (
           <div>
-            <h3 className="p-1">Wyróżnione</h3>
+            <h3 className="pb-2">Wyróżnione</h3>
             <Row className="d-flex justify-content-center">
               <AnnouncementsCarousel
                 announcements={announcements}
@@ -168,10 +168,10 @@ const Home = () => {
       </Container>
 
       {/* OSTATNIO DODANE */}
-      <Container className="pt-2 pb-4 px-4" fluid>
+      <Container className="pt-3 px-4" fluid>
         {announcements.length > 0 && (
           <div>
-            <h3 className="p-1">Ostatnio dodane</h3>
+            <h3 className="pb-2">Ostatnio dodane</h3>
             <Row className="d-flex justify-content-center">
               <AnnouncementsCarousel
                 announcements={announcements}
@@ -182,7 +182,7 @@ const Home = () => {
           </div>
         )}
       </Container>
-    </>
+    </div>
   );
 };
 

@@ -148,8 +148,9 @@ const Search = () => {
                 className="selectColor"
               >
                 <option value="1">Od najnowszych</option>
-                <option value="2">Cena: od najtańszych</option>
-                <option value="3">Cena: od najdroższych</option>
+                <option value="2">Od najstarszych</option>
+                <option value="3">Cena: od najtańszych</option>
+                <option value="4">Cena: od najdroższych</option>
               </Form.Select>
             </Col>
           </Row>
