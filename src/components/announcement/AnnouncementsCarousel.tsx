@@ -1,4 +1,3 @@
-import React from "react";
 import { FC } from "react";
 import { Col, Row } from "react-bootstrap";
 import "slick-carousel/slick/slick.css";
@@ -6,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import AnnouncementCard from "./AnnouncementCard";
 import Posts from "./Posts";
-import { ChildProcess } from "child_process";
 
 var settings = {
   dots: false,
@@ -317,41 +315,9 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
               </Row>
             )}
           </>
-          {/* <Row className="py-1 px-5 px-sm-4 d-block d-sm-none" fluid>
-             <Slider {...settings}>
-               {announcements.map((announcement, index) => (
-                 <Col className="px-1 px-sm-1">
-                   <AnnouncementCard
-                     linkA={announcement.link}
-                     title={announcement.title}
-                     price={announcement.price}
-                     city={announcement.city}
-                   />
-                 </Col>
-               ))}
-             </Slider>
-           </Row> */}
-
-          {/* <Row className="d-flex justify-content-center">
-             <Posts announcements={announcements} loading={loading} />
-           </Row> */}
         </>
       )}
     </>
-    // <Row className=" py-1 px-5 px-sm-4" fluid>
-    //   <Slider {...settings}>
-    //     {announcements.map((announcement, index) => (
-    //       <Col className="px-1 px-sm-1">
-    //         <AnnouncementCard
-    //           linkA={announcement.link}
-    //           title={announcement.title}
-    //           price={announcement.price}
-    //           city={announcement.city}
-    //         />
-    //       </Col>
-    //     ))}
-    //   </Slider>
-    // </Row>
   );
 };
 

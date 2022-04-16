@@ -1,4 +1,3 @@
-// import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -28,30 +27,6 @@ const AnnouncementCard: FC<IAnnouncement> = ({ linkA, title, price, city }) => {
             }}
             className="pt-2 px-2"
           />
-          {/* <Card.Body>
-            <OverlayTrigger
-              placement="top"
-              delay={{ show: 250, hide: 400 }}
-              overlay={<Tooltip id="tooltip-disabled">{title}</Tooltip>}
-            >
-              <Card.Text style={{ height: "60px" }}>
-                {title.length > 25 ? (
-                  <h5>{title.substring(0, 22)}...</h5>
-                ) : (
-                  <h5>{title}</h5>
-                )}
-              </Card.Text>
-            </OverlayTrigger>
-
-            <Card.Text className="pt-1">
-              <h5>
-                <b>{price} zł</b>
-              </h5>
-            </Card.Text>
-            <Card.Subtitle className="">
-              <small className="text-muted">{city}</small>
-            </Card.Subtitle>
-          </Card.Body> */}
           <Card.Body>
             <OverlayTrigger
               placement="top"
