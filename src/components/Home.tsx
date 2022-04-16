@@ -79,7 +79,7 @@ const Home = () => {
             </Col>
           </Row>
           <Row className="py-3">
-            <Link to="/Test">
+            <Link to="/AddOffer">
               <Button className="btn btn-danger" size="lg">
                 Dodaj ogłoszenie
               </Button>
