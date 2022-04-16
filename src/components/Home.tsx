@@ -156,7 +156,7 @@ const Home = () => {
         {announcements.length > 0 && (
           <div>
             <h3 className="pb-2">Wyróżnione</h3>
-            <Row className="d-flex justify-content-center">
+            <Row className="d-flex justify-content-center px-4 px-sm-0">
               <AnnouncementsCarousel
                 announcements={announcements}
                 loading={loading}
@@ -172,7 +172,7 @@ const Home = () => {
         {announcements.length > 0 && (
           <div>
             <h3 className="pb-2">Ostatnio dodane</h3>
-            <Row className="d-flex justify-content-center">
+            <Row className="d-flex justify-content-center px-4 px-sm-0">
               <AnnouncementsCarousel
                 announcements={announcements}
                 loading={loading}
