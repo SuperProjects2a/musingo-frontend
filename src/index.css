@@ -198,14 +198,24 @@ input[type="color"]:focus,
   text-align: left !important;
 }
 
+
+
 .userProfileDiv .card-title
 {
   font-weight: 700 !important;
 }
 
+
 .userInfoChangeForm
 {
   width:330px;
+}
+
+@media (max-width: 400px) {
+  .userInfoChangeForm
+  {
+    width:100%;
+  }
 }
 
 .chargeButton{
@@ -221,3 +231,10 @@ input[type="color"]:focus,
 }
 
 
+
+@media (max-width: 520px) {
+  .fundingsTable
+  {
+    width: 520px !important;
+  }
+}

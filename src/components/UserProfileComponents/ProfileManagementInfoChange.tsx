@@ -17,7 +17,7 @@ const userDataChangeSchema = Yup.object().shape({
     .min(3, "Wprowadź prawidłową nazwe miasta")
     .max(60, "Wprowadź prawidłową nazwe miasta")
     .matches(
-      /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ\-]+\s)*[-\a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,60}$/i,
+      /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ-]+\s)*[-a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,60}$/i,
       "Wprowadzono niedozwolone znaki"
     ),
   houseNumber: Yup.string()
@@ -26,13 +26,13 @@ const userDataChangeSchema = Yup.object().shape({
 
   postCode: Yup.string()
     .required("To pole jest wymagane przy zmianie")
-    .matches(/^[1-9][0-9]\-[1-9][0-9]{2,2}$/i, "Wprowadź poprawny kod pocztowy")
+    .matches(/^[1-9][0-9]-[1-9][0-9]{2,2}$/i, "Wprowadź poprawny kod pocztowy")
     .required("To pole jest wymagane"),
   email: Yup.string()
     .email("Niepoprawny adres email")
-    .required("To pole jest wymagane"),
+    .required("To pole jest wymagane przy zmianie"),
   password: Yup.string()
-    .required("To pole jest wymagane")
+    .required("To pole jest wymagane przy zmianie")
     .min(8, "Hasło musi składać się z minimum 8 znaków")
     .matches(
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
@@ -43,7 +43,7 @@ const userDataChangeSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Hasło musza się zgadzać"),
   oldPassword: Yup.string().required("To pole jest wymagane przy zmianie"),
   phoneNumber: Yup.string()
-    .required("To pole jest wymagane")
+    .required("To pole jest wymagane przy zmianie")
     .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
     .min(9, "Wprowdź poprawny numer")
     .max(9, "Wprowdź poprawny numer"),
@@ -166,7 +166,7 @@ export const ContactDataChange = () => {
                     {errors.phoneNumber}
                   </Form.Control.Feedback>
                 </Form.Group>
-                <div className="my-3 d-grid">
+                <div className="my-4 d-grid">
                   <Button
                     variant="dark"
                     size="lg"
@@ -268,7 +268,7 @@ export const PasswordChange = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <div className="my-3 d-grid">
+                <div className="my-4 d-grid">
                   <Button
                     variant="dark"
                     size="lg"
@@ -331,7 +331,7 @@ export const EmailChange = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <div className="my-3 d-grid">
+                <div className="my-4 d-grid">
                   <Button
                     variant="dark"
                     size="lg"

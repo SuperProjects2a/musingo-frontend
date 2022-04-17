@@ -69,7 +69,7 @@ const Fundings = () => {
         <Card.Body>
           <Card.Title>Historia płatności</Card.Title>
           <p>Stan konta: 911420,69</p>
-          <Table striped bordered hover>
+          <Table striped bordered hover responsive>
             <thead>
               <tr>
                 <th>Kwota</th>
