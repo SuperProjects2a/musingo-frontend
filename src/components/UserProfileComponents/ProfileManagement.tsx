@@ -18,6 +18,20 @@ const ProfileManagement = () => {
           <Card>
             <Card.Body>
               <Card.Title>Dodaj zdjęcie profilu</Card.Title>
+              <Card.Img
+                variant="top"
+                src={`https://picsum.photos/200/300?random=${
+                  Math.random() * 100
+                }`}
+                style={{
+                  height: " calc(11vh + 4vw)",
+                  minHeight: "200px",
+                  width: "200px",
+                  objectFit: "cover",
+                  borderRadius: "100px",
+                }}
+                className="pt-2 announcementImg"
+              />
             </Card.Body>
           </Card>
           <Card className="mt-4">
