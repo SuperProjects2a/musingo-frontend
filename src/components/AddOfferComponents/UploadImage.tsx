@@ -78,16 +78,9 @@ export function UploadImage() {
                 </div>
               ))}
             </div>
-          ) &&
-          errors && (
-            <React.Fragment>
-              {errors.maxNumber && (<span>Nie można przesłać więcej niż 5 zdjęć</span>)}
-              {errors.maxFileSize && (<span>Maksymalna waga pliku to 5MB</span>)}
-            </React.Fragment>
           )
         }
       </ImageUploading>
-
       <Form.Text>
         Możesz dodać maksymalnie <strong>5</strong> zdjęć w formacie:
         <strong>.png .jpg .jpeg .bpm</strong> o maksymalnym rozmiarze{" "}
