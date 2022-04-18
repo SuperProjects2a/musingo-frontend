@@ -34,50 +34,58 @@ export function UploadImage() {
           isDragging,
           dragProps,
           errors,
-        }) => (
-          <div className="upload__image-wrapper">
-            <Form.Group>
-              <h4>
-                <strong>Zdjęcia</strong>
-              </h4>
-              <Form.Label>Dodaj zdjęcia</Form.Label>
-              <Row className="mb-3">
-                <Col xs={12} sm={8}>
-                  <Button
-                    variant="dark"
-                    style={isDragging ? { color: "red" } : undefined}
-                    onClick={onImageUpload}
-                    {...dragProps}
-                  >
-                    Dodaj lub upuść zdjęcia
-                  </Button>
-                </Col>
-                <Col xs={5} sm={4} className="pt-2 pt-sm-0">
-                  <Button variant="dark">Wgraj zdjęcia</Button>
-                </Col>
-              </Row>
-            </Form.Group>
-            {imageList.map((image, index) => (
-              <div key={index} className="image-item">
-                <img src={image.dataURL} alt="" width="200" />
-                <div className="image-item__btn-wrapper">
-                  <Button
-                    variant="outline-dark light"
-                    onClick={() => onImageUpdate(index)}
-                  >
-                    Zmień
-                  </Button>
-                  <Button
-                    variant="outline-dark light"
-                    onClick={() => onImageRemove(index)}
-                  >
-                    Usuń
-                  </Button>
+        }) =>
+          (
+            <div className="upload__image-wrapper">
+              <Form.Group>
+                <h4>
+                  <strong>Zdjęcia</strong>
+                </h4>
+                <Form.Label>Dodaj zdjęcia</Form.Label>
+                <Row className="mb-3">
+                  <Col xs={12} sm={8}>
+                    <Button
+                      variant="dark"
+                      style={isDragging ? { color: "red" } : undefined}
+                      onClick={onImageUpload}
+                      {...dragProps}
+                    >
+                      Dodaj lub upuść zdjęcia
+                    </Button>
+                  </Col>
+                  <Col xs={5} sm={4} className="pt-2 pt-sm-0">
+                    <Button variant="dark">Wgraj zdjęcia</Button>
+                  </Col>
+                </Row>
+              </Form.Group>
+              {imageList.map((image, index) => (
+                <div key={index} className="image-item">
+                  <img src={image.dataURL} alt="" width="200" />
+                  <div className="image-item__btn-wrapper">
+                    <Button
+                      variant="outline-dark light"
+                      onClick={() => onImageUpdate(index)}
+                    >
+                      Zmień
+                    </Button>
+                    <Button
+                      variant="outline-dark light"
+                      onClick={() => onImageRemove(index)}
+                    >
+                      Usuń
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          ) &&
+          errors && (
+            <React.Fragment>
+              {errors.maxNumber && (<span>Nie można przesłać więcej niż 5 zdjęć</span>)}
+              {errors.maxFileSize && (<span>Maksymalna waga pliku to 5MB</span>)}
+            </React.Fragment>
+          )
+        }
       </ImageUploading>
 
       <Form.Text>
