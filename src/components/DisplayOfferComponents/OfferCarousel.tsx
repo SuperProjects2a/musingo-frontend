@@ -1,10 +1,27 @@
-import React from "react";
-import { Col, Card, Carousel, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Card, Carousel, Button, Toast } from "react-bootstrap";
 
 const OfferCarousel = () => {
+  const [show, setShow] = useState(false);
   return (
-    // <Col md={7} lg={9} xl={9}>
     <Col>
+      <Toast onClose={() => setShow(false)} show={show}>
+        <Toast.Header>
+          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+          <strong className="me-auto">Wyświetlanie zdjęcia</strong>
+        </Toast.Header>
+        <Toast.Body>
+          <img
+            className="d-block w-100"
+            src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
+            alt="First slide"
+            style={{
+              height: "100%",
+              width: "100%",
+            }}
+          />
+        </Toast.Body>
+      </Toast>
       {/* IMAGE BOX */}
       <Card className="p-2">
         <Card.Body>
@@ -18,46 +35,11 @@ const OfferCarousel = () => {
                 alt="First slide"
               />
             </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="carouselItemDisplayOffer d-block w-100"
-                src={`https://picsum.photos/200/300?random=${
-                  Math.random() * 100
-                }`}
-                alt="Second slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="carouselItemDisplayOffer d-block w-100"
-                src={`https://picsum.photos/200/300?random=${
-                  Math.random() * 100
-                }`}
-                alt="Third slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="carouselItemDisplayOffer d-block w-100"
-                src={`https://picsum.photos/200/300?random=${
-                  Math.random() * 100
-                }`}
-                alt="Fourth slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="carouselItemDisplayOffer d-block w-100"
-                src={`https://picsum.photos/200/300?random=${
-                  Math.random() * 100
-                }`}
-                alt="Fifth slide"
-              />
-            </Carousel.Item>
           </Carousel>
           <Button
             variant="outline-dark light"
             style={{ display: "flex", marginLeft: "auto" }}
+            onClick={() => setShow(true)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -78,3 +60,7 @@ const OfferCarousel = () => {
 };
 
 export default OfferCarousel;
+
+function setShow(arg0: boolean): void {
+  throw new Error("Function not implemented.");
+}
