@@ -6,23 +6,23 @@ import { faCompass, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const PersonalInfo = () => {
   return (
-    <Card className="py-4 px-4">
+    <Card className="py-3 px-4">
       <Row >
         <Card.Img
           variant="top"
           src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
           style={{
-            height: " calc(11vh + 4vw)",
-            minHeight: "50px",
-            maxHeight: "130px",
-            width: "25%",
+            height: "calc(11vh + 4vw)",
+            width: "calc(11vh + 4vw)",
+            maxHeight: "88px",
+            maxWidth: "88px",
             objectFit: "cover",
-            borderRadius: "30px",
+            borderRadius: "90px",
           }}
-          className="pt-1 px-2 pb-2"
+          className="pt-2 px-2 pb-2"
         />
         <Col className="personalInfoDisplayOffer">
-          <strong>Tadeusz Norek</strong>
+          <strong>Krzysztof Knononowicz</strong>
           <Col>
             <FontAwesomeIcon icon={faStar} className="iconsDisplayOffer" />
             3.5
