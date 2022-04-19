@@ -26,7 +26,7 @@ const PersonalInfo = () => {
             <FontAwesomeIcon icon={faStar} className="iconsDisplayOffer" />
             3.5
             <small className="text-muted">/5</small>
-            <Card.Subtitle className="py-1 px-3">
+            <Card.Subtitle className="py-1 px-4">
               <small className="text-muted">27 ocen</small>
             </Card.Subtitle>
           </Col>

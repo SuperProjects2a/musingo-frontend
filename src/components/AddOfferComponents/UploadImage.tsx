@@ -53,13 +53,10 @@ export function UploadImage() {
                       Dodaj lub upuść zdjęcia
                     </Button>
                   </Col>
-                  <Col xs={5} sm={4} className="pt-2 pt-sm-0">
-                    <Button variant="dark">Wgraj zdjęcia</Button>
-                  </Col>
                 </Row>
               </Form.Group>
               {imageList.map((image, index) => (
-                <div key={index} className="image-item">
+                <div key={index} className="pb-3 image-item">
                   <img src={image.dataURL} alt="" width="200" />
                   <div className="image-item__btn-wrapper">
                     <Button

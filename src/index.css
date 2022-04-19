@@ -169,12 +169,6 @@ input[type="color"]:focus,
   margin: 15px;
 }
 
-.carouselItemDisplayOffer{
-width: 65vw;
-height: 65vh;
-margin-bottom: 60px;
-}
-
 .personalInfoDisplayOffer{
   text-align: left;
 }

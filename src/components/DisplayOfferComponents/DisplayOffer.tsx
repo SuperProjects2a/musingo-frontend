@@ -13,14 +13,14 @@ const DisplayOffer = () => {
           <OfferCarousel />
         </Col>
         <Col xs={{ offset: 12, span: 12, order: 3 }} lg={{ span: 4, order: 2 }}>
-          <Col className="pt-lg-0">
+          <Col className="pt-2 pt-lg-0">
             <PersonalInfo />
           </Col>
-          <Col className="pt-lg-4">
+          <Col className="pt-2 pt-lg-4">
             <FavoriteBox />
           </Col>
         </Col>
-        <Col xs={{ offset: 12, span: 12, order: 2 }} className="pt-lg-4">
+        <Col xs={{ offset: 12, span: 12, order: 2 }} className="pt-2 pt-lg-4">
           <OfferInfo />
         </Col>
       </Row>
