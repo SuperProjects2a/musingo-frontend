@@ -2,22 +2,51 @@ import {
   Navbar,
   Nav,
   NavDropdown,
-  FormControl,
   Container,
   InputGroup,
   Button,
   Col,
   Form,
 } from "react-bootstrap";
-import { Route, Link, Routes } from "react-router-dom";
+import React, { useCallback, useState, useLayoutEffect } from "react";
+import {
+  Route,
+  Link,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
+import Search from "./Search";
 import SignInUp from "./SignInUp";
 import AddOffer from "./AddOffer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarComp = () => {
+  const location = useLocation();
+  // Scroll to top if path changes
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
+  const handleOnClickEnter = useCallback(
+    () => navigate("/Search", { replace: true }),
+    [navigate]
+  );
+  const handleKeyDown = (e: any) => {
+    if (e.key === "Enter") {
+      setSearchValue(e.target.value);
+      handleOnClickEnter();
+    }
+  };
+  const handleBlur = (e: any) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <>
       <div className="header">
@@ -37,34 +66,34 @@ const NavbarComp = () => {
             <Nav className="me-auto"></Nav>
             <Nav>
               <NavDropdown title="Kategorie" id="collasible-nav-dropdown">
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Gitary
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Dęte
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Klawiszowe
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Perkusyjne
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Smyczkowe
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Mikrofony
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Słuchawki
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Nuty, książki
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Akcesoria
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Test"}>
+                <NavDropdown.Item as={Link} to={"/Search"}>
                   Inne
                 </NavDropdown.Item>
               </NavDropdown>
@@ -83,18 +112,37 @@ const NavbarComp = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-
-        <Container className="py-3">
+        <Container className="py-3 d-flex justify-content-center" fluid>
           <Col
-            xs={{ span: 10, offset: 1 }}
-            sm={{ span: 10, offset: 1 }}
-            md={{ span: 8, offset: 2 }}
+            className="px-2 px-sm-3 px-md-5 px-lg-0"
+            xs={12}
+            md={11}
+            lg={8}
+            xl={7}
           >
             <InputGroup>
-              <Form.Control type="text" placeholder="Szukaj przedmiotów" />
-              <Button variant="outline-dark" id="button-addon2">
-                <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-              </Button>
+              <Form.Control
+                type="text"
+                placeholder="Szukaj przedmiotów"
+                className="navBorder"
+                style={{ width: "45%" }}
+                onKeyDown={(e) => {
+                  handleKeyDown(e);
+                }}
+                onBlur={(e) => {
+                  handleBlur(e);
+                }}
+              />
+              <Link to="/Search">
+                <Button
+                  variant="light"
+                  id="button-addon2"
+                  className="navBorder selectColor"
+                  type="submit"
+                >
+                  <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+                </Button>
+              </Link>
             </InputGroup>
           </Col>
         </Container>
@@ -104,6 +152,7 @@ const NavbarComp = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Test" element={<Test />}></Route>
+          <Route path="/Search" element={<Search />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
         </Routes>
