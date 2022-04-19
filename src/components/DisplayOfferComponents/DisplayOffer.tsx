@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row, Card, Carousel, Button, Image } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import OfferCarousel from "./OfferCarousel";
 import PersonalInfo from "./PersonalInfo";
 import FavoriteBox from "./FavoriteBox";
@@ -9,16 +9,18 @@ const DisplayOffer = () => {
   return (
     <div className="offerContainerDisplayOffer">
       <Row className="px-sm-3 px-lg-5">
-        <Col xs={{ span: 12, offset: 12, order: 1 }} lg={{ span: 8, order: 1 }}>
+        <Col xs={12} lg={8}>
           <OfferCarousel />
         </Col>
-          <Col  xs={{ span: 12, offset: 12, order: 4 }} lg={{ span: 4, order: 2 }}>
+        <Col xs={12} lg={4}>
+          <Col className="pt-lg-0">
             <PersonalInfo />
-          </Col >
-          <Col xs={{ span: 12, offset: 12, order: 2 }} lg={{ span: 4, offset: 8, order: 3 }}>
+          </Col>
+          <Col className="pt-lg-4">
             <FavoriteBox />
           </Col>
-        <Col  xs={{ span: 12, offset: 12, order: 3 }} className="pt-2" >
+        </Col>
+        <Col xs={12} className="pt-lg-4">
           <OfferInfo />
         </Col>
       </Row>

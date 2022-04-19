@@ -1,27 +1,15 @@
 import React, { useState } from "react";
-import { Col, Card, Carousel, Button, Toast } from "react-bootstrap";
+import {
+  Col,
+  Card,
+  Carousel,
+  Button,
+} from "react-bootstrap";
 
 const OfferCarousel = () => {
   const [show, setShow] = useState(false);
   return (
     <Col>
-      <Toast onClose={() => setShow(false)} show={show}>
-        <Toast.Header>
-          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-          <strong className="me-auto">Wyświetlanie zdjęcia</strong>
-        </Toast.Header>
-        <Toast.Body>
-          <img
-            className="d-block w-100"
-            src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
-            alt="First slide"
-            style={{
-              height: "100%",
-              width: "100%",
-            }}
-          />
-        </Toast.Body>
-      </Toast>
       {/* IMAGE BOX */}
       <Card className="p-2">
         <Card.Body>
@@ -32,7 +20,43 @@ const OfferCarousel = () => {
                 src={`https://picsum.photos/200/300?random=${
                   Math.random() * 100
                 }`}
-                alt="First slide"
+                alt=""
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="carouselItemDisplayOffer d-block w-100"
+                src={`https://picsum.photos/200/300?random=${
+                  Math.random() * 100
+                }`}
+                alt=""
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="carouselItemDisplayOffer d-block w-100"
+                src={`https://picsum.photos/200/300?random=${
+                  Math.random() * 100
+                }`}
+                alt=""
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="carouselItemDisplayOffer d-block w-100"
+                src={`https://picsum.photos/200/300?random=${
+                  Math.random() * 100
+                }`}
+                alt=""
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="carouselItemDisplayOffer d-block w-100"
+                src={`https://picsum.photos/200/300?random=${
+                  Math.random() * 100
+                }`}
+                alt=""
               />
             </Carousel.Item>
           </Carousel>
@@ -60,7 +84,3 @@ const OfferCarousel = () => {
 };
 
 export default OfferCarousel;
-
-function setShow(arg0: boolean): void {
-  throw new Error("Function not implemented.");
-}

@@ -1,13 +1,12 @@
 import React from "react";
-import { Col, Row, Card, Button, Image } from "react-bootstrap";
+import { Col, Row, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass, faStar } from "@fortawesome/free-solid-svg-icons";
-
 
 const PersonalInfo = () => {
   return (
     <Card className="py-3 px-4">
-      <Row >
+      <Row>
         <Card.Img
           variant="top"
           src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
@@ -39,7 +38,7 @@ const PersonalInfo = () => {
             </Card.Subtitle>
           </Col>
         </Col>
-      </Row>  
+      </Row>
       <Button className="" variant="outline-dark light">
         <strong>Zadzwoń</strong>
       </Button>
