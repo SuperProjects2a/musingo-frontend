@@ -1,4 +1,4 @@
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Button } from "react-bootstrap";
 import React from "react";
 const ratings = [
   {
@@ -39,6 +39,12 @@ const AcuiredRatings = () => {
                 </Col>
               </Row>
             ))}
+          </div>
+          <hr />
+          <div style={{ textAlign: "center" }}>
+            <Button variant="Link" size="lg">
+              Zobacz więcej
+            </Button>
           </div>
         </Card.Body>
       </Card>
