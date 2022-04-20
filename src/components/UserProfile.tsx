@@ -1,6 +1,7 @@
 import { Tabs, Tab } from "react-bootstrap";
 import ProfileManagement from "./UserProfileComponents/ProfileManagement";
 import Fundings from "./UserProfileComponents/Fundings";
+import AcuiredRatings from "./UserProfileComponents/AcuiredRatings";
 
 const UserProfile = () => {
   return (
@@ -14,7 +15,9 @@ const UserProfile = () => {
           <Fundings />
         </Tab>
         <Tab eventKey="Ogłoszenia" title="Ogłoszenia"></Tab>
-        <Tab eventKey="Otrzymane oceny" title="Otrzymane oceny"></Tab>
+        <Tab eventKey="Otrzymane oceny" title="Otrzymane oceny">
+          <AcuiredRatings />
+        </Tab>
         <Tab eventKey="Wiadomosci" title="Wiadomosci"></Tab>
       </Tabs>
     </div>
