@@ -2,6 +2,7 @@ import { Tabs, Tab } from "react-bootstrap";
 import ProfileManagement from "./UserProfileComponents/ProfileManagement";
 import Fundings from "./UserProfileComponents/Fundings";
 import AcuiredRatings from "./UserProfileComponents/AcuiredRatings";
+import Messages from "./UserProfileComponents/Messages";
 
 const UserProfile = () => {
   return (
@@ -18,7 +19,9 @@ const UserProfile = () => {
         <Tab eventKey="Otrzymane oceny" title="Otrzymane oceny">
           <AcuiredRatings />
         </Tab>
-        <Tab eventKey="Wiadomosci" title="Wiadomosci"></Tab>
+        <Tab eventKey="Wiadomosci" title="Wiadomosci">
+          <Messages />
+        </Tab>
       </Tabs>
     </div>
   );
