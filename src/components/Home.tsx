@@ -1,27 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Link, Routes } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  FormControl,
-  Container,
-  InputGroup,
-  Button,
-  Col,
-  Row,
-  Image,
-  Figure,
-  Card,
-  Carousel,
-  CardGroup,
-} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Container, Button, Col, Row, Image } from "react-bootstrap";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
-import AnnouncementCard from "./AnnouncementCard";
+import React, { useState, useEffect } from "react";
+import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
+import data from "../data.json";
 
 import guitarCategory from "../images/guitar-category.jpg";
 import windCategory from "../images/wind-category.jpg";
@@ -36,117 +22,43 @@ import otherCategory from "../images/other-category.jpg";
 import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
 
 const categories = [
-  { link: "/Test", text: "Gitary", imgLink: guitarCategory },
-  { link: "/Test", text: "Dęte", imgLink: windCategory },
-  { link: "/Test", text: "Klawiszowe", imgLink: keyboarCategory },
-  { link: "/Test", text: "Perkusyjne", imgLink: percussionCategory },
-  { link: "/Test", text: "Smyczkowe", imgLink: stringCategory },
-  { link: "/Test", text: "Mikrofony", imgLink: microphonesCategory },
-  { link: "/Test", text: "Słuchawki", imgLink: handsetCategory },
-  { link: "/Test", text: "Akcesoria", imgLink: accessoriesCategory },
-  { link: "/Test", text: "Nuty, książki", imgLink: bookNoteCategory },
-  { link: "/Test", text: "Inne", imgLink: otherCategory },
+  { link: "/Search", text: "Gitary", imgLink: guitarCategory },
+  { link: "/Search", text: "Dęte", imgLink: windCategory },
+  { link: "/Search", text: "Klawiszowe", imgLink: keyboarCategory },
+  { link: "/Search", text: "Perkusyjne", imgLink: percussionCategory },
+  { link: "/Search", text: "Smyczkowe", imgLink: stringCategory },
+  { link: "/Search", text: "Mikrofony", imgLink: microphonesCategory },
+  { link: "/Search", text: "Słuchawki", imgLink: handsetCategory },
+  { link: "/Search", text: "Akcesoria", imgLink: accessoriesCategory },
+  { link: "/Search", text: "Nuty, książki", imgLink: bookNoteCategory },
+  { link: "/Search", text: "Inne", imgLink: otherCategory },
 ];
-const announcements = [
-  {
-    link: "/Test",
-    title: "Gitara elektryczna, stan rewelacyjny",
-    price: 1000,
-    city: "Bielsko-Biała",
-  },
-  { link: "/Test", title: "Flet", price: 100, city: "Warszawa" },
-  {
-    link: "/Test",
-    title: "Nauka gry na fortepianie",
-    price: 200,
-    city: "Kozy",
-  },
-  {
-    link: "/Test",
-    title: "Budowa organów kościelnych",
-    price: 1000000,
-    city: "Gdańsk",
-  },
-  {
-    link: "/Test",
-    title: "Książka do nauki muzyki, 10-12 lat",
-    price: 20,
-    city: "Lublin",
-  },
-  { link: "/Test", title: "Ukulele", price: 300, city: "Olsztyn" },
-  {
-    link: "/Test",
-    title: "Perkusja z podpisem zespołu XYZ",
-    price: 10000,
-    city: "Kraków",
-  },
-  {
-    link: "/Test",
-    title: "Kontrabas używany do nauki w szkole",
-    price: 2500,
-    city: "Wrocław",
-  },
-  { link: "/Test", title: "Skrzypce, nieużywane", price: 7850, city: "Poznań" },
-  {
-    link: "/Test",
-    title: "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
-    price: 560,
-    city: "Katowice",
-  },
-];
+
+interface IAnnouncement {
+  link: string;
+  title: string;
+  price: number;
+  city: string;
+}
+
 const Home = () => {
-  // SETTINGS KARUZELI
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 3,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 650,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
+    [] as IAnnouncement[]
+  );
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      setLoading(true);
+      setAnnouncements(data);
+      setLoading(false);
+    };
+
+    fetchAnnouncements();
+  }, []);
 
   return (
-    <>
+    <div className="pb-4">
       {/* BANER */}
       <div className="backgroundHomePage p-5 text-light">
         <Container className="py-lg-4 my-lg-3 py-md-2 my-md-2 my-sm-3">
@@ -168,7 +80,7 @@ const Home = () => {
             </Col>
           </Row>
           <Row className="py-3">
-            <Link to="/Test">
+            <Link to="/AddOffer">
               <Button className="btn btn-danger" size="lg">
                 Dodaj ogłoszenie
               </Button>
@@ -181,7 +93,6 @@ const Home = () => {
           </Row>
         </Container>
       </div>
-
       {/* KATEGORIE MOB*/}
       <Container className="d-sm-block d-md-none bg-light pb-4" fluid>
         <Row className="py-4">
@@ -201,7 +112,7 @@ const Home = () => {
       </Container>
 
       {/* KATEGORIE DES*/}
-      <Container className="d-none d-md-block bg-light pb-4" fluid>
+      <Container className="d-none d-md-block bg-light pb-4 mb-1" fluid>
         <Row className="py-4">
           <h3>Kategorie</h3>
         </Row>
@@ -242,43 +153,37 @@ const Home = () => {
       </Container>
 
       {/* WYROZNIONE */}
-      <Container className="pt-4 pb-2 px-4" fluid>
-        <h3 className="">Wyróżnione</h3>
-        <Row className="px-5 py-1 mx-3 mx-sm-1" fluid>
-          <Slider {...settings}>
-            {announcements.map((announcement, index) => (
-              <Col className="px-2 px-sm-1">
-                <AnnouncementCard
-                  linkA={announcement.link}
-                  title={announcement.title}
-                  price={announcement.price}
-                  city={announcement.city}
-                />
-              </Col>
-            ))}
-          </Slider>
-        </Row>
+      <Container className="pt-3 px-4" fluid>
+        {announcements.length > 0 && (
+          <div>
+            <h3 className="pb-2">Wyróżnione</h3>
+            <Row className="d-flex justify-content-center px-4 px-sm-0">
+              <AnnouncementsCarousel
+                announcements={announcements}
+                loading={loading}
+                center={true}
+              />
+            </Row>
+          </div>
+        )}
       </Container>
 
       {/* OSTATNIO DODANE */}
-      <Container className="pt-2 pb-4 px-4" fluid>
-        <h3 className="">Ostatnio dodane</h3>
-        <Row className="px-5 py-1 mx-3 mx-sm-1" fluid>
-          <Slider {...settings}>
-            {announcements.map((announcement, index) => (
-              <Col className="px-2 px-sm-1">
-                <AnnouncementCard
-                  linkA={announcement.link}
-                  title={announcement.title}
-                  price={announcement.price}
-                  city={announcement.city}
-                />
-              </Col>
-            ))}
-          </Slider>
-        </Row>
+      <Container className="pt-3 px-4" fluid>
+        {announcements.length > 0 && (
+          <div>
+            <h3 className="pb-2">Ostatnio dodane</h3>
+            <Row className="d-flex justify-content-center px-4 px-sm-0">
+              <AnnouncementsCarousel
+                announcements={announcements}
+                loading={loading}
+                center={true}
+              />
+            </Row>
+          </div>
+        )}
       </Container>
-    </>
+    </div>
   );
 };
 
