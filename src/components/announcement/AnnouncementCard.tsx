@@ -1,17 +1,16 @@
-// import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FC } from "react";
 
-interface Announcement {
+interface IAnnouncement {
   linkA: string;
   title: string;
   price: number;
   city: string;
 }
 
-const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
+const AnnouncementCard: FC<IAnnouncement> = ({ linkA, title, price, city }) => {
   return (
     <>
       <Link to={linkA} className="categories">
@@ -24,9 +23,9 @@ const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
               minHeight: "150px",
               width: "100%",
               objectFit: "cover",
-              borderRadius: "10px",
+              borderRadius: "12px 12px 0 0",
             }}
-            className="pt-2 px-2 announcementImg"
+            className="pt-2 px-2"
           />
           <Card.Body>
             <OverlayTrigger
@@ -36,7 +35,12 @@ const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
             >
               <Card.Title style={{ height: "60px" }}>
                 {title.length > 20 ? (
-                  <p>{title.substring(0, 17)}...</p>
+                  /\s+$/.test(title.substring(0, 17)) == true ||
+                  /[-_(),.]$/.test(title.substring(0, 17)) == true ? (
+                    <p>{title.substring(0, 16)}...</p>
+                  ) : (
+                    <p>{title.substring(0, 17)}...</p>
+                  )
                 ) : (
                   <p>{title}</p>
                 )}
@@ -44,7 +48,7 @@ const AnnouncementCard: FC<Announcement> = ({ linkA, title, price, city }) => {
             </OverlayTrigger>
             <Card.Text className="pt-1">
               <b>{price} zł</b>
-              <Card.Subtitle className="py-1">
+              <Card.Subtitle className="pb-1 pt-1">
                 <small className="text-muted">{city}</small>
               </Card.Subtitle>
             </Card.Text>
