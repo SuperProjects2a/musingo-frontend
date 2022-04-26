@@ -1,5 +1,4 @@
-import React from "react";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card, Button } from "react-bootstrap";
 const messages = [
   {
     date: "21.03.2010",
@@ -25,10 +24,10 @@ const Messages = () => {
   return (
     <div className="userProfileDiv p-4">
       {messages.map((message, index) => (
-        <Card className="d-sm-block mb-2">
+        <Card className="mb-2" style={{ borderRadius: "20px" }}>
           <Card.Body>
-            <Row>
-              <Col xs={1}>
+            <Row className="pr-1">
+              <Col xs={4} sm={3} md={2} style={{ textAlign: "center" }}>
                 <Card.Img
                   src={`https://picsum.photos/200/300?random=${
                     Math.random() * 100
@@ -36,17 +35,24 @@ const Messages = () => {
                   style={{
                     maxHeight: "100px",
                     width: "100px",
-                    borderRadius: "200px",
+                    borderRadius: "100px",
                   }}
                 />
               </Col>
-              <Col xs={9} key={index}>
+              <Col xs={8} sm={7} md={8}>
                 <h6>
                   <b>{message.user}</b> - {message.title}
                 </h6>
-                {message.text}
+                {message.text.length > 100 ? (
+                  <p>{message.text.substring(0, 120)}...</p>
+                ) : (
+                  <p>{message.text}</p>
+                )}{" "}
+                <span style={{ color: "grey" }}>{message.date}</span>
               </Col>
-              <Col xs={2}></Col>
+              <Col xs={12} sm={2} md={2}>
+                <p className="deleteChat">X Usuń czat</p>
+              </Col>
             </Row>
           </Card.Body>
         </Card>
