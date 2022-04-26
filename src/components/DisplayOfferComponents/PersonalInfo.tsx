@@ -3,6 +3,13 @@ import { Col, Row, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass, faStar } from "@fortawesome/free-solid-svg-icons";
 
+let name:string;
+let surname:string;
+let rating:number;
+let ratingNumOf:number;
+let state:string;
+let city:string;
+
 const PersonalInfo = () => {
   return (
     <Card className="py-3 px-4">
@@ -21,20 +28,20 @@ const PersonalInfo = () => {
           className="pt-2 px-2 pb-2"
         />
         <Col className="personalInfoDisplayOffer">
-          <strong>Krzysztof Knononowicz</strong>
+          <strong>{name} {surname}</strong>
           <Col>
             <FontAwesomeIcon icon={faStar} className="iconsDisplayOffer" />
-            3.5
+            {rating}
             <small className="text-muted">/5</small>
             <Card.Subtitle className="py-1 px-4">
-              <small className="text-muted">27 ocen</small>
+              <small className="text-muted">{ratingNumOf} ocen</small>
             </Card.Subtitle>
           </Col>
           <Col>
             <FontAwesomeIcon icon={faCompass} className="iconsDisplayOffer" />
-            Miasto
+            {city}
             <Card.Subtitle className="py-1 px-4 pb-3">
-              <small className="text-muted">Wojewódzctwo</small>
+              <small className="text-muted">{state}</small>
             </Card.Subtitle>
           </Col>
         </Col>

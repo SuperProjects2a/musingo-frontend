@@ -21,6 +21,8 @@ const OfferCarousel = () => {
                 src={`https://images3.alphacoders.com/954/thumb-1920-954241.jpg`}
                 alt=""
                 style={{
+                  minWidth: "17vw",
+                  minHeight: "30vh",
                   maxWidth: "50vw",
                   maxHeight: "50vh",
                   marginBottom: "60px",
@@ -32,6 +34,8 @@ const OfferCarousel = () => {
                 src={`https://wallpaperbat.com/img/35702-trillectro-aaron-campbell-2560x1440-wallpaper.png`}
                 alt=""
                 style={{
+                  minWidth: "17vw",
+                  minHeight: "30vh",
                   maxWidth: "50vw",
                   maxHeight: "50vh",
                   marginBottom: "60px",
@@ -45,6 +49,8 @@ const OfferCarousel = () => {
                 }`}
                 alt=""
                 style={{
+                  minWidth: "17vw",
+                  minHeight: "30vh",
                   maxWidth: "50vw",
                   maxHeight: "50vh",
                   marginBottom: "60px",
@@ -58,6 +64,8 @@ const OfferCarousel = () => {
                 }`}
                 alt=""
                 style={{
+                  minWidth: "17vw",
+                  minHeight: "30vh",
                   maxWidth: "50vw",
                   maxHeight: "50vh",
                   marginBottom: "60px",
@@ -71,6 +79,8 @@ const OfferCarousel = () => {
                 }`}
                 alt=""
                 style={{
+                  minWidth: "17vw",
+                  minHeight: "30vh",
                   maxWidth: "50vw",
                   maxHeight: "50vh",
                   marginBottom: "60px",
@@ -79,7 +89,6 @@ const OfferCarousel = () => {
             </Carousel.Item>
           </Carousel>
         </Card.Body>
-
       </Card>
     </Col>
   );
