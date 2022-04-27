@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import OfferCarousel from "./OfferCarousel";
 import PersonalInfo from "./PersonalInfo";
 import FavoriteBox from "./FavoriteBox";
@@ -7,7 +7,7 @@ import OfferInfo from "./OfferInfo";
 
 const DisplayOffer = () => {
   return (
-    <div className="offerContainerDisplayOffer">
+    <Container className="mb-5 offerContainerDisplayOffer" fluid>
       <Row className="px-sm-3 px-lg-5">
         <Col xs={{ offset: 12, span: 12, order: 1 }} lg={{ span: 8, order: 1 }}>
           <OfferCarousel />
@@ -24,7 +24,7 @@ const DisplayOffer = () => {
           <OfferInfo />
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 
