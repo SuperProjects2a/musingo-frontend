@@ -23,6 +23,8 @@ import SignInUp from "./SignInUp";
 import AddOffer from "./AddOfferComponents/AddOffer";
 import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
 import EditOffer from "./EditOfferComponents/EditOffer";
+import AdminPanel from "./AdminPanelComponents/AdminPanel";
+import ReportOffer from "./DisplayOfferComponents/ReportOffer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -159,6 +161,8 @@ const NavbarComp = () => {
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/EditOffer" element={<EditOffer />}></Route>
+          <Route path="/AdminPanel" element={<AdminPanel />}></Route>
+          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
         </Routes>
       </div>
     </>
