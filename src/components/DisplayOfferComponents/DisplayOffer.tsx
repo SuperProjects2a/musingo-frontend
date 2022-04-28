@@ -8,15 +8,15 @@ import OfferInfo from "./OfferInfo";
 const DisplayOffer = () => {
   return (
     <Container className="mb-5 offerContainerDisplayOffer" fluid>
-      <Row className="px-sm-3 px-lg-5">
-        <Col xs={{ offset: 12, span: 12, order: 1 }} lg={{ span: 8, order: 1 }}>
+      <Row className="px-sm-3 px-lg-5 ">
+        <Col xs={{ offset: 12, span: 12, order: 1 }} lg={{span: 8, order: 1 }}>
           <OfferCarousel />
         </Col>
-        <Col xs={{ offset: 12, span: 12, order: 3 }} lg={{ span: 4, order: 2 }}>
-          <Col className="pt-2 pt-lg-0">
+        <Col xs={{ offset: 12, span: 12, order: 3 }} lg={{span: 4, order: 2 }}>
+          <Col className="pt-2 pt-lg-0 pb-lg-2 px-lg-3">
             <PersonalInfo />
           </Col>
-          <Col className="pt-2 pt-lg-4">
+          <Col className="pt-2 pt-lg-4 px-lg-3">
             <FavoriteBox />
           </Col>
         </Col>
