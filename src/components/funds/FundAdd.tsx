@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom';
+
+import { addFunds } from '../../services/fundService';
 
 import option1 from '../../images/opt1.png';
 import option2 from '../../images/opt2.png';
@@ -11,6 +12,7 @@ import option5 from '../../images/opt5.png';
 import paypalLogo from '../../images/paypal-logo.png';
 import cardLogo from '../../images/card-logo.png';
 import przelewyLogo from '../../images/przelewy24-logo.png';
+import { useNavigate } from 'react-router-dom';
 
 type FundOption = {
     image: string,
@@ -18,11 +20,19 @@ type FundOption = {
 };
 
 const FundAddOption = ({ image, amount }: FundOption) => {
+    const navigate = useNavigate();
+
     return (
         <div className='card p-4 m-3 shadow'>
             <h3 style={{ fontWeight: "bold" }}>${amount}</h3>
             <Image src={image} fluid style={{ width: 200, height: 200 }}></Image>
-            <button className='btn btn-success'>Wybierz</button>
+            <button className='btn btn-success' onClick={
+                () => {
+                    if (addFunds(amount)) {
+                        navigate('/FundSuccess');
+                    }
+                }
+            }>Wybierz</button>
         </div>
     )
 }
