@@ -183,3 +183,15 @@ input[type="color"]:focus,
   width:100%;
   height: 450px;
 }
+
+.offerContainerDisplayOffer {
+  z-index: 1;
+}
+
+.personalInfoDisplayOffer{
+  text-align: left;
+}
+
+.iconsDisplayOffer{
+  padding-right: 7px;
+}

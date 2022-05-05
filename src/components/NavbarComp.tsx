@@ -20,6 +20,7 @@ import Home from "./Home";
 import Test from "./Test";
 import Search from "./Search";
 import SignInUp from "./SignInUp";
+import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
 import AddOffer from "./AddOffer";
 import { FundAdd } from "./funds/FundAdd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -166,6 +167,7 @@ const NavbarComp = () => {
           <Route path="/Search" element={<Search />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
+          <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>

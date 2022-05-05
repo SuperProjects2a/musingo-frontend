@@ -1,14 +1,7 @@
-import {
-  InputGroup,
-  Container,
-  Form,
-  Col,
-  Row,
-  Card,
-  Button,
-} from "react-bootstrap";
+import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import UploadImage from "./UploadImage";
 
 const AddOffer = () => {
   const addOfferSchema = Yup.object().shape({
@@ -28,7 +21,7 @@ const AddOffer = () => {
     city: Yup.string()
       .required("To pole jest wymagane")
       .matches(
-        /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ\-]+\s)*[-\a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]+$/i,
+        /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ-]+\s)*[-a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]+$/i,
         "Wprowadź prawidłową nazwę miejscowości"
       ),
     price: Yup.string()
@@ -85,29 +78,7 @@ const AddOffer = () => {
                 isSubmitting,
               }) => (
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group>
-                    <h4>
-                      <strong>Zdjęcia</strong>
-                    </h4>
-                    <Form.Label>Dodaj zdjęcia</Form.Label>
-                    <Row className="mb-3">
-                      <Col xs={12} sm={8}>
-                        <Form.Control
-                          type="file"
-                          multiple
-                          accept=".png,.jpg,.jpeg,.webp"
-                          className="formInputs"
-                        />
-                      </Col>
-                      <Col xs={5} sm={4} className="pt-2 pt-sm-0">
-                        <Button variant="dark">Wgraj zdjęcia</Button>
-                      </Col>
-                    </Row>
-                    <Form.Text>
-                      Możesz dodać maksymalnie <strong>5</strong> zdjęć w
-                      formacie: <strong>.png .jpg .jpeg .bpm</strong>
-                    </Form.Text>
-                  </Form.Group>
+                  <UploadImage />
                   <Form.Group className="py-5">
                     <h4>
                       <strong>Informacje o produkcie</strong>
