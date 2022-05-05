@@ -21,7 +21,7 @@ import Test from "./Test";
 import Search from "./Search";
 import SignInUp from "./SignInUp";
 import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
-import AddOffer from "./AddOffer";
+import AddOffer from "./AddOfferComponents/AddOffer";
 import { FundAdd } from "./funds/FundAdd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -62,14 +62,22 @@ const NavbarComp = () => {
           className="px-4"
           sticky="top"
         >
-          <Navbar.Brand as={Link} to={"/"} style={{ fontFamily: "Nova Mono", fontSize: 28 }}>
+          <Navbar.Brand
+            as={Link}
+            to={"/"}
+            style={{ fontFamily: "Nova Mono", fontSize: 28 }}
+          >
             musingo
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto"></Nav>
             <Nav>
-              <NavDropdown title="Kategorie" id="collasible-nav-dropdown" className="mb-auto mt-auto">
+              <NavDropdown
+                title="Kategorie"
+                id="collasible-nav-dropdown"
+                className="mb-auto mt-auto"
+              >
                 <NavDropdown.Item as={Link} to={"/Search"}>
                   Gitary
                 </NavDropdown.Item>
@@ -113,13 +121,15 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to={"/AddOffer"} className="mb-auto mt-auto">
                 Dodaj ogłoszenie
               </Nav.Link>
-              <Nav.Link as={Link} to={"/"} className="text-white mb-auto mt-auto">
+              <Nav.Link
+                as={Link}
+                to={"/"}
+                className="text-white mb-auto mt-auto"
+              >
                 <div style={{ fontWeight: "bold" }}>100.45zł</div>
               </Nav.Link>
               <Nav.Link as={Link} to={"/FundAdd"}>
-                <Button className="btn btn-success">
-                  Doładuj konto
-                </Button>
+                <Button className="btn btn-success">Doładuj konto</Button>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
