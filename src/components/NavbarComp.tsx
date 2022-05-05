@@ -24,6 +24,8 @@ import AddOffer from "./AddOffer";
 import { FundAdd } from "./funds/FundAdd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import FundSuccess from "./funds/FundSuccess";
+import FundFailure from "./funds/FundFailure";
 
 const NavbarComp = () => {
   const location = useLocation();
@@ -165,6 +167,8 @@ const NavbarComp = () => {
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
+          <Route path="/FundSuccess" element={<FundSuccess />}></Route>
+          <Route path="/FundFailure" element={<FundFailure />}></Route>
         </Routes>
       </div>
     </>

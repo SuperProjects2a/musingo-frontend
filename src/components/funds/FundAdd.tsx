@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
 
 import option1 from '../../images/opt1.png';
 import option2 from '../../images/opt2.png';
