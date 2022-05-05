@@ -3,6 +3,7 @@ import ProfileManagement from "./UserProfileComponents/ProfileManagement";
 import Fundings from "./UserProfileComponents/Fundings";
 import AcuiredRatings from "./UserProfileComponents/AcuiredRatings";
 import Messages from "./UserProfileComponents/Messages";
+import Offers from "./UserProfileComponents/Offers";
 
 const UserProfile = () => {
   return (
@@ -15,7 +16,9 @@ const UserProfile = () => {
         <Tab eventKey="Konto" title="Konto">
           <Fundings />
         </Tab>
-        <Tab eventKey="Ogłoszenia" title="Ogłoszenia"></Tab>
+        <Tab eventKey="Ogłoszenia" title="Ogłoszenia">
+          <Offers />
+        </Tab>
         <Tab eventKey="Otrzymane oceny" title="Otrzymane oceny">
           <AcuiredRatings />
         </Tab>
