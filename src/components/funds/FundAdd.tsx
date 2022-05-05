@@ -24,7 +24,7 @@ const FundAddOption = ({ image, amount }: FundOption) => {
 
     return (
         <div className='card p-4 m-3 shadow'>
-            <h3 style={{ fontWeight: "bold" }}>${amount}</h3>
+            <h3 style={{ fontWeight: "bold" }}>{amount}zł</h3>
             <Image src={image} fluid style={{ width: 200, height: 200 }}></Image>
             <button className='btn btn-success' onClick={
                 () => {
@@ -48,7 +48,7 @@ export const FundAdd = () => {
                 <FundAddOption image={option4} amount={200}></FundAddOption>
                 <FundAddOption image={option5} amount={500}></FundAddOption>
             </div>
-            <h4 className='pt-4 pb-3'>Metody płatności:</h4>
+            <h4 className='pt-4'>Metody płatności:</h4>
             <div className='d-flex flex-wrap justify-content-center'>
                 <Image height={100} src={paypalLogo}></Image>
                 <Image height={100} src={cardLogo}></Image>

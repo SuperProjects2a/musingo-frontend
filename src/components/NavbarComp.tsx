@@ -113,7 +113,7 @@ const NavbarComp = () => {
                 Dodaj ogłoszenie
               </Nav.Link>
               <Nav.Link as={Link} to={"/"} className="text-white mb-auto mt-auto">
-                <div style={{ fontWeight: "bold" }}>$100.45</div>
+                <div style={{ fontWeight: "bold" }}>100.45zł</div>
               </Nav.Link>
               <Nav.Link as={Link} to={"/FundAdd"}>
                 <Button className="btn btn-success">
