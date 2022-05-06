@@ -41,7 +41,7 @@ const Offers = () => {
     window.scrollTo(0, 0);
   };
   return (
-    <div className="userProfileDiv px-1 px-sm-4 py-3 py-sm-4">
+    <div className="userProfileDiv px-1 px-sm-4 py-3 py-sm-4 py-md-5">
       {offers.length > 0 ? (
         <>
           {/* <h5 style={{ textAlign: "left" }} className="pt-3">
