@@ -4,20 +4,20 @@ import UserTab from "./UserTab";
 import { useState } from "react";
 
 const AdminPanel = () => {
-  const [key, setKey] = useState("Użytkownicy");
-  var bgClass = key === "Użytkownicy" ? "OfferTab" : "UserTab";
+  const [key, setKey] = useState("Oferty");
+  var bgClass = key === "Oferty" ? "UserTab" : "OfferTab";
   return (
     <div className={`${bgClass} py-sm-4`}>
-      <div className="formDiv">
+      <div className="tabsdminPanel">
         <Tabs
-          defaultActiveKey="Użytkownicy"
+          defaultActiveKey="Oferty"
           className="nav-fill mb-3"
           onSelect={(k: any) => setKey(k)}
         >
-          <Tab eventKey="Użytkownicy" title="Użytkownicy">
+          <Tab eventKey="Oferty" title="Oferty">
             <OfferTab />
           </Tab>
-          <Tab eventKey="Oferty" title="Oferty">
+          <Tab eventKey="Użytkownicy" title="Użytkownicy">
             <UserTab />
           </Tab>
         </Tabs>
