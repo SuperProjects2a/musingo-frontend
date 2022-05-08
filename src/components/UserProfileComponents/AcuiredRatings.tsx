@@ -1,5 +1,6 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
+import ProgressBar from "./ProgressBar";
 
 const ratings = [
   {
@@ -25,6 +26,12 @@ const ratings = [
   },
 ];
 
+const fiveNow = 90;
+const fourNow = 30;
+const threeNow = 20;
+const twoNow = 5;
+const oneNow = 1;
+
 const AcuiredRatings = () => {
   return (
     <div className="userProfileDiv p-4 px-5">
@@ -40,21 +47,31 @@ const AcuiredRatings = () => {
               </p>{" "}
               <p>30 ocen</p>
             </div>
-            <div style={{ width: "300px", float: "left" }}>
+            <div style={{ width: "200px", float: "left" }}>
               <Row>
-                <Rating ratingValue={100} readonly size={20} />
+                <Rating
+                  ratingValue={100}
+                  readonly
+                  size={20}
+                  style={{ float: "left" }}
+                />
+                <ProgressBar completed={fiveNow} />
               </Row>
               <Row>
                 <Rating ratingValue={80} readonly size={20} />
+                <ProgressBar completed={fourNow} />
               </Row>
               <Row>
                 <Rating ratingValue={60} readonly size={20} />
+                <ProgressBar completed={threeNow} />
               </Row>
               <Row>
                 <Rating ratingValue={40} readonly size={20} />
+                <ProgressBar completed={twoNow} />
               </Row>
               <Row>
                 <Rating ratingValue={20} readonly size={20} />
+                <ProgressBar completed={oneNow} />
               </Row>
             </div>
           </Row>
