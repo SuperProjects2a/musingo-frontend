@@ -1,5 +1,5 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
-import React from "react";
+
 const ratings = [
   {
     date: "21.03.2010",
