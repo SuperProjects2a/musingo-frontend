@@ -60,15 +60,20 @@ const Messages = () => {
                       <h6>
                         <b>{message.user}</b> - {message.title}
                       </h6>
-                      {message.text.length > 100 ? (
-                        <p>{message.text.substring(0, 80)}...</p>
+                      {message.text.length > 70 ? (
+                        <p>{message.text.substring(0, 70)}...</p>
                       ) : (
                         <p>{message.text}</p>
                       )}{" "}
                       <span style={{ color: "grey" }}>{message.date}</span>
                     </Col>
                     <Col xs={12} sm={3} lg={2}>
-                      <p style={{ color: "red", float: "right" }}>
+                      <p
+                        onClick={(x) => {
+                          x.preventDefault();
+                        }}
+                        style={{ color: "red", float: "right" }}
+                      >
                         X Usuń czat
                       </p>
                     </Col>

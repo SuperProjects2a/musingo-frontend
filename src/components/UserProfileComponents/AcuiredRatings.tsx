@@ -1,19 +1,23 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
+import { Rating } from "react-simple-star-rating";
 
 const ratings = [
   {
+    ratingValue: 1,
     date: "21.03.2010",
     user: "Patryk Graca",
     title: "Gitara elektryczna",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
   {
+    ratingValue: 2,
     date: "21.03.2010",
     user: "Anna Nowak",
     title: "Kurs gry na pianinie",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
   {
+    ratingValue: 3,
     date: "21.03.2010",
     user: "Jan Kowalski",
     title: "Perkusja",
@@ -23,14 +27,49 @@ const ratings = [
 
 const AcuiredRatings = () => {
   return (
-    <div className="userProfileDiv p-4">
-      <Card>
+    <div className="userProfileDiv p-4 px-5">
+      <Card style={{ borderRadius: "20px" }}>
         <Card.Body className="px-5">
           <Card.Title>Otrzymane oceny</Card.Title>
-          <div className="d-sm-block pb-4">
+          <Row>
+            <div style={{ width: "100px", float: "left" }}>
+              <p>
+                {" "}
+                <span style={{ fontSize: "30px" }}>3,5 </span>
+                <span style={{ fontSize: "20px", color: "grey" }}>/ 5</span>
+              </p>{" "}
+              <p>30 ocen</p>
+            </div>
+            <div style={{ width: "300px", float: "left" }}>
+              <Row>
+                <Rating ratingValue={100} readonly size={20} />
+              </Row>
+              <Row>
+                <Rating ratingValue={80} readonly size={20} />
+              </Row>
+              <Row>
+                <Rating ratingValue={60} readonly size={20} />
+              </Row>
+              <Row>
+                <Rating ratingValue={40} readonly size={20} />
+              </Row>
+              <Row>
+                <Rating ratingValue={20} readonly size={20} />
+              </Row>
+            </div>
+          </Row>
+          <div className="d-sm-block pb-4 mt-5">
             {ratings.map((rating, index) => (
               <Row className="pb-4">
                 <Col key={index}>
+                  <h6>
+                    <Rating
+                      ratingValue={rating.ratingValue * 20}
+                      readonly
+                      size={20}
+                    />{" "}
+                    <span style={{ color: "grey" }}>{rating.date}</span>
+                  </h6>
                   <h6>{rating.user}</h6>
                   <h6>
                     <b>{rating.title}</b>
