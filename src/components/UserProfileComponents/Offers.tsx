@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Card, Button, Container } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 import data from "../../data.json";
 import Pagination from "../announcement/PaginationSearch";
 import OffersPagin from "./OffersPagin";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
 
 import axios from "axios";
 

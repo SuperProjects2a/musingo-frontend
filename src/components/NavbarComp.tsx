@@ -75,7 +75,7 @@ const NavbarComp = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto"></Nav>
             <Nav>
-              {/* <NavDropdown
+              <NavDropdown
                 title="Kategorie"
                 id="collasible-nav-dropdown"
                 className="mb-auto mt-auto"
@@ -109,8 +109,8 @@ const NavbarComp = () => {
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to={"/Search"}>
                   Inne
-                </NavDropdown.Item> 
-              </NavDropdown>*/}
+                </NavDropdown.Item>
+              </NavDropdown>
               <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
                 Wiadomości
               </Nav.Link>
@@ -143,7 +143,7 @@ const NavbarComp = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        {/* <Container className="py-3 d-flex justify-content-center" fluid>
+        <Container className="py-3 d-flex justify-content-center" fluid>
           <Col
             className="px-2 px-sm-3 px-md-5 px-lg-0"
             xs={12}
@@ -176,7 +176,7 @@ const NavbarComp = () => {
               </Link>
             </InputGroup>
           </Col>
-        </Container> */}
+        </Container>
       </div>
 
       <div>
