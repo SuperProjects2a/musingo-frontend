@@ -27,13 +27,14 @@ const OffersPagin: FC<IPost> = ({ offers, loading }) => {
     <Row>
       {offers.map((offer, index) => (
         <Col
-          // xs={{ span: 8, offset: 2 }}
-          // sm={{ span: 4, offset: 0 }}
-          xs={6}
-          sm={4}
+          xs={{ span: 8, offset: 2 }}
+          sm={{ span: 4, offset: 0 }}
+          // xs={6}
+          // sm={4}
           md={3}
           lg={3}
           xl={2}
+          // xs={6}
           className="p-1"
           // className="px-3 px-sm-1 py-1"
         >
