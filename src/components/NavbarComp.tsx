@@ -115,7 +115,7 @@ const NavbarComp = () => {
                 Wiadomości
               </Nav.Link>
               <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
-                Doładuj konto
+                Obserwowane
               </Nav.Link>
               <Nav.Link as={Link} to={"/SignInUp"} className="mb-auto mt-auto">
                 Zaloguj się

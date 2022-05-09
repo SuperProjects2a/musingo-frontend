@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
 import data from "../../data.json";
 import Pagination from "../announcement/PaginationSearch";
-import OffersPagin from "./OffersPagin";
+import OffersPagin from "./Offers/OffersPagin";
 
 import axios from "axios";
 
