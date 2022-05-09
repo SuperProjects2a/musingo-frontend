@@ -11,8 +11,8 @@ import axios from "axios";
 interface IOffer {
   link: string;
   title: string;
-  price: number;
-  city: string;
+  followers: number;
+  date: string;
 }
 const Offers = () => {
   const [offers, setOffers] = useState<IOffer[]>([] as IOffer[]);
@@ -44,11 +44,9 @@ const Offers = () => {
     <div className="userProfileDiv px-1 px-sm-4 py-3 py-sm-4 py-md-5">
       {offers.length > 0 ? (
         <>
-          {/* <h5 style={{ textAlign: "left" }} className="pt-3">
-            Ogłoszenia
-          </h5> */}
           <div>
             <Row className="d-flex justify-content-center px-sm-2 px-md-4 px-lg-5">
+              {/* <h5 style={{ textAlign: "left" }}>Aktywne ogłoszenia</h5> */}
               <OffersPagin offers={currentAnnouncements} loading={loading} />
             </Row>
             <Row className="py-2">
@@ -63,14 +61,13 @@ const Offers = () => {
         </>
       ) : (
         <Container className="py-4">
-          <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
-            <FontAwesomeIcon
+          <div style={{ textAlign: "center" }}>
+            {/* <FontAwesomeIcon
               icon={faToiletPaperSlash}
               style={{ height: "100px" }}
               className="py-3"
-            />
-            <h5>Nie znaleźliśmy pasujących przedmiotów.</h5>
-            <p>Spróbuj wyszukać pod inną nazwą</p>
+            /> */}
+            <h4>Nie masz aktywnych ogłoszeń.</h4>
           </div>
         </Container>
       )}

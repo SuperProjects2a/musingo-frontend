@@ -15,13 +15,13 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 interface IOffer {
-  linkA: string;
+  link: string;
   title: string;
-  price: number;
-  city: string;
+  date: string;
+  followers: number;
 }
 
-const OfferCard: FC<IOffer> = ({ linkA, title, price, city }) => {
+const OfferCard: FC<IOffer> = ({ link, title, date, followers }) => {
   return (
     <>
       {/* <Card>
@@ -123,33 +123,64 @@ const OfferCard: FC<IOffer> = ({ linkA, title, price, city }) => {
               )}
             </Card.Title>
           </OverlayTrigger>
-          <div className="pb-2" style={{ overflow: "auto", width: "100%" }}>
-            <div style={{ float: "left", paddingRight: "8px" }}>
+          {/* <div
+            className="pb-2"
+            style={{ overflow: "auto", width: "100%", fontSize: "15px" }}
+          >
+            <div style={{ float: "left", paddingRight: "6px" }}>
               <FontAwesomeIcon
                 icon={faEye}
-                style={{ height: "19px", paddingRight: "5px" }}
+                style={{ height: "17px", paddingRight: "3px" }}
               />
-              132
+              {followers}
             </div>
             <div style={{ float: "left" }}>
               <FontAwesomeIcon
                 icon={faCalendarDays}
                 style={{
-                  height: "20px",
-                  paddingRight: "5px",
+                  height: "18px",
+                  paddingRight: "3px",
                 }}
               />
-              10.08.2022
+              {date}
+            </div>
+          </div> */}
+          <div className="py-2">
+            <div className="pb-1">
+              <FontAwesomeIcon
+                icon={faEye}
+                style={{ height: "19px", paddingRight: "5px" }}
+              />
+              {followers}
+            </div>
+            <div>
+              <FontAwesomeIcon
+                icon={faCalendarDays}
+                style={{
+                  height: "20px",
+                  paddingRight: "7.5px",
+                  paddingLeft: "1.5px",
+                }}
+              />
+              {date}
             </div>
           </div>
-          <div className="d-grid gap-2">
-            <Button className="block py-1" variant="dark">
-              Edytuj
-            </Button>
+          <div>
+            <Col xs={12}>
+              <Link to="/EditOffer">
+                <Button
+                  className="my-1"
+                  variant="dark"
+                  style={{ width: "100%" }}
+                >
+                  Edytuj
+                </Button>
+              </Link>
+            </Col>
             {/* <Button className="block py-1" variant="dark">
               Promuj
             </Button> */}
-            <Button className="block py-1" variant="dark">
+            <Button className="" variant="dark" style={{ width: "100%" }}>
               Zmień status
             </Button>
           </div>

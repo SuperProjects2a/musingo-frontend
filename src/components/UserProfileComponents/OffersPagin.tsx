@@ -10,8 +10,8 @@ interface IPost {
 interface IOffer {
   link: string;
   title: string;
-  price: number;
-  city: string;
+  date: string;
+  followers: number;
 }
 
 const OffersPagin: FC<IPost> = ({ offers, loading }) => {
@@ -39,10 +39,10 @@ const OffersPagin: FC<IPost> = ({ offers, loading }) => {
           // className="px-3 px-sm-1 py-1"
         >
           <OfferCard
-            linkA={offer.link}
+            link={offer.link}
             title={offer.title}
-            price={offer.price}
-            city={offer.city}
+            followers={offer.followers}
+            date={offer.date}
           />
         </Col>
       ))}
