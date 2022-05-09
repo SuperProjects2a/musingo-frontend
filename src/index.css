@@ -268,3 +268,14 @@ input[type="color"]:focus,
 .iconsDisplayOffer{
   padding-right: 7px;
 }
+
+.cardTitle {
+  text-align: left;
+  color: #212529;
+  text-decoration: none;
+  font-weight: 100 !important;
+}
+.cardTitle:hover {
+  color: #212529;
+}
+

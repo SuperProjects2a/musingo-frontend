@@ -27,7 +27,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({ linkA, title, price, city }) => {
             }}
             className="pt-2 px-2"
           />
-          <Card.Body>
+          <Card.Body className="p-2">
             <OverlayTrigger
               placement="top"
               delay={{ show: 250, hide: 400 }}

@@ -92,41 +92,52 @@ const OfferCard: FC<IOffer> = ({ link, title, date, followers }) => {
         </Row>
       </Card> */}
       <Card>
-        <Card.Img
-          variant="top"
-          src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
-          style={{
-            height: " calc(11vh + 4vw)",
-            minHeight: "150px",
-            width: "100%",
-            objectFit: "cover",
-            borderRadius: "12px 12px 0 0",
-          }}
-          className="pt-2 px-2"
-        />
-        <Card.Body>
-          <OverlayTrigger
-            placement="top"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip id="tooltip-disabled">{title}</Tooltip>}
-          >
-            <Card.Title style={{ height: "60px" }}>
-              {title.length > 20 ? (
-                /\s+$/.test(title.substring(0, 17)) == true ||
-                /[-_(),.]$/.test(title.substring(0, 17)) == true ? (
-                  <p>{title.substring(0, 16)}...</p>
+        <Link to={link} className="cardTitle">
+          <Card.Img
+            variant="top"
+            src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
+            style={{
+              height: " calc(11vh + 4vw)",
+              minHeight: "150px",
+              width: "100%",
+              objectFit: "cover",
+              borderRadius: "12px 12px 0 0",
+            }}
+            className="pt-2 px-2"
+          />
+        </Link>
+        <Card.Body className="p-2">
+          <Link to={link} className="cardTitle">
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip id="tooltip-disabled">{title}</Tooltip>}
+            >
+              <div
+                style={{
+                  height: "60px",
+                  fontSize: "19px",
+                  fontWeight: "500",
+                  lineHeight: "21px",
+                }}
+              >
+                {title.length > 20 ? (
+                  /\s+$/.test(title.substring(0, 17)) == true ||
+                  /[-_(),.]$/.test(title.substring(0, 17)) == true ? (
+                    <p>{title.substring(0, 16)}...</p>
+                  ) : (
+                    <p>{title.substring(0, 17)}...</p>
+                  )
                 ) : (
-                  <p>{title.substring(0, 17)}...</p>
-                )
-              ) : (
-                <p>{title}</p>
-              )}
-            </Card.Title>
-          </OverlayTrigger>
+                  <p>{title}</p>
+                )}
+              </div>
+            </OverlayTrigger>
+          </Link>
           {/* <div
             className="pb-2"
             style={{ overflow: "auto", width: "100%", fontSize: "15px" }}
-          >
+            >
             <div style={{ float: "left", paddingRight: "6px" }}>
               <FontAwesomeIcon
                 icon={faEye}
@@ -144,15 +155,15 @@ const OfferCard: FC<IOffer> = ({ link, title, date, followers }) => {
               />
               {date}
             </div>
-          </div> */}
-          <div className="py-2">
-            <div className="pb-1">
+            </div> */}
+          <div className="pt-1">
+            {/* <div className="pb-1">
               <FontAwesomeIcon
                 icon={faEye}
                 style={{ height: "19px", paddingRight: "5px" }}
               />
               {followers}
-            </div>
+            </div> */}
             <div>
               <FontAwesomeIcon
                 icon={faCalendarDays}
@@ -181,7 +192,7 @@ const OfferCard: FC<IOffer> = ({ link, title, date, followers }) => {
               Promuj
             </Button> */}
             <Button className="" variant="dark" style={{ width: "100%" }}>
-              Zmień status
+              Anuluj
             </Button>
           </div>
         </Card.Body>
