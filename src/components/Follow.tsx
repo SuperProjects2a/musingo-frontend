@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container, Col, Row, Spinner } from "react-bootstrap";
-import Pagination from "./announcement/PaginationSearch";
-import OffersPagin from "./UserProfileComponents/Offers/OffersPagin";
 import Posts from "./announcement/Posts";
 import PaginationSearch from "./announcement/PaginationSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-
-import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
 import data from "../data.json";
-
-interface IOffer {
-  link: string;
-  title: string;
-  followers: number;
-  date: string;
-}
 
 interface IAnnouncement {
   link: string;
@@ -117,37 +106,6 @@ const Follow = () => {
         </div>
       )}
     </Container>
-    // <div className="userProfileDiv px-2">
-    //   {offers.length > 0 ? (
-    //     <>
-    //       <div>
-    //         <Row className="d-flex justify-content-center px-4">
-    //           {/* <h5 style={{ textAlign: "left" }}>Aktywne ogłoszenia</h5> */}
-    //           <OffersPagin offers={currentAnnouncements} loading={loading} />
-    //         </Row>
-    //         <Row className="py-2">
-    //           <Pagination
-    //             postsPerPage={postsPerPage}
-    //             totalPosts={offers.length}
-    //             paginate={paginate}
-    //             currentPage={currentPage}
-    //           ></Pagination>
-    //         </Row>
-    //       </div>
-    //     </>
-    //   ) : (
-    //     <Container className="py-4">
-    //       <div style={{ textAlign: "center" }}>
-    //         {/* <FontAwesomeIcon
-    //       icon={faToiletPaperSlash}
-    //       style={{ height: "100px" }}
-    //       className="py-3"
-    //     /> */}
-    //         <h4>Nie masz aktywnych ogłoszeń.</h4>
-    //       </div>
-    //     </Container>
-    //   )}
-    // </div>
   );
 };
 
