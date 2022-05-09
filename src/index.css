@@ -257,4 +257,14 @@ input[type="color"]:focus,
     width: 520px !important;
   }
 }
+.offerContainerDisplayOffer {
+  z-index: 1;
+}
 
+.personalInfoDisplayOffer{
+  text-align: left;
+}
+
+.iconsDisplayOffer{
+  padding-right: 7px;
+}

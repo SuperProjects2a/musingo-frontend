@@ -20,10 +20,15 @@ import Home from "./Home";
 import Test from "./Test";
 import Search from "./Search";
 import SignInUp from "./SignInUp";
-import AddOffer from "./AddOffer";
+import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
+import EditOffer from "./EditOfferComponents/EditOffer";
+import AddOffer from "./AddOfferComponents/AddOffer";
+import { FundAdd } from "./funds/FundAdd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import UserProfile from "./UserProfile";
+import FundSuccess from "./funds/FundSuccess";
+import FundFailure from "./funds/FundFailure";
 
 const NavbarComp = () => {
   const location = useLocation();
@@ -59,14 +64,22 @@ const NavbarComp = () => {
           className="px-4"
           sticky="top"
         >
-          <Navbar.Brand as={Link} to={"/"} style={{ fontFamily: "Nova Mono" }}>
+          <Navbar.Brand
+            as={Link}
+            to={"/"}
+            style={{ fontFamily: "Nova Mono", fontSize: 28 }}
+          >
             musingo
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto"></Nav>
             <Nav>
-              <NavDropdown title="Kategorie" id="collasible-nav-dropdown">
+              {/* <NavDropdown
+                title="Kategorie"
+                id="collasible-nav-dropdown"
+                className="mb-auto mt-auto"
+              >
                 <NavDropdown.Item as={Link} to={"/Search"}>
                   Gitary
                 </NavDropdown.Item>
@@ -96,27 +109,41 @@ const NavbarComp = () => {
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to={"/Search"}>
                   Inne
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link as={Link} to={"/Test"}>
+                </NavDropdown.Item> 
+              </NavDropdown>*/}
+              <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
                 Wiadomości
               </Nav.Link>
-              <Nav.Link as={Link} to={"/Test"}>
+              <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
                 Doładuj konto
               </Nav.Link>
-              <Nav.Link as={Link} to={"/SignInUp"}>
+              <Nav.Link as={Link} to={"/SignInUp"} className="mb-auto mt-auto">
                 Zaloguj się
               </Nav.Link>
-              <Nav.Link as={Link} to={"/AddOffer"}>
+              <Nav.Link as={Link} to={"/AddOffer"} className="mb-auto mt-auto">
                 Dodaj ogłoszenie
               </Nav.Link>
-              <Nav.Link as={Link} to={"/UserProfile"}>
+              <Nav.Link
+                as={Link}
+                to={"/UserProfile"}
+                className="mb-auto mt-auto"
+              >
                 Moje konto
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to={"/"}
+                className="text-white mb-auto mt-auto"
+              >
+                <div style={{ fontWeight: "bold" }}>100.45zł</div>
+              </Nav.Link>
+              <Nav.Link as={Link} to={"/FundAdd"}>
+                <Button className="btn btn-success">Doładuj konto</Button>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Container className="py-3 d-flex justify-content-center" fluid>
+        {/* <Container className="py-3 d-flex justify-content-center" fluid>
           <Col
             className="px-2 px-sm-3 px-md-5 px-lg-0"
             xs={12}
@@ -149,7 +176,7 @@ const NavbarComp = () => {
               </Link>
             </InputGroup>
           </Col>
-        </Container>
+        </Container> */}
       </div>
 
       <div>
@@ -160,6 +187,11 @@ const NavbarComp = () => {
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/UserProfile" element={<UserProfile />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
+          <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
+          <Route path="/EditOffer" element={<EditOffer />}></Route>
+          <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
+          <Route path="/FundSuccess" element={<FundSuccess />}></Route>
+          <Route path="/FundFailure" element={<FundFailure />}></Route>
         </Routes>
       </div>
     </>

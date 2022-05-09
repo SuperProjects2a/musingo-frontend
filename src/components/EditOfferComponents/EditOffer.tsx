@@ -1,16 +1,21 @@
-import {
-  InputGroup,
-  Container,
-  Form,
-  Col,
-  Row,
-  Card,
-  Button,
-} from "react-bootstrap";
+import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import EditImage from "./EditImage";
 
-const AddOffer = () => {
+const currentOfferInfos = [
+  {
+    titleCurrent: "Jakis tytuł",
+    descriptionCurrent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    phoneNumberCurrent: "123456789",
+    emailCurrent: "qweqwe@gmail.com",
+    cityCurrent: "Sosnowiec",
+    priceCurrent: "23",
+    categoryCurrent: "gitary"
+  },
+];
+
+const EditOffer = () => {
   const addOfferSchema = Yup.object().shape({
     title: Yup.string()
       .required("Wprowadź tytuł sprzedawanego przedmiotu")
@@ -28,7 +33,7 @@ const AddOffer = () => {
     city: Yup.string()
       .required("To pole jest wymagane")
       .matches(
-        /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ\-]+\s)*[-\a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]+$/i,
+        /^([a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ-]+\s)*[-a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]+$/i,
         "Wprowadź prawidłową nazwę miejscowości"
       ),
     price: Yup.string()
@@ -41,37 +46,33 @@ const AddOffer = () => {
         /^[gitary, dete, klawiszowe, perkusyjne, smyczkowe, mikrofony, sluchawki,  akcesoria, inne]*$/i,
         "Wybierz kategorię"
       ),
-    tos: Yup.boolean()
-      .required()
-      .oneOf([true], "Wymagana zgoda na przetwarzanie danych osobowych"),
   });
 
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
+      {currentOfferInfos.map((currentOfferInfo, index) => (
       <Container
         className="justify-content-center"
         style={{ textAlign: "left" }}
       >
         <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5 mt-sm-5 mb-sm-5">
           <Card.Header className="px-sm-4 px-md-5 py-3" as="h4">
-            Dodaj ogłoszenie
+            Edytuj ogłoszenie
           </Card.Header>
           <Card.Body className="px-sm-4 px-md-5">
             <Formik
               initialValues={{
-                title: "",
-                category: "",
-                description: "",
-                email: "",
-                phoneNumber: "",
-                city: "",
-                price: 0,
-                tos: false,
+                title: currentOfferInfo.titleCurrent,
+                category: currentOfferInfo.categoryCurrent,
+                description: currentOfferInfo.descriptionCurrent,
+                email: currentOfferInfo.emailCurrent,
+                phoneNumber: currentOfferInfo.phoneNumberCurrent,
+                city: currentOfferInfo.cityCurrent,
+                price: currentOfferInfo.priceCurrent,
               }}
               validationSchema={addOfferSchema}
-              onSubmit={(values, { setSubmitting, resetForm }) => {
+              onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                resetForm();
                 setSubmitting(false);
               }}
             >
@@ -85,29 +86,7 @@ const AddOffer = () => {
                 isSubmitting,
               }) => (
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group>
-                    <h4>
-                      <strong>Zdjęcia</strong>
-                    </h4>
-                    <Form.Label>Dodaj zdjęcia</Form.Label>
-                    <Row className="mb-3">
-                      <Col xs={12} sm={8}>
-                        <Form.Control
-                          type="file"
-                          multiple
-                          accept=".png,.jpg,.jpeg,.webp"
-                          className="formInputs"
-                        />
-                      </Col>
-                      <Col xs={5} sm={4} className="pt-2 pt-sm-0">
-                        <Button variant="dark">Wgraj zdjęcia</Button>
-                      </Col>
-                    </Row>
-                    <Form.Text>
-                      Możesz dodać maksymalnie <strong>5</strong> zdjęć w
-                      formacie: <strong>.png .jpg .jpeg .bpm</strong>
-                    </Form.Text>
-                  </Form.Group>
+                  <EditImage />
                   <Form.Group className="py-5">
                     <h4>
                       <strong>Informacje o produkcie</strong>
@@ -270,24 +249,6 @@ const AddOffer = () => {
                     </Col>
                   </Form.Group>
                   <Row className="py-5">
-                    <Col>
-                      <Form.Group>
-                        <Form.Check
-                          name="tos"
-                          type="checkbox"
-                          label="Wyrażam zgodę na przetwarzanie moich danych osobowych"
-                          className="labelText mt-2"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          isInvalid={touched.tos && !!errors.tos}
-                          feedback={errors.tos}
-                          feedbackType="invalid"
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.tos}
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                    </Col>
                     <Col
                       xl={{ span: 2, offset: 10 }}
                       lg={{ span: 3, offset: 9 }}
@@ -299,7 +260,7 @@ const AddOffer = () => {
                         type="submit"
                         disabled={isSubmitting}
                       >
-                        Dodaj ogłoszenie
+                        Edytuj ogłoszenie
                       </Button>
                     </Col>
                   </Row>
@@ -309,8 +270,9 @@ const AddOffer = () => {
           </Card.Body>
         </Card>
       </Container>
+            ))}
     </div>
   );
 };
 
-export default AddOffer;
+export default EditOffer;
