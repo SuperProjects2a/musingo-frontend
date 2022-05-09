@@ -70,9 +70,6 @@ const Offers = () => {
         </Container>
       )}
     </div>
-    // <Container className="pt-5 mt-5">
-    //   <Card>ddd</Card>
-    // </Container>
   );
 };
 

@@ -29,6 +29,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import UserProfile from "./UserProfile";
 import FundSuccess from "./funds/FundSuccess";
 import FundFailure from "./funds/FundFailure";
+import Follow from "./Follow";
 
 const NavbarComp = () => {
   const location = useLocation();
@@ -114,7 +115,7 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
                 Wiadomości
               </Nav.Link>
-              <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
+              <Nav.Link as={Link} to={"/Follow"} className="mb-auto mt-auto">
                 Obserwowane
               </Nav.Link>
               <Nav.Link as={Link} to={"/SignInUp"} className="mb-auto mt-auto">
@@ -192,6 +193,7 @@ const NavbarComp = () => {
           <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
+          <Route path="/Follow" element={<Follow />}></Route>
         </Routes>
       </div>
     </>
