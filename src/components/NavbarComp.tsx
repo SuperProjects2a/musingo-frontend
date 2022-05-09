@@ -21,6 +21,7 @@ import Test from "./Test";
 import Search from "./Search";
 import SignInUp from "./SignInUp";
 import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
+import EditOffer from "./EditOfferComponents/EditOffer";
 import AddOffer from "./AddOfferComponents/AddOffer";
 import { FundAdd } from "./funds/FundAdd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -178,6 +179,7 @@ const NavbarComp = () => {
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
+          <Route path="/EditOffer" element={<EditOffer />}></Route>
           <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
