@@ -123,7 +123,11 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to={"/AddOffer"} className="mb-auto mt-auto">
                 Dodaj ogłoszenie
               </Nav.Link>
-              <Nav.Link as={Link} to={"/UserProfile"}>
+              <Nav.Link
+                as={Link}
+                to={"/UserProfile"}
+                className="mb-auto mt-auto"
+              >
                 Moje konto
               </Nav.Link>
               <Nav.Link
