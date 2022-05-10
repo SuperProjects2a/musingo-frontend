@@ -19,6 +19,7 @@ import handsetCategory from "../images/handset-category.jpg";
 import accessoriesCategory from "../images/accessories-category.jpg";
 import bookNoteCategory from "../images/book-note-category.jpg";
 import otherCategory from "../images/other-category.jpg";
+import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
 
 const categories = [
   { link: "/Search", text: "Gitary", imgLink: guitarCategory },

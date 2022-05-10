@@ -184,6 +184,7 @@ input[type="color"]:focus,
   height: 450px;
 }
 
+<<<<<<< HEAD
 .userProfileNav
 {
   width: 100%;
@@ -264,3 +265,16 @@ input[type="color"]:focus,
   color:#56595c;
   font-weight: 200;
 }
+=======
+.offerContainerDisplayOffer {
+  z-index: 1;
+}
+
+.personalInfoDisplayOffer{
+  text-align: left;
+}
+
+.iconsDisplayOffer{
+  padding-right: 7px;
+}
+>>>>>>> b2a94f165a0d37ac4d41fb85b6a5f5a0f5dea1cd
