@@ -63,10 +63,10 @@ const ReportOffer = () => {
                           onChange={handleChange}
                           isInvalid={touched.category && !!errors.category}
                         >
-                          <option> Wybierz powód </option>
-                          <option value="1">Opcja 1</option>
-                          <option value="2">Opcja 2</option>
-                          <option value="3">Opcja 3</option>
+                        <option> Wybierz powód </option>
+                        <option value="Insults">Wyzwiska</option>
+                        <option value="ViolationsOfMusingoRules">Złamanie zasad użytkowania serwisu</option>
+                        <option value="Others">Inne</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                           {errors.category}

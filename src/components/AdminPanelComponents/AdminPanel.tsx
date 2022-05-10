@@ -11,7 +11,7 @@ const AdminPanel = () => {
       <div className="tabsdminPanel">
         <Tabs
           defaultActiveKey="Oferty"
-          className="nav-fill mb-3"
+          className="nav-fill"
           onSelect={(k: any) => setKey(k)}
         >
           <Tab eventKey="Oferty" title="Oferty">

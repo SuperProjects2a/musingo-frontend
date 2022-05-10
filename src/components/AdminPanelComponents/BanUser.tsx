@@ -18,17 +18,11 @@ const BanUser = () => {
       .min(1, "Wprowdź poprawne ID")
     });
   return (
-    <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
+    <div >
       <Container
         className="justify-content-center"
         style={{ textAlign: "left" }}
       >
-        <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5 mt-sm-5 mb-sm-5">
-          <Card.Header className="px-sm-4 px-md-5 py-3" as="h4">
-
-            Zablokuj użytkownika
-          </Card.Header>
-          <Card.Body className="px-sm-4 px-md-5">
             <Formik
               initialValues={{
                 category: "",
@@ -140,8 +134,6 @@ const BanUser = () => {
                 </Form>
               )}
             </Formik>
-          </Card.Body>
-        </Card>
       </Container>
     </div>
   )
