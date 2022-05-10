@@ -8,7 +8,7 @@ const OfferTab = () => {
     category: Yup.string()
       .required("Wybierz powód")
       .matches(
-        /^[1,2,3]*$/i,
+        /^[Insults,ViolationsOfMusingoRules,Others]*$/i,
         "Wybierz powód"
       ),
     description: Yup.string().required("To pole jest wymagane"),
@@ -26,7 +26,7 @@ return (
       <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5 mt-sm-5 mb-sm-5">
         <Card.Header className="px-sm-4 px-md-5 py-3" as="h4">
 
-          Zablokuj ofertę
+          Zarządzaj ofertą
         </Card.Header>
         <Card.Body className="px-sm-4 px-md-5">
           <Formik
@@ -62,7 +62,7 @@ return (
                       className="formInputs"
                       name="id"
                       type="text"
-                      placeholder="ID użytkownika"
+                      placeholder="ID oferty"
                       autoComplete="id"
                       value={values.id}
                       onBlur={handleBlur}
@@ -89,9 +89,9 @@ return (
                         isInvalid={touched.category && !!errors.category}
                       >
                         <option> Wybierz powód </option>
-                        <option value="1">Opcja 1</option>
-                        <option value="2">Opcja 2</option>
-                        <option value="3">Opcja 3</option>
+                        <option value="Insults">Wyzwiska</option>
+                        <option value="ViolationsOfMusingoRules">Złamanie zasad użytkowania serwisu</option>
+                        <option value="Others">Inne</option>
                       </Form.Select>
                       <Form.Control.Feedback type="invalid">
                         {errors.category}
