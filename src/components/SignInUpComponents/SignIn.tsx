@@ -1,5 +1,7 @@
 import { Form, Col, Button, Row } from "react-bootstrap";
 import { Formik } from "formik";
+import { login } from "../../services/userService";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 const SignIn = () => {
   const loginSchema = Yup.object().shape({
@@ -8,6 +10,8 @@ const SignIn = () => {
       .required("Prosze wpisać adres email"),
     password: Yup.string().required("Proszę wpisać hasło"),
   });
+
+  const [isValidate,setIsValidate] = useState(false);
 
   return (
     <div className="p-4">
@@ -19,9 +23,17 @@ const SignIn = () => {
               password: "",
             }}
             validationSchema={loginSchema}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              resetForm();
+              await login(values)
+                .then((res) => {
+                  setIsValidate(false);
+                  localStorage.setItem("token", res.headers.authtoken);
+                  window.location.href = "/";
+                })
+                .catch((err) => {
+                  setIsValidate(true);
+                });
               setSubmitting(false);
             }}
           >
@@ -69,7 +81,9 @@ const SignIn = () => {
                     {errors.password}
                   </Form.Control.Feedback>
                 </Form.Group>
-
+                {isValidate == true &&<div className="d-grid my-4">
+                 <p className="text-danger" style={{textAlign: 'center'}}>Nieprawidłowy login lub hasło</p>
+                </div>}
                 <div className="d-grid my-4">
                   <Button
                     size="lg"
