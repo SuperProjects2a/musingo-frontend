@@ -13,62 +13,8 @@ const Fundings = () => {
     <div className="userProfileDiv p-4">
       <Card>
         <Card.Body>
-          <Card.Title>Doładuj konto</Card.Title>
-          <Formik
-            initialValues={{
-              chargeValue: "",
-            }}
-            validationSchema={chanrgeAccountSchema}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              setSubmitting(true);
-              resetForm();
-              setSubmitting(false);
-            }}
-          >
-            {({
-              handleSubmit,
-              handleChange,
-              handleBlur,
-              values,
-              touched,
-              errors,
-              isSubmitting,
-            }) => (
-              <Form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
-                <Form.Group style={{ float: "left" }}>
-                  <Form.Label>Kwota</Form.Label>
-
-                  <Form.Control
-                    name="chargeValue"
-                    type="text"
-                    autoComplete="chargeValue"
-                    className="formInputs"
-                    value={values.chargeValue}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    isInvalid={touched.chargeValue && !!errors.chargeValue}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.chargeValue}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Button
-                  className="chargeButton"
-                  variant="dark"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  Doładuj konto
-                </Button>
-              </Form>
-            )}
-          </Formik>
-        </Card.Body>
-      </Card>
-      <Card className="mt-4">
-        <Card.Body>
           <Card.Title>Historia płatności</Card.Title>
-          <p>Stan konta: 911420,69</p>
+
           <Table striped bordered hover responsive>
             <thead>
               <tr>

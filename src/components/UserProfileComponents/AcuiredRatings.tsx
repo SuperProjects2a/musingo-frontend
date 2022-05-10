@@ -32,6 +32,8 @@ const threeNow = 20;
 const twoNow = 5;
 const oneNow = 1;
 
+const sumOfRatings = fiveNow + fourNow + threeNow + twoNow + oneNow;
+
 const AcuiredRatings = () => {
   return (
     <div className="userProfileDiv p-4 px-5">
@@ -45,33 +47,63 @@ const AcuiredRatings = () => {
                 <span style={{ fontSize: "30px" }}>3,5 </span>
                 <span style={{ fontSize: "20px", color: "grey" }}>/ 5</span>
               </p>{" "}
-              <p>30 ocen</p>
+              <p>{sumOfRatings} Ocen</p>
             </div>
-            <div style={{ width: "200px", float: "left" }}>
+            <div style={{ width: "270px", float: "left" }}>
               <Row>
-                <Rating
-                  ratingValue={100}
-                  readonly
-                  size={20}
-                  style={{ float: "left" }}
-                />
-                <ProgressBar completed={fiveNow} />
+                <Col xs={4}>
+                  <Rating ratingValue={100} readonly size={20} />
+                </Col>
+                <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
+                  <ProgressBar completed={fiveNow} />
+                </Col>
+                <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
+                  {fiveNow}
+                </Col>
               </Row>
               <Row>
-                <Rating ratingValue={80} readonly size={20} />
-                <ProgressBar completed={fourNow} />
+                <Col xs={4}>
+                  <Rating ratingValue={80} readonly size={20} />
+                </Col>
+                <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
+                  <ProgressBar completed={fourNow} />
+                </Col>
+                <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
+                  {fourNow}
+                </Col>
               </Row>
               <Row>
-                <Rating ratingValue={60} readonly size={20} />
-                <ProgressBar completed={threeNow} />
+                <Col xs={4}>
+                  <Rating ratingValue={60} readonly size={20} />
+                </Col>
+                <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
+                  <ProgressBar completed={threeNow} />
+                </Col>
+                <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
+                  {threeNow}
+                </Col>
               </Row>
               <Row>
-                <Rating ratingValue={40} readonly size={20} />
-                <ProgressBar completed={twoNow} />
+                <Col xs={4}>
+                  <Rating ratingValue={40} readonly size={20} />
+                </Col>
+                <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
+                  <ProgressBar completed={twoNow} />
+                </Col>
+                <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
+                  {twoNow}
+                </Col>
               </Row>
               <Row>
-                <Rating ratingValue={20} readonly size={20} />
-                <ProgressBar completed={oneNow} />
+                <Col xs={4}>
+                  <Rating ratingValue={20} readonly size={20} />
+                </Col>
+                <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
+                  <ProgressBar completed={oneNow} />
+                </Col>
+                <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
+                  {oneNow}
+                </Col>
               </Row>
             </div>
           </Row>
