@@ -11,7 +11,7 @@ const SignIn = () => {
     password: Yup.string().required("Proszę wpisać hasło"),
   });
 
-  const [isValidate,setIsValidate] = useState(false);
+  const [isError,setIsError] = useState(false);
 
   return (
     <div className="p-4">
@@ -27,12 +27,12 @@ const SignIn = () => {
               setSubmitting(true);
               await login(values)
                 .then((res) => {
-                  setIsValidate(false);
+                  setIsError(false);
                   localStorage.setItem("token", res.headers.authtoken);
                   window.location.href = "/";
                 })
                 .catch((err) => {
-                  setIsValidate(true);
+                  setIsError(true);
                 });
               setSubmitting(false);
             }}
@@ -81,7 +81,7 @@ const SignIn = () => {
                     {errors.password}
                   </Form.Control.Feedback>
                 </Form.Group>
-                {isValidate == true &&<div className="d-grid my-4">
+                {isError == true &&<div className="d-grid my-4">
                  <p className="text-danger" style={{textAlign: 'center'}}>Nieprawidłowy login lub hasło</p>
                 </div>}
                 <div className="d-grid my-4">

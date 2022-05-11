@@ -61,7 +61,7 @@ const NavbarComp = () => {
   useEffect(() => {
     const getU = async () => {
       const u = await getUser();
-      setUser(u.data);
+      setUser(u);
     };
 
     if (
