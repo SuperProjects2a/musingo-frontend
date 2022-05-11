@@ -81,7 +81,7 @@ const SignIn = () => {
                     {errors.password}
                   </Form.Control.Feedback>
                 </Form.Group>
-                {isError == true &&<div className="d-grid my-4">
+                {isError == true &&<div className=" mt-3">
                  <p className="text-danger" style={{textAlign: 'center'}}>Nieprawidłowy login lub hasło</p>
                 </div>}
                 <div className="d-grid my-4">
