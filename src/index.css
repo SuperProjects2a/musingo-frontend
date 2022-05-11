@@ -196,6 +196,7 @@ input[type="color"]:focus,
   padding-right: 7px;
 }
 
+
 .noSelect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -204,4 +205,12 @@ input[type="color"]:focus,
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+.tabsdminPanel {
+  width: 90vw;
+  height: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: auto;
+  z-index: 2;
 }
