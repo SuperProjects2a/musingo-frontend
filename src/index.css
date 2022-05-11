@@ -279,3 +279,11 @@ input[type="color"]:focus,
   color: #212529;
 }
 
+.tabsdminPanel {
+  width: 90vw;
+  height: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: auto;
+  z-index: 2;
+}
