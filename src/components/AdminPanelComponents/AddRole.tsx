@@ -3,7 +3,7 @@ import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-const EditUser = () => {
+const AddRole = () => {
     const addOfferSchema = Yup.object().shape({
       category: Yup.string()
         .required("Wybierz rolę")
@@ -112,4 +112,4 @@ const EditUser = () => {
   )
 }
 
-export default EditUser
+export default AddRole
