@@ -169,7 +169,7 @@ const NavbarComp = () => {
               )}
               {user == null || (
                 <div
-                  className="text-white mb-auto mt-auto noSelect"
+                  className="text-white mb-auto mt-auto noSelect p-2"
                   style={{ fontWeight: "bold" }}
                 >
                   {user.walletBalance} zł
