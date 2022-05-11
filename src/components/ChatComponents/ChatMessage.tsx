@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useState } from 'react';
 import {Form, Col } from "react-bootstrap";
+
+
+
 
 const informationsMessage = [
   {
     date: "10.10.2022 15:46",
     text: "jakasadasd asd asd asd d asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosc",
   },
-  {
-    date: "11.11.2022 15:46",
-    text: "jakasadasd asd asd asd d asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosc",
-  },
 ];
 
-let userID:number = 1;
+let userID:number = 0;
 
 const ChatMessage = () => {
   if (userID == 0) 
