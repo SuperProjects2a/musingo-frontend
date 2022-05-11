@@ -204,3 +204,14 @@ input[type="color"]:focus,
   margin: auto;
   z-index: 2;
 }
+
+
+.chatWindow {
+  background-color: #fafafad5 !important;
+
+}
+
+.chatMessage{
+  background-color: #dadada5e !important;
+  max-width: 80%;
+}
