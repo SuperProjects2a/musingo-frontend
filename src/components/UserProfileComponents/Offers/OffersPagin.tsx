@@ -11,7 +11,7 @@ interface IOffer {
   link: string;
   title: string;
   date: string;
-  followers: number;
+  promote: boolean;
 }
 
 const OffersPagin: FC<IPost> = ({ offers, loading }) => {
@@ -41,7 +41,7 @@ const OffersPagin: FC<IPost> = ({ offers, loading }) => {
           <OfferCard
             link={offer.link}
             title={offer.title}
-            followers={offer.followers}
+            promote={offer.promote}
             date={offer.date}
           />
         </Col>

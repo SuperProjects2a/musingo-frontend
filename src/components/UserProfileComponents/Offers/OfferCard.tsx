@@ -9,10 +9,10 @@ interface IOffer {
   link: string;
   title: string;
   date: string;
-  followers: number;
+  promote: boolean;
 }
 
-const OfferCard: FC<IOffer> = ({ link, title, date, followers }) => {
+const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
   return (
     <>
       <Card>
@@ -90,9 +90,20 @@ const OfferCard: FC<IOffer> = ({ link, title, date, followers }) => {
                 </Button>
               </Link>
             </Col>
-            {/* <Button className="mb-1" variant="dark" style={{ width: "100%" }}>
-              Promuj
-            </Button> */}
+            {promote == true ? (
+              <Button className="mb-1" variant="dark" style={{ width: "100%" }}>
+                Promuj
+              </Button>
+            ) : (
+              <Button
+                className="mb-1"
+                variant="dark"
+                style={{ width: "100%" }}
+                disabled
+              >
+                Wypromowane
+              </Button>
+            )}
             <Button className="" variant="dark" style={{ width: "100%" }}>
               Anuluj
             </Button>

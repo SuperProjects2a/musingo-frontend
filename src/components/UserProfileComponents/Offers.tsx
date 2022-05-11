@@ -9,14 +9,14 @@ import axios from "axios";
 interface IOffer {
   link: string;
   title: string;
-  followers: number;
+  promote: boolean;
   date: string;
 }
 const Offers = () => {
   const [offers, setOffers] = useState<IOffer[]>([] as IOffer[]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(24);
+  const [postsPerPage] = useState(12);
 
   useEffect(() => {
     const fetchOffers = async () => {
@@ -38,16 +38,24 @@ const Offers = () => {
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
+  // const paginateById = (pageNumber: number) => {
+  //   setCurrentPage(pageNumber);
+  //   let pos = 0;
+  //   const element = document.getElementById("h-pozostale");
+  //   element?.offsetTop == null || (pos = element?.offsetTop);
+  //   pos *= 2;
+  //   console.log(pos);
+  //   window.scrollTo(0, pos);
+  // };
   return (
     <div className="userProfileDiv px-1 px-sm-4 py-3 py-sm-4 py-md-5">
       {offers.length > 0 ? (
         <>
           <div>
-            <Row className="d-flex justify-content-center px-sm-2 px-md-4 px-lg-5">
-              {/* <h5 style={{ textAlign: "left" }}>Aktywne ogłoszenia</h5> */}
+            <Row className="d-flex justify-content-center px-sm-2 px-md-4 px-lg-5 m-0">
               <OffersPagin offers={currentAnnouncements} loading={loading} />
             </Row>
-            <Row className="py-2">
+            <Row className="pt-3 m-0">
               <Pagination
                 postsPerPage={postsPerPage}
                 totalPosts={offers.length}
@@ -60,11 +68,6 @@ const Offers = () => {
       ) : (
         <Container className="py-4">
           <div style={{ textAlign: "center" }}>
-            {/* <FontAwesomeIcon
-              icon={faToiletPaperSlash}
-              style={{ height: "100px" }}
-              className="py-3"
-            /> */}
             <h4>Nie masz aktywnych ogłoszeń.</h4>
           </div>
         </Container>

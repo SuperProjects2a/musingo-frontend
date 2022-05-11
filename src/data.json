@@ -4,14 +4,14 @@
     "title": "Gitara elektryczna, stan rewelacyjny",
     "price": 1000,
     "city": "Bielsko-Biała",
-    "followers": 100,
+    "promote": true,
     "date": "10.03.2022"
   },
   { "link": "/DisplayOffer", 
     "title": "Flet", 
     "price": 100, 
     "city": "Warszawa",
-    "followers": 0,
+    "promote": false,
     "date": "09.03.2022"
   },
   {
@@ -19,7 +19,7 @@
     "title": "Nauka gry na fortepianie",
     "price": 200,
     "city": "Kozy",
-    "followers": 0,
+    "promote": true,
     "date": "31.11.2021"
   },
   {
@@ -27,7 +27,7 @@
     "title": "Budowa organów kościelnych",
     "price": 1000000,
     "city": "Gdańsk",
-    "followers": 53,
+    "promote": true,
     "date": "13.11.2021"
   },
   {
@@ -35,14 +35,14 @@
     "title": "Książka do nauki muzyki, 10-12 lat",
     "price": 20,
     "city": "Lublin",
-    "followers": 10,
+    "promote": false,
     "date": "10.09.2021"
   },
   { "link": "/DisplayOffer", 
     "title": "Ukulele", 
     "price": 300, 
     "city": "Olsztyn",
-    "followers": 1340,
+    "promote": false,
     "date": "27.07.2021"
   },
   {
@@ -50,7 +50,7 @@
     "title": "Perkusja z podpisem zespołu XYZ",
     "price": 10000,
     "city": "Kraków",
-    "followers": 15,
+    "promote": false,
     "date": "05.06.2021"
   },
   {
@@ -58,7 +58,7 @@
     "title": "Kontrabas używany do nauki w szkole",
     "price": 2500,
     "city": "Wrocław",
-    "followers": 33,
+    "promote": false,
     "date": "18.05.2021"
   },
   {
@@ -66,7 +66,7 @@
     "title": "Skrzypce, nieużywane",
     "price": 7850,
     "city": "Poznań",
-    "followers": 27,
+    "promote": true,
     "date": "17.01.2021"
   },
   {
@@ -74,7 +74,7 @@
     "title": "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
     "price": 560,
     "city": "Katowice",
-    "followers": 100,
+    "promote": false,
     "date": "01.01.2021"
   },
   {
@@ -82,14 +82,14 @@
     "title": "Gitara elektryczna, stan rewelacyjny",
     "price": 1000,
     "city": "Bielsko-Biała",
-    "followers": 100,
+    "promote": true,
     "date": "10.03.2022"
   },
   { "link": "/DisplayOffer", 
     "title": "Flet", 
     "price": 100, 
     "city": "Warszawa",
-    "followers": 0,
+    "promote": false,
     "date": "09.03.2022"
   },
   {
@@ -97,7 +97,7 @@
     "title": "Nauka gry na fortepianie",
     "price": 200,
     "city": "Kozy",
-    "followers": 0,
+    "promote": true,
     "date": "31.11.2021"
   },
   {
@@ -105,7 +105,7 @@
     "title": "Budowa organów kościelnych",
     "price": 1000000,
     "city": "Gdańsk",
-    "followers": 53,
+    "promote": true,
     "date": "13.11.2021"
   },
   {
@@ -113,14 +113,14 @@
     "title": "Książka do nauki muzyki, 10-12 lat",
     "price": 20,
     "city": "Lublin",
-    "followers": 10,
+    "promote": false,
     "date": "10.09.2021"
   },
   { "link": "/DisplayOffer", 
     "title": "Ukulele", 
     "price": 300, 
     "city": "Olsztyn",
-    "followers": 1340,
+    "promote": false,
     "date": "27.07.2021"
   },
   {
@@ -128,7 +128,7 @@
     "title": "Perkusja z podpisem zespołu XYZ",
     "price": 10000,
     "city": "Kraków",
-    "followers": 15,
+    "promote": false,
     "date": "05.06.2021"
   },
   {
@@ -136,7 +136,7 @@
     "title": "Kontrabas używany do nauki w szkole",
     "price": 2500,
     "city": "Wrocław",
-    "followers": 33,
+    "promote": false,
     "date": "18.05.2021"
   },
   {
@@ -144,7 +144,7 @@
     "title": "Skrzypce, nieużywane",
     "price": 7850,
     "city": "Poznań",
-    "followers": 27,
+    "promote": true,
     "date": "17.01.2021"
   },
   {
@@ -152,7 +152,7 @@
     "title": "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
     "price": 560,
     "city": "Katowice",
-    "followers": 100,
+    "promote": false,
     "date": "01.01.2021"
   },
   {
@@ -160,14 +160,14 @@
     "title": "Gitara elektryczna, stan rewelacyjny",
     "price": 1000,
     "city": "Bielsko-Biała",
-    "followers": 100,
+    "promote": true,
     "date": "10.03.2022"
   },
   { "link": "/DisplayOffer", 
     "title": "Flet", 
     "price": 100, 
     "city": "Warszawa",
-    "followers": 0,
+    "promote": false,
     "date": "09.03.2022"
   },
   {
@@ -175,7 +175,7 @@
     "title": "Nauka gry na fortepianie",
     "price": 200,
     "city": "Kozy",
-    "followers": 0,
+    "promote": true,
     "date": "31.11.2021"
   },
   {
@@ -183,7 +183,7 @@
     "title": "Budowa organów kościelnych",
     "price": 1000000,
     "city": "Gdańsk",
-    "followers": 53,
+    "promote": true,
     "date": "13.11.2021"
   },
   {
@@ -191,14 +191,14 @@
     "title": "Książka do nauki muzyki, 10-12 lat",
     "price": 20,
     "city": "Lublin",
-    "followers": 10,
+    "promote": false,
     "date": "10.09.2021"
   },
   { "link": "/DisplayOffer", 
     "title": "Ukulele", 
     "price": 300, 
     "city": "Olsztyn",
-    "followers": 1340,
+    "promote": false,
     "date": "27.07.2021"
   },
   {
@@ -206,7 +206,7 @@
     "title": "Perkusja z podpisem zespołu XYZ",
     "price": 10000,
     "city": "Kraków",
-    "followers": 15,
+    "promote": false,
     "date": "05.06.2021"
   },
   {
@@ -214,7 +214,7 @@
     "title": "Kontrabas używany do nauki w szkole",
     "price": 2500,
     "city": "Wrocław",
-    "followers": 33,
+    "promote": false,
     "date": "18.05.2021"
   },
   {
@@ -222,7 +222,7 @@
     "title": "Skrzypce, nieużywane",
     "price": 7850,
     "city": "Poznań",
-    "followers": 27,
+    "promote": true,
     "date": "17.01.2021"
   },
   {
@@ -230,7 +230,7 @@
     "title": "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
     "price": 560,
     "city": "Katowice",
-    "followers": 100,
+    "promote": false,
     "date": "01.01.2021"
   },
   {
@@ -238,14 +238,14 @@
     "title": "Gitara elektryczna, stan rewelacyjny",
     "price": 1000,
     "city": "Bielsko-Biała",
-    "followers": 100,
+    "promote": true,
     "date": "10.03.2022"
   },
   { "link": "/DisplayOffer", 
     "title": "Flet", 
     "price": 100, 
     "city": "Warszawa",
-    "followers": 0,
+    "promote": false,
     "date": "09.03.2022"
   },
   {
@@ -253,7 +253,7 @@
     "title": "Nauka gry na fortepianie",
     "price": 200,
     "city": "Kozy",
-    "followers": 0,
+    "promote": true,
     "date": "31.11.2021"
   },
   {
@@ -261,7 +261,7 @@
     "title": "Budowa organów kościelnych",
     "price": 1000000,
     "city": "Gdańsk",
-    "followers": 53,
+    "promote": true,
     "date": "13.11.2021"
   },
   {
@@ -269,14 +269,14 @@
     "title": "Książka do nauki muzyki, 10-12 lat",
     "price": 20,
     "city": "Lublin",
-    "followers": 10,
+    "promote": false,
     "date": "10.09.2021"
   },
   { "link": "/DisplayOffer", 
     "title": "Ukulele", 
     "price": 300, 
     "city": "Olsztyn",
-    "followers": 1340,
+    "promote": false,
     "date": "27.07.2021"
   },
   {
@@ -284,7 +284,7 @@
     "title": "Perkusja z podpisem zespołu XYZ",
     "price": 10000,
     "city": "Kraków",
-    "followers": 15,
+    "promote": false,
     "date": "05.06.2021"
   },
   {
@@ -292,7 +292,7 @@
     "title": "Kontrabas używany do nauki w szkole",
     "price": 2500,
     "city": "Wrocław",
-    "followers": 33,
+    "promote": false,
     "date": "18.05.2021"
   },
   {
@@ -300,7 +300,7 @@
     "title": "Skrzypce, nieużywane",
     "price": 7850,
     "city": "Poznań",
-    "followers": 27,
+    "promote": true,
     "date": "17.01.2021"
   },
   {
@@ -308,85 +308,8 @@
     "title": "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
     "price": 560,
     "city": "Katowice",
-    "followers": 100,
-    "date": "01.01.2021"
-  },
-  {
-    "link": "/DisplayOffer",
-    "title": "Gitara elektryczna, stan rewelacyjny",
-    "price": 1000,
-    "city": "Bielsko-Biała",
-    "followers": 100,
-    "date": "10.03.2022"
-  },
-  { "link": "/DisplayOffer", 
-    "title": "Flet", 
-    "price": 100, 
-    "city": "Warszawa",
-    "followers": 0,
-    "date": "09.03.2022"
-  },
-  {
-    "link": "/DisplayOffer",
-    "title": "Nauka gry na fortepianie",
-    "price": 200,
-    "city": "Kozy",
-    "followers": 0,
-    "date": "31.11.2021"
-  },
-  {
-    "link": "/DisplayOffer",
-    "title": "Budowa organów kościelnych",
-    "price": 1000000,
-    "city": "Gdańsk",
-    "followers": 53,
-    "date": "13.11.2021"
-  },
-  {
-    "link": "/DisplayOffer",
-    "title": "Książka do nauki muzyki, 10-12 lat",
-    "price": 20,
-    "city": "Lublin",
-    "followers": 10,
-    "date": "10.09.2021"
-  },
-  { "link": "/DisplayOffer", 
-    "title": "Ukulele", 
-    "price": 300, 
-    "city": "Olsztyn",
-    "followers": 1340,
-    "date": "27.07.2021"
-  },
-  {
-    "link": "/DisplayOffer",
-    "title": "Perkusja z podpisem zespołu XYZ",
-    "price": 10000,
-    "city": "Kraków",
-    "followers": 15,
-    "date": "05.06.2021"
-  },
-  {
-    "link": "/DisplayOffer",
-    "title": "Kontrabas używany do nauki w szkole",
-    "price": 2500,
-    "city": "Wrocław",
-    "followers": 33,
-    "date": "18.05.2021"
-  },
-  {
-    "link": "/DisplayOffer",
-    "title": "Skrzypce, nieużywane",
-    "price": 7850,
-    "city": "Poznań",
-    "followers": 27,
-    "date": "17.01.2021"
-  },
-  {
-    "link": "/DisplayOffer",
-    "title": "Struny do skrzypiec, błyskawicznie reaguje na dotyk smyczka",
-    "price": 560,
-    "city": "Katowice",
-    "followers": 100,
+    "promote": false,
     "date": "01.01.2021"
   }
+  
 ]
