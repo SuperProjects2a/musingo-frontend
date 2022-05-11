@@ -10,8 +10,8 @@ const chanrgeAccountSchema = Yup.object().shape({
 
 const Fundings = () => {
   return (
-    <div className="userProfileDiv p-4">
-      <Card>
+    <div className="userProfileDiv p-4 px-5">
+      <Card style={{ borderRadius: "20px" }}>
         <Card.Body>
           <Card.Title>Historia płatności</Card.Title>
 

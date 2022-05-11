@@ -26,7 +26,7 @@ const messages = [
 
 const Messages = () => {
   return (
-    <div className="userProfileDiv pt-5 ">
+    <div className="userProfileDiv pt-4 ">
       {messages.map((message, index) => (
         <Row className="px-2">
           <Col xs={{ span: 12 }} md={{ span: 8, offset: 2 }}>
@@ -56,7 +56,7 @@ const Messages = () => {
                         }}
                       />
                     </Col>
-                    <Col xs={8} sm={7} lg={8}>
+                    <Col>
                       <h6>
                         <b>{message.user}</b> - {message.title}
                       </h6>
@@ -66,16 +66,6 @@ const Messages = () => {
                         <p>{message.text}</p>
                       )}{" "}
                       <span style={{ color: "grey" }}>{message.date}</span>
-                    </Col>
-                    <Col xs={12} sm={3} lg={2}>
-                      <p
-                        onClick={(x) => {
-                          x.preventDefault();
-                        }}
-                        style={{ color: "red", float: "right" }}
-                      >
-                        X Usuń czat
-                      </p>
                     </Col>
                   </Row>
                 </Card.Body>

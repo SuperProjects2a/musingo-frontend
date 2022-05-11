@@ -13,9 +13,8 @@ const ProfileManagement = () => {
           xs={{ span: 12 }}
           sm={{ span: 10, offset: 1 }}
           md={{ span: 8, offset: 2 }}
-          lg={{ span: 6, offset: 3 }}
         >
-          <Card>
+          <Card style={{ borderRadius: "20px" }}>
             <Card.Body>
               <Card.Img
                 variant="top"
@@ -24,8 +23,8 @@ const ProfileManagement = () => {
                 }`}
                 style={{
                   height: " calc(11vh + 4vw)",
-                  minHeight: "200px",
-                  width: "200px",
+                  minHeight: "150px",
+                  width: "150px",
                   objectFit: "cover",
                   borderRadius: "100px",
                 }}
@@ -51,19 +50,19 @@ const ProfileManagement = () => {
               </Form>
             </Card.Body>
           </Card>
-          <Card className="mt-4">
+          <Card className="mt-4" style={{ borderRadius: "20px" }}>
             <Card.Body>
               <Card.Title>Zmień dane kontaktowe</Card.Title>
               <ContactDataChange />
             </Card.Body>
           </Card>
-          <Card className="mt-4">
+          <Card className="mt-4" style={{ borderRadius: "20px" }}>
             <Card.Body>
               <Card.Title>Zmień hasło</Card.Title>
               <PasswordChange />
             </Card.Body>
           </Card>
-          <Card className="mt-4">
+          <Card className="mt-4" style={{ borderRadius: "20px" }}>
             <Card.Body>
               <Card.Title>Zmień email</Card.Title>
               <EmailChange />
