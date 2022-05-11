@@ -8,7 +8,7 @@ const ReportOffer = () => {
     category: Yup.string()
       .required("Wybierz powód")
       .matches(
-        /^[1,2,3]*$/i,
+        /^[Insults,ViolationsOfMusingoRules,Others]*$/i,
         "Wybierz powód"
       ),
     description: Yup.string().required("To pole jest wymagane"),
