@@ -134,11 +134,6 @@ const NavbarComp = () => {
                   Wiadomości
                 </Nav.Link>
               )}
-              {user == null || (
-                <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
-                  Doładuj konto
-                </Nav.Link>
-              )}
               {user == null && (
                 <Nav.Link
                   as={Link}
@@ -171,15 +166,12 @@ const NavbarComp = () => {
                 </Nav.Link>
               )}
               {user == null || (
-                <Nav.Link
-                  as={Link}
-                  to={"/"}
-                  className="text-white mb-auto mt-auto"
+                <div
+                  className="text-white mb-auto mt-auto noSelect"
+                  style={{ fontWeight: "bold" }}
                 >
-                  <div style={{ fontWeight: "bold" }}>
-                    {user.walletBalance} zł
-                  </div>
-                </Nav.Link>
+                  {user.walletBalance} zł
+                </div>
               )}
               {user == null || (
                 <Nav.Link as={Link} to={"/FundAdd"}>
