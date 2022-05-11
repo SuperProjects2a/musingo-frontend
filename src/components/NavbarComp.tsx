@@ -8,7 +8,12 @@ import {
   Col,
   Form,
 } from "react-bootstrap";
-import React, { useCallback, useState, useLayoutEffect } from "react";
+import React, {
+  useCallback,
+  useState,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import {
   Route,
   Link,
@@ -30,6 +35,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import FundSuccess from "./funds/FundSuccess";
 import FundFailure from "./funds/FundFailure";
+import { getUser, IUser } from "../services/userService";
 
 const NavbarComp = () => {
   const location = useLocation();
@@ -39,6 +45,7 @@ const NavbarComp = () => {
   }, [location.pathname]);
 
   const [searchValue, setSearchValue] = useState("");
+  const [user, setUser] = useState<IUser | null>(null);
   const navigate = useNavigate();
   const handleOnClickEnter = useCallback(
     () => navigate("/Search", { replace: true }),
@@ -53,7 +60,19 @@ const NavbarComp = () => {
   const handleBlur = (e: any) => {
     setSearchValue(e.target.value);
   };
+  useEffect(() => {
+    const getU = async () => {
+      const u = await getUser();
+      setUser(u);
+    };
 
+    if (
+      typeof localStorage.getItem("token") === "string" &&
+      localStorage.getItem("token") !== null
+    ) {
+      getU();
+    }
+  }, []);
   return (
     <>
       <div className="header">
@@ -112,28 +131,55 @@ const NavbarComp = () => {
                   Inne
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
-                Wiadomości
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
-                Doładuj konto
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/SignInUp"} className="mb-auto mt-auto">
-                Zaloguj się
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/AddOffer"} className="mb-auto mt-auto">
-                Dodaj ogłoszenie
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to={"/"}
-                className="text-white mb-auto mt-auto"
-              >
-                <div style={{ fontWeight: "bold" }}>100.45zł</div>
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/FundAdd"}>
-                <Button className="btn btn-success">Doładuj konto</Button>
-              </Nav.Link>
+              {user == null || (
+                <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
+                  Wiadomości
+                </Nav.Link>
+              )}
+              {user == null && (
+                <Nav.Link
+                  as={Link}
+                  to={"/SignInUp"}
+                  className="mb-auto mt-auto"
+                >
+                  Zaloguj się
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link
+                  as={Link}
+                  to={"/AddOffer"}
+                  className="mb-auto mt-auto"
+                >
+                  Dodaj ogłoszenie
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    setUser(null);
+                  }}
+                  as={Link}
+                  to={"/"}
+                  className="mb-auto mt-auto"
+                >
+                  Wyloguj się
+                </Nav.Link>
+              )}
+              {user == null || (
+                <div
+                  className="text-white mb-auto mt-auto noSelect p-2"
+                  style={{ fontWeight: "bold" }}
+                >
+                  {user.walletBalance} zł
+                </div>
+              )}
+              {user == null || (
+                <Nav.Link as={Link} to={"/FundAdd"}>
+                  <Button className="btn btn-success">Doładuj konto</Button>
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
