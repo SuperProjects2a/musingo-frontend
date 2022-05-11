@@ -195,3 +195,12 @@ input[type="color"]:focus,
 .iconsDisplayOffer{
   padding-right: 7px;
 }
+
+.tabsdminPanel {
+  width: 90vw;
+  height: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: auto;
+  z-index: 2;
+}
