@@ -8,6 +8,8 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches:
       - azure
+env:
+  NODE_VERSION: 'v16.13.1'
 
 jobs:
   build_and_deploy_job:
@@ -15,6 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          
       - uses: actions/checkout@v2
         with:
           submodules: true
