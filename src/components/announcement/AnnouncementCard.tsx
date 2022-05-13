@@ -23,9 +23,16 @@ interface IAnnouncement {
   title: string;
   price: number;
   city: string;
+  watch: boolean;
 }
 
-const AnnouncementCard: FC<IAnnouncement> = ({ linkA, title, price, city }) => {
+const AnnouncementCard: FC<IAnnouncement> = ({
+  linkA,
+  title,
+  price,
+  city,
+  watch,
+}) => {
   return (
     <>
       <Card>
