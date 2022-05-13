@@ -59,13 +59,6 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
             </OverlayTrigger>
           </Link>
           <div className="pt-1">
-            {/* <div className="pb-1">
-              <FontAwesomeIcon
-                icon={faEye}
-                style={{ height: "19px", paddingRight: "5px" }}
-              />
-              {followers}
-            </div> */}
             <div>
               <FontAwesomeIcon
                 icon={faCalendarDays}

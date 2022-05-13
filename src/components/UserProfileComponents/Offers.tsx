@@ -38,15 +38,6 @@ const Offers = () => {
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
-  // const paginateById = (pageNumber: number) => {
-  //   setCurrentPage(pageNumber);
-  //   let pos = 0;
-  //   const element = document.getElementById("h-pozostale");
-  //   element?.offsetTop == null || (pos = element?.offsetTop);
-  //   pos *= 2;
-  //   console.log(pos);
-  //   window.scrollTo(0, pos);
-  // };
   return (
     <div className="userProfileDiv px-1 px-sm-4 py-3 py-sm-4 py-md-5">
       {offers.length > 0 ? (
