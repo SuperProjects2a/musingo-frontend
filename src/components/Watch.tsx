@@ -14,7 +14,7 @@ interface IAnnouncement {
   watch: boolean;
 }
 
-const Follow = () => {
+const Watch = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
@@ -109,4 +109,4 @@ const Follow = () => {
   );
 };
 
-export default Follow;
+export default Watch;
