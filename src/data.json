@@ -5,14 +5,16 @@
     "price": 1000,
     "city": "Bielsko-Biała",
     "promote": true,
-    "date": "10.03.2022"
+    "date": "10.03.2022",
+    "watch": false
   },
   { "link": "/DisplayOffer", 
     "title": "Flet", 
     "price": 100, 
     "city": "Warszawa",
     "promote": false,
-    "date": "09.03.2022"
+    "date": "09.03.2022",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -20,7 +22,8 @@
     "price": 200,
     "city": "Kozy",
     "promote": true,
-    "date": "31.11.2021"
+    "date": "31.11.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -28,7 +31,8 @@
     "price": 1000000,
     "city": "Gdańsk",
     "promote": true,
-    "date": "13.11.2021"
+    "date": "13.11.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -36,14 +40,16 @@
     "price": 20,
     "city": "Lublin",
     "promote": false,
-    "date": "10.09.2021"
+    "date": "10.09.2021",
+    "watch": false
   },
   { "link": "/DisplayOffer", 
     "title": "Ukulele", 
     "price": 300, 
     "city": "Olsztyn",
     "promote": false,
-    "date": "27.07.2021"
+    "date": "27.07.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -51,7 +57,8 @@
     "price": 10000,
     "city": "Kraków",
     "promote": false,
-    "date": "05.06.2021"
+    "date": "05.06.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -59,7 +66,8 @@
     "price": 2500,
     "city": "Wrocław",
     "promote": false,
-    "date": "18.05.2021"
+    "date": "18.05.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -67,7 +75,8 @@
     "price": 7850,
     "city": "Poznań",
     "promote": true,
-    "date": "17.01.2021"
+    "date": "17.01.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -75,7 +84,8 @@
     "price": 560,
     "city": "Katowice",
     "promote": false,
-    "date": "01.01.2021"
+    "date": "01.01.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -83,14 +93,16 @@
     "price": 1000,
     "city": "Bielsko-Biała",
     "promote": true,
-    "date": "10.03.2022"
+    "date": "10.03.2022",
+    "watch": false
   },
   { "link": "/DisplayOffer", 
     "title": "Flet", 
     "price": 100, 
     "city": "Warszawa",
     "promote": false,
-    "date": "09.03.2022"
+    "date": "09.03.2022",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -98,7 +110,8 @@
     "price": 200,
     "city": "Kozy",
     "promote": true,
-    "date": "31.11.2021"
+    "date": "31.11.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -106,7 +119,8 @@
     "price": 1000000,
     "city": "Gdańsk",
     "promote": true,
-    "date": "13.11.2021"
+    "date": "13.11.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -114,14 +128,16 @@
     "price": 20,
     "city": "Lublin",
     "promote": false,
-    "date": "10.09.2021"
+    "date": "10.09.2021",
+    "watch": false
   },
   { "link": "/DisplayOffer", 
     "title": "Ukulele", 
     "price": 300, 
     "city": "Olsztyn",
     "promote": false,
-    "date": "27.07.2021"
+    "date": "27.07.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -129,7 +145,8 @@
     "price": 10000,
     "city": "Kraków",
     "promote": false,
-    "date": "05.06.2021"
+    "date": "05.06.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -137,7 +154,8 @@
     "price": 2500,
     "city": "Wrocław",
     "promote": false,
-    "date": "18.05.2021"
+    "date": "18.05.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -145,7 +163,8 @@
     "price": 7850,
     "city": "Poznań",
     "promote": true,
-    "date": "17.01.2021"
+    "date": "17.01.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -153,7 +172,8 @@
     "price": 560,
     "city": "Katowice",
     "promote": false,
-    "date": "01.01.2021"
+    "date": "01.01.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -161,14 +181,16 @@
     "price": 1000,
     "city": "Bielsko-Biała",
     "promote": true,
-    "date": "10.03.2022"
+    "date": "10.03.2022",
+    "watch": false
   },
   { "link": "/DisplayOffer", 
     "title": "Flet", 
     "price": 100, 
     "city": "Warszawa",
     "promote": false,
-    "date": "09.03.2022"
+    "date": "09.03.2022",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -176,7 +198,8 @@
     "price": 200,
     "city": "Kozy",
     "promote": true,
-    "date": "31.11.2021"
+    "date": "31.11.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -184,7 +207,8 @@
     "price": 1000000,
     "city": "Gdańsk",
     "promote": true,
-    "date": "13.11.2021"
+    "date": "13.11.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -192,14 +216,16 @@
     "price": 20,
     "city": "Lublin",
     "promote": false,
-    "date": "10.09.2021"
+    "date": "10.09.2021",
+    "watch": false
   },
   { "link": "/DisplayOffer", 
     "title": "Ukulele", 
     "price": 300, 
     "city": "Olsztyn",
     "promote": false,
-    "date": "27.07.2021"
+    "date": "27.07.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -207,7 +233,8 @@
     "price": 10000,
     "city": "Kraków",
     "promote": false,
-    "date": "05.06.2021"
+    "date": "05.06.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -215,7 +242,8 @@
     "price": 2500,
     "city": "Wrocław",
     "promote": false,
-    "date": "18.05.2021"
+    "date": "18.05.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -223,7 +251,8 @@
     "price": 7850,
     "city": "Poznań",
     "promote": true,
-    "date": "17.01.2021"
+    "date": "17.01.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -231,7 +260,8 @@
     "price": 560,
     "city": "Katowice",
     "promote": false,
-    "date": "01.01.2021"
+    "date": "01.01.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -239,14 +269,16 @@
     "price": 1000,
     "city": "Bielsko-Biała",
     "promote": true,
-    "date": "10.03.2022"
+    "date": "10.03.2022",
+    "watch": false
   },
   { "link": "/DisplayOffer", 
     "title": "Flet", 
     "price": 100, 
     "city": "Warszawa",
     "promote": false,
-    "date": "09.03.2022"
+    "date": "09.03.2022",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -254,7 +286,8 @@
     "price": 200,
     "city": "Kozy",
     "promote": true,
-    "date": "31.11.2021"
+    "date": "31.11.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -262,7 +295,8 @@
     "price": 1000000,
     "city": "Gdańsk",
     "promote": true,
-    "date": "13.11.2021"
+    "date": "13.11.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -270,14 +304,16 @@
     "price": 20,
     "city": "Lublin",
     "promote": false,
-    "date": "10.09.2021"
+    "date": "10.09.2021",
+    "watch": false
   },
   { "link": "/DisplayOffer", 
     "title": "Ukulele", 
     "price": 300, 
     "city": "Olsztyn",
     "promote": false,
-    "date": "27.07.2021"
+    "date": "27.07.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -285,7 +321,8 @@
     "price": 10000,
     "city": "Kraków",
     "promote": false,
-    "date": "05.06.2021"
+    "date": "05.06.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -293,7 +330,8 @@
     "price": 2500,
     "city": "Wrocław",
     "promote": false,
-    "date": "18.05.2021"
+    "date": "18.05.2021",
+    "watch": false
   },
   {
     "link": "/DisplayOffer",
@@ -301,7 +339,8 @@
     "price": 7850,
     "city": "Poznań",
     "promote": true,
-    "date": "17.01.2021"
+    "date": "17.01.2021",
+    "watch": true
   },
   {
     "link": "/DisplayOffer",
@@ -309,7 +348,9 @@
     "price": 560,
     "city": "Katowice",
     "promote": false,
-    "date": "01.01.2021"
+    "date": "01.01.2021",
+    "watch": false
   }
+  
   
 ]
