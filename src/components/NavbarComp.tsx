@@ -158,6 +158,24 @@ const NavbarComp = () => {
               )}
               {user == null || (
                 <Nav.Link
+                  as={Link}
+                  to={"/AddOffer"}
+                  className="mb-auto mt-auto"
+                >
+                  Dodaj ogłoszenie
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link
+                  as={Link}
+                  to={"/UserProfile"}
+                  className="mb-auto mt-auto"
+                >
+                  Moje konto
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link
                   onClick={() => {
                     localStorage.removeItem("token");
                     setUser(null);
