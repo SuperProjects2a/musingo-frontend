@@ -9,12 +9,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FC } from "react";
-import {
-  FontAwesomeIcon,
-  FontAwesomeIconProps,
-} from "@fortawesome/react-fontawesome";
-import { IconName, IconPrefix } from "@fortawesome/fontawesome-svg-core";
-// import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 
@@ -93,14 +88,13 @@ const AnnouncementCard: FC<IAnnouncement> = ({
                 <OverlayTrigger
                   placement="top"
                   delay={{ show: 250, hide: 400 }}
-                  overlay={<Tooltip id="tooltip-disabled">Obserwuj</Tooltip>}
+                  overlay={
+                    <Tooltip id="tooltip-disabled">
+                      Usuń z obserwowanych
+                    </Tooltip>
+                  }
                 >
-                  <Button
-                    variant="light"
-                    className="heartButton"
-                    type="submit"
-                    onClick={() => console.log("klik solid")}
-                  >
+                  <Button variant="light" className="heartButton" type="submit">
                     <FontAwesomeIcon
                       icon={faHeartSolid}
                       style={{ height: "28px" }}
@@ -111,11 +105,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
                 <OverlayTrigger
                   placement="top"
                   delay={{ show: 250, hide: 400 }}
-                  overlay={
-                    <Tooltip id="tooltip-disabled">
-                      Usuń z obserwowanych
-                    </Tooltip>
-                  }
+                  overlay={<Tooltip id="tooltip-disabled">Obserwuj</Tooltip>}
                 >
                   <Button
                     variant="light"
@@ -130,17 +120,6 @@ const AnnouncementCard: FC<IAnnouncement> = ({
                   </Button>
                 </OverlayTrigger>
               )}
-              {/* <FontAwesomeIcon
-                  icon={faHeartSolid}
-                  style={{ height: "30px" }}
-                /> */}
-              {/* <FontAwesomeIcon
-                  icon={faHeartRegular}
-                  style={{ height: "30px" }}
-                /> */}
-              {/* <FontAwesomeIcon icon="fa-regular fa-heart" /> */}
-              {/* <FontAwesomeIcon icon={faHeart} /> */}
-              {/* <FontAwesomeIcon icon={regular("heart")} /> */}
             </Col>
           </Row>
         </Card.Body>

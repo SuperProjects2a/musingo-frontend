@@ -3,7 +3,7 @@ import { Container, Col, Row, Spinner } from "react-bootstrap";
 import Posts from "./announcement/Posts";
 import PaginationSearch from "./announcement/PaginationSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
+import { faHeartCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import data from "../data.json";
 
 interface IAnnouncement {
@@ -20,7 +20,7 @@ const Follow = () => {
   );
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(24);
+  const [postsPerPage] = useState(12);
 
   useEffect(() => {
     // const fetchPosts = async () => {
@@ -94,12 +94,11 @@ const Follow = () => {
               <Container className="py-4">
                 <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
                   <FontAwesomeIcon
-                    icon={faToiletPaperSlash}
+                    icon={faHeartCircleXmark}
                     style={{ height: "100px" }}
                     className="py-3"
                   />
-                  <h5>Nie znaleźliśmy pasujących przedmiotów.</h5>
-                  <p>Spróbuj wyszukać pod inną nazwą</p>
+                  <h5>Nie masz obserwowanych przedmiotów.</h5>
                 </div>
               </Container>
             )}
