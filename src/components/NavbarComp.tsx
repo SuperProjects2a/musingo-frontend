@@ -157,12 +157,8 @@ const NavbarComp = () => {
                 </Nav.Link>
               )}
               {user == null || (
-                <Nav.Link
-                  as={Link}
-                  to={"/AddOffer"}
-                  className="mb-auto mt-auto"
-                >
-                  Dodaj ogłoszenie
+                <Nav.Link as={Link} to={"/Watch"} className="mb-auto mt-auto">
+                  Obserwowane
                 </Nav.Link>
               )}
               {user == null || (
