@@ -287,3 +287,14 @@ input[type="color"]:focus,
   margin: auto;
   z-index: 2;
 }
+
+.heartButton{
+  background-color: white!important;
+  border: none!important;
+}
+.heartButton:focus {
+  border-color: rgba(0, 0, 0, 0)!important;
+  -webkit-box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0)!important;
+  -moz-box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0)!important;
+  box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0)!important;
+}

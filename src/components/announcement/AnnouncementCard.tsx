@@ -1,7 +1,22 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Card,
+  OverlayTrigger,
+  Tooltip,
+  Row,
+  Col,
+  Button,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FC } from "react";
+import {
+  FontAwesomeIcon,
+  FontAwesomeIconProps,
+} from "@fortawesome/react-fontawesome";
+import { IconName, IconPrefix } from "@fortawesome/fontawesome-svg-core";
+// import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 
 interface IAnnouncement {
   linkA: string;
@@ -13,8 +28,8 @@ interface IAnnouncement {
 const AnnouncementCard: FC<IAnnouncement> = ({ linkA, title, price, city }) => {
   return (
     <>
-      <Link to={linkA} className="categories">
-        <Card>
+      <Card>
+        <Link to={linkA} className="categories">
           <Card.Img
             variant="top"
             src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
@@ -27,7 +42,9 @@ const AnnouncementCard: FC<IAnnouncement> = ({ linkA, title, price, city }) => {
             }}
             className="pt-2 px-2"
           />
-          <Card.Body className="p-2">
+        </Link>
+        <Link to={linkA} className="categories">
+          <Card.Body className="p-2 pb-0">
             <OverlayTrigger
               placement="top"
               delay={{ show: 250, hide: 400 }}
@@ -46,15 +63,87 @@ const AnnouncementCard: FC<IAnnouncement> = ({ linkA, title, price, city }) => {
                 )}
               </Card.Title>
             </OverlayTrigger>
-            <Card.Text className="pt-1">
-              <b>{price} zł</b>
-              <Card.Subtitle className="pb-1 pt-1">
-                <small className="text-muted">{city}</small>
-              </Card.Subtitle>
-            </Card.Text>
           </Card.Body>
-        </Card>
-      </Link>
+        </Link>
+        <Card.Body className="px-2 pt-0 pb-2">
+          <Row className="pt-1">
+            <Col xs={9}>
+              <Link to={linkA} className="categories">
+                <Card.Text>
+                  <b>{price} zł</b>
+                  <Card.Subtitle className="pb-1 pt-1">
+                    <small className="text-muted">{city}</small>
+                  </Card.Subtitle>
+                </Card.Text>
+              </Link>
+            </Col>
+
+            {/* <Col
+                xs={2}
+                className="pt-1"
+                style={{ textAlign: "right", paddingRight: "15px" }}
+              > */}
+            <Col
+              xs={3}
+              className="pt-1 d-flex justify-content-end"
+              style={{ textAlign: "right" }}
+            >
+              {title.length > 20 ? (
+                <OverlayTrigger
+                  placement="top"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={<Tooltip id="tooltip-disabled">Obserwuj</Tooltip>}
+                >
+                  <Button
+                    variant="light"
+                    className="heartButton"
+                    type="submit"
+                    onClick={() => console.log("klik solid")}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeartSolid}
+                      style={{ height: "28px" }}
+                    />
+                  </Button>
+                </OverlayTrigger>
+              ) : (
+                <OverlayTrigger
+                  placement="top"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={
+                    <Tooltip id="tooltip-disabled">
+                      Usuń z obserwowanych
+                    </Tooltip>
+                  }
+                >
+                  <Button
+                    variant="light"
+                    className="heartButton"
+                    type="submit"
+                    onClick={() => console.log("klik reg")}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeartRegular}
+                      style={{ height: "28px" }}
+                    />
+                  </Button>
+                </OverlayTrigger>
+              )}
+              {/* <FontAwesomeIcon
+                  icon={faHeartSolid}
+                  style={{ height: "30px" }}
+                /> */}
+              {/* <FontAwesomeIcon
+                  icon={faHeartRegular}
+                  style={{ height: "30px" }}
+                /> */}
+              {/* <FontAwesomeIcon icon="fa-regular fa-heart" /> */}
+              {/* <FontAwesomeIcon icon={faHeart} /> */}
+              {/* <FontAwesomeIcon icon={regular("heart")} /> */}
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
     </>
   );
 };
