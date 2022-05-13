@@ -84,18 +84,12 @@ const AnnouncementCard: FC<IAnnouncement> = ({
                 </Card.Text>
               </Link>
             </Col>
-
-            {/* <Col
-                xs={2}
-                className="pt-1"
-                style={{ textAlign: "right", paddingRight: "15px" }}
-              > */}
             <Col
               xs={3}
               className="pt-1 d-flex justify-content-end"
               style={{ textAlign: "right" }}
             >
-              {title.length > 20 ? (
+              {watch == true ? (
                 <OverlayTrigger
                   placement="top"
                   delay={{ show: 250, hide: 400 }}
