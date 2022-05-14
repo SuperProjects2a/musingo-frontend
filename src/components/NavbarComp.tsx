@@ -74,7 +74,6 @@ const NavbarComp = () => {
     ) {
       getU();
     }
-    console.log(user);
   }, []);
 
   const onFundAdd = async () => {
