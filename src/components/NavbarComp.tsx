@@ -36,6 +36,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import FundSuccess from "./funds/FundSuccess";
 import FundFailure from "./funds/FundFailure";
 import { getUser, IUser } from "../services/userService";
+import navigationService from "../services/NavigationService";
 
 const NavbarComp = () => {
   const location = useLocation();
@@ -61,6 +62,7 @@ const NavbarComp = () => {
     setSearchValue(e.target.value);
   };
   useEffect(() => {
+    navigationService.navigation = navigate;
     const getU = async () => {
       const u = await getUser();
       setUser(u);
@@ -73,6 +75,12 @@ const NavbarComp = () => {
       getU();
     }
   }, []);
+
+  const onFundAdd = async () => {
+    const u = await getUser();
+    setUser(u);
+  }
+
   return (
     <>
       <div className="header">
@@ -228,7 +236,7 @@ const NavbarComp = () => {
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/EditOffer" element={<EditOffer />}></Route>
-          <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
+          <Route path="/FundAdd" element={<FundAdd onFundAdd={onFundAdd}></FundAdd>}></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
