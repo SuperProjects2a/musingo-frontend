@@ -7,7 +7,7 @@ export const getUser = () => {
 export const login = (data: any) => {
   return http({method: 'post', url: '/User/login', data: data});
 };
-export const register = (data: any) => {
+export const register = (data: IUserRegisterData) => {
   return http({method: 'post', url: '/User/register', data: data});
 };
 export interface IUser {
