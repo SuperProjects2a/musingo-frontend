@@ -12,7 +12,7 @@ var client = axios.create({
 
 const request = (options: any) => {
     const onSuccess = (response: any) => {
-        return response.data;
+        return response;
     }
 
     const onError = (error: any) => {
