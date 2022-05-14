@@ -24,6 +24,7 @@ export interface IUser {
   street: string;
   surname: string;
   walletBalance: string;
+  role: string;
 }
 
 export interface IUserRegisterData {

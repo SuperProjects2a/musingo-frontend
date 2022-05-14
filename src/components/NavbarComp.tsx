@@ -74,6 +74,7 @@ const NavbarComp = () => {
     ) {
       getU();
     }
+    console.log(user);
   }, []);
 
   const onFundAdd = async () => {
@@ -139,11 +140,17 @@ const NavbarComp = () => {
                   Inne
                 </NavDropdown.Item>
               </NavDropdown>
+              {user?.role.includes('Admin') && (
+                <Nav.Link as={Link} to={"/AdminPanel"} className="mb-auto mt-auto">
+                  Admin panel
+                </Nav.Link>
+              )}
               {user == null || (
                 <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
                   Wiadomości
                 </Nav.Link>
               )}
+             
               {user == null && (
                 <Nav.Link
                   as={Link}
