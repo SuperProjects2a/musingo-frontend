@@ -36,6 +36,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import FundSuccess from "./funds/FundSuccess";
 import FundFailure from "./funds/FundFailure";
 import { getUser, IUser } from "../services/userService";
+import navigationService from "../services/NavigationService";
 
 const NavbarComp = () => {
   const location = useLocation();
@@ -61,6 +62,7 @@ const NavbarComp = () => {
     setSearchValue(e.target.value);
   };
   useEffect(() => {
+    navigationService.navigation = navigate;
     const getU = async () => {
       const u = await getUser();
       setUser(u);

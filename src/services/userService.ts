@@ -1,13 +1,14 @@
 import http from "./HTTPcommon";
 
 export const getUser = () => {
-  return http.get("/User").then((response) => response.data);
+  return http({method: 'get', url: '/User'})
+    .then((response) => response.data);
 };
 export const login = (data: any) => {
-  return http.post("/User/login", data);
+  return http({method: 'post', url: '/User/login', data: data});
 };
 export const register = (data: any) => {
-  return http.post("User/register", data);
+  return http({method: 'post', url: '/User/register', data: data});
 };
 export interface IUser {
   avgRating: number;
