@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import {addRoleAd, IUpdateRole} from "../../services/adminService";
+import {addRole, IUpdateRole} from "../../services/adminService";
 
 const AddRole = () => {
     const addOfferSchema = Yup.object().shape({
@@ -33,11 +33,11 @@ const AddRole = () => {
               validationSchema={addOfferSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                const addRole: IUpdateRole = {
+                const role: IUpdateRole = {
                   userId: Number(values.id),
                   role: Number(values.category)
                 }
-                addRoleAd(addRole)
+                addRole(role)
                   .then((result) => {
                     if(result.status === 200){
                       resetForm();

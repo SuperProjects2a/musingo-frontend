@@ -1,11 +1,11 @@
 import http from "./HTTPcommon";
 
 
-export const addRoleAd = (data:IUpdateRole) =>{
+export const addRole = (data:IUpdateRole) =>{
     return http({method: 'post', url: 'Admin/AddRole',data:data});
 };
 
-export const removeRoleAd = (data:IUpdateRole) =>{
+export const removeRole = (data:IUpdateRole) =>{
     return http({method: 'post', url: 'Admin/RemoveRole',data:data});
 };
 

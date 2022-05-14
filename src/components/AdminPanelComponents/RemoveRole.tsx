@@ -2,13 +2,14 @@ import React from 'react'
 import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import {removeRole, IUpdateRole} from "../../services/adminService";
 
 const RemoveRole = () => {
     const addOfferSchema = Yup.object().shape({
       category: Yup.string()
         .required("Wybierz rolę")
         .matches(
-          /^[2,4]*$/i,
+          /^[1,2,4]*$/i,
           "Wybierz rolę"
         ),
       id: Yup.string()
@@ -32,6 +33,16 @@ const RemoveRole = () => {
               validationSchema={addOfferSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
+                const role: IUpdateRole = {
+                  userId: Number(values.id),
+                  role: Number(values.category)
+                }
+                removeRole(role)
+                  .then((result) => {
+                    if(result.status === 200){
+                      resetForm();
+                  }
+                });
                 resetForm();
                 setSubmitting(false);
               }}
@@ -85,6 +96,7 @@ const RemoveRole = () => {
                           <option> Wybierz rolę </option>
                           <option value="4">Administrator</option>
                           <option value="2">Moderator</option>
+                          <option value="1">User</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                           {errors.category}
