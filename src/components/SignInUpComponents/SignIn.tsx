@@ -12,6 +12,7 @@ const SignIn = () => {
   });
 
   const [isError,setIsError] = useState(false);
+  const [isBan,setIsBan] = useState(false);
 
   return (
     <div className="p-4">
@@ -28,11 +29,16 @@ const SignIn = () => {
               await login(values)
                 .then((res) => {
                   setIsError(false);
+                  setIsBan(false);
                   localStorage.setItem("token", res.headers.authtoken);
                   window.location.href = "/";
                 })
                 .catch((err) => {
-                  setIsError(true);
+                  if(err.status === 404)
+                    setIsError(true);
+                  if(err.status === 500)
+                    setIsBan(true);
+
                 });
               setSubmitting(false);
             }}
@@ -83,6 +89,9 @@ const SignIn = () => {
                 </Form.Group>
                 {isError == true &&<div className=" mt-3">
                  <p className="text-danger" style={{textAlign: 'center'}}>Nieprawidłowy login lub hasło</p>
+                </div>}
+                {isBan == true &&<div className=" mt-3">
+                 <p className="text-danger" style={{textAlign: 'center'}}>Zostałeś zbanowany nie możesz się zalogować</p>
                 </div>}
                 <div className="d-grid my-4">
                   <Button
