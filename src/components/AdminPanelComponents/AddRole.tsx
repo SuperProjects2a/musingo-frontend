@@ -2,13 +2,14 @@ import React from 'react'
 import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import {addRoleAd, IUpdateRole} from "../../services/adminService";
 
 const AddRole = () => {
     const addOfferSchema = Yup.object().shape({
       category: Yup.string()
         .required("Wybierz rolę")
         .matches(
-          /^[2,4]*$/i,
+          /^[1,2,4]*$/i,
           "Wybierz rolę"
         ),
       id: Yup.string()
@@ -32,7 +33,16 @@ const AddRole = () => {
               validationSchema={addOfferSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                resetForm();
+                const addRole: IUpdateRole = {
+                  userId: Number(values.id),
+                  role: Number(values.category)
+                }
+                addRoleAd(addRole)
+                  .then((result) => {
+                    if(result.status === 200){
+                      resetForm();
+                  }
+                });
                 setSubmitting(false);
               }}
             >
@@ -85,6 +95,7 @@ const AddRole = () => {
                           <option> Wybierz rolę </option>
                           <option value="4">Administrator</option>
                           <option value="2">Moderator</option>
+                          <option value="1">User</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                           {errors.category}
