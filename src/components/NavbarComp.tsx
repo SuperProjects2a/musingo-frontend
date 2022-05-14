@@ -73,6 +73,12 @@ const NavbarComp = () => {
       getU();
     }
   }, []);
+
+  const onFundAdd = async () => {
+    const u = await getUser();
+    setUser(u);
+  }
+
   return (
     <>
       <div className="header">
@@ -228,7 +234,7 @@ const NavbarComp = () => {
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/EditOffer" element={<EditOffer />}></Route>
-          <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
+          <Route path="/FundAdd" element={<FundAdd onFundAdd={onFundAdd}></FundAdd>}></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
