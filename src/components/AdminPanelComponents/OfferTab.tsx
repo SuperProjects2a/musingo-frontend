@@ -128,7 +128,7 @@ return (
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      Zablokuj ofertę
+                      Zablokuj/odblokuj ofertę
                     </Button>
                   </Col>
                 </Row>

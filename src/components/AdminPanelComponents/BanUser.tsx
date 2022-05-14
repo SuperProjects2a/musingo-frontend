@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { userBanUnban} from "../../services/adminService"
 
 const BanUser = () => {
     const addOfferSchema = Yup.object().shape({
@@ -32,7 +33,13 @@ const BanUser = () => {
               validationSchema={addOfferSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                resetForm();
+                userBanUnban(Number(values.id))
+                  .then(result =>{
+                    if(result.status === 200)
+                    {
+                      resetForm();
+                    }
+                  });
                 setSubmitting(false);
               }}
             >
@@ -127,7 +134,7 @@ const BanUser = () => {
                         type="submit"
                         disabled={isSubmitting}
                       >
-                        Zablokuj konto
+                        Zablokuj/odblokuj konto
                       </Button>
                     </Col>
                   </Row>
