@@ -4,7 +4,10 @@ import http from "./HTTPcommon";
 export const addRole = (data:IUpdateRole) =>{
     return http({method: 'post', url: 'Admin/AddRole',data:data});
 };
-
+export const reportedOffers = () =>{
+    return http({method: 'get', url: 'Offer/ReportedOffers'})
+           .then(response => response.data);
+};
 export const removeRole = (data:IUpdateRole) =>{
     return http({method: 'post', url: 'Admin/RemoveRole',data:data});
 };

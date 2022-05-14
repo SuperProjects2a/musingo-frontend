@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import {offerBanUnban} from "../../services/adminService"
+import {offerBanUnban,reportedOffers} from "../../services/adminService"
 
 const OfferTab = () => {
   const addOfferSchema = Yup.object().shape({
@@ -18,6 +18,20 @@ const OfferTab = () => {
     .matches(/^[1-9][0-9]*$/, "Wprowdź poprawne ID")
     .min(1, "Wprowdź poprawne ID")
   });
+  const [reportedOff,setReportedOff] = useState({});
+
+  const getReportedOffers =  () => {
+    reportedOffers()
+      .then(result => {
+        setReportedOff(result);
+      });
+  }
+  
+  useEffect(() => {
+    getReportedOffers();
+    
+  },[])
+
 return (
   <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
     <Container
