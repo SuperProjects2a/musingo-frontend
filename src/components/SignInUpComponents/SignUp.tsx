@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Col, Button, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { register, IUserRegisterData } from "../../services/userService";
 
 const SignUp = () => {
   const registerSchema = Yup.object().shape({
@@ -61,8 +62,23 @@ const SignUp = () => {
             validationSchema={registerSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              resetForm();
-              setSubmitting(false);
+              const userRegisterData: IUserRegisterData = {
+                name: values.name,
+                surname: values.surname,
+                email: values.email,
+                phoneNumber: values.phoneNumber,
+                acceptedTOS: true,
+                password: values.password
+
+              };
+              register(userRegisterData)
+                .then((result) => {
+                  if(result.status === 200){
+                    resetForm();
+                    setSubmitting(false);
+                  }
+                })
+              
             }}
           >
             {({

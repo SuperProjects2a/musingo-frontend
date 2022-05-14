@@ -6,7 +6,7 @@ export const getUser = () => {
 export const login = (data: any) => {
   return http.post("/User/login", data);
 };
-export const register = (data: any) => {
+export const register = (data: IUserRegisterData) => {
   return http.post("User/register", data);
 };
 export interface IUser {
