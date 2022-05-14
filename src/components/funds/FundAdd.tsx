@@ -28,9 +28,15 @@ const FundAddOption = ({ image, amount }: FundOption) => {
             <Image src={image} fluid style={{ width: 200, height: 200 }}></Image>
             <button className='btn btn-success' onClick={
                 () => {
-                    if (addFunds(amount)) {
-                        navigate('/FundSuccess');
-                    }
+                    addFunds(amount)
+                        .then(result => {
+                            if(result.status === 200){
+                                navigate('/FundSuccess');
+                            } else {
+                                navigate('/FundFailure');
+                            }
+                        })
+                    
                 }
             }>Wybierz</button>
         </div>
