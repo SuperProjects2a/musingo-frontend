@@ -24,3 +24,12 @@ export interface IUser {
   surname: string;
   walletBalance: string;
 }
+
+export interface IUserRegisterData {
+  name: string,
+  surname: string,
+  email: string,
+  phoneNumber: string,
+  acceptedTOS: boolean,
+  password: string
+}
