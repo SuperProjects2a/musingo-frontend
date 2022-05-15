@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table, Button } from "react-bootstrap";
+import { Container, Table, Button, Accordion } from "react-bootstrap";
 import { reportedOffers } from "../../services/adminService";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/js/src/collapse.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const OfferList = () => {
   interface IReportOffer {
@@ -15,6 +15,7 @@ const OfferList = () => {
     title: string;
     reports: IReport[];
     owner: IUser;
+    isVisible: boolean;
   }
   interface IReport {
     id: number;
@@ -42,6 +43,7 @@ const OfferList = () => {
   useEffect(() => {
     getReportedOffers();
   }, []);
+
   return (
     <Container className="py-2 px-2 px-lg-4" fluid>
       <Table striped responsive bordered hover style={{ textAlign: "left" }}>
@@ -49,15 +51,8 @@ const OfferList = () => {
           <tr>
             <th>ID</th>
             <th>Tytuł</th>
+            <th>Sprzedający</th>
             <th>Opcje</th>
-            {/* <th>
-              <Table striped responsive bordered hover>
-                <thead>
-                  <tr>Powód</tr>
-                  <tr>Komentarz</tr>
-                </thead>
-              </Table>
-            </th> */}
           </tr>
         </thead>
         <tbody>
@@ -66,68 +61,75 @@ const OfferList = () => {
               <tr>
                 <td>{off.id}</td>
                 <td>{off.title}</td>
+                <td>{off.owner.email}</td>
                 <td>
                   {off.isBanned == true ? (
                     <>
-                      <Button variant="dark">Odbanuj</Button>
+                      <Button
+                        variant="dark"
+                        style={{ marginRight: "5px" }}
+                        className="mb-1"
+                      >
+                        Odbanuj
+                      </Button>
                     </>
                   ) : (
                     <>
-                      <Button variant="dark">Zbanuj</Button>
-                      <Button variant="dark" className="mx-1">
+                      <Button
+                        variant="dark"
+                        style={{ marginRight: "5px" }}
+                        className="mb-1"
+                      >
+                        Zbanuj
+                      </Button>
+                      <Button
+                        variant="dark"
+                        style={{ marginRight: "5px" }}
+                        className="mb-1"
+                      >
                         Zobacz ofertę
                       </Button>
                     </>
                   )}
+                  <Button
+                    variant="dark"
+                    className="mb-1"
+                    onClick={() => {
+                      // setReportedOff(o=>({...reportedOff,[off.id].isVisible:true}));
+                    }}
+                  >
+                    Rozwiń
+                    <FontAwesomeIcon
+                      icon={faChevronDown}
+                      className="px-1"
+                    ></FontAwesomeIcon>
+                  </Button>
                 </td>
               </tr>
-              {/* <tr>
-                <th>aaa</th>
-                <th>bbb</th>
-                <tbody>
-                  <td>ddd</td>
-                  <td>ddd</td>
-                </tbody>
-              </tr> */}
-              {/* <tr>
-                <td colSpan={12}>
-                  <Table striped responsive bordered hover>
-                    <thead>
-                      <tr>
-                        <th>aaa</th>
-                        <th>bbb</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <td>ddd</td>
-                      <td>ddd</td>
-                    </tbody>
-                  </Table>
-                </td>
-              </tr> */}
-
-              <tr>
-                <td colSpan={12}>
-                  <Table striped responsive hover>
-                    <thead>
-                      <tr>
-                        <th>Powód</th>
-                        <th>Treść</th>
-                        <th>Użytkownik</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {off.reports.map((report) => (
+              {off.isVisible && (
+                <tr>
+                  <td colSpan={12}>
+                    <Table striped responsive hover>
+                      <thead>
                         <tr>
-                          <td>{report.reason}</td>
-                          <td>{report.text}</td>
-                          <td>{report.reporter.email}</td>
+                          <th>Powód</th>
+                          <th>Treść</th>
+                          <th>Użytkownik</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </td>
-              </tr>
+                      </thead>
+                      <tbody>
+                        {off.reports.map((report) => (
+                          <tr>
+                            <td>{report.reason}</td>
+                            <td>{report.text}</td>
+                            <td>{report.reporter.email}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </td>
+                </tr>
+              )}
             </>
           ))}
         </tbody>
