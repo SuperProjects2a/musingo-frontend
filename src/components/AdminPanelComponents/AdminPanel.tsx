@@ -1,5 +1,6 @@
 import { Tabs, Tab } from "react-bootstrap";
 import OfferTab from "./OfferTab";
+import OfferList from "./OfferList";
 import UserTab from "./UserTab";
 import { useState } from "react";
 
@@ -16,6 +17,9 @@ const AdminPanel = () => {
         >
           <Tab eventKey="Oferty" title="Oferty">
             <OfferTab />
+          </Tab>
+          <Tab eventKey="Lista ofert" title="Lista ofert">
+            <OfferList />
           </Tab>
           <Tab eventKey="Użytkownicy" title="Użytkownicy">
             <UserTab />
