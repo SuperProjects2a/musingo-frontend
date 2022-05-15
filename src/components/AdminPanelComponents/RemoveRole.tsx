@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import {removeRole, IUpdateRole} from "../../services/adminService";
+import { IUser } from '../../services/userService';
 
 const RemoveRole = () => {
     const addOfferSchema = Yup.object().shape({
@@ -12,11 +13,11 @@ const RemoveRole = () => {
           /^[1,2,4]*$/i,
           "Wybierz rolę"
         ),
-      id: Yup.string()
-      .required("To pole jest wymagane")
-      .matches(/^[1-9][0-9]*$/, "Wprowdź poprawne ID")
-      .min(1, "Wprowdź poprawne ID")
+      email: Yup.string()
+      .email("Niepoprawny adres email")
+      .required("Prosze wpisać adres email")
     });
+    const [user,setUser] =useState<IUser|null>(null);
   return (
     <div >
       <Container
@@ -27,19 +28,19 @@ const RemoveRole = () => {
             <Formik
               initialValues={{
                 category: "",
-                description: "",
-                id: "",
+                email: "",
               }}
               validationSchema={addOfferSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
                 const role: IUpdateRole = {
-                  userId: Number(values.id),
+                  email: values.email,
                   role: Number(values.category)
                 }
                 removeRole(role)
                   .then((result) => {
                     if(result.status === 200){
+                      setUser(result.data);
                       resetForm();
                   }
                 });
@@ -61,21 +62,21 @@ const RemoveRole = () => {
                   <Col sm="6">
                     <Form.Group className="py-2">
                       <Form.Label className="labelText">
-                        <strong>ID użytkownika</strong>
+                        <strong>Email użytkownika</strong>
                       </Form.Label>
                       <Form.Control
                         className="formInputs"
-                        name="id"
+                        name="email"
                         type="text"
-                        placeholder="ID użytkownika"
-                        autoComplete="id"
-                        value={values.id}
+                        placeholder="Email użytkownika"
+                        autoComplete="email"
+                        value={values.email}
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        isInvalid={touched.id && !!errors.id}
+                        isInvalid={touched.email && !!errors.email}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errors.id}
+                        {errors.email}
                       </Form.Control.Feedback>
                     </Form.Group>
                     </Col>
@@ -102,6 +103,13 @@ const RemoveRole = () => {
                           {errors.category}
                         </Form.Control.Feedback>
                       </Form.Group>
+                      {user == null || (
+                    <div className=" mt-3">
+                      <p className="text-success" style={{ textAlign: "left" }}>
+                         Użytkownik {user.email} posiada role: {user.role}
+                      </p>
+                    </div>
+                  )}
                     </Col>
                   </Form.Group>
                   <Row>

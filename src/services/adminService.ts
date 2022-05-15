@@ -21,6 +21,6 @@ export const offerBanUnban = (offerId:number) =>{
 };
 
 export interface IUpdateRole{
-    userId:number;
+    email:string;
     role:number;
 }
