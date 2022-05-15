@@ -12,8 +12,8 @@ export const removeRole = (data:IUpdateRole) =>{
     return http({method: 'post', url: 'Admin/RemoveRole',data:data});
 };
 
-export const userBanUnban = (userId:number) =>{
-    return http({method: 'post', url: `Admin/UserBanUnban/${userId}`});
+export const userBanUnban = (email:string) =>{
+    return http({method: 'post', url: `Admin/UserBanUnban/${email}`});
 };
 
 export const offerBanUnban = (offerId:number) =>{

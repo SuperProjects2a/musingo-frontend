@@ -1,81 +1,91 @@
-import React from 'react'
+import React, { useState } from "react";
 import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { userBanUnban} from "../../services/adminService"
+import { userBanUnban } from "../../services/adminService";
+import { IUser } from "../../services/userService";
 
 const BanUser = () => {
-    const addOfferSchema = Yup.object().shape({
-      category: Yup.string()
-        .required("Wybierz powód")
-        .matches(
-          /^[Insults,ViolationsOfMusingoRules,Others]*$/i,
-          "Wybierz powód"
-        ),
-      description: Yup.string().required("To pole jest wymagane"),
-      id: Yup.string()
-      .required("To pole jest wymagane")
-      .matches(/^[1-9][0-9]*$/, "Wprowdź poprawne ID")
-      .min(1, "Wprowdź poprawne ID")
-    });
+  const addOfferSchema = Yup.object().shape({
+    // category: Yup.string()
+    //   .required("Wybierz powód")
+    //   .matches(
+    //     /^[Insults,ViolationsOfMusingoRules,Others]*$/i,
+    //     "Wybierz powód"
+    //   ),
+    // description: Yup.string().required("To pole jest wymagane"),
+    email: Yup.string()
+      .email("Niepoprawny adres email")
+      .required("Prosze wpisać adres email"),
+  });
+  const [user, setUser] = useState<IUser | null>(null);
+
   return (
-    <div >
+    <div>
       <Container
         className="justify-content-center"
         style={{ textAlign: "left" }}
       >
-            <Formik
-              initialValues={{
-                category: "",
-                description: "",
-                id: "",
-              }}
-              validationSchema={addOfferSchema}
-              onSubmit={(values, { setSubmitting, resetForm }) => {
-                setSubmitting(true);
-                userBanUnban(Number(values.id))
-                  .then(result =>{
-                    if(result.status === 200)
-                    {
-                      resetForm();
-                    }
-                  });
-                setSubmitting(false);
-              }}
-            >
-              {({
-                handleSubmit,
-                handleChange,
-                handleBlur,
-                touched,
-                values,
-                errors,
-                isSubmitting,
-              }) => (
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group>
-                  <Col sm="6">
-                    <Form.Group className="py-2">
-                      <Form.Label className="labelText">
-                        <strong>ID użytkownika</strong>
-                      </Form.Label>
-                      <Form.Control
-                        className="formInputs"
-                        name="id"
-                        type="text"
-                        placeholder="ID użytkownika"
-                        autoComplete="id"
-                        value={values.id}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        isInvalid={touched.id && !!errors.id}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.id}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    </Col>
-                    <Col sm="6">
+        <Formik
+          initialValues={{
+            // category: "",
+            // description: "",
+            email: "",
+          }}
+          validationSchema={addOfferSchema}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            setSubmitting(true);
+            userBanUnban(values.email).then((result) => {
+              if (result.status === 200) {
+                setUser(result.data);
+                resetForm();
+              }
+            });
+            setSubmitting(false);
+          }}
+        >
+          {({
+            handleSubmit,
+            handleChange,
+            handleBlur,
+            touched,
+            values,
+            errors,
+            isSubmitting,
+          }) => (
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <Col sm="6">
+                  <Form.Group className="py-2">
+                    <Form.Label className="labelText">
+                      <strong>Email użytkownika</strong>
+                    </Form.Label>
+                    <Form.Control
+                      className="formInputs"
+                      name="email"
+                      type="text"
+                      placeholder="Email użytkownika"
+                      autoComplete="email"
+                      value={values.email}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      isInvalid={touched.email && !!errors.email}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.email}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  {user == null || (
+                    <div className=" mt-3">
+                      <p className="text-success" style={{ textAlign: "left" }}>
+                        {user.isBanned == true
+                          ? `Użytkownik ${user.email} został pomyślnie zbanowany`
+                          : `Użytkownik ${user.email} został pomyślnie odbanowany`}
+                      </p>
+                    </div>
+                  )}
+                </Col>
+                {/* <Col sm="6">
                       <Form.Group className="py-2">
                         <Form.Label className="labelText">
                           <strong>Powód</strong>
@@ -98,8 +108,8 @@ const BanUser = () => {
                           {errors.category}
                         </Form.Control.Feedback>
                       </Form.Group>
-                    </Col>
-                    <Form.Group className="py-2">
+                    </Col> */}
+                {/* <Form.Group className="py-2">
                       <Form.Label className="labelText">
                         <strong>Komentarz</strong>
                       </Form.Label>
@@ -124,26 +134,26 @@ const BanUser = () => {
                       <Form.Control.Feedback type="invalid">
                         {errors.description}
                       </Form.Control.Feedback>
-                    </Form.Group>
-                  </Form.Group>
-                  <Row>
-                    <Col>
-                      <Button
-                        style={{ float: "right" }}
-                        variant="dark"
-                        type="submit"
-                        disabled={isSubmitting}
-                      >
-                        Zablokuj/odblokuj konto
-                      </Button>
-                    </Col>
-                  </Row>
-                </Form>
-              )}
-            </Formik>
+                    </Form.Group> */}
+              </Form.Group>
+              <Row>
+                <Col>
+                  <Button
+                    style={{ float: "right" }}
+                    variant="dark"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    Zablokuj/odblokuj konto
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          )}
+        </Formik>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default BanUser
+export default BanUser;
