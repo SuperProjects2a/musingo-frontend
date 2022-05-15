@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
+import { Container, Form, Col, Row, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { offerBanUnban, reportedOffers } from "../../services/adminService";
