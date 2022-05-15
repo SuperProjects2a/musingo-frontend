@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Accordion } from "react-bootstrap";
 import { reportedOffers } from "../../services/adminService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown,faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { offerBanUnban } from "../../services/adminService"
 
 const OfferList = () => {
@@ -135,9 +135,9 @@ const OfferList = () => {
                       );
                     }}
                   >
-                    Rozwiń
+                    {off.isVisible == true ? "Zwiń":"Rozwiń"}
                     <FontAwesomeIcon
-                      icon={faChevronDown}
+                      icon={off.isVisible == true ? faChevronUp:faChevronDown}
                       className="px-1"
                     ></FontAwesomeIcon>
                   </Button>
