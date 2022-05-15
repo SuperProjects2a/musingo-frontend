@@ -18,42 +18,6 @@ const OfferTab = () => {
       .matches(/^[1-9][0-9]*$/, "Wprowdź poprawne ID")
       .min(1, "Wprowdź poprawne ID"),
   });
-  interface IReportOffer {
-    cost: number;
-    id: number;
-    imageUrl: null;
-    isBanned: boolean;
-    itemCategory: string;
-    offerStatus: string;
-    title: string;
-    reports: IReport[];
-  }
-  interface IReport {
-    id: number;
-    reason: string;
-    text: string;
-    reporter: IUser;
-  }
-  interface IUser {
-    avgRating: number;
-    email: string;
-    imageUrl: null;
-    name: string;
-    phoneNumber: string;
-    role: string;
-    surname: string;
-  }
-  const [reportedOff, setReportedOff] = useState<IReportOffer[]>();
-
-  const getReportedOffers = () => {
-    reportedOffers().then((result) => {
-      setReportedOff(result);
-    });
-  };
-
-  useEffect(() => {
-    getReportedOffers();
-  }, []);
 
   return (
     <div className="px-1 px-md-2 px-lg-4 ">

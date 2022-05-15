@@ -18,7 +18,7 @@ const AdminPanel = () => {
           <Tab eventKey="Oferty" title="Oferty">
             <OfferTab />
           </Tab>
-          <Tab eventKey="Lista ofert" title="Lista ofert">
+          <Tab eventKey="Lista ofert" title="Zgłoszone oferty">
             <OfferList />
           </Tab>
           <Tab eventKey="Użytkownicy" title="Użytkownicy">
