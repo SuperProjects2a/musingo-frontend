@@ -7,12 +7,8 @@ import { offerBanUnban } from "../../services/adminService"
 
 const OfferList = () => {
   interface IReportOffer {
-    cost: number;
     id: number;
-    imageUrl: null;
     isBanned: boolean;
-    itemCategory: string;
-    offerStatus: string;
     title: string;
     reports: IReport[];
     owner: IUser;
@@ -25,13 +21,7 @@ const OfferList = () => {
     reporter: IUser;
   }
   interface IUser {
-    avgRating: number;
     email: string;
-    imageUrl: null;
-    name: string;
-    phoneNumber: string;
-    role: string;
-    surname: string;
   }
   const [reportedOff, setReportedOff] = useState<IReportOffer[]>();
 
