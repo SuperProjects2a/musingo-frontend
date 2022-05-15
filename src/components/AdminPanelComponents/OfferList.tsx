@@ -3,6 +3,7 @@ import { Container, Table, Button, Accordion } from "react-bootstrap";
 import { reportedOffers } from "../../services/adminService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { offerBanUnban } from "../../services/adminService"
 
 const OfferList = () => {
   interface IReportOffer {
@@ -69,6 +70,21 @@ const OfferList = () => {
                         variant="dark"
                         style={{ marginRight: "5px" }}
                         className="mb-1"
+                        onClick={() => {
+                          offerBanUnban(off.id)
+                            .then(result =>{
+                              if(result.status === 200)
+                              {
+                                setReportedOff(
+                                  reportedOff.map((item) =>
+                                    item.id === off.id
+                                      ? { ...item, isBanned: !item.isBanned }
+                                      : item
+                                  )
+                                );
+                              }
+                            });
+                        }}
                       >
                         Odbanuj
                       </Button>
@@ -79,6 +95,21 @@ const OfferList = () => {
                         variant="dark"
                         style={{ marginRight: "5px" }}
                         className="mb-1"
+                        onClick={() => {
+                          offerBanUnban(off.id)
+                            .then(result =>{
+                              if(result.status === 200)
+                              {
+                                setReportedOff(
+                                  reportedOff.map((item) =>
+                                    item.id === off.id
+                                      ? { ...item, isBanned: !item.isBanned }
+                                      : item
+                                  )
+                                );
+                              }
+                            });
+                        }}
                       >
                         Zbanuj
                       </Button>
@@ -95,7 +126,13 @@ const OfferList = () => {
                     variant="dark"
                     className="mb-1"
                     onClick={() => {
-                      // setReportedOff(o=>({...reportedOff,[off.id].isVisible:true}));
+                      setReportedOff(
+                        reportedOff.map((item) =>
+                          item.id === off.id
+                            ? { ...item, isVisible: !item.isVisible }
+                            : item
+                        )
+                      );
                     }}
                   >
                     Rozwiń
