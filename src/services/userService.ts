@@ -24,6 +24,8 @@ export interface IUser {
   street: string;
   surname: string;
   walletBalance: string;
+  role: string;
+  isBanned: boolean;
 }
 
 export interface IUserRegisterData {

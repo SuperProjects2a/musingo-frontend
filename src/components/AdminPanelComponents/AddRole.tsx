@@ -1,21 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import {addRole, IUpdateRole} from "../../services/adminService";
+import { IUser } from '../../services/userService';
 
 const AddRole = () => {
     const addOfferSchema = Yup.object().shape({
       category: Yup.string()
         .required("Wybierz rolę")
         .matches(
-          /^[2,4]*$/i,
+          /^[1,2,4]*$/i,
           "Wybierz rolę"
         ),
-      id: Yup.string()
-      .required("To pole jest wymagane")
-      .matches(/^[1-9][0-9]*$/, "Wprowdź poprawne ID")
-      .min(1, "Wprowdź poprawne ID")
+      email: Yup.string()
+      .email("Niepoprawny adres email")
+      .required("Prosze wpisać adres email")
     });
+    const [user,setUser] = useState<IUser|null>(null);
   return (
     <div >
       <Container
@@ -26,13 +28,22 @@ const AddRole = () => {
             <Formik
               initialValues={{
                 category: "",
-                description: "",
-                id: "",
+                email: "",
               }}
               validationSchema={addOfferSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                resetForm();
+                const role: IUpdateRole = {
+                  email: values.email,
+                  role: Number(values.category)
+                }
+                addRole(role)
+                  .then((result) => {
+                    if(result.status === 200){
+                      setUser(result.data);
+                      resetForm();
+                  }
+                });
                 setSubmitting(false);
               }}
             >
@@ -50,21 +61,21 @@ const AddRole = () => {
                   <Col sm="6">
                     <Form.Group className="py-2">
                       <Form.Label className="labelText">
-                        <strong>ID użytkownika</strong>
+                        <strong>Email użytkownika</strong>
                       </Form.Label>
                       <Form.Control
                         className="formInputs"
-                        name="id"
+                        name="email"
                         type="text"
-                        placeholder="ID użytkownika"
-                        autoComplete="id"
-                        value={values.id}
+                        placeholder="Email użytkownika"
+                        autoComplete="email"
+                        value={values.email}
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        isInvalid={touched.id && !!errors.id}
+                        isInvalid={touched.email && !!errors.email}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errors.id}
+                        {errors.email}
                       </Form.Control.Feedback>
                     </Form.Group>
                     </Col>
@@ -85,11 +96,19 @@ const AddRole = () => {
                           <option> Wybierz rolę </option>
                           <option value="4">Administrator</option>
                           <option value="2">Moderator</option>
+                          <option value="1">User</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                           {errors.category}
                         </Form.Control.Feedback>
                       </Form.Group>
+                      {user == null || (
+                    <div className=" mt-3">
+                      <p className="text-success" style={{ textAlign: "left" }}>
+                         Użytkownik {user.email} posiada role: {user.role}
+                      </p>
+                    </div>
+                  )}
                     </Col>
                   </Form.Group>
                   <Row>
