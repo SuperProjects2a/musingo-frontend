@@ -33,8 +33,10 @@ import ReportOffer from "./DisplayOfferComponents/ReportOffer";
 import { FundAdd } from "./funds/FundAdd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import UserProfile from "./UserProfile";
 import FundSuccess from "./funds/FundSuccess";
 import FundFailure from "./funds/FundFailure";
+import Watch from "./Watch";
 import { getUser, IUser } from "../services/userService";
 import navigationService from "../services/NavigationService";
 
@@ -169,6 +171,20 @@ const NavbarComp = () => {
                 </Nav.Link>
               )}
               {user == null || (
+                <Nav.Link as={Link} to={"/Watch"} className="mb-auto mt-auto">
+                  Obserwowane
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link
+                  as={Link}
+                  to={"/UserProfile"}
+                  className="mb-auto mt-auto"
+                >
+                  Moje konto
+                </Nav.Link>
+              )}
+              {user == null || (
                 <Nav.Link
                   onClick={() => {
                     localStorage.removeItem("token");
@@ -239,12 +255,14 @@ const NavbarComp = () => {
           <Route path="/Test" element={<Test />}></Route>
           <Route path="/Search" element={<Search />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
+          <Route path="/UserProfile" element={<UserProfile />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/EditOffer" element={<EditOffer />}></Route>
           <Route path="/FundAdd" element={<FundAdd onFundAdd={onFundAdd}></FundAdd>}></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
+          <Route path="/Watch" element={<Watch />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
         </Routes>

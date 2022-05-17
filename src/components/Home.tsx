@@ -39,6 +39,7 @@ interface IAnnouncement {
   title: string;
   price: number;
   city: string;
+  watch: boolean;
 }
 
 const Home = () => {

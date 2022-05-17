@@ -184,6 +184,79 @@ input[type="color"]:focus,
   height: 450px;
 }
 
+.userProfileNav
+{
+  width: 100%;
+  background-color: #fff ;
+}
+
+.userProfileNav h5
+{
+  text-align: left !important;
+  padding-left: 16px !important;
+  font-weight: 700 !important;
+}
+
+
+.userProfileNav .nav-tabs{
+  border: none !important;
+  color:rgba(0, 0, 0, 0.7) !important;
+}
+.userProfileNav .nav-tabs .nav-link.active
+{
+  border: none !important;
+  color:rgba(0, 0, 0, 0.8) !important;
+  font-weight: 700 !important;
+}
+
+.userProfileDiv
+{
+  background-color: #e5e5e5 !important;
+  width: 100%;
+  text-align: left !important;
+}
+
+
+
+.userProfileDiv .card-title
+{
+  font-weight: 700 !important;
+}
+
+
+
+.userInfoChangeForm
+{
+  width:330px;
+}
+
+@media (max-width: 400px) {
+  .userInfoChangeForm
+  {
+    width:100%;
+  }
+}
+
+.chargeButton{
+  margin-top: 33px !important;
+  margin-left: 10px !important;
+}
+
+@media (max-width: 443px) {
+  .chargeButton {
+    margin-top: 10px !important;
+    margin-left: 0px !important;
+  }
+}
+
+
+
+@media (max-width: 520px) {
+  .fundingsTable
+  {
+    width: 520px !important;
+  }
+}
 .offerContainerDisplayOffer {
   z-index: 1;
 }
@@ -196,6 +269,17 @@ input[type="color"]:focus,
   padding-right: 7px;
 }
 
+.cardTitle {
+  text-align: left;
+  color: #212529;
+  text-decoration: none;
+  font-weight: 100 !important;
+}
+.cardTitle:hover {
+  color: #212529;
+}
+
+=======
 
 .noSelect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -206,6 +290,7 @@ input[type="color"]:focus,
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
 .tabsdminPanel {
   width: 90vw;
   height: auto;
@@ -213,4 +298,15 @@ input[type="color"]:focus,
   border-radius: 5px;
   margin: auto;
   z-index: 2;
+}
+
+.heartButton{
+  background-color: white!important;
+  border: none!important;
+}
+.heartButton:focus {
+  border-color: rgba(0, 0, 0, 0)!important;
+  -webkit-box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0)!important;
+  -moz-box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0)!important;
+  box-shadow: 0px 0px 0px 4px rgba(65, 67, 69, 0)!important;
 }

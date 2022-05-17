@@ -12,17 +12,17 @@ const SignUp = () => {
     name: Yup.string()
       .required("To pole jest wymagane")
       .min(3, "Wprowadź prawidłowe imię")
-      .max(24, "Wprowadź prawidłowe imię")
+      .max(60, "Wprowadź prawidłowe imię")
       .matches(
-        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}$/i,
+        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,60}$/i,
         "Wprowadzono niedozwolone znaki"
       ),
 
     surname: Yup.string()
       .min(3, "Wprowadź prawidłowe nazwisko")
-      .max(24, "Wprowadź prawidłowe nazwisko")
+      .max(60, "Wprowadź prawidłowe nazwisko")
       .matches(
-        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}$/i,
+        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,60}$/i,
         "Wprowadzono niedozwolone znaki"
       )
       .required("To pole jest wymagane"),
