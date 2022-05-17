@@ -17,7 +17,7 @@ const request = (options: any) => {
 
     const onError = (error: any) => {
         if(error.response) {
-            if(error.response.status === 401){
+            if(error.response.status === 401 || error.response.status === 403){
                 navigationService.navigation('/SignInUp');
             }
         }
