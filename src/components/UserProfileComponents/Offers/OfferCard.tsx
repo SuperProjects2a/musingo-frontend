@@ -97,8 +97,8 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
                 Wypromowane
               </Button>
             )}
-            <Button className="" variant="dark" style={{ width: "100%" }}>
-              Anuluj
+            <Button variant="danger" style={{width: "100%" }}>
+              Usuń
             </Button>
           </div>
         </Card.Body>
