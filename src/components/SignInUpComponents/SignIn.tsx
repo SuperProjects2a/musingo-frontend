@@ -67,7 +67,7 @@ const SignIn = () => {
                     onChange={handleChange}
                     isInvalid={touched.email && !!errors.email}
                   />
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback data-testid ="emailErr" type="invalid">
                     {errors.email}
                   </Form.Control.Feedback>
                 </Form.Group>
