@@ -30,6 +30,7 @@ const SignIn = () => {
                 .then((res) => {
                   setIsError(false);
                   setIsBan(false);
+                  resetForm();
                   localStorage.setItem("token", res.headers.authtoken);
                   window.location.href = "/";
                 })
