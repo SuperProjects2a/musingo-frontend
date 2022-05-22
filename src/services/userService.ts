@@ -10,6 +10,28 @@ export const login = (data: any) => {
 export const register = (data: IUserRegisterData) => {
   return http({method: 'post', url: '/User/register', data: data});
 };
+export const updateProfile = (data:IUpdateUser) => {
+  return http({method:'put',url:'/Profile',data:data})
+}
+export const getProfile = () => {
+  return http({method:'get',url:'/Profile'})
+         .then((response) => response.data);
+}
+export interface IUpdateUser{
+  email:string;
+  name:string;
+  surname:string;
+  oldPassword:string;
+  newPassword:string;
+  imageUrl:string|undefined;
+  phoneNumber:string;
+  city:string;
+  street:string;
+  houseNumber:string;
+  postCode:string;
+  gender:string;
+  birth:null;
+}
 export interface IUser {
   avgRating: number;
   birth: string;
@@ -17,7 +39,7 @@ export interface IUser {
   email: string;
   gender: string;
   houseNumber: string;
-  imageUrl: null;
+  imageUrl: string;
   name: string;
   phoneNumber: string;
   postCode: string;

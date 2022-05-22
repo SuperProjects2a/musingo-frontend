@@ -2,6 +2,9 @@ import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import UploadImage from "./UploadImage";
+import {useState} from "react"
+import { updateProfile, IUpdateUser } from "../../services/userService";
+import ImageUploading, { ImageListType } from "react-images-uploading";
 
 const AddOffer = () => {
   const addOfferSchema = Yup.object().shape({
@@ -38,7 +41,7 @@ const AddOffer = () => {
       .required()
       .oneOf([true], "Wymagana zgoda na przetwarzanie danych osobowych"),
   });
-
+  const [images, setImages] = useState<ImageListType>([]);
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
       <Container
@@ -64,6 +67,26 @@ const AddOffer = () => {
               validationSchema={addOfferSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
+                let u: IUpdateUser = {
+                  email: "",
+                  name: "",
+                  surname: "",
+                  oldPassword: "",
+                  newPassword: "",
+                  imageUrl: images[0].dataURL,
+                  phoneNumber: "",
+                  city: "",
+                  street: "",
+                  houseNumber: "",
+                  postCode: "",
+                  gender: "",
+                  birth: null,
+                };
+                updateProfile(u)
+                .then((result) => {
+                  if(result.status === 200){
+                  }
+                })
                 resetForm();
                 setSubmitting(false);
               }}
@@ -78,7 +101,7 @@ const AddOffer = () => {
                 isSubmitting,
               }) => (
                 <Form onSubmit={handleSubmit}>
-                  <UploadImage />
+                  <UploadImage setImages={setImages} images={images} />
                   <Form.Group className="py-5">
                     <h4>
                       <strong>Informacje o produkcie</strong>

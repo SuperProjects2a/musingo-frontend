@@ -7,12 +7,14 @@ import {
   Col,
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-
+import { getProfile, IUpdateUser } from "../../services/userService";
+import { useState, useEffect } from "react";
+import navigationService from "../../services/NavigationService";
 interface IAnnouncement {
   linkA: string;
   title: string;
@@ -28,13 +30,31 @@ const AnnouncementCard: FC<IAnnouncement> = ({
   city,
   watch,
 }) => {
+  const [user, setUser] = useState<IUpdateUser | null>(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigationService.navigation = navigate;
+    const getU = async () => {
+      const u = await getProfile();
+      setUser(u);
+    };
+
+    if (
+      typeof localStorage.getItem("token") === "string" &&
+      localStorage.getItem("token") !== null
+    ) {
+      getU();
+    }
+    console.log("elo")
+  },[]);
   return (
+    
     <>
       <Card>
         <Link to={linkA} className="categories">
           <Card.Img
             variant="top"
-            src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
+            src={user?.imageUrl}
             style={{
               height: " calc(11vh + 4vw)",
               minHeight: "150px",
