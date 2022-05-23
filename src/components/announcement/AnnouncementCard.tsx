@@ -19,6 +19,7 @@ interface IAnnouncement {
   price: number;
   city: string;
   watch: boolean;
+  imgUrl: string;
 }
 
 const AnnouncementCard: FC<IAnnouncement> = ({
@@ -27,6 +28,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
   price,
   city,
   watch,
+  imgUrl
 }) => {
   return (
     <>
@@ -34,7 +36,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
         <Link to={linkA} className="categories">
           <Card.Img
             variant="top"
-            src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
+            src={imgUrl}
             style={{
               height: " calc(11vh + 4vw)",
               minHeight: "150px",

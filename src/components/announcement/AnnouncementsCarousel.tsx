@@ -74,6 +74,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                   price={announcement.cost}
                   city={"some city"}
                   watch={false}
+                  imgUrl={announcement.imageUrl}
                 />
               </Col>
             ))}
@@ -104,6 +105,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       price={announcement.cost}
                                       city={"some city"}
                                       watch={false}
+                                      imgUrl={announcement.imageUrl}
                                     />
                                   </Col>
                                 ))}
@@ -135,6 +137,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       price={announcement.cost}
                                       city={"some city"}
                                       watch={false}
+                                      imgUrl={announcement.imageUrl}
                                     />
                                   </Col>
                                 ))}
@@ -151,6 +154,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       price={announcement.cost}
                                       city={"some city"}
                                       watch={false}
+                                      imgUrl={announcement.imageUrl}
                                     />
                                   </Col>
                                 ))}
@@ -174,6 +178,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                     price={announcement.cost}
                                     city={"some city"}
                                     watch={false}
+                                    imgUrl={announcement.imageUrl}
                                   />
                                 </Col>
                               ))}
@@ -190,6 +195,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                     price={announcement.cost}
                                     city={"some city"}
                                     watch={false}
+                                    imgUrl={announcement.imageUrl}
                                   />
                                 </Col>
                               ))}
@@ -213,6 +219,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                   price={announcement.cost}
                                   city={"some city"}
                                   watch={false}
+                                  imgUrl={announcement.imageUrl}
                                 />
                               </Col>
                             ))}
@@ -233,6 +240,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                   price={announcement.cost}
                                   city={"some city"}
                                   watch={false}
+                                  imgUrl={announcement.imageUrl}
                                 />
                               </Col>
                             ))}
@@ -256,6 +264,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 price={announcement.cost}
                                 city={"some city"}
                                 watch={false}
+                                imgUrl={announcement.imageUrl}
                               />
                             </Col>
                           ))}
@@ -272,6 +281,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 price={announcement.cost}
                                 city={"some city"}
                                 watch={false}
+                                imgUrl={announcement.imageUrl}
                               />
                             </Col>
                           ))}
@@ -306,6 +316,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                               price={announcement.cost}
                               city={"some city"}
                               watch={false}
+                              imgUrl={announcement.imageUrl}
                             />
                           </Col>
                         ))}

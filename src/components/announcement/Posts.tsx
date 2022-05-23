@@ -27,6 +27,7 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
             price={announcement.cost}
             city={"some city"}
             watch={false}
+            imgUrl={announcement.imageUrl}
           />
         </Col>
       ))}
