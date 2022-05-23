@@ -43,12 +43,11 @@ function App() {
         <Route path="/" element={<LayoutsWithNavbarSearch />}>
           <Route path="/" element={<Home />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
-          <Route path="/Watch" element={<Watch />}></Route>
-          {/* <Route path="/Search" element={<Search />}></Route> */}
+          <Route path="/Search" element={<Search />}></Route>
         </Route>
         <Route path="/" element={<LayoutsWithNavbar />}>
-          <Route path="/Search" element={<Search />}></Route>
           <Route path="/Test" element={<Test />}></Route>
+          <Route path="/Watch" element={<Watch />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/UserProfile" element={<UserProfile />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
