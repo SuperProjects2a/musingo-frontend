@@ -37,6 +37,7 @@ import UserProfile from "./UserProfile";
 import FundSuccess from "./funds/FundSuccess";
 import FundFailure from "./funds/FundFailure";
 import Watch from "./Watch";
+import Error404 from "./errors/Error404";
 import { getUser, IUser } from "../services/userService";
 import navigationService from "../services/NavigationService";
 
@@ -81,7 +82,7 @@ const NavbarComp = () => {
   const onFundAdd = async () => {
     const u = await getUser();
     setUser(u);
-  }
+  };
 
   return (
     <>
@@ -141,8 +142,12 @@ const NavbarComp = () => {
                   Inne
                 </NavDropdown.Item>
               </NavDropdown>
-              {user?.role.includes('Admin') && (
-                <Nav.Link as={Link} to={"/AdminPanel"} className="mb-auto mt-auto">
+              {user?.role.includes("Admin") && (
+                <Nav.Link
+                  as={Link}
+                  to={"/AdminPanel"}
+                  className="mb-auto mt-auto"
+                >
                   Admin panel
                 </Nav.Link>
               )}
@@ -151,7 +156,7 @@ const NavbarComp = () => {
                   Wiadomości
                 </Nav.Link>
               )}
-             
+
               {user == null && (
                 <Nav.Link
                   as={Link}
@@ -259,12 +264,16 @@ const NavbarComp = () => {
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/EditOffer" element={<EditOffer />}></Route>
-          <Route path="/FundAdd" element={<FundAdd onFundAdd={onFundAdd}></FundAdd>}></Route>
+          <Route
+            path="/FundAdd"
+            element={<FundAdd onFundAdd={onFundAdd}></FundAdd>}
+          ></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
           <Route path="/Watch" element={<Watch />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route path="/error404" element={<Error404 />}></Route>
         </Routes>
       </div>
     </>
