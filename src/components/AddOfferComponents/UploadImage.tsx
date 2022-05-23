@@ -11,7 +11,6 @@ export function UploadImage(params:any) {
     addUpdateIndex: number[] | undefined
   ) => {
     // data for submit
-    console.log(imageList, addUpdateIndex);
     params.setImages(imageList as never[]);
   };
 

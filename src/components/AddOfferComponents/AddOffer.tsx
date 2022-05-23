@@ -43,6 +43,7 @@ const AddOffer = () => {
 
   const [images, setImages] = useState<ImageListType>([]);
 
+
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
       <Container
@@ -68,7 +69,13 @@ const AddOffer = () => {
               validationSchema={addOfferSchema}
               onSubmit={async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                resetForm();
+                const urls:string[] = [];
+                images.forEach( async(file) =>{
+                  const url =await uploadFile(file.file!);
+                  urls.push(url);
+                })
+                console.log(urls);
+              //  resetForm();
                 setSubmitting(false);
               }}
             >

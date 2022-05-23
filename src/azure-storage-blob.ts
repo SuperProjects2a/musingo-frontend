@@ -4,7 +4,6 @@
 // THIS IS SAMPLE CODE ONLY - NOT MEANT FOR PRODUCTION USE
 import { BlobServiceClient, ContainerClient} from '@azure/storage-blob';
 import { Guid } from "guid-typescript";
-
 const containerName = `images`;
 const sasToken = process.env.REACT_APP_STORAGESASTOKEN;
 const storageAccountName = process.env.REACT_APP_STORAGERESOURCENAME; 
