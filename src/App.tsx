@@ -49,7 +49,30 @@ function App() {
           <Route path="/Test" element={<Test />}></Route>
           <Route path="/Watch" element={<Watch />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
-          <Route path="/UserProfile" element={<UserProfile />}></Route>
+          <Route
+            path="/UserProfile"
+            element={<UserProfile activeTabs="ProfileManagementa" />}
+          ></Route>
+          <Route
+            path="/UserProfile/ProfileManagement"
+            element={<UserProfile activeTabs="ProfileManagement" />}
+          ></Route>
+          <Route
+            path="/UserProfile/Fundings"
+            element={<UserProfile activeTabs="Fundings" />}
+          ></Route>
+          <Route
+            path="/UserProfile/Offers"
+            element={<UserProfile activeTabs="Offers" />}
+          ></Route>
+          <Route
+            path="/UserProfile/AcuiredRatings"
+            element={<UserProfile activeTabs="AcuiredRatings" />}
+          ></Route>
+          <Route
+            path="/UserProfile/Messages"
+            element={<UserProfile activeTabs="Messages" />}
+          ></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/EditOffer" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>

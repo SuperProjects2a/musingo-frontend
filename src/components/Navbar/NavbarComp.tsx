@@ -91,12 +91,6 @@ const NavbarComp = () => {
                   Admin panel
                 </Nav.Link>
               )}
-              {user == null || (
-                <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
-                  Wiadomości
-                </Nav.Link>
-              )}
-
               {user == null && (
                 <Nav.Link
                   as={Link}
@@ -123,13 +117,60 @@ const NavbarComp = () => {
               {user == null || (
                 <Nav.Link
                   as={Link}
-                  to={"/UserProfile"}
+                  to={"/UserProfile/Messages"}
                   className="mb-auto mt-auto"
                 >
-                  Moje konto
+                  Wiadomości
                 </Nav.Link>
               )}
               {user == null || (
+                // <Nav.Link
+                //   as={Link}
+                //   to={"/UserProfile"}
+                //   className="mb-auto mt-auto"
+                // >
+                //   Moje konto
+                // </Nav.Link>
+                <NavDropdown
+                  title="Moje Konto"
+                  id="collasible-nav-dropdown"
+                  className="mb-auto mt-auto"
+                >
+                  <NavDropdown.Item
+                    as={Link}
+                    to={"/UserProfile/ProfileManagement"}
+                  >
+                    Ustawienia konta
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to={"/UserProfile/Fundings"}>
+                    Konto
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to={"/UserProfile/Offers"}>
+                    Ogłoszenia
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={Link}
+                    to={"/UserProfile/AcuiredRatings"}
+                  >
+                    Otrzymane oceny
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to={"/UserProfile/Messages"}>
+                    Wiadomości
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    onClick={() => {
+                      localStorage.removeItem("token");
+                      setUser(null);
+                    }}
+                    as={Link}
+                    to={"/"}
+                  >
+                    Wyloguj się
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
+              {/* {user == null || (
                 <Nav.Link
                   onClick={() => {
                     localStorage.removeItem("token");
@@ -141,7 +182,7 @@ const NavbarComp = () => {
                 >
                   Wyloguj się
                 </Nav.Link>
-              )}
+              )} */}
               {user == null || (
                 <div
                   className="text-white mb-auto mt-auto noSelect p-2"
