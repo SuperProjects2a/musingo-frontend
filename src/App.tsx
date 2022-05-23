@@ -49,10 +49,20 @@ function App() {
           <Route path="/Test" element={<Test />}></Route>
           <Route path="/Watch" element={<Watch />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
+          <Route path="/AddOffer" element={<AddOffer />}></Route>
+          <Route path="/EditOffer" element={<EditOffer />}></Route>
+          <Route path="/AdminPanel" element={<AdminPanel />}></Route>
+          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route path="/Error404" element={<Error404 />}></Route>
+          <Route path="/Error403" element={<Error403 />}></Route>
+          <Route path="/ErrorNotFound" element={<ErrorNotFound />}></Route>
           <Route
-            path="/UserProfile"
-            element={<UserProfile activeTabs="ProfileManagementa" />}
+            path="/FundAdd"
+            element={<FundAdd onFundAdd={FundAdd}></FundAdd>}
           ></Route>
+          <Route path="/FundSuccess" element={<FundSuccess />}></Route>
+          <Route path="/FundFailure" element={<FundFailure />}></Route>
+          {/* UserProfile */}
           <Route
             path="/UserProfile/ProfileManagement"
             element={<UserProfile activeTabs="ProfileManagement" />}
@@ -73,19 +83,6 @@ function App() {
             path="/UserProfile/Messages"
             element={<UserProfile activeTabs="Messages" />}
           ></Route>
-          <Route path="/AddOffer" element={<AddOffer />}></Route>
-          <Route path="/EditOffer" element={<EditOffer />}></Route>
-          <Route path="/AdminPanel" element={<AdminPanel />}></Route>
-          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
-          <Route path="/Error404" element={<Error404 />}></Route>
-          <Route path="/Error403" element={<Error403 />}></Route>
-          <Route path="/ErrorNotFound" element={<ErrorNotFound />}></Route>
-          <Route
-            path="/FundAdd"
-            element={<FundAdd onFundAdd={FundAdd}></FundAdd>}
-          ></Route>
-          <Route path="/FundSuccess" element={<FundSuccess />}></Route>
-          <Route path="/FundFailure" element={<FundFailure />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
