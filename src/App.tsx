@@ -56,37 +56,49 @@ function App() {
     // </BrowserRouter>
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<NavSearch />}>
-            <Route path="/" element={<Home />}></Route>
-          </Route> */}
-        <Route path="/" element={<LayoutsWithNavbar />}>
+        <Route path="/" element={<LayoutsWithNavbarSearch />}>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
+          <Route path="/Watch" element={<Watch />}></Route>
         </Route>
-        <Route path="/Test" element={<Test />}></Route>
-        <Route path="/Search" element={<Search />}></Route>
-        <Route path="/SignInUp" element={<SignInUp />}></Route>
-        <Route path="/UserProfile" element={<UserProfile />}></Route>
-        <Route path="/AddOffer" element={<AddOffer />}></Route>
-        <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
-        <Route path="/EditOffer" element={<EditOffer />}></Route>
-        <Route
-          path="/FundAdd"
-          element={<FundAdd onFundAdd={FundAdd}></FundAdd>}
-        ></Route>
-        <Route path="/FundSuccess" element={<FundSuccess />}></Route>
-        <Route path="/FundFailure" element={<FundFailure />}></Route>
-        <Route path="/Watch" element={<Watch />}></Route>
-        <Route path="/AdminPanel" element={<AdminPanel />}></Route>
-        <Route path="/ReportOffer" element={<ReportOffer />}></Route>
-        <Route path="/Error404" element={<Error404 />}></Route>
-        <Route path="/Error403" element={<Error403 />}></Route>
-        <Route path="/ErrorNotFound" element={<ErrorNotFound />}></Route>
+        <Route path="/" element={<LayoutsWithNavbar />}>
+          <Route path="/Test" element={<Test />}></Route>
+          <Route path="/SignInUp" element={<SignInUp />}></Route>
+          <Route path="/UserProfile" element={<UserProfile />}></Route>
+          <Route path="/AddOffer" element={<AddOffer />}></Route>
+          <Route path="/EditOffer" element={<EditOffer />}></Route>
+          <Route path="/AdminPanel" element={<AdminPanel />}></Route>
+          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route path="/Error404" element={<Error404 />}></Route>
+          <Route path="/Error403" element={<Error403 />}></Route>
+          <Route path="/ErrorNotFound" element={<ErrorNotFound />}></Route>
+          <Route
+            path="/FundAdd"
+            element={<FundAdd onFundAdd={FundAdd}></FundAdd>}
+          ></Route>
+          <Route path="/FundSuccess" element={<FundSuccess />}></Route>
+          <Route path="/FundFailure" element={<FundFailure />}></Route>
+        </Route>
+        {/* <Route path="/Search" element={<Search />}></Route> */}
       </Routes>
     </BrowserRouter>
   );
 }
 
 function LayoutsWithNavbar() {
+  return (
+    <div style={{ textAlign: "center" }}>
+      {/* Your navbar component */}
+      <NavbarComp />
+
+      {/* This Outlet is the place in which react-router will render your components that you need with the navbar */}
+      <Outlet />
+
+      {/* You can add a footer to get fancy in here :) */}
+    </div>
+  );
+}
+function LayoutsWithNavbarSearch() {
   return (
     <div style={{ textAlign: "center" }}>
       {/* Your navbar component */}
