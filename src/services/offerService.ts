@@ -21,6 +21,11 @@ export interface IAnnouncement {
 }
 
 export const getOffers  = () : Promise<IAnnouncement[]> => {
-  return http({method: 'get', url: '/Offer?Sorting=Latest', headers: {"Access-Control-Allow-Origin": "*"}})
+  return http({method: 'get', url: '/Offer?Sorting=Latest'})
+    .then((response) => response.data);
+}
+
+export const getOffer = (id: number): Promise<IAnnouncement> => {
+  return http({method: 'get', url: 'Offer/' + id})
     .then((response) => response.data);
 }

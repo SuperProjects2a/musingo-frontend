@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
+import {useParams} from "react-router-dom";
+
 import { Col, Row, Container } from "react-bootstrap";
 import OfferCarousel from "./OfferCarousel";
 import PersonalInfo from "./PersonalInfo";
 import FavoriteBox from "./FavoriteBox";
 import OfferInfo from "./OfferInfo";
 import AnnouncementsCarousel from "../announcement/AnnouncementsCarousel";
-import { getOffers, IAnnouncement } from "../../services/offerService";
+import { getOffers, getOffer, IAnnouncement } from "../../services/offerService";
 
 const DisplayOffer = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
   const [loading, setLoading] = useState(true);
+  const [offer, setOffer] = useState<IAnnouncement | undefined>(undefined);
+  const {id} = useParams();
 
   useEffect(() => {
+
     const fetchAnnouncements = async () => {
       setLoading(true);
+      let idNumber = Number(id);
+      let offer = await getOffer(idNumber);
       let offers = await getOffers();
       setAnnouncements(offers);
       setLoading(false);
