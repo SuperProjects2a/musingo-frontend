@@ -7,17 +7,9 @@ import PaginationSearch from "./announcement/PaginationSearch";
 import FilterSearch from "./announcement/FilterSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-import data from "../data.json";
+import { getOffers, IAnnouncement } from "../services/offerService";
 
 import axios from "axios";
-
-interface IAnnouncement {
-  link: string;
-  title: string;
-  price: number;
-  city: string;
-  watch: boolean;
-}
 
 const Search = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
@@ -36,7 +28,8 @@ const Search = () => {
     // };
     const fetchAnnouncements = async () => {
       setLoading(true);
-      setAnnouncements(data);
+      let offers = await getOffers();
+      setAnnouncements(offers);
       setLoading(false);
     };
 

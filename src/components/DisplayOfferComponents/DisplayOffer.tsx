@@ -5,15 +5,7 @@ import PersonalInfo from "./PersonalInfo";
 import FavoriteBox from "./FavoriteBox";
 import OfferInfo from "./OfferInfo";
 import AnnouncementsCarousel from "../announcement/AnnouncementsCarousel";
-import data from "../../data.json";
-
-interface IAnnouncement {
-  link: string;
-  title: string;
-  price: number;
-  city: string;
-  watch: boolean;
-}
+import { getOffers, IAnnouncement } from "../../services/offerService";
 
 const DisplayOffer = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
@@ -24,7 +16,8 @@ const DisplayOffer = () => {
   useEffect(() => {
     const fetchAnnouncements = async () => {
       setLoading(true);
-      setAnnouncements(data);
+      let offers = await getOffers();
+      setAnnouncements(offers);
       setLoading(false);
     };
 

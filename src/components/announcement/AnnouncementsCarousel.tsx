@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import AnnouncementCard from "./AnnouncementCard";
 import Posts from "./Posts";
+import { IAnnouncement } from "../../services/offerService";
 
 var settings = {
   dots: false,
@@ -55,14 +56,6 @@ interface IAnnouncements {
   center: boolean;
 }
 
-interface IAnnouncement {
-  link: string;
-  title: string;
-  price: number;
-  city: string;
-  watch: boolean;
-}
-
 const AnnouncementsCarousel: FC<IAnnouncements> = ({
   announcements,
   loading,
@@ -76,11 +69,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
             {announcements.map((announcement, index) => (
               <Col className="px-1 px-sm-1">
                 <AnnouncementCard
-                  linkA={announcement.link}
+                  linkA={""}
                   title={announcement.title}
-                  price={announcement.price}
-                  city={announcement.city}
-                  watch={announcement.watch}
+                  price={announcement.cost}
+                  city={"some city"}
+                  watch={false}
                 />
               </Col>
             ))}
@@ -106,11 +99,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 {announcements.map((announcement, index) => (
                                   <Col className="px-1 px-sm-1">
                                     <AnnouncementCard
-                                      linkA={announcement.link}
+                                      linkA={""}
                                       title={announcement.title}
-                                      price={announcement.price}
-                                      city={announcement.city}
-                                      watch={announcement.watch}
+                                      price={announcement.cost}
+                                      city={"some city"}
+                                      watch={false}
                                     />
                                   </Col>
                                 ))}
@@ -137,11 +130,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 {announcements.map((announcement, index) => (
                                   <Col className="px-1 px-sm-1">
                                     <AnnouncementCard
-                                      linkA={announcement.link}
+                                      linkA={""}
                                       title={announcement.title}
-                                      price={announcement.price}
-                                      city={announcement.city}
-                                      watch={announcement.watch}
+                                      price={announcement.cost}
+                                      city={"some city"}
+                                      watch={false}
                                     />
                                   </Col>
                                 ))}
@@ -153,11 +146,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 {announcements.map((announcement, index) => (
                                   <Col lg={3} xl={2} className="p-1">
                                     <AnnouncementCard
-                                      linkA={announcement.link}
+                                      linkA={""}
                                       title={announcement.title}
-                                      price={announcement.price}
-                                      city={announcement.city}
-                                      watch={announcement.watch}
+                                      price={announcement.cost}
+                                      city={"some city"}
+                                      watch={false}
                                     />
                                   </Col>
                                 ))}
@@ -176,11 +169,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                               {announcements.map((announcement, index) => (
                                 <Col className="px-1 px-sm-1">
                                   <AnnouncementCard
-                                    linkA={announcement.link}
+                                    linkA={""}
                                     title={announcement.title}
-                                    price={announcement.price}
-                                    city={announcement.city}
-                                    watch={announcement.watch}
+                                    price={announcement.cost}
+                                    city={"some city"}
+                                    watch={false}
                                   />
                                 </Col>
                               ))}
@@ -192,11 +185,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                               {announcements.map((announcement, index) => (
                                 <Col lg={3} xl={2} className="p-1">
                                   <AnnouncementCard
-                                    linkA={announcement.link}
+                                    linkA={""}
                                     title={announcement.title}
-                                    price={announcement.price}
-                                    city={announcement.city}
-                                    watch={announcement.watch}
+                                    price={announcement.cost}
+                                    city={"some city"}
+                                    watch={false}
                                   />
                                 </Col>
                               ))}
@@ -215,11 +208,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                             {announcements.map((announcement, index) => (
                               <Col className="px-1 px-sm-1">
                                 <AnnouncementCard
-                                  linkA={announcement.link}
+                                  linkA={""}
                                   title={announcement.title}
-                                  price={announcement.price}
-                                  city={announcement.city}
-                                  watch={announcement.watch}
+                                  price={announcement.cost}
+                                  city={"some city"}
+                                  watch={false}
                                 />
                               </Col>
                             ))}
@@ -235,11 +228,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                             {announcements.map((announcement, index) => (
                               <Col sm={4} md={3} lg={3} xl={2} className="p-1">
                                 <AnnouncementCard
-                                  linkA={announcement.link}
+                                  linkA={""}
                                   title={announcement.title}
-                                  price={announcement.price}
-                                  city={announcement.city}
-                                  watch={announcement.watch}
+                                  price={announcement.cost}
+                                  city={"some city"}
+                                  watch={false}
                                 />
                               </Col>
                             ))}
@@ -258,11 +251,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                           {announcements.map((announcement, index) => (
                             <Col className="px-1 px-sm-1">
                               <AnnouncementCard
-                                linkA={announcement.link}
+                                linkA={""}
                                 title={announcement.title}
-                                price={announcement.price}
-                                city={announcement.city}
-                                watch={announcement.watch}
+                                price={announcement.cost}
+                                city={"some city"}
+                                watch={false}
                               />
                             </Col>
                           ))}
@@ -274,11 +267,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                           {announcements.map((announcement, index) => (
                             <Col sm={4} md={3} lg={3} xl={2} className="p-1">
                               <AnnouncementCard
-                                linkA={announcement.link}
+                                linkA={""}
                                 title={announcement.title}
-                                price={announcement.price}
-                                city={announcement.city}
-                                watch={announcement.watch}
+                                price={announcement.cost}
+                                city={"some city"}
+                                watch={false}
                               />
                             </Col>
                           ))}
@@ -308,11 +301,11 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                             className="p-1"
                           >
                             <AnnouncementCard
-                              linkA={announcement.link}
+                              linkA={""}
                               title={announcement.title}
-                              price={announcement.price}
-                              city={announcement.city}
-                              watch={announcement.watch}
+                              price={announcement.cost}
+                              city={"some city"}
+                              watch={false}
                             />
                           </Col>
                         ))}
