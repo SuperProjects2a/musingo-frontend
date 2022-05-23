@@ -22,7 +22,8 @@ const DisplayOffer = () => {
     const fetchAnnouncements = async () => {
       setLoading(true);
       let idNumber = Number(id);
-      let offer = await getOffer(idNumber);
+      let receivedOffer = await getOffer(idNumber);
+      setOffer(receivedOffer);
       let offers = await getOffers();
       setAnnouncements(offers);
       setLoading(false);
