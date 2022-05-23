@@ -2,10 +2,9 @@ import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import UploadImage from "./UploadImage";
-import uploadFileToBlob, { isStorageConfigured,createBlobInContainer } from "../../azure-storage-blob"
-import {useState,useEffect} from "react";
-import ImageUploading, { ImageListType } from "react-images-uploading";
-import { Guid } from "guid-typescript";
+import { uploadFile } from "../../azure-storage-blob";
+import { useState } from "react";
+import { ImageListType } from "react-images-uploading";
 const AddOffer = () => {
   const addOfferSchema = Yup.object().shape({
     title: Yup.string()
@@ -42,23 +41,7 @@ const AddOffer = () => {
       .oneOf([true], "Wymagana zgoda na przetwarzanie danych osobowych"),
   });
 
-  const storageConfigured = isStorageConfigured();
   const [images, setImages] = useState<ImageListType>([]);
-  const [inputKey, setInputKey] = useState(Math.random().toString(36));
-
-  const onFileUpload = async () => {
-    // prepare UI
-
-    // *** UPLOAD TO AZURE STORAGE ***
-
-    let str = images[0].file!.name.substring(0,images[0].file?.name.indexOf("."));
-
-    const file = new File([images[0].file!],images[0].file!.name.replace(str,Guid.create().toString()), {type: images[0].file!.type});
-    
-    await uploadFileToBlob(file);
-    console.log(`https://musingoblob.blob.core.windows.net/images/${file.name}`);
-    setInputKey(Math.random().toString(36));
-  };
 
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
@@ -85,8 +68,7 @@ const AddOffer = () => {
               validationSchema={addOfferSchema}
               onSubmit={async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                await onFileUpload();
-                //resetForm();
+                resetForm();
                 setSubmitting(false);
               }}
             >

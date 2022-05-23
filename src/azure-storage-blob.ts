@@ -3,6 +3,7 @@
 // <snippet_package>
 // THIS IS SAMPLE CODE ONLY - NOT MEANT FOR PRODUCTION USE
 import { BlobServiceClient, ContainerClient} from '@azure/storage-blob';
+import { Guid } from "guid-typescript";
 
 const containerName = `images`;
 const sasToken = process.env.REACT_APP_STORAGESASTOKEN;
@@ -68,6 +69,16 @@ const uploadFileToBlob = async (file: File | null) => {
   // get list of blobs in container
   //return getBlobsInContainer(containerClient);
 };
-// </snippet_uploadFileToBlob>
+/** Upload blob to azure storage and return image url */
+export const uploadFile = async (fileToUpload:File): Promise<string>  => {
+
+  let str = fileToUpload.name.substring(0,fileToUpload.name.indexOf("."));
+
+  const file = new File([fileToUpload],fileToUpload.name.replace(str,Guid.create().toString()), {type: fileToUpload.type});
+  
+  await uploadFileToBlob(file);
+
+  return `https://musingoblob.blob.core.windows.net/images/${file.name}`;
+};
 
 export default uploadFileToBlob;
