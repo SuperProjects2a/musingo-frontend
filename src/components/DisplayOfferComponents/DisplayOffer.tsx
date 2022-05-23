@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 import { Col, Row, Container } from "react-bootstrap";
 import OfferCarousel from "./OfferCarousel";
@@ -16,6 +16,7 @@ const DisplayOffer = () => {
   const [loading, setLoading] = useState(true);
   const [offer, setOffer] = useState<IAnnouncement | undefined>(undefined);
   const {id} = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -30,7 +31,7 @@ const DisplayOffer = () => {
     };
 
     fetchAnnouncements();
-  }, []);
+  }, [navigate]);
 
   return (
     <Container className="mb-5 offerContainerDisplayOffer" fluid>
