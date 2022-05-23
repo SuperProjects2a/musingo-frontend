@@ -73,9 +73,9 @@ const AddOffer = () => {
                 images.forEach( async(file) =>{
                   const url =await uploadFile(file.file!);
                   urls.push(url);
-                })
-                console.log(urls);
-              //  resetForm();
+                });
+                //this urls will be added to database
+                resetForm();
                 setSubmitting(false);
               }}
             >
