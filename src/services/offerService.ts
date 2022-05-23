@@ -1,5 +1,14 @@
 import http from "./HTTPcommon"
 
+export interface IOwner {
+  name: string;
+  surname: string;
+  email: string;
+  imageUrl: string;
+  avgRating: number;
+  phoneNumber: string;
+}
+
 export interface IAnnouncement {
   id: number;
   title: string;
@@ -8,6 +17,7 @@ export interface IAnnouncement {
   offerStatus: string;
   itemCategory: string;
   description: string;
+  owner: IOwner;
 }
 
 export const getOffers  = () : Promise<IAnnouncement[]> => {
