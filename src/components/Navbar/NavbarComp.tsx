@@ -21,29 +21,52 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
+import { getUser, IUser } from "../../services/userService";
+
+import NavSearch from "./NavSearch";
+import Home from "../Home";
+import Test from "../Test";
+import Search from "../Search";
+import SignInUp from "../SignInUp";
+import DisplayOffer from "../DisplayOfferComponents/DisplayOffer";
+import EditOffer from "../EditOfferComponents/EditOffer";
+import AddOffer from "../AddOfferComponents/AddOffer";
+import AdminPanel from "../AdminPanelComponents/AdminPanel";
+import ReportOffer from "../DisplayOfferComponents/ReportOffer";
+import { FundAdd } from "../funds/FundAdd";
+import UserProfile from "../UserProfile";
+import FundSuccess from "../funds/FundSuccess";
+import FundFailure from "../funds/FundFailure";
+import Watch from "../Watch";
+import Error404 from "../errors/Error404";
+import Error403 from "../errors/Error403";
+import ErrorNotFound from "../errors/ErrorNotFound";
 import navigationService from "../../services/NavigationService";
 
-const NavSearch = () => {
+import { Outlet } from "react-router";
+
+const NavbarComp = () => {
+  // const navigate = useNavigate();
+  // const [searchValue, setSearchValue] = useState("");
   const [user, setUser] = useState<IUser | null>(null);
 
-  const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState("");
-  const handleOnClickEnter = useCallback(
-    () => navigate("/Search", { replace: true }),
-    [navigate]
-  );
-  const handleKeyDown = (e: any) => {
-    if (e.key === "Enter") {
-      setSearchValue(e.target.value);
-      handleOnClickEnter();
-    }
-  };
-  const handleBlur = (e: any) => {
-    setSearchValue(e.target.value);
-  };
-
+  // const handleOnClickEnter = useCallback(
+  //   () => navigate("/Search", { replace: true }),
+  //   [navigate]
+  // );
+  // const handleKeyDown = (e: any) => {
+  //   if (e.key === "Enter") {
+  //     setSearchValue(e.target.value);
+  //     handleOnClickEnter();
+  //   }
+  // };
+  // const handleBlur = (e: any) => {
+  //   setSearchValue(e.target.value);
+  // };
   useEffect(() => {
     const getU = async () => {
       const u = await getUser();
@@ -62,6 +85,7 @@ const NavSearch = () => {
     const u = await getUser();
     setUser(u);
   };
+
   return (
     <>
       <div className="header">
@@ -196,7 +220,7 @@ const NavSearch = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Container className="py-3 d-flex justify-content-center" fluid>
+        {/* <Container className="py-3 d-flex justify-content-center" fluid>
           <Col
             className="px-2 px-sm-3 px-md-5 px-lg-0"
             xs={12}
@@ -229,44 +253,35 @@ const NavSearch = () => {
               </Link>
             </InputGroup>
           </Col>
-        </Container>
+        </Container> */}
+        {/* <Routes>
+          <Route path="/" element={<NavSearch />}>
+            <Route path="/" element={<Home />}></Route>
+          </Route>
+
+          <Route path="/Test" element={<Test />}></Route>
+          <Route path="/Search" element={<Search />}></Route>
+          <Route path="/SignInUp" element={<SignInUp />}></Route>
+          <Route path="/UserProfile" element={<UserProfile />}></Route>
+          <Route path="/AddOffer" element={<AddOffer />}></Route>
+          <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
+          <Route path="/EditOffer" element={<EditOffer />}></Route>
+          <Route
+            path="/FundAdd"
+            element={<FundAdd onFundAdd={FundAdd}></FundAdd>}
+          ></Route>
+          <Route path="/FundSuccess" element={<FundSuccess />}></Route>
+          <Route path="/FundFailure" element={<FundFailure />}></Route>
+          <Route path="/Watch" element={<Watch />}></Route>
+          <Route path="/AdminPanel" element={<AdminPanel />}></Route>
+          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route path="/Error404" element={<Error404 />}></Route>
+          <Route path="/Error403" element={<Error403 />}></Route>
+          <Route path="/ErrorNotFound" element={<ErrorNotFound />}></Route>
+        </Routes> */}
       </div>
     </>
-    // <Container className="py-3 d-flex justify-content-center" fluid>
-    //   <Col
-    //     className="px-2 px-sm-3 px-md-5 px-lg-0"
-    //     xs={12}
-    //     md={11}
-    //     lg={8}
-    //     xl={7}
-    //   >
-    //     <InputGroup>
-    //       <Form.Control
-    //         type="text"
-    //         placeholder="Szukaj przedmiotów"
-    //         className="navBorder"
-    //         style={{ width: "45%" }}
-    //         onKeyDown={(e) => {
-    //           handleKeyDown(e);
-    //         }}
-    //         onBlur={(e) => {
-    //           handleBlur(e);
-    //         }}
-    //       />
-    //       <Link to="/Search">
-    //         <Button
-    //           variant="light"
-    //           id="button-addon2"
-    //           className="navBorder selectColor"
-    //           type="submit"
-    //         >
-    //           <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-    //         </Button>
-    //       </Link>
-    //     </InputGroup>
-    //   </Col>
-    // </Container>
   );
 };
 
-export default NavSearch;
+export default NavbarComp;

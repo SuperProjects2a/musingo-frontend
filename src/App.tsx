@@ -2,7 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./components/Footer";
 import { BrowserRouter } from "react-router-dom";
-import NavbarComp from "./components/NavbarComp";
+import NavbarComp from "./components/Navbar/NavbarComp";
 import React, {
   useCallback,
   useState,
