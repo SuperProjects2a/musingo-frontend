@@ -22,7 +22,7 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
       {announcements.map((announcement, index) => (
         <Col xs={6} sm={4} md={3} lg={3} xl={2} className="p-1">
           <AnnouncementCard
-            linkA={""}
+            linkA={"/DisplayOffer/" + announcement.id}
             title={announcement.title}
             price={announcement.cost}
             city={"some city"}

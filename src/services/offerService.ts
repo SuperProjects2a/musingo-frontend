@@ -1,6 +1,7 @@
 import http from "./HTTPcommon"
 
 export interface IAnnouncement {
+  id: number;
   title: string;
   imageUrl: string;
   cost: number;
