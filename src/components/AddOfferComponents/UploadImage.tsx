@@ -2,8 +2,8 @@ import React from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { Form, Col, Row, Button } from "react-bootstrap";
 
-export function UploadImage() {
-  const [images, setImages] = React.useState([]);
+export function UploadImage(params:any) {
+ 
   const maxNumber = 5;
 
   const onChangeImage = (
@@ -12,14 +12,14 @@ export function UploadImage() {
   ) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
-    setImages(imageList as never[]);
+    params.setImages(imageList as never[]);
   };
 
   return (
     <div>
       <ImageUploading
         multiple
-        value={images}
+        value={params.images}
         onChange={onChangeImage}
         maxNumber={maxNumber}
         maxFileSize={5242880}
