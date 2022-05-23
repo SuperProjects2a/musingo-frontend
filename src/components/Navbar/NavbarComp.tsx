@@ -50,6 +50,11 @@ import navigationService from "../../services/NavigationService";
 import { Outlet } from "react-router";
 
 const NavbarComp = () => {
+  const location = useLocation();
+  // Scroll to top if path changes
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   // const navigate = useNavigate();
   // const [searchValue, setSearchValue] = useState("");
   const [user, setUser] = useState<IUser | null>(null);

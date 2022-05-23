@@ -2,7 +2,6 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./components/Footer";
 import { BrowserRouter } from "react-router-dom";
-import NavbarComp from "./components/Navbar/NavbarComp";
 import React, {
   useCallback,
   useState,
@@ -17,6 +16,8 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import NavbarComp from "./components/Navbar/NavbarComp";
+import NavSearch from "./components/Navbar/NavSearch";
 import Home from "./components/Home";
 import Test from "./components/Test";
 import Search from "./components/Search";
@@ -47,6 +48,7 @@ function App() {
   // useEffect(() => {
   //   navigationService.navigation = navigate;
   // }, []);
+
   return (
     // <BrowserRouter>
     //   <div className="App">
@@ -60,6 +62,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/Watch" element={<Watch />}></Route>
+          <Route path="/Search" element={<Search />}></Route>
         </Route>
         <Route path="/" element={<LayoutsWithNavbar />}>
           <Route path="/Test" element={<Test />}></Route>
@@ -95,6 +98,7 @@ function LayoutsWithNavbar() {
       <Outlet />
 
       {/* You can add a footer to get fancy in here :) */}
+      <Footer />
     </div>
   );
 }
@@ -102,12 +106,13 @@ function LayoutsWithNavbarSearch() {
   return (
     <div style={{ textAlign: "center" }}>
       {/* Your navbar component */}
-      <NavbarComp />
+      <NavSearch />
 
       {/* This Outlet is the place in which react-router will render your components that you need with the navbar */}
       <Outlet />
 
       {/* You can add a footer to get fancy in here :) */}
+      <Footer />
     </div>
   );
 }

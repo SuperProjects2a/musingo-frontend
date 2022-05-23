@@ -24,8 +24,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import navigationService from "../../services/NavigationService";
+import { getUser, IUser } from "../../services/userService";
 
 const NavSearch = () => {
+  const location = useLocation();
+  // Scroll to top if path changes
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const [user, setUser] = useState<IUser | null>(null);
 
   const navigate = useNavigate();
