@@ -124,13 +124,6 @@ const NavbarComp = () => {
                 </Nav.Link>
               )}
               {user == null || (
-                // <Nav.Link
-                //   as={Link}
-                //   to={"/UserProfile"}
-                //   className="mb-auto mt-auto"
-                // >
-                //   Moje konto
-                // </Nav.Link>
                 <NavDropdown
                   title="Moje Konto"
                   id="collasible-nav-dropdown"
@@ -170,19 +163,6 @@ const NavbarComp = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               )}
-              {/* {user == null || (
-                <Nav.Link
-                  onClick={() => {
-                    localStorage.removeItem("token");
-                    setUser(null);
-                  }}
-                  as={Link}
-                  to={"/"}
-                  className="mb-auto mt-auto"
-                >
-                  Wyloguj się
-                </Nav.Link>
-              )} */}
               {user == null || (
                 <div
                   className="text-white mb-auto mt-auto noSelect p-2"
