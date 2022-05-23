@@ -1,7 +1,9 @@
 import React from "react";
+import { FunctionComponent } from "react";
 import { Col, Row, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass, faStar } from "@fortawesome/free-solid-svg-icons";
+import { IOwner } from "../../services/offerService";
 
 const informationsUser = [
   {
@@ -14,7 +16,7 @@ const informationsUser = [
   },
 ];
 
-const PersonalInfo = () => {
+const PersonalInfo: FunctionComponent<{user: IOwner | undefined}> = (props) => {
   return (
     <div >
       {informationsUser.map((informationUser, index) => (
@@ -34,13 +36,13 @@ const PersonalInfo = () => {
         className="pt-2 px-2 pb-2"
       />
       <Col className="personalInfoDisplayOffer">
-        <strong>{informationUser.name} {informationUser.surname}</strong>
+        <strong>{props.user?.name} {props.user?.surname}</strong>
         <Col>
           <FontAwesomeIcon icon={faStar} className="iconsDisplayOffer" />
-          {informationUser.rating}
+          {props.user?.avgRating}
           <small className="text-muted">/5</small>
           <Card.Subtitle className="py-1 px-4">
-            <small className="text-muted">{informationUser.ratingNumOf} ocen</small>
+            <small className="text-muted">{"placeholder"} ocen</small>
           </Card.Subtitle>
         </Col>
         <Col>

@@ -44,7 +44,7 @@ const DisplayOffer = () => {
         </Col>
         <Col xs={{ offset: 12, span: 12, order: 3 }} lg={{ span: 4, order: 2 }}>
           <Col className="pt-2 pt-lg-0  px-lg-3 px-xxl-0">
-            <PersonalInfo />
+            <PersonalInfo user={offer?.owner} />
           </Col>
           <Col className="pt-2 pt-lg-4 px-lg-3 px-xxl-0">
             <FavoriteBox />
@@ -54,7 +54,7 @@ const DisplayOffer = () => {
           xs={{ offset: 12, span: 12, order: 2 }}
           className="pt-2 pt-lg-4 px-lg-4"
         >
-          <OfferInfo />
+          <OfferInfo offer={offer}/>
         </Col>
       </Row>
       <Row className="pt-3 px-4">
