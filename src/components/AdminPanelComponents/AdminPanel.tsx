@@ -3,12 +3,13 @@ import OfferTab from "./OfferTab";
 import OfferList from "./OfferList";
 import UserTab from "./UserTab";
 import { useState } from "react";
+import { Container } from "react-bootstrap";
 
 const AdminPanel = () => {
   const [key, setKey] = useState("Oferty");
   var bgClass = key === "Oferty" ? "UserTab" : "OfferTab";
   return (
-    <div className={`${bgClass} py-sm-4`}>
+    <Container className={`${bgClass} py-5`}>
       <div className="tabsdminPanel">
         <Tabs
           defaultActiveKey="Oferty"
@@ -26,7 +27,7 @@ const AdminPanel = () => {
           </Tab>
         </Tabs>
       </div>
-    </div>
+    </Container>
   );
 };
 

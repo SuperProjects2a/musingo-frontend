@@ -292,7 +292,6 @@ input[type="color"]:focus,
 }
 
 .tabsdminPanel {
-  width: 90vw;
   height: auto;
   background-color: #fff;
   border-radius: 5px;

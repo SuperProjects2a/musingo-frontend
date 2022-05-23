@@ -1,20 +1,9 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./components/Footer";
-import { BrowserRouter } from "react-router-dom";
-import React, {
-  useCallback,
-  useState,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-import {
-  Route,
-  Link,
-  Routes,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 
 import NavbarComp from "./components/Navbar/NavbarComp";
 import NavSearch from "./components/Navbar/NavSearch";
@@ -35,36 +24,30 @@ import Watch from "./components/Watch";
 import Error404 from "./components/errors/Error404";
 import Error403 from "./components/errors/Error403";
 import ErrorNotFound from "./components/errors/ErrorNotFound";
-import navigationService from "./services/NavigationService";
 import { Outlet } from "react-router";
 
-function App() {
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // // Scroll to top if path changes
-  // useLayoutEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [location.pathname]);
-  // useEffect(() => {
-  //   navigationService.navigation = navigate;
-  // }, []);
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+function App() {
   return (
-    // <BrowserRouter>
-    //   <div className="App">
-    //     <NavbarComp />
-    //     <Footer />
-    //   </div>
-    // </BrowserRouter>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LayoutsWithNavbarSearch />}>
           <Route path="/" element={<Home />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/Watch" element={<Watch />}></Route>
-          <Route path="/Search" element={<Search />}></Route>
+          {/* <Route path="/Search" element={<Search />}></Route> */}
         </Route>
         <Route path="/" element={<LayoutsWithNavbar />}>
+          <Route path="/Search" element={<Search />}></Route>
           <Route path="/Test" element={<Test />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/UserProfile" element={<UserProfile />}></Route>
@@ -82,7 +65,6 @@ function App() {
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
         </Route>
-        {/* <Route path="/Search" element={<Search />}></Route> */}
       </Routes>
     </BrowserRouter>
   );
@@ -91,13 +73,9 @@ function App() {
 function LayoutsWithNavbar() {
   return (
     <div style={{ textAlign: "center" }}>
-      {/* Your navbar component */}
       <NavbarComp />
-
-      {/* This Outlet is the place in which react-router will render your components that you need with the navbar */}
+      <ScrollToTop />
       <Outlet />
-
-      {/* You can add a footer to get fancy in here :) */}
       <Footer />
     </div>
   );
@@ -105,76 +83,11 @@ function LayoutsWithNavbar() {
 function LayoutsWithNavbarSearch() {
   return (
     <div style={{ textAlign: "center" }}>
-      {/* Your navbar component */}
       <NavSearch />
-
-      {/* This Outlet is the place in which react-router will render your components that you need with the navbar */}
+      <ScrollToTop />
       <Outlet />
-
-      {/* You can add a footer to get fancy in here :) */}
       <Footer />
     </div>
   );
 }
 export default App;
-
-// import "./App.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import Footer from "./components/Footer";
-// import { BrowserRouter } from "react-router-dom";
-// import NavbarComp from "./components/NavbarComp";
-// import React, {
-//   useCallback,
-//   useState,
-//   useEffect,
-//   useLayoutEffect,
-// } from "react";
-// import {
-//   Route,
-//   Link,
-//   Routes,
-//   useNavigate,
-//   useLocation,
-// } from "react-router-dom";
-
-// import Home from "./components/Home";
-// import Test from "./components/Test";
-// import Search from "./components/Search";
-// import SignInUp from "./components/SignInUp";
-// import DisplayOffer from "./components/DisplayOfferComponents/DisplayOffer";
-// import EditOffer from "./components/EditOfferComponents/EditOffer";
-// import AddOffer from "./components/AddOfferComponents/AddOffer";
-// import AdminPanel from "./components/AdminPanelComponents/AdminPanel";
-// import ReportOffer from "./components/DisplayOfferComponents/ReportOffer";
-// import { FundAdd } from "./components/funds/FundAdd";
-// import UserProfile from "./components/UserProfile";
-// import FundSuccess from "./components/funds/FundSuccess";
-// import FundFailure from "./components/funds/FundFailure";
-// import Watch from "./components/Watch";
-// import Error404 from "./components/errors/Error404";
-// import Error403 from "./components/errors/Error403";
-// import ErrorNotFound from "./components/errors/ErrorNotFound";
-// import navigationService from "./services/NavigationService";
-// import { Outlet } from "react-router";
-
-// function App() {
-//   // const navigate = useNavigate();
-//   // const location = useLocation();
-//   // // Scroll to top if path changes
-//   // useLayoutEffect(() => {
-//   //   window.scrollTo(0, 0);
-//   // }, [location.pathname]);
-//   // useEffect(() => {
-//   //   navigationService.navigation = navigate;
-//   // }, []);
-//   return (
-//     <BrowserRouter>
-//       <div className="App">
-//         <NavbarComp />
-//         <Footer />
-//       </div>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
