@@ -2,11 +2,29 @@ import { Card, Form, Button, Table } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-const chanrgeAccountSchema = Yup.object().shape({
-  chargeValue: Yup.number()
-    .typeError("Wprowadź prawidłową kwotę")
-    .positive("Podana kwota nie może być liczbą ujemną"),
-});
+const fundings = [
+  {
+    price: 200,
+    date: "21.03.2010",
+    user: "Patryk Graca",
+    item: "Gitara elektryczna",
+    opinion: "Zobacz opinie",
+  },
+  {
+    price: 200,
+    date: "21.03.2010",
+    user: "Patryk Graca",
+    item: "Gitara elektryczna",
+    opinion: "Zobacz opinie",
+  },
+  {
+    price: 200,
+    date: "21.03.2010",
+    user: "Patryk Graca",
+    item: "Gitara elektryczna",
+    opinion: "Zobacz opinie",
+  },
+];
 
 const Fundings = () => {
   return (
@@ -26,27 +44,19 @@ const Fundings = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>24</td>
-                <td>21.03.2022</td>
-                <td>Maksymilian Średniawa</td>
-                <td>Zaliczenie</td>
-                <td>Zobacz opinie</td>
-              </tr>
-              <tr>
-                <td>420</td>
-                <td>26.03.2022</td>
-                <td>Rafał Kulka</td>
-                <td>Gitara z motywem Animu</td>
-                <td>Zobacz opinie</td>
-              </tr>
-              <tr>
-                <td>-400</td>
-                <td>29.03.2022</td>
-                <td>Patryk Graca</td>
-                <td>Wzmacniasz</td>
-                <td>Zobacz opinie</td>
-              </tr>
+              {fundings.map((funding, index) => (
+                <tr>
+                  <td>{funding.price}</td>
+                  <td>{funding.date}</td>
+                  <td>{funding.user}</td>
+                  <td>{funding.item}</td>
+                  <td>
+                    <a href="#" style={{ textDecoration: "none" }}>
+                      {funding.opinion}
+                    </a>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Card.Body>

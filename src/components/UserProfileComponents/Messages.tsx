@@ -7,6 +7,7 @@ const messages = [
     user: "Patryk Graca",
     title: "Gitara elektryczna",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    unreadMessagesCount: 1,
   },
   {
     link: "/Test",
@@ -14,6 +15,7 @@ const messages = [
     user: "Anna Nowak",
     title: "Kurs gry na pianinie",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    unreadMessagesCount: 0,
   },
   {
     link: "/Test",
@@ -21,6 +23,7 @@ const messages = [
     user: "Jan Kowalski",
     title: "Perkusja",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    unreadMessagesCount: 0,
   },
 ];
 
@@ -56,10 +59,16 @@ const Messages = () => {
                         }}
                       />
                     </Col>
-                    <Col>
-                      <h6>
-                        <b>{message.user}</b> - {message.title}
-                      </h6>
+                    <Col
+                      style={
+                        message.unreadMessagesCount > 0
+                          ? { fontWeight: "700" }
+                          : {}
+                      }
+                    >
+                      <p style={{ fontSize: "20px", margin: "0px" }}>
+                        {message.user} - {message.title}
+                      </p>
                       {message.text.length > 70 ? (
                         <p>{message.text.substring(0, 70)}...</p>
                       ) : (
