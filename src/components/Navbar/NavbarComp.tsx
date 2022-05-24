@@ -46,42 +46,6 @@ const NavbarComp = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto"></Nav>
             <Nav>
-              <NavDropdown
-                title="Kategorie"
-                id="collasible-nav-dropdown"
-                className="mb-auto mt-auto"
-              >
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Gitary
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Dęte
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Klawiszowe
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Perkusyjne
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Smyczkowe
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Mikrofony
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Słuchawki
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Nuty, książki
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Akcesoria
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/Search"}>
-                  Inne
-                </NavDropdown.Item>
-              </NavDropdown>
               {user?.role.includes("Admin") && (
                 <Nav.Link
                   as={Link}
