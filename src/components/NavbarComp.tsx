@@ -37,6 +37,8 @@ import UserProfile from "./UserProfile";
 import FundSuccess from "./funds/FundSuccess";
 import FundFailure from "./funds/FundFailure";
 import Watch from "./Watch";
+import Error404 from "./errors/Error404";
+import Error403 from "./errors/Error403";
 import { getUser, IUser } from "../services/userService";
 import navigationService from "../services/NavigationService";
 
@@ -272,6 +274,8 @@ const NavbarComp = () => {
           <Route path="/Watch" element={<Watch />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route path="/Error404" element={<Error404 />}></Route>
+          <Route path="/Error403" element={<Error403 />}></Route>
         </Routes>
       </div>
     </>
