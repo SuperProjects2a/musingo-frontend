@@ -18,6 +18,10 @@ const informationsOffer = [
 
 
 const OfferInfo: FunctionComponent<{offer: IAnnouncement | undefined}> = (props) => {
+  let date = props.offer ? 
+    new Date(props.offer?.createTime as string).toLocaleDateString() 
+    + ' ' 
+    + new Date(props.offer?.createTime as string).toLocaleTimeString() : '';
   return (
     <div>
       {informationsOffer.map((informationOffer, index) => (
@@ -25,7 +29,7 @@ const OfferInfo: FunctionComponent<{offer: IAnnouncement | undefined}> = (props)
           <Card.Body>
             <Card.Subtitle className="py-1">
               <small className="text-muted">
-                Dodane {"test"}
+                Dodane {date}
               </small>
             </Card.Subtitle>
             <Card.Title className="pt-1">{props.offer?.title}</Card.Title>
