@@ -19,7 +19,7 @@ interface IAnnouncement {
   price: number;
   city: string;
   watch: boolean;
-  imgUrl: string;
+  imgUrls: string[];
 }
 
 const AnnouncementCard: FC<IAnnouncement> = ({
@@ -28,7 +28,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
   price,
   city,
   watch,
-  imgUrl
+  imgUrls
 }) => {
   return (
     <>
@@ -36,7 +36,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
         <Link to={linkA} className="categories">
           <Card.Img
             variant="top"
-            src={imgUrl}
+            src={imgUrls[0]}
             style={{
               height: " calc(11vh + 4vw)",
               minHeight: "150px",

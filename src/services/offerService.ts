@@ -12,7 +12,7 @@ export interface IOwner {
 export interface IAnnouncement {
   id: number;
   title: string;
-  imageUrl: string;
+  imageUrls: string[];
   cost: number;
   offerStatus: string;
   itemCategory: string;
