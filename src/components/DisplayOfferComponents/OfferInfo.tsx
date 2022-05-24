@@ -18,9 +18,7 @@ const informationsOffer = [
 
 
 const OfferInfo: FunctionComponent<{offer: IAnnouncement | undefined}> = (props) => {
-  let date = props.offer ? 
-    new Date(props.offer?.createTime as string).toLocaleString() 
-    : '';
+  let date = new Date(props.offer?.createTime as string).toLocaleString();
   return (
     <div>
       {informationsOffer.map((informationOffer, index) => (
