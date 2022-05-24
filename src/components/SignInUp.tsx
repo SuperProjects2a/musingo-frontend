@@ -7,7 +7,8 @@ const SignInUp = () => {
   const [key, setKey] = useState("Zaloguj się");
   var bgClass = key === "Zaloguj się" ? "bgSignIn" : "bgSignUp";
   return (
-    <div className={`${bgClass} backgroundSignInUp py-sm-4`}>
+    // <div className={`${bgClass} backgroundSignInUp pt-5 `}>
+    <div className={`${bgClass} backgroundSignInUp pt-5 `}>
       <div className="formDiv">
         <Tabs
           defaultActiveKey="Zaloguj się"

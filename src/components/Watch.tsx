@@ -47,7 +47,7 @@ const Watch = () => {
   };
 
   return (
-    <Container fluid style={{ textAlign: "left" }}>
+    <Container fluid style={{ textAlign: "left" }} className=" pt-4 pt-lg-5">
       {loading == true ? (
         <Col
           xs={{ offset: 5 }}
