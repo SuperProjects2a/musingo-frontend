@@ -12,6 +12,7 @@ interface IAnnouncement {
   title: string;
   price: number;
   city: string;
+  watch: boolean;
 }
 
 const Posts: FC<IPost> = ({ announcements, loading }) => {
@@ -32,6 +33,7 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
             title={announcement.title}
             price={announcement.price}
             city={announcement.city}
+            watch={announcement.watch}
           />
         </Col>
       ))}

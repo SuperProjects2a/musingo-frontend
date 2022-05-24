@@ -8,7 +8,12 @@ import {
   Col,
   Form,
 } from "react-bootstrap";
-import React, { useCallback, useState, useLayoutEffect } from "react";
+import React, {
+  useCallback,
+  useState,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import {
   Route,
   Link,
@@ -23,12 +28,17 @@ import SignInUp from "./SignInUp";
 import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
 import EditOffer from "./EditOfferComponents/EditOffer";
 import AddOffer from "./AddOfferComponents/AddOffer";
+import AdminPanel from "./AdminPanelComponents/AdminPanel";
+import ReportOffer from "./DisplayOfferComponents/ReportOffer";
 import { FundAdd } from "./funds/FundAdd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import UserProfile from "./UserProfile";
 import FundSuccess from "./funds/FundSuccess";
 import FundFailure from "./funds/FundFailure";
+import Watch from "./Watch";
+import { getUser, IUser } from "../services/userService";
+import navigationService from "../services/NavigationService";
 
 const NavbarComp = () => {
   const location = useLocation();
@@ -38,6 +48,7 @@ const NavbarComp = () => {
   }, [location.pathname]);
 
   const [searchValue, setSearchValue] = useState("");
+  const [user, setUser] = useState<IUser | null>(null);
   const navigate = useNavigate();
   const handleOnClickEnter = useCallback(
     () => navigate("/Search", { replace: true }),
@@ -51,6 +62,25 @@ const NavbarComp = () => {
   };
   const handleBlur = (e: any) => {
     setSearchValue(e.target.value);
+  };
+  useEffect(() => {
+    navigationService.navigation = navigate;
+    const getU = async () => {
+      const u = await getUser();
+      setUser(u);
+    };
+
+    if (
+      typeof localStorage.getItem("token") === "string" &&
+      localStorage.getItem("token") !== null
+    ) {
+      getU();
+    }
+  }, [navigate]);
+
+  const onFundAdd = async () => {
+    const u = await getUser();
+    setUser(u);
   };
 
   return (
@@ -140,6 +170,79 @@ const NavbarComp = () => {
               <Nav.Link as={Link} to={"/FundAdd"}>
                 <Button className="btn btn-success">Doładuj konto</Button>
               </Nav.Link>
+              {user?.role.includes("Admin") && (
+                <Nav.Link
+                  as={Link}
+                  to={"/AdminPanel"}
+                  className="mb-auto mt-auto"
+                >
+                  Admin panel
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
+                  Wiadomości
+                </Nav.Link>
+              )}
+
+              {user == null && (
+                <Nav.Link
+                  as={Link}
+                  to={"/SignInUp"}
+                  className="mb-auto mt-auto"
+                >
+                  Zaloguj się
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link
+                  as={Link}
+                  to={"/AddOffer"}
+                  className="mb-auto mt-auto"
+                >
+                  Dodaj ogłoszenie
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link as={Link} to={"/Watch"} className="mb-auto mt-auto">
+                  Obserwowane
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link
+                  as={Link}
+                  to={"/UserProfile"}
+                  className="mb-auto mt-auto"
+                >
+                  Moje konto
+                </Nav.Link>
+              )}
+              {user == null || (
+                <Nav.Link
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    setUser(null);
+                  }}
+                  as={Link}
+                  to={"/"}
+                  className="mb-auto mt-auto"
+                >
+                  Wyloguj się
+                </Nav.Link>
+              )}
+              {user == null || (
+                <div
+                  className="text-white mb-auto mt-auto noSelect p-2"
+                  style={{ fontWeight: "bold" }}
+                >
+                  {user.walletBalance} zł
+                </div>
+              )}
+              {user == null || (
+                <Nav.Link as={Link} to={"/FundAdd"}>
+                  <Button className="btn btn-success">Doładuj konto</Button>
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -189,9 +292,15 @@ const NavbarComp = () => {
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
           <Route path="/EditOffer" element={<EditOffer />}></Route>
-          <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
+          <Route
+            path="/FundAdd"
+            element={<FundAdd onFundAdd={onFundAdd}></FundAdd>}
+          ></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
+          <Route path="/Watch" element={<Watch />}></Route>
+          <Route path="/AdminPanel" element={<AdminPanel />}></Route>
+          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
         </Routes>
       </div>
     </>

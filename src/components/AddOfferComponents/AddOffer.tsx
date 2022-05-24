@@ -2,7 +2,9 @@ import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import UploadImage from "./UploadImage";
-
+import { uploadFile } from "../../azure-storage-blob";
+import { useState } from "react";
+import { ImageListType } from "react-images-uploading";
 const AddOffer = () => {
   const addOfferSchema = Yup.object().shape({
     title: Yup.string()
@@ -39,6 +41,9 @@ const AddOffer = () => {
       .oneOf([true], "Wymagana zgoda na przetwarzanie danych osobowych"),
   });
 
+  const [images, setImages] = useState<ImageListType>([]);
+
+
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
       <Container
@@ -62,8 +67,14 @@ const AddOffer = () => {
                 tos: false,
               }}
               validationSchema={addOfferSchema}
-              onSubmit={(values, { setSubmitting, resetForm }) => {
+              onSubmit={async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
+                const urls:string[] = [];
+                images.forEach( async(file) =>{
+                  const url =await uploadFile(file.file!);
+                  urls.push(url);
+                });
+                //this urls will be added to database
                 resetForm();
                 setSubmitting(false);
               }}
@@ -78,7 +89,7 @@ const AddOffer = () => {
                 isSubmitting,
               }) => (
                 <Form onSubmit={handleSubmit}>
-                  <UploadImage />
+                  <UploadImage images={images} setImages={setImages} />
                   <Form.Group className="py-5">
                     <h4>
                       <strong>Informacje o produkcie</strong>

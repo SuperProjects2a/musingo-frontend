@@ -60,6 +60,7 @@ interface IAnnouncement {
   title: string;
   price: number;
   city: string;
+  watch: boolean;
 }
 
 const AnnouncementsCarousel: FC<IAnnouncements> = ({
@@ -79,6 +80,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                   title={announcement.title}
                   price={announcement.price}
                   city={announcement.city}
+                  watch={announcement.watch}
                 />
               </Col>
             ))}
@@ -108,6 +110,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       title={announcement.title}
                                       price={announcement.price}
                                       city={announcement.city}
+                                      watch={announcement.watch}
                                     />
                                   </Col>
                                 ))}
@@ -138,6 +141,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       title={announcement.title}
                                       price={announcement.price}
                                       city={announcement.city}
+                                      watch={announcement.watch}
                                     />
                                   </Col>
                                 ))}
@@ -153,6 +157,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       title={announcement.title}
                                       price={announcement.price}
                                       city={announcement.city}
+                                      watch={announcement.watch}
                                     />
                                   </Col>
                                 ))}
@@ -175,6 +180,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                     title={announcement.title}
                                     price={announcement.price}
                                     city={announcement.city}
+                                    watch={announcement.watch}
                                   />
                                 </Col>
                               ))}
@@ -190,6 +196,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                     title={announcement.title}
                                     price={announcement.price}
                                     city={announcement.city}
+                                    watch={announcement.watch}
                                   />
                                 </Col>
                               ))}
@@ -212,6 +219,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                   title={announcement.title}
                                   price={announcement.price}
                                   city={announcement.city}
+                                  watch={announcement.watch}
                                 />
                               </Col>
                             ))}
@@ -231,6 +239,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                   title={announcement.title}
                                   price={announcement.price}
                                   city={announcement.city}
+                                  watch={announcement.watch}
                                 />
                               </Col>
                             ))}
@@ -253,6 +262,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 title={announcement.title}
                                 price={announcement.price}
                                 city={announcement.city}
+                                watch={announcement.watch}
                               />
                             </Col>
                           ))}
@@ -268,6 +278,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 title={announcement.title}
                                 price={announcement.price}
                                 city={announcement.city}
+                                watch={announcement.watch}
                               />
                             </Col>
                           ))}
@@ -301,6 +312,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                               title={announcement.title}
                               price={announcement.price}
                               city={announcement.city}
+                              watch={announcement.watch}
                             />
                           </Col>
                         ))}
