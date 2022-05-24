@@ -19,12 +19,12 @@ const informationsUser = [
 const PersonalInfo: FunctionComponent<{user: IOwner | undefined, city: string | undefined}> = (props) => {
   return (
     <div >
-      {informationsUser.map((informationUser, index) => (
+      
     <Card className="py-3 px-4">
     <Row>
       <Card.Img
         variant="top"
-        src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
+        src={props.user?.imageUrl}
         style={{
           height: "calc(11vh + 4vw)",
           width: "calc(11vh + 4vw)",
@@ -37,13 +37,11 @@ const PersonalInfo: FunctionComponent<{user: IOwner | undefined, city: string | 
       />
       <Col className="personalInfoDisplayOffer">
         <strong>{props.user?.name} {props.user?.surname}</strong>
-        <Col>
+        <Col className="py-1">
           <FontAwesomeIcon icon={faStar} className="iconsDisplayOffer" />
           {props.user?.avgRating}
           <small className="text-muted">/5</small>
-          <Card.Subtitle className="py-1 px-4">
-            <small className="text-muted">{"placeholder"} ocen</small>
-          </Card.Subtitle>
+          
         </Col>
         <Col className="pb-3">
           <FontAwesomeIcon icon={faCompass} className="iconsDisplayOffer" />
@@ -59,7 +57,7 @@ const PersonalInfo: FunctionComponent<{user: IOwner | undefined, city: string | 
       <strong>Zapytaj o przedmiot</strong>
     </Button>
   </Card>
-      ))}
+      
     </div>
   );
 };
