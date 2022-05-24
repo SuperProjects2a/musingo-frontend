@@ -41,7 +41,7 @@ const DisplayOffer = () => {
           lg={{ span: 8, order: 1 }}
           className="px-lg-4 "
         >
-          <OfferCarousel />
+          <OfferCarousel images={offer?.imageUrls} />
         </Col>
         <Col xs={{ offset: 12, span: 12, order: 3 }} lg={{ span: 4, order: 2 }}>
           <Col className="pt-2 pt-lg-0  px-lg-3 px-xxl-0">
