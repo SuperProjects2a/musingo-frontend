@@ -23,7 +23,6 @@ import FundFailure from "./components/funds/FundFailure";
 import Watch from "./components/Watch";
 import Error404 from "./components/errors/Error404";
 import Error403 from "./components/errors/Error403";
-import ErrorNotFound from "./components/errors/ErrorNotFound";
 import { Outlet } from "react-router";
 
 function ScrollToTop() {
@@ -55,7 +54,6 @@ function App() {
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
           <Route path="/Error404" element={<Error404 />}></Route>
           <Route path="/Error403" element={<Error403 />}></Route>
-          <Route path="/ErrorNotFound" element={<ErrorNotFound />}></Route>
           <Route
             path="/FundAdd"
             element={<FundAdd onFundAdd={FundAdd}></FundAdd>}
