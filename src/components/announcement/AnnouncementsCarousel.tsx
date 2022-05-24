@@ -72,7 +72,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                   linkA={"/DisplayOffer/" + announcement.id}
                   title={announcement.title}
                   price={announcement.cost}
-                  city={"some city"}
+                  city={announcement.city}
                   watch={false}
                   imgUrls={announcement.imageUrls}
                 />
@@ -103,7 +103,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       linkA={"/DisplayOffer/" + announcement.id}
                                       title={announcement.title}
                                       price={announcement.cost}
-                                      city={"some city"}
+                                      city={announcement.city}
                                       watch={false}
                                       imgUrls={announcement.imageUrls}
                                     />
@@ -135,7 +135,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       linkA={"/DisplayOffer/" + announcement.id}
                                       title={announcement.title}
                                       price={announcement.cost}
-                                      city={"some city"}
+                                      city={announcement.city}
                                       watch={false}
                                       imgUrls={announcement.imageUrls}
                                     />
@@ -152,7 +152,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       linkA={"/DisplayOffer/" + announcement.id}
                                       title={announcement.title}
                                       price={announcement.cost}
-                                      city={"some city"}
+                                      city={announcement.city}
                                       watch={false}
                                       imgUrls={announcement.imageUrls}
                                     />
@@ -176,7 +176,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                     linkA={"/DisplayOffer/" + announcement.id}
                                     title={announcement.title}
                                     price={announcement.cost}
-                                    city={"some city"}
+                                    city={announcement.city}
                                     watch={false}
                                     imgUrls={announcement.imageUrls}
                                   />
@@ -193,7 +193,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                     linkA={"/DisplayOffer/" + announcement.id}
                                     title={announcement.title}
                                     price={announcement.cost}
-                                    city={"some city"}
+                                    city={announcement.city}
                                     watch={false}
                                     imgUrls={announcement.imageUrls}
                                   />
@@ -217,7 +217,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                   linkA={"/DisplayOffer/" + announcement.id}
                                   title={announcement.title}
                                   price={announcement.cost}
-                                  city={"some city"}
+                                  city={announcement.city}
                                   watch={false}
                                   imgUrls={announcement.imageUrls}
                                 />
@@ -238,7 +238,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                   linkA={"/DisplayOffer/" + announcement.id}
                                   title={announcement.title}
                                   price={announcement.cost}
-                                  city={"some city"}
+                                  city={announcement.city}
                                   watch={false}
                                   imgUrls={announcement.imageUrls}
                                 />
@@ -262,7 +262,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 linkA={"/DisplayOffer/" + announcement.id}
                                 title={announcement.title}
                                 price={announcement.cost}
-                                city={"some city"}
+                                city={announcement.city}
                                 watch={false}
                                 imgUrls={announcement.imageUrls}
                               />
@@ -279,7 +279,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 linkA={"/DisplayOffer/" + announcement.id}
                                 title={announcement.title}
                                 price={announcement.cost}
-                                city={"some city"}
+                                city={announcement.city}
                                 watch={false}
                                 imgUrls={announcement.imageUrls}
                               />
@@ -314,7 +314,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                               linkA={"/DisplayOffer/" + announcement.id}
                               title={announcement.title}
                               price={announcement.cost}
-                              city={"some city"}
+                              city={announcement.city}
                               watch={false}
                               imgUrls={announcement.imageUrls}
                             />

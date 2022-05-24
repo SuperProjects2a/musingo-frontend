@@ -25,7 +25,7 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
             linkA={"/DisplayOffer/" + announcement.id}
             title={announcement.title}
             price={announcement.cost}
-            city={"some city"}
+            city={announcement.city}
             watch={false}
             imgUrls={announcement.imageUrls}
           />

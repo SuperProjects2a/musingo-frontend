@@ -18,6 +18,7 @@ export interface IAnnouncement {
   itemCategory: string;
   description: string;
   owner: IOwner;
+  city: string;
 }
 
 export const getOffers  = () : Promise<IAnnouncement[]> => {

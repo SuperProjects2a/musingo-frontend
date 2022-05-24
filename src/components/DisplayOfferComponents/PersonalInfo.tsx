@@ -16,7 +16,7 @@ const informationsUser = [
   },
 ];
 
-const PersonalInfo: FunctionComponent<{user: IOwner | undefined}> = (props) => {
+const PersonalInfo: FunctionComponent<{user: IOwner | undefined, city: string | undefined}> = (props) => {
   return (
     <div >
       {informationsUser.map((informationUser, index) => (
@@ -45,12 +45,10 @@ const PersonalInfo: FunctionComponent<{user: IOwner | undefined}> = (props) => {
             <small className="text-muted">{"placeholder"} ocen</small>
           </Card.Subtitle>
         </Col>
-        <Col>
+        <Col className="pb-3">
           <FontAwesomeIcon icon={faCompass} className="iconsDisplayOffer" />
-          {informationUser.city}
-          <Card.Subtitle className="py-1 px-4 pb-3">
-            <small className="text-muted">{informationUser.state}</small>
-          </Card.Subtitle>
+          {props.city}
+          
         </Col>
       </Col>
     </Row>
