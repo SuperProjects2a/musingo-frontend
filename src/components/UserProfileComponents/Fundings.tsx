@@ -2,73 +2,37 @@ import { Card, Form, Button, Table } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-const chanrgeAccountSchema = Yup.object().shape({
-  chargeValue: Yup.number()
-    .typeError("Wprowadź prawidłową kwotę")
-    .positive("Podana kwota nie może być liczbą ujemną"),
-});
+const fundings = [
+  {
+    price: 200,
+    date: "21.03.2010",
+    user: "Patryk Graca",
+    item: "Gitara elektryczna",
+    opinion: "Zobacz opinie",
+  },
+  {
+    price: 200,
+    date: "21.03.2010",
+    user: "Patryk Graca",
+    item: "Gitara elektryczna",
+    opinion: "Zobacz opinie",
+  },
+  {
+    price: 200,
+    date: "21.03.2010",
+    user: "Patryk Graca",
+    item: "Gitara elektryczna",
+    opinion: "Zobacz opinie",
+  },
+];
 
 const Fundings = () => {
   return (
-    <div className="userProfileDiv p-4">
-      <Card>
-        <Card.Body>
-          <Card.Title>Doładuj konto</Card.Title>
-          <Formik
-            initialValues={{
-              chargeValue: "",
-            }}
-            validationSchema={chanrgeAccountSchema}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              setSubmitting(true);
-              resetForm();
-              setSubmitting(false);
-            }}
-          >
-            {({
-              handleSubmit,
-              handleChange,
-              handleBlur,
-              values,
-              touched,
-              errors,
-              isSubmitting,
-            }) => (
-              <Form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
-                <Form.Group style={{ float: "left" }}>
-                  <Form.Label>Kwota</Form.Label>
-
-                  <Form.Control
-                    name="chargeValue"
-                    type="text"
-                    autoComplete="chargeValue"
-                    className="formInputs"
-                    value={values.chargeValue}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    isInvalid={touched.chargeValue && !!errors.chargeValue}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.chargeValue}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Button
-                  className="chargeButton"
-                  variant="dark"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  Doładuj konto
-                </Button>
-              </Form>
-            )}
-          </Formik>
-        </Card.Body>
-      </Card>
-      <Card className="mt-4">
+    <div className="userProfileDiv p-4 px-5">
+      <Card style={{ borderRadius: "20px" }}>
         <Card.Body>
           <Card.Title>Historia płatności</Card.Title>
-          <p>Stan konta: 911420,69</p>
+
           <Table striped bordered hover responsive>
             <thead>
               <tr>
@@ -80,27 +44,19 @@ const Fundings = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>24</td>
-                <td>21.03.2022</td>
-                <td>Maksymilian Średniawa</td>
-                <td>Zaliczenie</td>
-                <td>Zobacz opinie</td>
-              </tr>
-              <tr>
-                <td>420</td>
-                <td>26.03.2022</td>
-                <td>Rafał Kulka</td>
-                <td>Gitara z motywem Animu</td>
-                <td>Zobacz opinie</td>
-              </tr>
-              <tr>
-                <td>-400</td>
-                <td>29.03.2022</td>
-                <td>Patryk Graca</td>
-                <td>Wzmacniasz</td>
-                <td>Zobacz opinie</td>
-              </tr>
+              {fundings.map((funding, index) => (
+                <tr>
+                  <td>{funding.price}</td>
+                  <td>{funding.date}</td>
+                  <td>{funding.user}</td>
+                  <td>{funding.item}</td>
+                  <td>
+                    <a href="#" style={{ textDecoration: "none" }}>
+                      {funding.opinion}
+                    </a>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Card.Body>
