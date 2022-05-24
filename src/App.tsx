@@ -41,7 +41,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LayoutsWithNavbarSearch />}>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/DisplayOffer" element={<DisplayOffer />}></Route>
+          <Route path="/DisplayOffer/:id" element={<DisplayOffer />}></Route>
           <Route path="/Search" element={<Search />}></Route>
         </Route>
         <Route path="/" element={<LayoutsWithNavbar />}>

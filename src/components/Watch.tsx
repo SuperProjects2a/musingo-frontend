@@ -5,14 +5,7 @@ import PaginationSearch from "./announcement/PaginationSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import data from "../data.json";
-
-interface IAnnouncement {
-  link: string;
-  title: string;
-  price: number;
-  city: string;
-  watch: boolean;
-}
+import { getOffers, IAnnouncement } from "../services/offerService";
 
 const Watch = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
@@ -31,7 +24,8 @@ const Watch = () => {
     // };
     const fetchAnnouncements = async () => {
       setLoading(true);
-      setAnnouncements(data);
+      let offers = await getOffers();
+      setAnnouncements(offers);
       setLoading(false);
     };
 

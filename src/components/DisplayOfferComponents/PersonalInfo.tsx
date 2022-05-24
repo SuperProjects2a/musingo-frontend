@@ -1,7 +1,9 @@
 import React from "react";
+import { FunctionComponent } from "react";
 import { Col, Row, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass, faStar } from "@fortawesome/free-solid-svg-icons";
+import { IOwner } from "../../services/offerService";
 
 const informationsUser = [
   {
@@ -14,15 +16,15 @@ const informationsUser = [
   },
 ];
 
-const PersonalInfo = () => {
+const PersonalInfo: FunctionComponent<{user: IOwner | undefined, city: string | undefined}> = (props) => {
   return (
     <div >
-      {informationsUser.map((informationUser, index) => (
+      
     <Card className="py-3 px-4">
     <Row>
       <Card.Img
         variant="top"
-        src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
+        src={props.user?.imageUrl}
         style={{
           height: "calc(11vh + 4vw)",
           width: "calc(11vh + 4vw)",
@@ -34,21 +36,17 @@ const PersonalInfo = () => {
         className="pt-2 px-2 pb-2"
       />
       <Col className="personalInfoDisplayOffer">
-        <strong>{informationUser.name} {informationUser.surname}</strong>
-        <Col>
+        <strong>{props.user?.name} {props.user?.surname}</strong>
+        <Col className="py-1">
           <FontAwesomeIcon icon={faStar} className="iconsDisplayOffer" />
-          {informationUser.rating}
+          {props.user?.avgRating}
           <small className="text-muted">/5</small>
-          <Card.Subtitle className="py-1 px-4">
-            <small className="text-muted">{informationUser.ratingNumOf} ocen</small>
-          </Card.Subtitle>
+          
         </Col>
-        <Col>
+        <Col className="pb-3">
           <FontAwesomeIcon icon={faCompass} className="iconsDisplayOffer" />
-          {informationUser.city}
-          <Card.Subtitle className="py-1 px-4 pb-3">
-            <small className="text-muted">{informationUser.state}</small>
-          </Card.Subtitle>
+          {props.city}
+          
         </Col>
       </Col>
     </Row>
@@ -59,7 +57,7 @@ const PersonalInfo = () => {
       <strong>Zapytaj o przedmiot</strong>
     </Button>
   </Card>
-      ))}
+      
     </div>
   );
 };

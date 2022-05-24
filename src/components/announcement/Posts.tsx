@@ -1,18 +1,11 @@
 import { FC } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
 import AnnouncementCard from "./AnnouncementCard";
+import {IAnnouncement} from "../../services/offerService";
 
 interface IPost {
   announcements: IAnnouncement[];
   loading: boolean;
-}
-
-interface IAnnouncement {
-  link: string;
-  title: string;
-  price: number;
-  city: string;
-  watch: boolean;
 }
 
 const Posts: FC<IPost> = ({ announcements, loading }) => {
@@ -29,11 +22,12 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
       {announcements.map((announcement, index) => (
         <Col xs={6} sm={4} md={3} lg={3} xl={2} className="p-1">
           <AnnouncementCard
-            linkA={announcement.link}
+            linkA={"/DisplayOffer/" + announcement.id}
             title={announcement.title}
-            price={announcement.price}
+            price={announcement.cost}
             city={announcement.city}
-            watch={announcement.watch}
+            watch={false}
+            imgUrls={announcement.imageUrls}
           />
         </Col>
       ))}

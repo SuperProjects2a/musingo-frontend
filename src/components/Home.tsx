@@ -20,6 +20,8 @@ import accessoriesCategory from "../images/accessories-category.jpg";
 import bookNoteCategory from "../images/book-note-category.jpg";
 import otherCategory from "../images/other-category.jpg";
 import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
+import { getOffers } from "../services/offerService";
+import { IAnnouncement } from "../services/offerService";
 
 const categories = [
   { link: "/Search", text: "Gitary", imgLink: guitarCategory },
@@ -34,13 +36,7 @@ const categories = [
   { link: "/Search", text: "Inne", imgLink: otherCategory },
 ];
 
-interface IAnnouncement {
-  link: string;
-  title: string;
-  price: number;
-  city: string;
-  watch: boolean;
-}
+
 
 const Home = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
@@ -51,7 +47,8 @@ const Home = () => {
   useEffect(() => {
     const fetchAnnouncements = async () => {
       setLoading(true);
-      setAnnouncements(data);
+      let offers = await getOffers();
+      setAnnouncements(offers);
       setLoading(false);
     };
 
