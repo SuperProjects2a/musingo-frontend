@@ -286,8 +286,6 @@ input[type="color"]:focus,
   color: #212529;
 }
 
-
-
 .noSelect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -299,7 +297,6 @@ input[type="color"]:focus,
 }
 
 .tabsdminPanel {
-  width: 90vw;
   height: auto;
   background-color: #fff;
   border-radius: 5px;
