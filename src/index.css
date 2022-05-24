@@ -257,6 +257,13 @@ input[type="color"]:focus,
     width: 520px !important;
   }
 }
+
+.ratingValue
+{
+  font-size: small;
+  color:#56595c;
+  font-weight: 200;
+}
 .offerContainerDisplayOffer {
   z-index: 1;
 }
@@ -279,7 +286,7 @@ input[type="color"]:focus,
   color: #212529;
 }
 
-=======
+
 
 .noSelect {
   -webkit-touch-callout: none; /* iOS Safari */

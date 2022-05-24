@@ -26,17 +26,17 @@ const SignIn = () => {
             validationSchema={loginSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
+              setIsError(false);
+              setIsBan(false);
               await login(values)
                 .then((res) => {
-                  setIsError(false);
-                  setIsBan(false);
                   localStorage.setItem("token", res.headers.authtoken);
                   window.location.href = "/";
                 })
                 .catch((err) => {
-                  if(err.status === 404)
+                  if(err.data.detail.includes("Check email or password"))
                     setIsError(true);
-                  if(err.status === 500)
+                  if(err.data.detail.includes("Ban"))
                     setIsBan(true);
 
                 });
