@@ -76,7 +76,7 @@ const NavbarComp = () => {
     ) {
       getU();
     }
-  }, [navigate]);
+  }, []);
 
   const onFundAdd = async () => {
     const u = await getUser();
@@ -141,35 +141,6 @@ const NavbarComp = () => {
                   Inne
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
-                Wiadomości
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/Test"} className="mb-auto mt-auto">
-                Doładuj konto
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/SignInUp"} className="mb-auto mt-auto">
-                Zaloguj się
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/AddOffer"} className="mb-auto mt-auto">
-                Dodaj ogłoszenie
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to={"/UserProfile"}
-                className="mb-auto mt-auto"
-              >
-                Moje konto
-              </Nav.Link>
-              <Nav.Link
-                as={Link}
-                to={"/"}
-                className="text-white mb-auto mt-auto"
-              >
-                <div style={{ fontWeight: "bold" }}>100.45zł</div>
-              </Nav.Link>
-              <Nav.Link as={Link} to={"/FundAdd"}>
-                <Button className="btn btn-success">Doładuj konto</Button>
-              </Nav.Link>
               {user?.role.includes("Admin") && (
                 <Nav.Link
                   as={Link}
