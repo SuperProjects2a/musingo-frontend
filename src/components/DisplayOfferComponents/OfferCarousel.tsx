@@ -17,10 +17,10 @@ const OfferCarousel: FunctionComponent<{images: string[] | undefined}> = (props)
       >
         <Card.Body>
           <Carousel variant="dark">
-            {props.images?.map(index => {
+            {props.images?.map(image => {
               return (<Carousel.Item>
                 <img
-                  src={index}
+                  src={image}
                   alt=""
                   style={{
                     minWidth: "17vw",
