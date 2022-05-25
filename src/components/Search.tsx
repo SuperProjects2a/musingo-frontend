@@ -1,5 +1,6 @@
 import { Container, Col, Row, Spinner } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
 import Posts from "./announcement/Posts";
@@ -7,7 +8,7 @@ import PaginationSearch from "./announcement/PaginationSearch";
 import FilterSearch from "./announcement/FilterSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-import { getOffers, IAnnouncement } from "../services/offerService";
+import { getOffers, getOffersByFiler, getOffersByName, IAnnouncement, IOfferFilter } from "../services/offerService";
 
 import axios from "axios";
 
@@ -15,9 +16,12 @@ const Search = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [offerFilter, setOfferFilter] = useState<IOfferFilter>({Sorting: 'Latest', Search: null, PriceFrom: null, PriceTo: null, Category: null});
 
   useEffect(() => {
     // const fetchPosts = async () => {
@@ -28,13 +32,40 @@ const Search = () => {
     // };
     const fetchAnnouncements = async () => {
       setLoading(true);
-      let offers = await getOffers();
-      setAnnouncements(offers);
-      setLoading(false);
+      let nameQuery = searchParams.get('Name');
+      setOfferFilter({Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category})
+      
+      
     };
 
     fetchAnnouncements();
-  }, []);
+  }, [searchParams]);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      setLoading(true);
+      let nameQuery = searchParams.get('Name');
+      let sortingQuery = searchParams.get('Sorting') === null ? 'Latest' : searchParams.get('Sorting');
+      let priceFromQuery = searchParams.get('PriceFrom');
+      let priceToQuery = searchParams.get('PriceTo');
+      let categoryQuery = searchParams.get('Category');
+      setOfferFilter({Search: nameQuery, Sorting: sortingQuery, PriceFrom: priceFromQuery, PriceTo: priceToQuery, Category: categoryQuery});
+      
+    };
+    fetchAnnouncements();
+  }, [navigate])
+
+  useEffect(() => {
+    const updateAnnouncements = async () => {
+      let nameQuery = searchParams.get('Name');
+      let filter = {Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category};
+      let offers = await getOffersByFiler(filter);
+      setAnnouncements(offers);
+      setLoading(false);
+    }
+    updateAnnouncements();
+    
+  }, [offerFilter]);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -43,6 +74,11 @@ const Search = () => {
     indexOfFirstPost,
     indexOfLastPost
   );
+
+  const onFilterChange = (filter: IOfferFilter) => {
+    setOfferFilter(filter);
+
+  }
 
   // Change page
   const paginate = (pageNumber: number) => {
@@ -53,7 +89,9 @@ const Search = () => {
   return (
     <Container fluid style={{ textAlign: "left" }}>
       <div className="px-sm-1 px-md-2">
-        <FilterSearch />
+        <FilterSearch onFilterChange={(f: IOfferFilter) => {
+          onFilterChange(f);
+        }} />
       </div>
       {loading == true ? (
         <Col
