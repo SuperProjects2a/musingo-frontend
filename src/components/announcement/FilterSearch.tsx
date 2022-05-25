@@ -2,24 +2,30 @@ import { Container, Form, Col, Row, InputGroup } from "react-bootstrap";
 import React, { useState, useEffect, FunctionComponent } from "react";
 
 const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}) => {
-  const [minPrice, setMinPrice] = useState<number | undefined>();
-  const [maxPrice, setMaxPrice] = useState<number | undefined>();
+  const [minPrice, setMinPrice] = useState<number | null>();
+  const [maxPrice, setMaxPrice] = useState<number | null>();
   const [category, setCategory] = useState<string | null>();
   const [sorting, setSorting] = useState<string | null>('Latest');
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
+    let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
+    let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
+    onFilterChange({PriceFrom: priceFrom, PriceTo: priceTo, Category: category, Sorting: sorting})
     setValidated(false);
-    if (minPrice != undefined && maxPrice != undefined) {
-      if (maxPrice < minPrice) {
+    if (minPrice !== null && maxPrice !== null) {
+      if (maxPrice! < minPrice!) {
+        
         setValidated(true);
       }
     }
   }, [minPrice, maxPrice]);
 
   useEffect(() => {
-    onFilterChange({MinPrice: minPrice, MaxPrice: maxPrice, Category: category, Sorting: sorting})
-  }, [minPrice, maxPrice, category, sorting])
+    let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
+    let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
+    onFilterChange({PriceFrom: priceFrom, MaxPriceToPrice: priceTo, Category: category, Sorting: sorting})
+  }, [category, sorting])
 
   return (
     <Container fluid style={{ textAlign: "left" }}>
@@ -69,7 +75,6 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
                   type="number"
                   min="0"
                   placeholder="od"
-                  value={minPrice}
                   onChange={(e) => {
                     setMinPrice(parseInt(e.target.value));
                   }}
@@ -79,7 +84,6 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
                   type="number"
                   min="0"
                   placeholder="do"
-                  value={maxPrice}
                   onChange={(e) => setMaxPrice(parseInt(e.target.value))}
                 />
               </InputGroup>
