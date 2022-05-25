@@ -1,8 +1,9 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFontAwesome } from "@fortawesome/free-solid-svg-icons";
+import { IAnnouncement } from "../../services/offerService";
 
 const informationsOffer = [
   {
@@ -16,7 +17,8 @@ const informationsOffer = [
 ];
 
 
-const OfferInfo = () => {
+const OfferInfo: FunctionComponent<{offer: IAnnouncement | undefined}> = (props) => {
+  let date = new Date(props.offer?.createTime as string).toLocaleString();
   return (
     <div>
       {informationsOffer.map((informationOffer, index) => (
@@ -24,17 +26,17 @@ const OfferInfo = () => {
           <Card.Body>
             <Card.Subtitle className="py-1">
               <small className="text-muted">
-                Dodane {informationOffer.date}
+                Dodane {date}
               </small>
             </Card.Subtitle>
-            <Card.Title className="pt-1">{informationOffer.item}</Card.Title>
+            <Card.Title className="pt-1">{props.offer?.title}</Card.Title>
             <Card.Subtitle>
               <Card.Text className="pb-4">
-                <strong>{informationOffer.price} zł</strong>
+                <strong>{props.offer?.cost} zł</strong>
               </Card.Text>
             </Card.Subtitle>
             <strong>Opis</strong>
-            <Card.Text>{informationOffer.description}</Card.Text>
+            <Card.Text>{props.offer?.description}</Card.Text>
             <Link to={`/ReportOffer`} style={{float: 'right', color:"red"}} ><FontAwesomeIcon className="px-2" icon={faFontAwesome}/>Zgłoś</Link>
           </Card.Body>
         </Card>

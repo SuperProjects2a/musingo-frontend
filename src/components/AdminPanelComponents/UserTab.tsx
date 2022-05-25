@@ -9,7 +9,7 @@ const UserTab = () => {
     <div>
       <Accordion>
   <Accordion.Item eventKey="0">
-    <Accordion.Header>Zablokuj użytkownika</Accordion.Header>
+    <Accordion.Header>Zablokuj/odblokuj użytkownika</Accordion.Header>
     <Accordion.Body>
     <BanUser />
     </Accordion.Body>

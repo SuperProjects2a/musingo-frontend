@@ -1,5 +1,7 @@
 import { Form, Col, Button, Row } from "react-bootstrap";
 import { Formik } from "formik";
+import { login } from "../../services/userService";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 const SignIn = () => {
   const loginSchema = Yup.object().shape({
@@ -8,6 +10,9 @@ const SignIn = () => {
       .required("Prosze wpisać adres email"),
     password: Yup.string().required("Proszę wpisać hasło"),
   });
+
+  const [isError,setIsError] = useState(false);
+  const [isBan,setIsBan] = useState(false);
 
   return (
     <div className="p-4">
@@ -19,9 +24,22 @@ const SignIn = () => {
               password: "",
             }}
             validationSchema={loginSchema}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              resetForm();
+              setIsError(false);
+              setIsBan(false);
+              await login(values)
+                .then((res) => {
+                  localStorage.setItem("token", res.headers.authtoken);
+                  window.location.href = "/";
+                })
+                .catch((err) => {
+                  if(err.data.detail.includes("Check email or password"))
+                    setIsError(true);
+                  if(err.data.detail.includes("Ban"))
+                    setIsBan(true);
+
+                });
               setSubmitting(false);
             }}
           >
@@ -69,7 +87,12 @@ const SignIn = () => {
                     {errors.password}
                   </Form.Control.Feedback>
                 </Form.Group>
-
+                {isError == true &&<div className=" mt-3">
+                 <p className="text-danger" style={{textAlign: 'center'}}>Nieprawidłowy login lub hasło</p>
+                </div>}
+                {isBan == true &&<div className=" mt-3">
+                 <p className="text-danger" style={{textAlign: 'center'}}>Zostałeś zbanowany nie możesz się zalogować</p>
+                </div>}
                 <div className="d-grid my-4">
                   <Button
                     size="lg"

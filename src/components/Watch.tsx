@@ -1,17 +1,13 @@
-import { Container, Col, Row, Spinner } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
-
-import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
+import { Container, Col, Row, Spinner } from "react-bootstrap";
 import Posts from "./announcement/Posts";
 import PaginationSearch from "./announcement/PaginationSearch";
-import FilterSearch from "./announcement/FilterSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
+import { faHeartCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import data from "../data.json";
 import { getOffers, IAnnouncement } from "../services/offerService";
 
-import axios from "axios";
-
-const Search = () => {
+const Watch = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
@@ -51,10 +47,7 @@ const Search = () => {
   };
 
   return (
-    <Container fluid style={{ textAlign: "left" }}>
-      <div className="px-sm-1 px-md-2">
-        <FilterSearch />
-      </div>
+    <Container fluid style={{ textAlign: "left" }} className=" pt-4 pt-lg-5">
       {loading == true ? (
         <Col
           xs={{ offset: 5 }}
@@ -68,25 +61,11 @@ const Search = () => {
         </Col>
       ) : (
         <div className="px-2 px-sm-3 px-md-4 pb-3">
-          {announcements.length > 0 && (
-            <div className="pt-3">
-              <h5 style={{ textAlign: "left" }}>
-                <b>Wyróżnione</b>
-              </h5>
-              <Row className="d-flex justify-content-center px-4 px-sm-0">
-                <AnnouncementsCarousel
-                  announcements={announcements}
-                  loading={loading}
-                  center={false}
-                />
-              </Row>
-            </div>
-          )}
           <div>
             {announcements.length > 0 ? (
               <>
-                <h5 style={{ textAlign: "left" }} className="pt-3">
-                  <b>Ogłoszenia</b>
+                <h5 style={{ textAlign: "left" }} className="px-1">
+                  <b>Obserwowane ogłoszenia</b>
                 </h5>
                 <div>
                   <Row className="d-flex justify-content-center">
@@ -109,12 +88,11 @@ const Search = () => {
               <Container className="py-4">
                 <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
                   <FontAwesomeIcon
-                    icon={faToiletPaperSlash}
+                    icon={faHeartCircleXmark}
                     style={{ height: "100px" }}
                     className="py-3"
                   />
-                  <h5>Nie znaleźliśmy pasujących przedmiotów.</h5>
-                  <p>Spróbuj wyszukać pod inną nazwą</p>
+                  <h5>Nie masz obserwowanych przedmiotów.</h5>
                 </div>
               </Container>
             )}
@@ -125,4 +103,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Watch;

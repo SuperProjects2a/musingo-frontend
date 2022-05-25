@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Col, Button, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { register, IUserRegisterData } from "../../services/userService";
 
 const SignUp = () => {
+  const [isError,setIsError] = useState(false);
+  const [isSuccess,setIsSuccess] = useState(false);
+
   const registerSchema = Yup.object().shape({
     name: Yup.string()
       .required("To pole jest wymagane")
       .min(3, "Wprowadź prawidłowe imię")
-      .max(24, "Wprowadź prawidłowe imię")
+      .max(60, "Wprowadź prawidłowe imię")
       .matches(
-        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}$/i,
+        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,60}$/i,
         "Wprowadzono niedozwolone znaki"
       ),
 
     surname: Yup.string()
       .min(3, "Wprowadź prawidłowe nazwisko")
-      .max(24, "Wprowadź prawidłowe nazwisko")
+      .max(60, "Wprowadź prawidłowe nazwisko")
       .matches(
-        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,24}$/i,
+        /^[a-zA-ZąęółżźćńśĄĘÓŻŹĆŃŁŚ]{3,60}$/i,
         "Wprowadzono niedozwolone znaki"
       )
       .required("To pole jest wymagane"),
@@ -60,9 +64,30 @@ const SignUp = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
+              setIsSuccess(false);
               setSubmitting(true);
-              resetForm();
-              setSubmitting(false);
+              const userRegisterData: IUserRegisterData = {
+                name: values.name,
+                surname: values.surname,
+                email: values.email,
+                phoneNumber: values.phoneNumber,
+                acceptedTOS: true,
+                password: values.password
+
+              };
+              register(userRegisterData)
+                .then((result) => {
+                  if(result.status === 200){
+                    resetForm();
+                    setSubmitting(false);
+                    setIsSuccess(true);
+                  }
+                })
+                .catch(err => {
+                  setIsError(true);
+                  setSubmitting(false);
+                })
+              
             }}
           >
             {({
@@ -122,6 +147,9 @@ const SignUp = () => {
                     onChange={handleChange}
                     isInvalid={touched.email && !!errors.email}
                   />
+                  {isError == true &&<div className=" mt-3">
+                    <p className="text-danger" style={{textAlign: 'center'}}>Ten adres email został już użyty</p>
+                  </div>}
                   <Form.Control.Feedback type="invalid">
                     {errors.email}
                   </Form.Control.Feedback>
@@ -197,6 +225,10 @@ const SignUp = () => {
                     </Form.Group>
                   </Col>
                 </Row>
+                
+                {isSuccess == true &&<div className=" mt-3">
+                 <p className="text-success" style={{textAlign: 'center'}}>Konto zostało utworzone.<br/>Teraz zaloguj się.</p>
+                </div>}
 
                 <div className="my-3 d-grid">
                   <Button
