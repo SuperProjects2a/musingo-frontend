@@ -2,7 +2,7 @@ import { Form, Col, Button, Row } from "react-bootstrap";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import { IProfile } from "../../services/profileService";
-import {useState,useEffect} from "react"
+import { useState, useEffect } from "react";
 
 const contactDataChangeSchema = Yup.object().shape({
   street: Yup.string()
@@ -54,35 +54,33 @@ const emailDataChangeSchema = Yup.object().shape({
     .email("Niepoprawny adres email")
     .required("To pole jest wymagane przy zmianie"),
 });
-export const ContactDataChange = (params: any) => {
-  
 
+export const ContactDataChange = (params: any) => {
   return (
     <div className="userInfoChangeForm pt-2">
       <Row>
         <Col>
           <Formik
             initialValues={{
-              
               city: params.updateProfile?.city,
               street: params.updateProfile?.street,
               houseNumber: params.updateProfile?.houseNumber,
               postCode: params.updateProfile?.postCode,
               phoneNumber: params.updateProfile?.phoneNumber,
             }}
-            enableReinitialize= {true}
+            enableReinitialize={true}
             validationSchema={contactDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              params.updateProfile.city=values.city;
-              params.updateProfile.street=values.street;
-              params.updateProfile.houseNumber=values.houseNumber;
-              params.updateProfile.postCode=values.postCode;
-              params.updateProfile.phoneNumber=values.phoneNumber;
+              params.updateProfile.city = values.city;
+              params.updateProfile.street = values.street;
+              params.updateProfile.houseNumber = values.houseNumber;
+              params.updateProfile.postCode = values.postCode;
+              params.updateProfile.phoneNumber = values.phoneNumber;
 
               params.setUpdateProfile(params.updateProfile);
               params.update();
-             // resetForm();
+              // resetForm();
               setSubmitting(false);
             }}
           >
@@ -213,10 +211,14 @@ export const PasswordChange = (params: any) => {
               password: "",
               passwordConfirmation: "",
             }}
-            enableReinitialize= {true}
+            enableReinitialize={true}
             validationSchema={passwordDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
+              params.updateProfile.oldPassword = values.oldPassword;
+              params.updateProfile.newPassword = values.password;
+              params.setUpdateProfile(params.updateProfile);
+              params.update();
               resetForm();
               setSubmitting(false);
             }}
@@ -284,6 +286,13 @@ export const PasswordChange = (params: any) => {
                   <Form.Control.Feedback type="invalid">
                     {errors.passwordConfirmation}
                   </Form.Control.Feedback>
+                  {params.error?.length > 0 && <div className=" mt-3">
+                    <p className="text-danger" style={{ textAlign: "center" }}>
+                      {params.error?.includes("Wrong current password") && "Niepoprawne obecne hasło"}
+                      {params.error?.includes("The new password cannot be the same as the old one") && "Nowe hasło nie może być takie samo jak stare"}
+                    </p>
+                  </div>}
+                  <div className="d-grid my-4"></div>
                 </Form.Group>
 
                 <div className="my-4 d-grid">
@@ -314,7 +323,7 @@ export const EmailChange = (params: any) => {
             initialValues={{
               email: "",
             }}
-            enableReinitialize= {true}
+            enableReinitialize={true}
             validationSchema={emailDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);

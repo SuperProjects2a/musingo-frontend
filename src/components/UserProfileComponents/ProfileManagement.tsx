@@ -22,6 +22,7 @@ const ProfileManagement = () => {
   const [images, setImages] = useState<ImageListType>([]);
   const [profile, setProfile] = useState<IUser>();
   const [updateProfile, setUpdateProfile] = useState<IProfile>();
+  const [error,setError] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     navigationService.navigation = navigate;
@@ -49,14 +50,17 @@ const ProfileManagement = () => {
     ) {
       getP();
     }
-  }, []);
+  }, [error]);
   const update = async () => {
+    setError("");
     if (images.length === 1) {
       const url = await uploadFile(images[0].file!);
       updateProfile!.imageUrl= url;
     }
     await putProfile(updateProfile).then((res: any) => {
       setProfile(res);
+    }).catch((err) => {
+      setError(err.data.detail)
     });
   };
   return (
@@ -117,13 +121,13 @@ const ProfileManagement = () => {
           <Card className="mt-4" style={{ borderRadius: "20px" }}>
             <Card.Body>
               <Card.Title>Zmień hasło</Card.Title>
-              <PasswordChange />
+              <PasswordChange updateProfile={updateProfile} setUpdateProfile={setUpdateProfile} update={update} error={error} />
             </Card.Body>
           </Card>
           <Card className="mt-4" style={{ borderRadius: "20px" }}>
             <Card.Body>
               <Card.Title>Zmień email</Card.Title>
-              <EmailChange />
+              <EmailChange updateProfile={updateProfile} setUpdateProfile={setUpdateProfile} update={update} />
             </Card.Body>
           </Card>
         </Col>
