@@ -1,6 +1,6 @@
 import { Container, Col, Row, Spinner } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
 import Posts from "./announcement/Posts";
@@ -16,11 +16,12 @@ const Search = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [offerFilter, setOfferFilter] = useState<IOfferFilter>({Sorting: 'Latest', Name: null, PriceFrom: null, PriceTo: null, Category: null});
+  const [offerFilter, setOfferFilter] = useState<IOfferFilter>({Sorting: 'Latest', Search: null, PriceFrom: null, PriceTo: null, Category: null});
 
   useEffect(() => {
     // const fetchPosts = async () => {
@@ -32,12 +33,12 @@ const Search = () => {
     const fetchAnnouncements = async () => {
       setLoading(true);
       let nameQuery = searchParams.get('Name');
-      setOfferFilter({Name: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category})
+      setOfferFilter({Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category})
       
     };
 
     fetchAnnouncements();
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     const updateAnnouncements = async () => {

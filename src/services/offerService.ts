@@ -23,7 +23,7 @@ export interface IAnnouncement {
 }
 
 export interface IOfferFilter {
-  Name: string | null;
+  Search: string | null;
   Category: string | null;
   PriceFrom: string | null;
   PriceTo: string | null;
