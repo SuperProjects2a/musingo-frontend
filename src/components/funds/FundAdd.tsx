@@ -16,11 +16,10 @@ import { useNavigate } from 'react-router-dom';
 
 type FundOption = {
     image: string,
-    amount: number,
-    onFundAdd: any
+    amount: number
 };
 
-const FundAddOption = ({ image, amount, onFundAdd }: FundOption) => {
+const FundAddOption = ({ image, amount }: FundOption) => {
     const navigate = useNavigate();
 
     return (
@@ -32,7 +31,6 @@ const FundAddOption = ({ image, amount, onFundAdd }: FundOption) => {
                     addFunds(amount)
                         .then(result => {
                             if(result.status === 200){
-                                onFundAdd();
                                 navigate('/FundSuccess');
                             } else {
                                 navigate('/FundFailure');
@@ -45,16 +43,16 @@ const FundAddOption = ({ image, amount, onFundAdd }: FundOption) => {
     )
 }
 
-export const FundAdd = ( {onFundAdd} : any) => {
+export const FundAdd = () => {
     return (
         <div>
             <h2 className='py-4'>Dodaj fundusze do swojego portfela:</h2>
             <div className='d-flex flex-wrap justify-content-center'>
-                <FundAddOption image={option1} amount={20} onFundAdd={onFundAdd}></FundAddOption>
-                <FundAddOption image={option2} amount={50} onFundAdd={onFundAdd}></FundAddOption>
-                <FundAddOption image={option3} amount={100} onFundAdd={onFundAdd}></FundAddOption>
-                <FundAddOption image={option4} amount={200} onFundAdd={onFundAdd}></FundAddOption>
-                <FundAddOption image={option5} amount={500} onFundAdd={onFundAdd}></FundAddOption>
+                <FundAddOption image={option1} amount={20}></FundAddOption>
+                <FundAddOption image={option2} amount={50}></FundAddOption>
+                <FundAddOption image={option3} amount={100}></FundAddOption>
+                <FundAddOption image={option4} amount={200}></FundAddOption>
+                <FundAddOption image={option5} amount={500}></FundAddOption>
             </div>
             <h4 className='pt-4'>Metody płatności:</h4>
             <div className='d-flex flex-wrap justify-content-center'>
