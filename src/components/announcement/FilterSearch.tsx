@@ -4,6 +4,8 @@ import React, { useState, useEffect, FunctionComponent } from "react";
 const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}) => {
   const [minPrice, setMinPrice] = useState<number | undefined>();
   const [maxPrice, setMaxPrice] = useState<number | undefined>();
+  const [category, setCategory] = useState<string | null>();
+  const [sorting, setSorting] = useState<string | null>('Latest');
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
@@ -14,6 +16,10 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
       }
     }
   }, [minPrice, maxPrice]);
+
+  useEffect(() => {
+    onFilterChange({MinPrice: minPrice, MaxPrice: maxPrice, Category: category, Sorting: sorting})
+  }, [minPrice, maxPrice, category, sorting])
 
   return (
     <Container fluid style={{ textAlign: "left" }}>
@@ -32,18 +38,21 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
             <Form.Select
               aria-label="Default select example"
               className="selectColor"
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
             >
               <option>Wybierz kategorię</option>
-              <option value="1">Gitary</option>
-              <option value="2">Dęte</option>
-              <option value="3">Klawiszowe</option>
-              <option value="4">Perkusyjne</option>
-              <option value="5">Smyczkowe</option>
-              <option value="6">Mikrofony</option>
-              <option value="7">Słuchawki</option>
-              <option value="8">Akcesoria</option>
-              <option value="9">Nuty, książki</option>
-              <option value="10">Inne</option>
+              <option value="Guitars">Gitary</option>
+              <option value="WindInstruments">Dęte</option>
+              <option value="Keyboards">Klawiszowe</option>
+              <option value="Percussion">Perkusyjne</option>
+              <option value="String">Smyczkowe</option>
+              <option value="Microphones">Mikrofony</option>
+              <option value="Headphones">Słuchawki</option>
+              <option value="Accessories">Akcesoria</option>
+              <option value="NotesBooks">Nuty, książki</option>
+              <option value="Other">Inne</option>
             </Form.Select>
           </Col>
           <Col

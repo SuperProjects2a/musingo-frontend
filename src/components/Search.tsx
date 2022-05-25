@@ -70,7 +70,7 @@ const Search = () => {
   return (
     <Container fluid style={{ textAlign: "left" }}>
       <div className="px-sm-1 px-md-2">
-        <FilterSearch onFilterChange={() => {console.log('filter changed')}} />
+        <FilterSearch onFilterChange={(f: IOfferFilter) => {console.log(f.Category)}} />
       </div>
       {loading == true ? (
         <Col
