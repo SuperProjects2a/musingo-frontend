@@ -12,7 +12,7 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
     let cat = category === "null" ? null : category;
     let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
     let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
-    onFilterChange({PriceFrom: priceFrom, MaxPriceToPrice: priceTo, Category: cat, Sorting: sorting})
+    onFilterChange({PriceFrom: priceFrom, PriceTo: priceTo, Category: cat, Sorting: sorting})
   }
 
   useEffect(() => {
