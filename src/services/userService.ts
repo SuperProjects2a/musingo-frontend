@@ -17,7 +17,7 @@ export interface IUser {
   email: string;
   gender: string;
   houseNumber: string;
-  imageUrl: null;
+  imageUrl: string;
   name: string;
   phoneNumber: string;
   postCode: string;

@@ -1,11 +1,64 @@
 import { Card, Row, Col, Form, Button } from "react-bootstrap";
+import ImageUploading, { ImageListType } from "react-images-uploading";
 import {
   ContactDataChange,
   PasswordChange,
   EmailChange,
 } from "./ProfileManagementInfoChange";
+import { useEffect, useState } from "react";
+import UploadImageSingle from "./UploadImageSingle";
+import {
+  getProfile,
+  IProfile,
+  putProfile,
+} from "../../services/profileService";
+import navigationService from "../../services/NavigationService";
+import { useNavigate } from "react-router-dom";
+import avatar from "../../images/avatar.png";
+import { uploadFile } from "../../azure-storage-blob";
+import { IUser } from "../../services/userService";
 
 const ProfileManagement = () => {
+  const [images, setImages] = useState<ImageListType>([]);
+  const [profile, setProfile] = useState<IUser>();
+  const [updateProfile, setUpdateProfile] = useState<IProfile>();
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigationService.navigation = navigate;
+    const getP = async () => {
+      const p = (await getProfile()) as IUser;
+      setProfile(p);
+      setUpdateProfile({
+          email: p.email,
+          name:p.name,
+          surname:p.surname,
+          oldPassword:"",
+          newPassword:"",
+          gender:p.gender,
+          imageUrl: p.imageUrl,
+          phoneNumber: p.phoneNumber,
+          city: p.city,
+          street: p.street,
+          houseNumber: p.houseNumber,
+          postCode: p.postCode,
+          birth: p.birth});
+    };
+    if (
+      typeof localStorage.getItem("token") === "string" &&
+      localStorage.getItem("token") !== null
+    ) {
+      getP();
+    }
+  }, []);
+  const update = async () => {
+    if (images.length === 1) {
+      const url = await uploadFile(images[0].file!);
+      updateProfile!.imageUrl= url;
+    }
+    await putProfile(updateProfile).then((res: any) => {
+      setProfile(res);
+    });
+  };
   return (
     <div className="userProfileDiv p-4">
       <Row>
@@ -18,9 +71,13 @@ const ProfileManagement = () => {
             <Card.Body>
               <Card.Img
                 variant="top"
-                src={`https://picsum.photos/200/300?random=${
-                  Math.random() * 100
-                }`}
+                src={
+                  images.length === 1
+                    ? images[0]?.dataURL
+                    : profile?.imageUrl !== null
+                    ? profile?.imageUrl
+                    : avatar
+                }
                 style={{
                   height: " calc(11vh + 4vw)",
                   minHeight: "150px",
@@ -35,15 +92,16 @@ const ProfileManagement = () => {
               <Form>
                 <Form.Group>
                   <Row className="mb-3">
-                    <Col xs={12} sm={8}>
-                      <Form.Control
-                        type="file"
-                        accept=".png,.jpg,.jpeg,.webp"
-                        className="formInputs"
+                    <Col xs={12} sm={5}>
+                      <UploadImageSingle
+                        images={images}
+                        setImages={setImages}
                       />
                     </Col>
                     <Col xs={5} sm={4} className="pt-2 pt-sm-0">
-                      <Button variant="dark">Wgraj zdjęcie</Button>
+                      <Button onClick={update} variant="dark">
+                        Wgraj zdjęcie
+                      </Button>
                     </Col>
                   </Row>
                 </Form.Group>
