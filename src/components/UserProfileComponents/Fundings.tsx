@@ -1,32 +1,28 @@
 import { Card, Form, Button, Table } from "react-bootstrap";
-import { Formik } from "formik";
-import * as Yup from "yup";
-
-const fundings = [
-  {
-    price: 200,
-    date: "21.03.2010",
-    user: "Patryk Graca",
-    item: "Gitara elektryczna",
-    opinion: "Zobacz opinie",
-  },
-  {
-    price: 200,
-    date: "21.03.2010",
-    user: "Patryk Graca",
-    item: "Gitara elektryczna",
-    opinion: "Zobacz opinie",
-  },
-  {
-    price: 200,
-    date: "21.03.2010",
-    user: "Patryk Graca",
-    item: "Gitara elektryczna",
-    opinion: "Zobacz opinie",
-  },
-];
+import { useEffect, useState } from "react";
+import {
+  getTransactions,
+  ITransaction,
+} from "../../services/transactionService";
+import { getUser, IUser } from "../../services/userService";
 
 const Fundings = () => {
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [user, setUser] = useState<IUser>();
+
+  useEffect(() => {
+    const getT = async () => {
+      const t = await getTransactions();
+      setTransactions(t);
+    };
+    const getU = async () => {
+      const u = await getUser();
+      setUser(u);
+    };
+    getU();
+    getT();
+  }, []);
+
   return (
     <div className="userProfileDiv p-4 px-5">
       <Card style={{ borderRadius: "20px" }}>
@@ -44,18 +40,28 @@ const Fundings = () => {
               </tr>
             </thead>
             <tbody>
-              {fundings.map((funding, index) => (
-                <tr>
-                  <td>{funding.price}</td>
-                  <td>{funding.date}</td>
-                  <td>{funding.user}</td>
-                  <td>{funding.item}</td>
-                  <td>
-                    <a href="#" style={{ textDecoration: "none" }}>
-                      {funding.opinion}
-                    </a>
-                  </td>
-                </tr>
+              {transactions?.map((transaction) => (
+                <>
+                  <tr>
+                    <td>
+                      {transaction?.buyer?.email == user?.email
+                        ? `+ ${transaction?.offer?.cost}`
+                        : `- ${transaction?.offer?.cost}`}
+                    </td>
+                    <td>{transaction?.lastUpdateTime}</td>
+                    <td>
+                      {transaction?.buyer?.email == user?.email
+                        ? transaction?.seller?.email
+                        : transaction?.buyer?.email}
+                    </td>
+                    <td>{transaction?.offer?.title}</td>
+                    <td>
+                      <a href="#" style={{ textDecoration: "none" }}>
+                        {"jeszcze nwm co"}
+                      </a>
+                    </td>
+                  </tr>
+                </>
               ))}
             </tbody>
           </Table>
