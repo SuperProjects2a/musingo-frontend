@@ -56,7 +56,7 @@ function App() {
           <Route path="/Error403" element={<Error403 />}></Route>
           <Route
             path="/FundAdd"
-            element={<FundAdd onFundAdd={FundAdd}></FundAdd>}
+            element={<FundAdd></FundAdd>}
           ></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
