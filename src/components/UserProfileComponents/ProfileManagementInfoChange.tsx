@@ -1,6 +1,8 @@
 import { Form, Col, Button, Row } from "react-bootstrap";
-import { Formik } from "formik";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
+import { IProfile } from "../../services/profileService";
+import {useState,useEffect} from "react"
 
 const contactDataChangeSchema = Yup.object().shape({
   street: Yup.string()
@@ -52,33 +54,35 @@ const emailDataChangeSchema = Yup.object().shape({
     .email("Niepoprawny adres email")
     .required("To pole jest wymagane przy zmianie"),
 });
-
 export const ContactDataChange = (params: any) => {
+  
+
   return (
     <div className="userInfoChangeForm pt-2">
       <Row>
         <Col>
           <Formik
             initialValues={{
-              city: "",
-              street: "",
-              houseNumber: "",
-              postCode: "",
-              phoneNumber: "",
+              
+              city: params.updateProfile?.city,
+              street: params.updateProfile?.street,
+              houseNumber: params.updateProfile?.houseNumber,
+              postCode: params.updateProfile?.postCode,
+              phoneNumber: params.updateProfile?.phoneNumber,
             }}
+            enableReinitialize= {true}
             validationSchema={contactDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              params.setUpdateProfile({
-                ...params.updateProfile,
-                city: values.city,
-                street: values.street,
-                houseNumber: values.houseNumber,
-                postCode: values.postCode,
-                phoneNumber: values.phoneNumber,
-              });
-              console.log(params.updateProfile);
-              resetForm();
+              params.updateProfile.city=values.city;
+              params.updateProfile.street=values.street;
+              params.updateProfile.houseNumber=values.houseNumber;
+              params.updateProfile.postCode=values.postCode;
+              params.updateProfile.phoneNumber=values.phoneNumber;
+
+              params.setUpdateProfile(params.updateProfile);
+              params.update();
+             // resetForm();
               setSubmitting(false);
             }}
           >
@@ -209,6 +213,7 @@ export const PasswordChange = (params: any) => {
               password: "",
               passwordConfirmation: "",
             }}
+            enableReinitialize= {true}
             validationSchema={passwordDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
@@ -309,6 +314,7 @@ export const EmailChange = (params: any) => {
             initialValues={{
               email: "",
             }}
+            enableReinitialize= {true}
             validationSchema={emailDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
