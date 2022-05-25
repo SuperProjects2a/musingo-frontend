@@ -102,11 +102,14 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
             <Form.Select
               aria-label="Default select example"
               className="selectColor"
+              onChange={(e) => {
+                setSorting(e.target.value);
+              }}
             >
-              <option value="1">Od najnowszych</option>
-              <option value="2">Od najstarszych</option>
-              <option value="3">Cena: od najtańszych</option>
-              <option value="4">Cena: od najdroższych</option>
+              <option value="Latest">Od najnowszych</option>
+              <option value="Oldest">Od najstarszych</option>
+              <option value="Ascending">Cena: od najtańszych</option>
+              <option value="Descending">Cena: od najdroższych</option>
             </Form.Select>
           </Col>
         </Row>
