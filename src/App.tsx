@@ -23,6 +23,7 @@ import FundFailure from "./components/funds/FundFailure";
 import Watch from "./components/Watch";
 import Error404 from "./components/errors/Error404";
 import Error403 from "./components/errors/Error403";
+import ChatWindow from "./components/ChatComponents/ChatWindow";
 import { Outlet } from "react-router";
 
 function ScrollToTop() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/EditOffer" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route path="/ChatWindow" element={<ChatWindow />}></Route>   
           <Route path="/Error404" element={<Error404 />}></Route>
           <Route path="/Error403" element={<Error403 />}></Route>
           <Route

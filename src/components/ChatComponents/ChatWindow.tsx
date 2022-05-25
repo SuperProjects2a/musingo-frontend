@@ -1,4 +1,4 @@
-import { Container, Form, Card } from "react-bootstrap";
+import { Container, Form, Card, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import ChatMessage from "./ChatMessage";
@@ -21,7 +21,6 @@ const ChatWindow = () => {
     <div>
       {informationsUser.map((informationUser, index) => (
         <Container
-          className="justify-content-center"
           style={{ textAlign: "left" }}
         >
           <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5 mt-sm-5 mb-sm-5 chatWindow">
@@ -85,7 +84,13 @@ const ChatWindow = () => {
                         {errors.message}
                       </Form.Control.Feedback>
                     </Form.Group>
-                    <button onClick={() => setCount(count + 1)}>SEND</button>
+                    <Button
+                      variant="dark"
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      Wyślij
+                    </Button>
                   </Form>
                 )}
               </Formik>
