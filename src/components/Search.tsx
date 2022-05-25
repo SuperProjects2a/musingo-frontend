@@ -8,7 +8,7 @@ import PaginationSearch from "./announcement/PaginationSearch";
 import FilterSearch from "./announcement/FilterSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-import { getOffers, getOffersByName, IAnnouncement } from "../services/offerService";
+import { getOffers, getOffersByFiler, getOffersByName, IAnnouncement, IOfferFilter } from "../services/offerService";
 
 import axios from "axios";
 
@@ -20,6 +20,7 @@ const Search = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [offerFilter, setOfferFilter] = useState<IOfferFilter>({Sorting: 'Latest', Name: null, PriceFrom: null, PriceTo: null, Category: null});
 
   useEffect(() => {
     // const fetchPosts = async () => {
@@ -31,13 +32,21 @@ const Search = () => {
     const fetchAnnouncements = async () => {
       setLoading(true);
       let nameQuery = searchParams.get('Name');
-      let offers = await getOffersByName(nameQuery);
-      setAnnouncements(offers);
-      setLoading(false);
+      setOfferFilter({Name: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category})
+      
     };
 
     fetchAnnouncements();
   }, []);
+
+  useEffect(() => {
+    const updateAnnouncements = async () => {
+      let offers = await getOffersByFiler(offerFilter);
+      setAnnouncements(offers);
+      setLoading(false);
+    }
+    updateAnnouncements();
+  }, [offerFilter]);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -46,6 +55,11 @@ const Search = () => {
     indexOfFirstPost,
     indexOfLastPost
   );
+
+  const onFilterChange = (filter: IOfferFilter) => {
+    setOfferFilter(filter);
+
+  }
 
   // Change page
   const paginate = (pageNumber: number) => {
@@ -56,7 +70,7 @@ const Search = () => {
   return (
     <Container fluid style={{ textAlign: "left" }}>
       <div className="px-sm-1 px-md-2">
-        <FilterSearch />
+        <FilterSearch onFilterChange={() => {console.log('filter changed')}} />
       </div>
       {loading == true ? (
         <Col

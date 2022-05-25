@@ -1,7 +1,7 @@
 import { Container, Form, Col, Row, InputGroup } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 
-const FilterSearch = () => {
+const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}) => {
   const [minPrice, setMinPrice] = useState<number | undefined>();
   const [maxPrice, setMaxPrice] = useState<number | undefined>();
   const [validated, setValidated] = useState(false);
