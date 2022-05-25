@@ -2,7 +2,7 @@ import { Form, Col, Button, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-const userDataChangeSchema = Yup.object().shape({
+const contactDataChangeSchema = Yup.object().shape({
   street: Yup.string()
     .required("To pole jest wymagane przy zmianie")
     .min(3, "Wprowadź prawidłową nazwe ulicy")
@@ -28,9 +28,13 @@ const userDataChangeSchema = Yup.object().shape({
     .required("To pole jest wymagane przy zmianie")
     .matches(/^[1-9][0-9]-[1-9][0-9]{2,2}$/i, "Wprowadź poprawny kod pocztowy")
     .required("To pole jest wymagane"),
-  email: Yup.string()
-    .email("Niepoprawny adres email")
-    .required("To pole jest wymagane przy zmianie"),
+  phoneNumber: Yup.string()
+    .required("To pole jest wymagane przy zmianie")
+    .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
+    .min(9, "Wprowdź poprawny numer")
+    .max(9, "Wprowdź poprawny numer"),
+});
+const passwordDataChangeSchema = Yup.object().shape({
   password: Yup.string()
     .required("To pole jest wymagane przy zmianie")
     .min(8, "Hasło musi składać się z minimum 8 znaków")
@@ -42,14 +46,14 @@ const userDataChangeSchema = Yup.object().shape({
     .required("To pole jest wymagane przy zmianie")
     .oneOf([Yup.ref("password"), null], "Hasło musza się zgadzać"),
   oldPassword: Yup.string().required("To pole jest wymagane przy zmianie"),
-  phoneNumber: Yup.string()
-    .required("To pole jest wymagane przy zmianie")
-    .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
-    .min(9, "Wprowdź poprawny numer")
-    .max(9, "Wprowdź poprawny numer"),
+});
+const emailDataChangeSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Niepoprawny adres email")
+    .required("To pole jest wymagane przy zmianie"),
 });
 
-export const ContactDataChange = () => {
+export const ContactDataChange = (params: any) => {
   return (
     <div className="userInfoChangeForm pt-2">
       <Row>
@@ -62,9 +66,18 @@ export const ContactDataChange = () => {
               postCode: "",
               phoneNumber: "",
             }}
-            validationSchema={userDataChangeSchema}
+            validationSchema={contactDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
+              params.setUpdateProfile({
+                ...params.updateProfile,
+                city: values.city,
+                street: values.street,
+                houseNumber: values.houseNumber,
+                postCode: values.postCode,
+                phoneNumber: values.phoneNumber,
+              });
+              console.log(params.updateProfile);
               resetForm();
               setSubmitting(false);
             }}
@@ -185,7 +198,7 @@ export const ContactDataChange = () => {
   );
 };
 
-export const PasswordChange = () => {
+export const PasswordChange = (params: any) => {
   return (
     <div className="userInfoChangeForm pt-2">
       <Row>
@@ -196,7 +209,7 @@ export const PasswordChange = () => {
               password: "",
               passwordConfirmation: "",
             }}
-            validationSchema={userDataChangeSchema}
+            validationSchema={passwordDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
               resetForm();
@@ -287,7 +300,7 @@ export const PasswordChange = () => {
   );
 };
 
-export const EmailChange = () => {
+export const EmailChange = (params: any) => {
   return (
     <div className="userInfoChangeForm pt-2">
       <Row>
@@ -296,7 +309,7 @@ export const EmailChange = () => {
             initialValues={{
               email: "",
             }}
-            validationSchema={userDataChangeSchema}
+            validationSchema={emailDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
               resetForm();

@@ -111,7 +111,7 @@ const ProfileManagement = () => {
           <Card className="mt-4" style={{ borderRadius: "20px" }}>
             <Card.Body>
               <Card.Title>Zmień dane kontaktowe</Card.Title>
-              <ContactDataChange />
+              <ContactDataChange updateProfile={updateProfile} setUpdateProfile={setUpdateProfile} update={update} />
             </Card.Body>
           </Card>
           <Card className="mt-4" style={{ borderRadius: "20px" }}>
