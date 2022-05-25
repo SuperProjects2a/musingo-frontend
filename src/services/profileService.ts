@@ -1,5 +1,4 @@
 import http from "./HTTPcommon";
-import {IUser} from "./userService"
 
 
 export const getProfile = () =>{
@@ -36,4 +35,12 @@ export interface IProfile{
     postCode: string;
     gender: string;
     birth: string;
+}
+export interface IOffer{
+    id:number;
+    title:string;
+    imageUrl:string;
+    cost:number;
+    offerStatus:string;
+    itemCategory:string;
 }

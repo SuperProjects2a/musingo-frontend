@@ -3,15 +3,9 @@ import { Row, Container } from "react-bootstrap";
 import data from "../../data.json";
 import Pagination from "../announcement/PaginationSearch";
 import OffersPagin from "./Offers/OffersPagin";
+import {getProfileOffers, IOffer} from "../../services/profileService"
 
-import axios from "axios";
 
-interface IOffer {
-  link: string;
-  title: string;
-  promote: boolean;
-  date: string;
-}
 const Offers = () => {
   const [offers, setOffers] = useState<IOffer[]>([] as IOffer[]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +15,8 @@ const Offers = () => {
   useEffect(() => {
     const fetchOffers = async () => {
       setLoading(true);
-      setOffers(data);
+      var o = await getProfileOffers();
+      setOffers(o);
       setLoading(false);
     };
 

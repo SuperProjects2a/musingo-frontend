@@ -1,20 +1,16 @@
 import { FC } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
+import { IOffer } from "../../../services/profileService";
 import OfferCard from "./OfferCard";
 
-interface IPost {
+interface IOffers {
   offers: IOffer[];
   loading: boolean;
 }
 
-interface IOffer {
-  link: string;
-  title: string;
-  date: string;
-  promote: boolean;
-}
 
-const OffersPagin: FC<IPost> = ({ offers, loading }) => {
+
+const OffersPagin: FC<IOffers> = ({ offers, loading }) => {
   if (loading) {
     return (
       <Col xs={{ offset: 5 }} lg={{ offset: 6 }} className="px-sm-5 px-lg-0">
@@ -35,10 +31,7 @@ const OffersPagin: FC<IPost> = ({ offers, loading }) => {
           className="p-1"
         >
           <OfferCard
-            link={offer.link}
-            title={offer.title}
-            promote={offer.promote}
-            date={offer.date}
+            offer={offer}
           />
         </Col>
       ))}

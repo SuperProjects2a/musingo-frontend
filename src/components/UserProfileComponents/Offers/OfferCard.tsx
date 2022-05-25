@@ -5,21 +5,15 @@ import { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
-interface IOffer {
-  link: string;
-  title: string;
-  date: string;
-  promote: boolean;
-}
 
-const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
+const OfferCard = (params:any) => {
   return (
     <>
       <Card>
-        <Link to={link} className="cardTitle">
+        <Link to={`/DisplayOffer/${params.offer?.id}`} className="cardTitle">
           <Card.Img
             variant="top"
-            src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
+            src={params.offer.imageUrl}
             style={{
               height: " calc(11vh + 4vw)",
               minHeight: "150px",
@@ -31,11 +25,11 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
           />
         </Link>
         <Card.Body className="p-2">
-          <Link to={link} className="cardTitle">
+          <Link to={`/DisplayOffer/${params.offer?.id}`} className="cardTitle">
             <OverlayTrigger
               placement="top"
               delay={{ show: 250, hide: 400 }}
-              overlay={<Tooltip id="tooltip-disabled">{title}</Tooltip>}
+              overlay={<Tooltip id="tooltip-disabled">{params.offer?.title}</Tooltip>}
             >
               <div
                 style={{
@@ -45,15 +39,15 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
                   lineHeight: "21px",
                 }}
               >
-                {title.length > 20 ? (
-                  /\s+$/.test(title.substring(0, 17)) == true ||
-                  /[-_(),.]$/.test(title.substring(0, 17)) == true ? (
-                    <p>{title.substring(0, 16)}...</p>
+                {params.offer?.title.length > 20 ? (
+                  /\s+$/.test(params.offer?.title.substring(0, 17)) == true ||
+                  /[-_(),.]$/.test(params.offer?.title.substring(0, 17)) == true ? (
+                    <p>{params.offer?.title.substring(0, 16)}...</p>
                   ) : (
-                    <p>{title.substring(0, 17)}...</p>
+                    <p>{params.offer?.title.substring(0, 17)}...</p>
                   )
                 ) : (
-                  <p>{title}</p>
+                  <p>{params.offer?.title}</p>
                 )}
               </div>
             </OverlayTrigger>
@@ -68,7 +62,7 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
                   paddingLeft: "1.5px",
                 }}
               />
-              {date}
+              {params.offer?.title}
             </div>
           </div>
           <div>
@@ -83,7 +77,7 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
                 </Button>
               </Link>
             </Col>
-            {promote == true ? (
+            {/* {promote == true ? (
               <Button className="mb-1" variant="dark" style={{ width: "100%" }}>
                 Promuj
               </Button>
@@ -96,7 +90,7 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
               >
                 Wypromowane
               </Button>
-            )}
+            )} */}
             <Button variant="danger" style={{width: "100%" }}>
               Usuń
             </Button>
