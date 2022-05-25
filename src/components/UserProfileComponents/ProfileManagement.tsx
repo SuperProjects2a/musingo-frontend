@@ -127,7 +127,7 @@ const ProfileManagement = () => {
           <Card className="mt-4" style={{ borderRadius: "20px" }}>
             <Card.Body>
               <Card.Title>Zmień email</Card.Title>
-              <EmailChange updateProfile={updateProfile} setUpdateProfile={setUpdateProfile} update={update} />
+              <EmailChange updateProfile={updateProfile} setUpdateProfile={setUpdateProfile} update={update} error={error} />
             </Card.Body>
           </Card>
         </Col>

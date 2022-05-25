@@ -321,13 +321,15 @@ export const EmailChange = (params: any) => {
         <Col>
           <Formik
             initialValues={{
-              email: "",
+              email: params.updateProfile?.email,
             }}
             enableReinitialize={true}
             validationSchema={emailDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              resetForm();
+              params.updateProfile.email = values.email;
+              params.setUpdateProfile(params.updateProfile);
+              params.update();
               setSubmitting(false);
             }}
           >
@@ -357,6 +359,11 @@ export const EmailChange = (params: any) => {
                   <Form.Control.Feedback type="invalid">
                     {errors.email}
                   </Form.Control.Feedback>
+                  {params.error?.length > 0 && <div className=" mt-3">
+                    <p className="text-danger" style={{ textAlign: "center" }}>
+                      {params.error?.includes("Someone else is using this email already") && "Ktoś inny używa już tego email'a"}
+                    </p>
+                  </div>}
                 </Form.Group>
 
                 <div className="my-4 d-grid">
