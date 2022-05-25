@@ -22,6 +22,10 @@ const NavSearch = () => {
     setSearchValue(e.target.value);
   };
 
+  const submitQuery = (queryString: string) => {
+    navigate({pathname:'/Search', search:'?Name='+queryString});
+  }
+
   return (
     <>
       <div className="header">
@@ -47,16 +51,15 @@ const NavSearch = () => {
                   handleBlur(e);
                 }}
               />
-              <Link to="/Search">
-                <Button
+              <Button
                   variant="light"
                   id="button-addon2"
                   className="navBorder selectColor"
                   type="submit"
+                  onClick={() => submitQuery(searchValue)}
                 >
                   <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
                 </Button>
-              </Link>
             </InputGroup>
           </Col>
         </Container>
