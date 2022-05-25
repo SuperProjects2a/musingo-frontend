@@ -1,5 +1,6 @@
 import { Container, Col, Row, Spinner } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import AnnouncementsCarousel from "./announcement/AnnouncementsCarousel";
 import Posts from "./announcement/Posts";
@@ -7,7 +8,7 @@ import PaginationSearch from "./announcement/PaginationSearch";
 import FilterSearch from "./announcement/FilterSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-import { getOffers, IAnnouncement } from "../services/offerService";
+import { getOffers, getOffersByName, IAnnouncement } from "../services/offerService";
 
 import axios from "axios";
 
@@ -18,6 +19,7 @@ const Search = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     // const fetchPosts = async () => {
@@ -28,7 +30,8 @@ const Search = () => {
     // };
     const fetchAnnouncements = async () => {
       setLoading(true);
-      let offers = await getOffers();
+      let nameQuery = searchParams.get('Name');
+      let offers = await getOffersByName(nameQuery);
       setAnnouncements(offers);
       setLoading(false);
     };

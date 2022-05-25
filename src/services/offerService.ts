@@ -27,6 +27,13 @@ export const getOffers  = () : Promise<IAnnouncement[]> => {
     .then((response) => response.data);
 }
 
+export const getOffersByName = (name: string | null): Promise<IAnnouncement[]> => {
+  if(name === null || name === '') return getOffers();
+
+  return http({method:'get', url: 'Offer', params: {Sorting: 'Latest', Search: name}})
+    .then((response) => response.data);
+}
+
 export const getOffer = (id: number): Promise<IAnnouncement> => {
   return http({method: 'get', url: 'Offer/' + id})
     .then((response) => response.data);
