@@ -8,10 +8,15 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
   const [sorting, setSorting] = useState<string | null>('Latest');
   const [validated, setValidated] = useState(false);
 
-  useEffect(() => {
+  const setFilters = () => {
+    let cat = category === "null" ? null : category;
     let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
     let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
-    onFilterChange({PriceFrom: priceFrom, PriceTo: priceTo, Category: category, Sorting: sorting})
+    onFilterChange({PriceFrom: priceFrom, MaxPriceToPrice: priceTo, Category: cat, Sorting: sorting})
+  }
+
+  useEffect(() => {
+    setFilters();
     setValidated(false);
     if (minPrice !== null && maxPrice !== null) {
       if (maxPrice! < minPrice!) {
@@ -22,9 +27,7 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
   }, [minPrice, maxPrice]);
 
   useEffect(() => {
-    let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
-    let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
-    onFilterChange({PriceFrom: priceFrom, MaxPriceToPrice: priceTo, Category: category, Sorting: sorting})
+    setFilters();
   }, [category, sorting])
 
   return (
@@ -48,7 +51,7 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
                 setCategory(e.target.value);
               }}
             >
-              <option>Wybierz kategorię</option>
+              <option value="null">Wybierz kategorię</option>
               <option value="Guitars">Gitary</option>
               <option value="WindInstruments">Dęte</option>
               <option value="Keyboards">Klawiszowe</option>
