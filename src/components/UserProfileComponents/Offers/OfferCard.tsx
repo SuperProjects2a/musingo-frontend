@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, OverlayTrigger, Tooltip, Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
@@ -62,7 +61,7 @@ const OfferCard = (params:any) => {
                   paddingLeft: "1.5px",
                 }}
               />
-              {params.offer?.title}
+              {params.offer?.createTime.substring(0, 10)}
             </div>
           </div>
           <div>

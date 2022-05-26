@@ -43,4 +43,5 @@ export interface IOffer{
     cost:number;
     offerStatus:string;
     itemCategory:string;
+    createTime:string;
 }
