@@ -1,4 +1,5 @@
 import http from "./HTTPcommon";
+import { ITransaction } from "./transactionService";
 
 export const getMessages  = () : Promise<IMessage[]> => {
     return http({method: 'get', url: '/Message'})
@@ -6,7 +7,7 @@ export const getMessages  = () : Promise<IMessage[]> => {
   }
   export interface IMessage{
       sender:ISender;
-      transcationId:number;
+      transaction:ITransaction;
       sendTime:string;
       text:string;
       unReadMessagesCount:number;

@@ -11,8 +11,10 @@ export interface IOfferShort{
     title:string;
     offerStatus:string;
     cost:number;
+    imageUrl:string;
   }
 export interface ITransaction{
+    id:number;
     offer:IOfferShort;
     seller:IOwner;
     buyer:IOwner;
