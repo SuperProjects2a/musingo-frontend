@@ -12,8 +12,8 @@ const Fundings = () => {
 
   useEffect(() => {
     const getT = async () => {
-      const t = await getTransactions();
-      setTransactions(t);
+      const t = await getTransactions() as ITransaction[];
+      setTransactions(t.filter(transaction => transaction?.offer?.offerStatus === "Sold"));
     };
     const getU = async () => {
       const u = await getUser();
@@ -43,10 +43,11 @@ const Fundings = () => {
               {transactions?.map((transaction) => (
                 <>
                   <tr>
-                    <td>
+                    <td style = {{color:transaction?.buyer?.email == user?.email ? "red" :"green"}}>
                       {transaction?.buyer?.email == user?.email
-                        ? `+ ${transaction?.offer?.cost}`
-                        : `- ${transaction?.offer?.cost}`}
+                        ? `- ${transaction?.offer?.cost}`
+                        : `+ ${transaction?.offer?.cost}`}
+                        
                     </td>
                     <td>{transaction?.lastUpdateTime}</td>
                     <td>

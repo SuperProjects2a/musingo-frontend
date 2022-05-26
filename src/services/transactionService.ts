@@ -9,6 +9,7 @@ export const getTransactions = () => {
 
 export interface IOfferShort{
     title:string;
+    offerStatus:string;
     cost:number;
   }
 export interface ITransaction{
