@@ -36,13 +36,3 @@ export interface IProfile{
     gender: string;
     birth: string;
 }
-export interface IOffer{
-    id:number;
-    title:string;
-    imageUrl:string;
-    cost:number;
-    offerStatus:string;
-    itemCategory:string;
-    createTime:string;
-    isPromoted:boolean;
-}

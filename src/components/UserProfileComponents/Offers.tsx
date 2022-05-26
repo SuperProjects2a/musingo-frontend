@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
-import data from "../../data.json";
 import Pagination from "../announcement/PaginationSearch";
 import OffersPagin from "./Offers/OffersPagin";
-import {getProfileOffers, IOffer} from "../../services/profileService"
+import {getProfileOffers} from "../../services/profileService"
+import { IAnnouncement } from "../../services/offerService";
 
 
 const Offers = () => {
-  const [offers, setOffers] = useState<IOffer[]>([] as IOffer[]);
+  const [offers, setOffers] = useState<IAnnouncement[]>([] as IAnnouncement[]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
@@ -19,9 +19,9 @@ const Offers = () => {
       setOffers(o);
       setLoading(false);
     };
-
     fetchOffers();
   }, []);
+
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -39,7 +39,7 @@ const Offers = () => {
         <>
           <div>
             <Row className="d-flex justify-content-center px-sm-2 px-md-4 px-lg-5 m-0">
-              <OffersPagin offers={currentAnnouncements} loading={loading} />
+              <OffersPagin offers={currentAnnouncements} loading={loading} setOffers={setOffers} offs ={offers} />
             </Row>
             <Row className="pt-3 m-0">
               <Pagination

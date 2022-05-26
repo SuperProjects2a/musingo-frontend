@@ -1,16 +1,18 @@
 import { FC } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
-import { IOffer } from "../../../services/profileService";
+import { IAnnouncement } from "../../../services/offerService";
 import OfferCard from "./OfferCard";
 
 interface IOffers {
-  offers: IOffer[];
+  offers: IAnnouncement[];
   loading: boolean;
+  setOffers:any;
+  offs:any;
 }
 
 
 
-const OffersPagin: FC<IOffers> = ({ offers, loading }) => {
+const OffersPagin: FC<IOffers> = ({ offers, loading,setOffers,offs }) => {
   if (loading) {
     return (
       <Col xs={{ offset: 5 }} lg={{ offset: 6 }} className="px-sm-5 px-lg-0">
@@ -18,7 +20,7 @@ const OffersPagin: FC<IOffers> = ({ offers, loading }) => {
       </Col>
     );
   }
-
+  
   return (
     <Row>
       {offers.map((offer, index) => (
@@ -32,6 +34,8 @@ const OffersPagin: FC<IOffers> = ({ offers, loading }) => {
         >
           <OfferCard
             offer={offer}
+            setOffers={setOffers}
+            offers={offs}
           />
         </Col>
       ))}
