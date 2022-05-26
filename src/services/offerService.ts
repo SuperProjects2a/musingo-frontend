@@ -20,6 +20,8 @@ export interface IAnnouncement {
   owner: IOwner;
   city: string;
   createTime: string;
+  email:string;
+  phoneNumber:string;
 }
 
 export const getOffers  = () : Promise<IAnnouncement[]> => {
@@ -29,5 +31,10 @@ export const getOffers  = () : Promise<IAnnouncement[]> => {
 
 export const getOffer = (id: number): Promise<IAnnouncement> => {
   return http({method: 'get', url: 'Offer/' + id})
+    .then((response) => response.data);
+}
+
+export const putOffer = (data:IAnnouncement) => {
+  return http({method: 'put', url: 'Offer',data: data})
     .then((response) => response.data);
 }

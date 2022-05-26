@@ -67,7 +67,7 @@ const OfferCard = (params:any) => {
           </div>
           <div>
             <Col xs={12}>
-              <Link to="/EditOffer">
+              <Link to={`/EditOffer/${params.offer?.id}`}>
                 <Button
                   className="my-1"
                   variant="dark"
