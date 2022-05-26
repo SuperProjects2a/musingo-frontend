@@ -38,3 +38,8 @@ export const putOffer = (data:IAnnouncement) => {
   return http({method: 'put', url: 'Offer',data: data})
     .then((response) => response.data);
 }
+
+export const getPromotedOffers  = () : Promise<IAnnouncement[]> => {
+  return http({method: 'get', url: '/Offer/Promote'})
+    .then((response) => response.data);
+}

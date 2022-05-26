@@ -18,6 +18,7 @@ const request = (options: any) => {
     if (error.response) {
       if (error.response.status === 401) {
         navigationService.navigation("/SignInUp");
+        localStorage.removeItem("token");
       } else if (error.response.status === 403) {
         navigationService.navigation("/Error403");
       } else if (error.response.status === 404) {

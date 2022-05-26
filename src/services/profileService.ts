@@ -44,4 +44,5 @@ export interface IOffer{
     offerStatus:string;
     itemCategory:string;
     createTime:string;
+    isPromoted:boolean;
 }

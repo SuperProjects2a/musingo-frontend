@@ -76,7 +76,7 @@ const OfferCard = (params:any) => {
                 </Button>
               </Link>
             </Col>
-            {/* {promote == true ? (
+            {params.offer?.isPromoted == true ? (
               <Button className="mb-1" variant="dark" style={{ width: "100%" }}>
                 Promuj
               </Button>
@@ -89,7 +89,7 @@ const OfferCard = (params:any) => {
               >
                 Wypromowane
               </Button>
-            )} */}
+            )}
             <Button variant="danger" style={{width: "100%" }}>
               Usuń
             </Button>
