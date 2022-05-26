@@ -22,6 +22,7 @@ export interface IAnnouncement {
   createTime: string;
   email:string;
   phoneNumber:string;
+  isPromoted:boolean;
 }
 
 export const getOffers  = () : Promise<IAnnouncement[]> => {
@@ -41,5 +42,9 @@ export const putOffer = (data:IAnnouncement) => {
 
 export const getPromotedOffers  = () : Promise<IAnnouncement[]> => {
   return http({method: 'get', url: '/Offer/Promote'})
+    .then((response) => response.data);
+}
+export const getUserOtherOffers  = (email:string,offerId:number) : Promise<IAnnouncement[]> => {
+  return http({method: 'get', url: `/Offer/User?Email=${email}&OfferId=${offerId}`})
     .then((response) => response.data);
 }

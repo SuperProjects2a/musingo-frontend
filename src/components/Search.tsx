@@ -26,7 +26,6 @@ const Search = () => {
       let offers = await getOffers();
       setAnnouncements(offers);
       let promotedOffers = await getPromotedOffers();
-      console.log(promotedOffers);
       setPromotedAnnouncements(promotedOffers);
       setLoading(false);
     };

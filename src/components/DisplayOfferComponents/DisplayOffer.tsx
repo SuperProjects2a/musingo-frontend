@@ -7,7 +7,7 @@ import PersonalInfo from "./PersonalInfo";
 import FavoriteBox from "./FavoriteBox";
 import OfferInfo from "./OfferInfo";
 import AnnouncementsCarousel from "../announcement/AnnouncementsCarousel";
-import { getOffers, getOffer, IAnnouncement, getPromotedOffers } from "../../services/offerService";
+import { getOffers, getOffer, IAnnouncement, getPromotedOffers, getUserOtherOffers } from "../../services/offerService";
 
 const DisplayOffer = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
@@ -28,7 +28,7 @@ const DisplayOffer = () => {
       let idNumber = Number(id);
       let receivedOffer = await getOffer(idNumber);
       setOffer(receivedOffer);
-      let offers = await getOffers();
+      let offers = await getUserOtherOffers(receivedOffer?.owner?.email,idNumber);
       let promotedOffers = await getPromotedOffers();
       setPromotedAnnouncements(promotedOffers);
       setAnnouncements(offers);
