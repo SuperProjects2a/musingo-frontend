@@ -20,7 +20,7 @@ import accessoriesCategory from "../images/accessories-category.jpg";
 import bookNoteCategory from "../images/book-note-category.jpg";
 import otherCategory from "../images/other-category.jpg";
 import DisplayOffer from "./DisplayOfferComponents/DisplayOffer";
-import { getOffers } from "../services/offerService";
+import { getOffers, getPromotedOffers } from "../services/offerService";
 import { IAnnouncement } from "../services/offerService";
 
 const categories = [
@@ -42,6 +42,9 @@ const Home = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
+  const [promotedAnnouncements, setPromotedAnnouncements] = useState<IAnnouncement[]>(
+    [] as IAnnouncement[]
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,6 +52,8 @@ const Home = () => {
       setLoading(true);
       let offers = await getOffers();
       setAnnouncements(offers);
+      let promotedOffers = await getPromotedOffers();
+      setPromotedAnnouncements(promotedOffers);
       setLoading(false);
     };
 
@@ -157,7 +162,7 @@ const Home = () => {
             <h3 className="pb-2">Wyróżnione</h3>
             <Row className="d-flex justify-content-center px-4 px-sm-0">
               <AnnouncementsCarousel
-                announcements={announcements}
+                announcements={promotedAnnouncements}
                 loading={loading}
                 center={true}
               />

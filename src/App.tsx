@@ -49,7 +49,7 @@ function App() {
           <Route path="/Watch" element={<Watch />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
-          <Route path="/EditOffer" element={<EditOffer />}></Route>
+          <Route path="/EditOffer/:id" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
           <Route path="/Error404" element={<Error404 />}></Route>

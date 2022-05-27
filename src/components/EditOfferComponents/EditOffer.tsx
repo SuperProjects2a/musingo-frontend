@@ -2,18 +2,11 @@ import { Container, Form, Col, Row, Card, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import EditImage from "./EditImage";
-
-const currentOfferInfos = [
-  {
-    titleCurrent: "Jakis tytuł",
-    descriptionCurrent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    phoneNumberCurrent: "123456789",
-    emailCurrent: "qweqwe@gmail.com",
-    cityCurrent: "Sosnowiec",
-    priceCurrent: "23",
-    categoryCurrent: "gitary"
-  },
-];
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getOffer, IAnnouncement, putOffer } from "../../services/offerService";
+import { ImageListType, ImageType } from "react-images-uploading";
+import UploadImage from "../AddOfferComponents/UploadImage";
 
 const EditOffer = () => {
   const addOfferSchema = Yup.object().shape({
@@ -43,14 +36,39 @@ const EditOffer = () => {
     category: Yup.string()
       .required("Wybierz kategorię")
       .matches(
-        /^[gitary, dete, klawiszowe, perkusyjne, smyczkowe, mikrofony, sluchawki,  akcesoria, inne]*$/i,
+        /^[Guitars, WindInstruments, Keyboards, Percussion, String, Microphones, Headphones,  NotesBooks, Other]*$/i,
         "Wybierz kategorię"
       ),
   });
+  const [loading, setLoading] = useState(true);
+  const [offer, setOffer] = useState<IAnnouncement>();
+  const [images, setImages] = useState<ImageListType>([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const [message, SetMessage] = useState("");
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      setLoading(true);
+      let idNumber = Number(id);
+      let receivedOffer = await getOffer(idNumber);
+      const imageData = images;
+      receivedOffer?.imageUrls?.map((url) => {
+        let image: ImageType = {
+          dataUrl: url,
+        };
+        imageData.push(image);
+      });
+      setOffer(receivedOffer);
+      setImages(imageData);
+      setLoading(false);
+    };
+
+    fetchAnnouncements();
+  }, []);
 
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
-      {currentOfferInfos.map((currentOfferInfo, index) => (
       <Container
         className="justify-content-center"
         style={{ textAlign: "left" }}
@@ -62,17 +80,42 @@ const EditOffer = () => {
           <Card.Body className="px-sm-4 px-md-5">
             <Formik
               initialValues={{
-                title: currentOfferInfo.titleCurrent,
-                category: currentOfferInfo.categoryCurrent,
-                description: currentOfferInfo.descriptionCurrent,
-                email: currentOfferInfo.emailCurrent,
-                phoneNumber: currentOfferInfo.phoneNumberCurrent,
-                city: currentOfferInfo.cityCurrent,
-                price: currentOfferInfo.priceCurrent,
+                title: offer?.title,
+                category: offer?.itemCategory,
+                description: offer?.description,
+                email: offer?.email,
+                phoneNumber: offer?.phoneNumber,
+                city: offer?.city,
+                price: offer?.cost,
               }}
+              enableReinitialize={true}
               validationSchema={addOfferSchema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
+                setIsVisible(false);
+                if (offer != undefined) {
+                  offer.title = values.title!;
+                  offer.itemCategory = values.category!;
+                  offer.description = values.description!;
+                  offer.email = values.email!;
+                  offer.phoneNumber = values.phoneNumber!;
+                  offer.city = values.city!;
+                  offer.cost = values.price!;
+                  setOffer(offer);
+                  console.log(offer);
+                  putOffer(offer)
+                    .then((res) => {
+                      SetMessage("Pomyślnie zaktualizowano oferte");
+                      setIsVisible(true);
+                    })
+                    .catch((err) => {
+                      SetMessage(
+                        "Coś poszło nie tak przy próbie aktulizacjii oferty"
+                      );
+                      setIsVisible(true);
+                    });
+                  
+                }
                 setSubmitting(false);
               }}
             >
@@ -86,7 +129,7 @@ const EditOffer = () => {
                 isSubmitting,
               }) => (
                 <Form onSubmit={handleSubmit}>
-                  <EditImage />
+                  {/* <UploadImage images={images} setImages={setImages} /> */}
                   <Form.Group className="py-5">
                     <h4>
                       <strong>Informacje o produkcie</strong>
@@ -123,17 +166,16 @@ const EditOffer = () => {
                           onChange={handleChange}
                           isInvalid={touched.category && !!errors.category}
                         >
-                          <option> Wybierz kategorię </option>
-                          <option value="gitary">Gitaty</option>
-                          <option value="dete">Dęte</option>
-                          <option value="klawiszowe">Klawiszowe</option>
-                          <option value="perkusyjne">Perkusyjne</option>
-                          <option value="smyczkowe">Smyczkowe</option>
-                          <option value="mikrofony">Mikrofony</option>
-                          <option value="sluchawki">Słuchawki</option>
-                          <option value="nuty">Nuty, Książki</option>
-                          <option value="akcesoria">Akcesoria</option>
-                          <option value="inne">Inne</option>
+                          <option value="Guitars">Gitary</option>
+                          <option value="WindInstruments">Dęte</option>
+                          <option value="Keyboards">Klawiszowe</option>
+                          <option value="Percussion">Perkusyjne</option>
+                          <option value="String">Smyczkowe</option>
+                          <option value="Microphones">Mikrofony</option>
+                          <option value="Headphones">Słuchawki</option>
+                          <option value="Accessories">Akcesoria</option>
+                          <option value="NotesBooks">Nuty, książki</option>
+                          <option value="Other">Inne</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                           {errors.category}
@@ -177,7 +219,7 @@ const EditOffer = () => {
                       />
                       <Form.Text>
                         Maksymalna długość:{" "}
-                        <strong>{values.description.length}/9000</strong>
+                        <strong>{values?.description?.length}/9000</strong>
                       </Form.Text>
                       <Form.Control.Feedback type="invalid">
                         {errors.description}
@@ -248,6 +290,11 @@ const EditOffer = () => {
                       </Form.Group>
                     </Col>
                   </Form.Group>
+                  {isVisible && (
+                        <div className=" mt-3">
+                          <p className={message.includes("Pomyślnie zaktualizowano oferte") ? "text-success":"text-danger" } style={{ textAlign: "center" }}>{message}</p>
+                        </div>
+                      )}
                   <Row className="py-5">
                     <Col
                       xl={{ span: 2, offset: 10 }}
@@ -270,7 +317,6 @@ const EditOffer = () => {
           </Card.Body>
         </Card>
       </Container>
-            ))}
     </div>
   );
 };

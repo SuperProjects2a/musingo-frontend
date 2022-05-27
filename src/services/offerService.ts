@@ -20,6 +20,9 @@ export interface IAnnouncement {
   owner: IOwner;
   city: string;
   createTime: string;
+  email:string;
+  phoneNumber:string;
+  isPromoted:boolean;
 }
 
 export interface IOfferFilter {
@@ -49,5 +52,24 @@ export const getOffersByFiler = (offerFilter: IOfferFilter): Promise<IAnnounceme
 
 export const getOffer = (id: number): Promise<IAnnouncement> => {
   return http({method: 'get', url: 'Offer/' + id})
+    .then((response) => response.data);
+}
+
+export const putOffer = (data:IAnnouncement) => {
+  return http({method: 'put', url: 'Offer',data: data})
+    .then((response) => response.data);
+}
+
+export const putPromote  = (offerId:number) : Promise<IAnnouncement> => {
+  return http({method: 'put', url: '/Offer/Promote/' +offerId})
+    .then((response) => response.data);
+}
+
+export const getPromotedOffers  = () : Promise<IAnnouncement[]> => {
+  return http({method: 'get', url: '/Offer/Promote'})
+    .then((response) => response.data);
+}
+export const getUserOtherOffers  = (email:string,offerId:number) : Promise<IAnnouncement[]> => {
+  return http({method: 'get', url: `/Offer/User?Email=${email}&OfferId=${offerId}`})
     .then((response) => response.data);
 }

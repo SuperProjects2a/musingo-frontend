@@ -1,67 +1,103 @@
-import { Card, Form, Button, Table } from "react-bootstrap";
-import { Formik } from "formik";
-import * as Yup from "yup";
-
-const fundings = [
-  {
-    price: 200,
-    date: "21.03.2010",
-    user: "Patryk Graca",
-    item: "Gitara elektryczna",
-    opinion: "Zobacz opinie",
-  },
-  {
-    price: 200,
-    date: "21.03.2010",
-    user: "Patryk Graca",
-    item: "Gitara elektryczna",
-    opinion: "Zobacz opinie",
-  },
-  {
-    price: 200,
-    date: "21.03.2010",
-    user: "Patryk Graca",
-    item: "Gitara elektryczna",
-    opinion: "Zobacz opinie",
-  },
-];
+import { Card, Form, Button, Table, Container } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import {
+  getTransactions,
+  ITransaction,
+} from "../../services/transactionService";
+import { getUser, IUser } from "../../services/userService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSackXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Fundings = () => {
-  return (
-    <div className="userProfileDiv p-4 px-5">
-      <Card style={{ borderRadius: "20px" }}>
-        <Card.Body>
-          <Card.Title>Historia płatności</Card.Title>
+  const [transactions, setTransactions] = useState<ITransaction[]>(
+    [] as ITransaction[]
+  );
+  const [user, setUser] = useState<IUser>();
 
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th>Kwota</th>
-                <th>Data</th>
-                <th>Użytkownik</th>
-                <th>Przedmiot</th>
-                <th>Opinie</th>
-              </tr>
-            </thead>
-            <tbody>
-              {fundings.map((funding, index) => (
-                <tr>
-                  <td>{funding.price}</td>
-                  <td>{funding.date}</td>
-                  <td>{funding.user}</td>
-                  <td>{funding.item}</td>
-                  <td>
-                    <a href="#" style={{ textDecoration: "none" }}>
-                      {funding.opinion}
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Card.Body>
-      </Card>
-    </div>
+  useEffect(() => {
+    const getT = async () => {
+      const t = (await getTransactions()) as ITransaction[];
+      setTransactions(
+        t.filter((transaction) => transaction?.offer?.offerStatus === "Sold")
+      );
+    };
+    const getU = async () => {
+      const u = await getUser();
+      setUser(u);
+    };
+    getU();
+    getT();
+  }, []);
+
+  return (
+    <>
+      {transactions.length > 0 ? (
+        <div className="userProfileDiv py-4 px-3 px-md-5">
+          <Card style={{ borderRadius: "20px" }}>
+            <Card.Body>
+              <Card.Title>Historia płatności</Card.Title>
+
+              <Table striped bordered hover responsive>
+                <thead>
+                  <tr>
+                    <th>Kwota</th>
+                    <th>Data</th>
+                    <th>Użytkownik</th>
+                    <th>Przedmiot</th>
+                    <th>Opinie</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {transactions?.map((transaction) => (
+                    <>
+                      <tr>
+                        <td
+                          style={{
+                            color:
+                              transaction?.buyer?.email == user?.email
+                                ? "red"
+                                : "green",
+                          }}
+                        >
+                          {transaction?.buyer?.email == user?.email
+                            ? `- ${transaction?.offer?.cost}`
+                            : `+ ${transaction?.offer?.cost}`}
+                        </td>
+                        <td>{transaction?.lastUpdateTime}</td>
+                        <td>
+                          {transaction?.buyer?.email == user?.email
+                            ? transaction?.seller?.email
+                            : transaction?.buyer?.email}
+                        </td>
+                        <td>{transaction?.offer?.title}</td>
+                        <td>
+                          <a href="#" style={{ textDecoration: "none" }}>
+                            {"jeszcze nwm co"}
+                          </a>
+                        </td>
+                      </tr>
+                    </>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </div>
+      ) : (
+        <div className="userProfileDiv">
+          <Container className="d-flex justify-content-center">
+            <div className="py-5 m-sm-5" style={{ textAlign: "center" }}>
+              <FontAwesomeIcon
+                icon={faSackXmark}
+                style={{ height: "100px" }}
+                className="py-3"
+              />
+              <h5>Nie masz jescze żadnej historii płatności.</h5>
+            </div>
+          </Container>
+        </div>
+      )}
+    </>
   );
 };
 

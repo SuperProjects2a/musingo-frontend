@@ -8,12 +8,14 @@ import PaginationSearch from "./announcement/PaginationSearch";
 import FilterSearch from "./announcement/FilterSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-import { getOffers, getOffersByFiler, getOffersByName, IAnnouncement, IOfferFilter } from "../services/offerService";
+import { getOffers,getPromotedOffers, getOffersByFiler, getOffersByName, IAnnouncement, IOfferFilter } from "../services/offerService";
 
-import axios from "axios";
 
 const Search = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
+    [] as IAnnouncement[]
+  );
+  const [promotedAnnouncements, setPromotedAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
   const navigate = useNavigate();
@@ -24,18 +26,15 @@ const Search = () => {
   const [offerFilter, setOfferFilter] = useState<IOfferFilter>({Sorting: 'Latest', Search: null, PriceFrom: null, PriceTo: null, Category: null});
 
   useEffect(() => {
-    // const fetchPosts = async () => {
-    //   setLoading(true);
-    //   const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    //   setPosts(res.data);
-    //   setLoading(false);
-    // };
     const fetchAnnouncements = async () => {
       setLoading(true);
+      let offers = await getOffers();
+      setAnnouncements(offers);
+      let promotedOffers = await getPromotedOffers();
+      setPromotedAnnouncements(promotedOffers);
+      setLoading(false);
       let nameQuery = searchParams.get('Name');
       setOfferFilter({Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category})
-      
-      
     };
 
     fetchAnnouncements();
@@ -113,7 +112,7 @@ const Search = () => {
               </h5>
               <Row className="d-flex justify-content-center px-4 px-sm-0">
                 <AnnouncementsCarousel
-                  announcements={announcements}
+                  announcements={promotedAnnouncements}
                   loading={loading}
                   center={false}
                 />

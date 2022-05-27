@@ -1,8 +1,10 @@
 import { Form, Col, Button, Row } from "react-bootstrap";
-import { Formik } from "formik";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
+import { IProfile } from "../../services/profileService";
+import { useState, useEffect } from "react";
 
-const userDataChangeSchema = Yup.object().shape({
+const contactDataChangeSchema = Yup.object().shape({
   street: Yup.string()
     .required("To pole jest wymagane przy zmianie")
     .min(3, "Wprowadź prawidłową nazwe ulicy")
@@ -28,9 +30,13 @@ const userDataChangeSchema = Yup.object().shape({
     .required("To pole jest wymagane przy zmianie")
     .matches(/^[1-9][0-9]-[1-9][0-9]{2,2}$/i, "Wprowadź poprawny kod pocztowy")
     .required("To pole jest wymagane"),
-  email: Yup.string()
-    .email("Niepoprawny adres email")
-    .required("To pole jest wymagane przy zmianie"),
+  phoneNumber: Yup.string()
+    .required("To pole jest wymagane przy zmianie")
+    .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
+    .min(9, "Wprowdź poprawny numer")
+    .max(9, "Wprowdź poprawny numer"),
+});
+const passwordDataChangeSchema = Yup.object().shape({
   password: Yup.string()
     .required("To pole jest wymagane przy zmianie")
     .min(8, "Hasło musi składać się z minimum 8 znaków")
@@ -42,30 +48,39 @@ const userDataChangeSchema = Yup.object().shape({
     .required("To pole jest wymagane przy zmianie")
     .oneOf([Yup.ref("password"), null], "Hasło musza się zgadzać"),
   oldPassword: Yup.string().required("To pole jest wymagane przy zmianie"),
-  phoneNumber: Yup.string()
-    .required("To pole jest wymagane przy zmianie")
-    .matches(/^[0-9]*$/, "Wprowadź poprawny numer telefonu")
-    .min(9, "Wprowdź poprawny numer")
-    .max(9, "Wprowdź poprawny numer"),
+});
+const emailDataChangeSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Niepoprawny adres email")
+    .required("To pole jest wymagane przy zmianie"),
 });
 
-export const ContactDataChange = () => {
+export const ContactDataChange = (params: any) => {
   return (
     <div className="userInfoChangeForm pt-2">
       <Row>
         <Col>
           <Formik
             initialValues={{
-              city: "",
-              street: "",
-              houseNumber: "",
-              postCode: "",
-              phoneNumber: "",
+              city: params.updateProfile?.city,
+              street: params.updateProfile?.street,
+              houseNumber: params.updateProfile?.houseNumber,
+              postCode: params.updateProfile?.postCode,
+              phoneNumber: params.updateProfile?.phoneNumber,
             }}
-            validationSchema={userDataChangeSchema}
+            enableReinitialize={true}
+            validationSchema={contactDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              resetForm();
+              params.updateProfile.city = values.city;
+              params.updateProfile.street = values.street;
+              params.updateProfile.houseNumber = values.houseNumber;
+              params.updateProfile.postCode = values.postCode;
+              params.updateProfile.phoneNumber = values.phoneNumber;
+
+              params.setUpdateProfile(params.updateProfile);
+              params.update();
+              // resetForm();
               setSubmitting(false);
             }}
           >
@@ -185,7 +200,7 @@ export const ContactDataChange = () => {
   );
 };
 
-export const PasswordChange = () => {
+export const PasswordChange = (params: any) => {
   return (
     <div className="userInfoChangeForm pt-2">
       <Row>
@@ -196,9 +211,14 @@ export const PasswordChange = () => {
               password: "",
               passwordConfirmation: "",
             }}
-            validationSchema={userDataChangeSchema}
+            enableReinitialize={true}
+            validationSchema={passwordDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
+              params.updateProfile.oldPassword = values.oldPassword;
+              params.updateProfile.newPassword = values.password;
+              params.setUpdateProfile(params.updateProfile);
+              params.update();
               resetForm();
               setSubmitting(false);
             }}
@@ -266,6 +286,13 @@ export const PasswordChange = () => {
                   <Form.Control.Feedback type="invalid">
                     {errors.passwordConfirmation}
                   </Form.Control.Feedback>
+                  {params.error?.length > 0 && <div className=" mt-3">
+                    <p className="text-danger" style={{ textAlign: "center" }}>
+                      {params.error?.includes("Wrong current password") && "Niepoprawne obecne hasło"}
+                      {params.error?.includes("The new password cannot be the same as the old one") && "Nowe hasło nie może być takie samo jak stare"}
+                    </p>
+                  </div>}
+                  <div className="d-grid my-4"></div>
                 </Form.Group>
 
                 <div className="my-4 d-grid">
@@ -287,19 +314,22 @@ export const PasswordChange = () => {
   );
 };
 
-export const EmailChange = () => {
+export const EmailChange = (params: any) => {
   return (
     <div className="userInfoChangeForm pt-2">
       <Row>
         <Col>
           <Formik
             initialValues={{
-              email: "",
+              email: params.updateProfile?.email,
             }}
-            validationSchema={userDataChangeSchema}
+            enableReinitialize={true}
+            validationSchema={emailDataChangeSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(true);
-              resetForm();
+              params.updateProfile.email = values.email;
+              params.setUpdateProfile(params.updateProfile);
+              params.update();
               setSubmitting(false);
             }}
           >
@@ -329,6 +359,11 @@ export const EmailChange = () => {
                   <Form.Control.Feedback type="invalid">
                     {errors.email}
                   </Form.Control.Feedback>
+                  {params.error?.length > 0 && <div className=" mt-3">
+                    <p className="text-danger" style={{ textAlign: "center" }}>
+                      {params.error?.includes("Someone else is using this email already") && "Ktoś inny używa już tego email'a"}
+                    </p>
+                  </div>}
                 </Form.Group>
 
                 <div className="my-4 d-grid">
