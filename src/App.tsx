@@ -51,7 +51,7 @@ function App() {
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/EditOffer/:id" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
-          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route path="/ReportOffer/:id" element={<ReportOffer />}></Route>
           <Route path="/Error404" element={<Error404 />}></Route>
           <Route path="/Error403" element={<Error403 />}></Route>
           <Route

@@ -1,3 +1,4 @@
+import { StringLiteralLike } from "typescript";
 import http from "./HTTPcommon"
 
 export interface IOwner {
@@ -42,6 +43,11 @@ export interface ICreateOffer{
   city:string;
   phoneNumber:string;
 }
+export interface ICreateReport{
+  offerId:number;
+  reason:string;
+  text:string;
+}
 
 export const getOffers  = () : Promise<IAnnouncement[]> => {
   return http({method: 'get', url: '/Offer?Sorting=Latest'})
@@ -85,5 +91,9 @@ export const getUserOtherOffers  = (email:string,offerId:number) : Promise<IAnno
 }
 export const postOffer  = (data:ICreateOffer) : Promise<IAnnouncement> => {
   return http({method: 'post', url: `/Offer`,data:data})
+    .then((response) => response.data);
+}
+export const reportOffer  = (data:ICreateReport) => {
+  return http({method: 'post', url: `/Offer/Report`,data:data})
     .then((response) => response.data);
 }

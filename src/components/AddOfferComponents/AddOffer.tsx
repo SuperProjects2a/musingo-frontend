@@ -5,11 +5,7 @@ import UploadImage from "./UploadImage";
 import { uploadFile } from "../../azure-storage-blob";
 import { useEffect, useState } from "react";
 import { ImageListType } from "react-images-uploading";
-import {
-  postOffer,
-  ICreateOffer,
-  IAnnouncement,
-} from "../../services/offerService";
+import { postOffer, ICreateOffer } from "../../services/offerService";
 import { getUser, IUser } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
 
@@ -56,7 +52,6 @@ const AddOffer = () => {
 
   const createOffer = async (newOffer: ICreateOffer) => {
     postOffer(newOffer).then((res) => {
-      console.log(res);
       navigate("/DisplayOffer/" + res.id);
     });
   };
@@ -71,7 +66,6 @@ const AddOffer = () => {
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
       <Container
-      
         className="justify-content-center"
         style={{ textAlign: "left" }}
       >
@@ -100,24 +94,26 @@ const AddOffer = () => {
                   setIsZeroImage(true);
                   return;
                 }
-                const urls:string[] = [] as string[];
+                const urls: string[] = [] as string[];
 
-                await Promise.all(images.map(async (file) => {
-                  const contents = await uploadFile(file.file!)
-                  urls.push(contents)
-                }));
+                await Promise.all(
+                  images.map(async (file) => {
+                    const contents = await uploadFile(file.file!);
+                    urls.push(contents);
+                  })
+                );
 
-                const newOffer:ICreateOffer ={
-                  title:values.title,
-                  description:values.description,
-                  cost:values.price,
-                  itemCategory:values.category,
-                  imageUrls:urls,
-                  email:values.email!,
-                  city:values.city!,
-                  phoneNumber:values.phoneNumber!
-                }
-                
+                const newOffer: ICreateOffer = {
+                  title: values.title,
+                  description: values.description,
+                  cost: values.price,
+                  itemCategory: values.category,
+                  imageUrls: urls,
+                  email: values.email!,
+                  city: values.city!,
+                  phoneNumber: values.phoneNumber!,
+                };
+
                 createOffer(newOffer);
                 resetForm();
                 setSubmitting(false);
