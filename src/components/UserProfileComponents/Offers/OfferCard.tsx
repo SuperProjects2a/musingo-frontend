@@ -14,18 +14,17 @@ const OfferCard = (params: any) => {
     });
   };
   const deleteOffer = async () => {
-    params.offer.offerStatus="Cancelled";
+    params.offer.offerStatus = "Cancelled";
     putOffer(params.offer).then(() => {
-      
       const arr = params.offers;
       arr.splice(params.offers?.indexOf(params.offer), 1);
       params.setOffers([]);
       params.setOffers(arr);
     });
   };
-  useEffect(()=>{
+  useEffect(() => {
     setIsPromoted(params.offer.isPromoted);
-  },[])
+  }, []);
   return (
     <>
       <Card>
@@ -118,7 +117,11 @@ const OfferCard = (params: any) => {
                 Wypromowane
               </Button>
             )}
-            <Button onClick={deleteOffer} variant="danger" style={{ width: "100%" }}>
+            <Button
+              onClick={deleteOffer}
+              variant="danger"
+              style={{ width: "100%" }}
+            >
               Usuń
             </Button>
           </div>

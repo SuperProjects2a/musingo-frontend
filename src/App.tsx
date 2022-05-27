@@ -58,7 +58,7 @@ function App() {
           <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
-          <Route path="/AddReview" element={<AddReview />}></Route>
+          <Route path="/AddReview/:id" element={<AddReview />}></Route>
           {/* UserProfile */}
           <Route
             path="/UserProfile/ProfileManagement"
