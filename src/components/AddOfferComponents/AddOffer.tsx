@@ -43,7 +43,6 @@ const AddOffer = () => {
 
   const [images, setImages] = useState<ImageListType>([]);
 
-
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
       <Container
@@ -69,9 +68,9 @@ const AddOffer = () => {
               validationSchema={addOfferSchema}
               onSubmit={async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                const urls:string[] = [];
-                images.forEach( async(file) =>{
-                  const url =await uploadFile(file.file!);
+                const urls: string[] = [];
+                images.forEach(async (file) => {
+                  const url = await uploadFile(file.file!);
                   urls.push(url);
                 });
                 //this urls will be added to database
@@ -252,7 +251,7 @@ const AddOffer = () => {
                     </Col>
                   </Form.Group>
                   <Row className="py-5">
-                    <Col>
+                    {/* <Col>
                       <Form.Group>
                         <Form.Check
                           name="tos"
@@ -269,14 +268,15 @@ const AddOffer = () => {
                           {errors.tos}
                         </Form.Control.Feedback>
                       </Form.Group>
-                    </Col>
+                    </Col> */}
                     <Col
-                      xl={{ span: 2, offset: 10 }}
-                      lg={{ span: 3, offset: 9 }}
+                      xs={12}
                       md={{ span: 4, offset: 8 }}
+                      xl={{ span: 3, offset: 9 }}
+                      className="d-grid"
                     >
                       <Button
-                        className=" my-2 my-sm-0"
+                        className=" mt-3"
                         variant="dark"
                         type="submit"
                         disabled={isSubmitting}
