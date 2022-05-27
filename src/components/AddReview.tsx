@@ -1,15 +1,29 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Form, Button, Container } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
+import { useNavigate } from "react-router-dom";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
   const [ratingValidation, setRatingValidation] = useState(false);
+  const [commentText, setCommentText] = useState("");
+  //   const [commentTextLength, setCommentTextLength] = useState(0);
+  const [commentTextValidation, setCommentTextValidation] = useState(false);
+  const navigate = useNavigate();
+
   const handleRating = (rate: number) => {
     setRating(rate);
+    setRatingValidation(false);
+  };
+  const handleCommentText = (text: string) => {
+    setCommentText(text);
+    // setCommentTextLength(text.length);
+    setCommentTextValidation(false);
   };
   const validationSchema = () => {
     rating > 0 || setRatingValidation(true);
+    commentText.length > 0 || setCommentTextValidation(true);
+    // ratingValidation == true || navigate("/");
   };
   return (
     <Container className="py-5">
@@ -33,7 +47,7 @@ const AddReview = () => {
               </Row>
             )}
 
-            <Form.Label className="pt-2">
+            <Form.Label className="py-2">
               Oceń zakupiony produkt oraz sprzedającego
             </Form.Label>
             <Form.Control
@@ -46,9 +60,19 @@ const AddReview = () => {
               autoComplete="description"
               //   value={values.description}
               //   onBlur={handleBlur}
-              //   onChange={handleChange}
+              onChange={(e) => handleCommentText(e.target.value)}
               //   isInvalid={touched.description && !!errors.description}
             />
+            <Form.Text>
+              Maksymalna długość: <strong>{commentText.length}/300</strong>
+            </Form.Text>
+            {commentTextValidation == true && (
+              <Row className="">
+                <Form.Text className="text-danger">
+                  <small>To pole jest wymagane.</small>
+                </Form.Text>
+              </Row>
+            )}
           </Form>
           <Row>
             <Col
