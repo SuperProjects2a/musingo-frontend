@@ -47,7 +47,9 @@ const AddReview = () => {
     <Container className="py-5">
       <Card className="p-2" style={{ textAlign: "left" }}>
         <Card.Body>
-          <Card.Title style={{ fontSize: "25px" }}>{offer?.title}</Card.Title>
+          <Card.Title style={{ fontSize: "25px" }}>
+            {offer?.title} - {offer?.owner.name} {offer?.owner.surname}
+          </Card.Title>
           <Form>
             <Row>
               <Form.Label>Twoja ocena</Form.Label>
