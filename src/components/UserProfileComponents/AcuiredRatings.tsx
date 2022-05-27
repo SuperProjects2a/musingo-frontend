@@ -1,57 +1,46 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
 import ProgressBar from "./ProgressBar";
-import React, { useState } from "react";
-
-const ratings = [
-  {
-    ratingValue: 1,
-    date: "21.03.2010",
-    user: "Patryk Graca",
-    title: "Gitara elektryczna",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-  {
-    ratingValue: 2,
-    date: "21.03.2010",
-    user: "Anna Nowak",
-    title: "Kurs gry na pianinie",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-  {
-    ratingValue: 3,
-    date: "21.03.2010",
-    user: "Jan Kowalski",
-    title: "Perkusja",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-  {
-    ratingValue: 4,
-    date: "21.03.2010",
-    user: "Jan Kowalski",
-    title: "Perkusja",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-  {
-    ratingValue: 5,
-    date: "21.03.2010",
-    user: "Jan Kowalski",
-    title: "Perkusja",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-];
-
-const fiveNow = 90;
-const fourNow = 30;
-const threeNow = 20;
-const twoNow = 5;
-const oneNow = 1;
-
-const sumOfRatings = fiveNow + fourNow + threeNow + twoNow + oneNow;
+import React, { useEffect, useState } from "react";
+import { getProfileRatings, IRating } from "../../services/profileService";
 
 const AcuiredRatings = () => {
-  var itemsList = 2;
   const [showMore, setShowMore] = useState(false);
+  const [ratings, setRatings] = useState<IRating[]>([] as IRating[]);
+  const [oneStar, setOneStar] = useState(0);
+  const [twoStar, setTwoStar] = useState(0);
+  const [threeStar, setThreeStar] = useState(0);
+  const [fourStar, setFourStar] = useState(0);
+  const [fiveStar, setFiveStar] = useState(0);
+  const [sumOfRatings, setSumOfRatings] = useState(0);
+  const [avg,setAvg] = useState(0);
+
+  const calculateRatings = () => {
+    setOneStar(ratings.filter((x) => x.rating == 1).length);
+    setTwoStar(ratings.filter((x) => x.rating == 2).length);
+    setThreeStar(ratings.filter((x) => x.rating == 3).length);
+    setFourStar(ratings.filter((x) => x.rating == 4).length);
+    setFiveStar(ratings.filter((x) => x.rating == 5).length);
+  };
+
+  useEffect(() => {
+    const getM = async () => {
+      const m = await getProfileRatings();
+      setRatings(m);
+    };
+    getM();
+  }, []);
+  useEffect(() => {
+    calculateRatings();
+  },[ratings])
+
+  useEffect(()=>{
+    setSumOfRatings(oneStar + twoStar + threeStar + fourStar + fiveStar);
+  },[oneStar,twoStar,threeStar,fourStar,fiveStar])
+
+  useEffect(()=>{
+    setAvg((oneStar + twoStar * 2 + threeStar * 3 + fourStar * 4 + fiveStar * 5)/sumOfRatings);
+  },[sumOfRatings])
 
   return (
     <div className="userProfileDiv p-4 px-5">
@@ -62,7 +51,7 @@ const AcuiredRatings = () => {
             <div style={{ width: "100px", float: "left" }}>
               <p>
                 {" "}
-                <span style={{ fontSize: "30px" }}>3,5 </span>
+                <span style={{ fontSize: "30px" }}>{avg} </span>
                 <span style={{ fontSize: "20px", color: "grey" }}>/ 5</span>
               </p>{" "}
               <p>{sumOfRatings} Ocen</p>
@@ -73,10 +62,10 @@ const AcuiredRatings = () => {
                   <Rating ratingValue={100} readonly size={20} />
                 </Col>
                 <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
-                  <ProgressBar completed={fiveNow} />
+                  <ProgressBar completed={(fiveStar / sumOfRatings) * 100} />
                 </Col>
                 <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
-                  {fiveNow}
+                  {fiveStar}
                 </Col>
               </Row>
               <Row>
@@ -84,10 +73,10 @@ const AcuiredRatings = () => {
                   <Rating ratingValue={80} readonly size={20} />
                 </Col>
                 <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
-                  <ProgressBar completed={fourNow} />
+                  <ProgressBar completed={(fourStar / sumOfRatings) * 100} />
                 </Col>
                 <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
-                  {fourNow}
+                  {fourStar}
                 </Col>
               </Row>
               <Row>
@@ -95,10 +84,10 @@ const AcuiredRatings = () => {
                   <Rating ratingValue={60} readonly size={20} />
                 </Col>
                 <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
-                  <ProgressBar completed={threeNow} />
+                  <ProgressBar completed={(threeStar / sumOfRatings) * 100} />
                 </Col>
                 <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
-                  {threeNow}
+                  {threeStar}
                 </Col>
               </Row>
               <Row>
@@ -106,10 +95,10 @@ const AcuiredRatings = () => {
                   <Rating ratingValue={40} readonly size={20} />
                 </Col>
                 <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
-                  <ProgressBar completed={twoNow} />
+                  <ProgressBar completed={(twoStar / sumOfRatings) * 100} />
                 </Col>
                 <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
-                  {twoNow}
+                  {twoStar}
                 </Col>
               </Row>
               <Row>
@@ -117,10 +106,10 @@ const AcuiredRatings = () => {
                   <Rating ratingValue={20} readonly size={20} />
                 </Col>
                 <Col className="mt-3" xs={{ span: 5, offset: 1 }}>
-                  <ProgressBar completed={oneNow} />
+                  <ProgressBar completed={(oneStar / sumOfRatings) * 100} />
                 </Col>
                 <Col className="ratingValue mt-2" xs={{ span: 2, offset: -1 }}>
-                  {oneNow}
+                  {oneStar}
                 </Col>
               </Row>
             </div>
@@ -132,17 +121,19 @@ const AcuiredRatings = () => {
                   <Col key={index}>
                     <h6>
                       <Rating
-                        ratingValue={rating.ratingValue * 20}
+                        ratingValue={rating.rating * 20}
                         readonly
                         size={20}
                       />{" "}
-                      <span style={{ color: "grey" }}>{rating.date}</span>
+                      <span style={{ color: "grey" }}>
+                        {rating?.transaction?.lastUpdateTime?.substring(0, 10)}
+                      </span>
                     </h6>
-                    <h6>{rating.user}</h6>
+                    <h6>{`${rating.user.name} ${rating.user.surname}`}</h6>
                     <h6>
-                      <b>{rating.title}</b>
+                      <b>{rating.transaction.offer.title}</b>
                     </h6>
-                    {rating.text}
+                    {rating.commentText}
                   </Col>
                 </Row>
               ))}
@@ -154,17 +145,19 @@ const AcuiredRatings = () => {
                   <Col key={index}>
                     <h6>
                       <Rating
-                        ratingValue={rating.ratingValue * 20}
+                        ratingValue={rating.rating * 20}
                         readonly
                         size={20}
                       />{" "}
-                      <span style={{ color: "grey" }}>{rating.date}</span>
+                      <span style={{ color: "grey" }}>
+                        {rating?.transaction?.lastUpdateTime?.substring(0, 10)}
+                      </span>
                     </h6>
-                    <h6>{rating.user}</h6>
+                    <h6>{`${rating.user.name} ${rating.user.surname}`}</h6>
                     <h6>
-                      <b>{rating.title}</b>
+                      <b>{rating.transaction.offer.title}</b>
                     </h6>
-                    {rating.text}
+                    {rating.commentText}
                   </Col>
                 </Row>
               ))}

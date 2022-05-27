@@ -15,11 +15,11 @@ export const getProfileOffers = () =>{
     return http({method: 'get', url: 'Profile/Offers'})
            .then((response) => response.data);;
 };
-export const getProfileComments = ():Promise<IProfile[]> =>{
+export const getProfileComments = ():Promise<IRating[]> =>{
     return http({method: 'get', url: 'Profile/Comments'})
            .then((response) => response.data);;
 };
-export const getProfileRatings = () :Promise<IProfile[]> =>{
+export const getProfileRatings = () :Promise<IRating[]> =>{
     return http({method: 'get', url: 'Profile/Ratings'})
            .then((response) => response.data);;
 };
