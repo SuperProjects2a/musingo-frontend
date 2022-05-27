@@ -251,7 +251,7 @@ const AddOffer = () => {
                     </Col>
                   </Form.Group>
                   <Row className="py-5">
-                    {/* <Col>
+                    <Col>
                       <Form.Group>
                         <Form.Check
                           name="tos"
@@ -268,7 +268,7 @@ const AddOffer = () => {
                           {errors.tos}
                         </Form.Control.Feedback>
                       </Form.Group>
-                    </Col> */}
+                    </Col>
                     <Col
                       xs={12}
                       md={{ span: 4, offset: 8 }}
