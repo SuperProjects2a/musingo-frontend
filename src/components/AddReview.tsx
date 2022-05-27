@@ -17,8 +17,9 @@ const AddReview = () => {
   };
   const handleCommentText = (text: string) => {
     setCommentText(text);
-    // setCommentTextLength(text.length);
-    setCommentTextValidation(false);
+    text.length > 0
+      ? setCommentTextValidation(false)
+      : setCommentTextValidation(true);
   };
   const validationSchema = () => {
     rating > 0 || setRatingValidation(true);
@@ -47,7 +48,7 @@ const AddReview = () => {
               </Row>
             )}
 
-            <Form.Label className="py-2">
+            <Form.Label className="pt-2">
               Oceń zakupiony produkt oraz sprzedającego
             </Form.Label>
             <Form.Control
@@ -56,8 +57,9 @@ const AddReview = () => {
               rows={4}
               type="text"
               maxLength={300}
-              placeholder="Opisz kontakt ze sprzedającym. Czy opis i zdjęcia produktu były zgodny z rzeczywistością?"
+              placeholder="Opisz kontakt ze sprzedającym. Czy opis i zdjęcia produktu są zgodne z rzeczywistością?"
               autoComplete="description"
+              onBlur={(e) => handleCommentText(e.target.value)}
               //   value={values.description}
               //   onBlur={handleBlur}
               onChange={(e) => handleCommentText(e.target.value)}
