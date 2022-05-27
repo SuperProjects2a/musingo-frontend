@@ -147,12 +147,6 @@ const AcuiredRatings = () => {
                           readonly
                           size={20}
                         />{" "}
-                        <span style={{ color: "grey" }}>
-                          {rating?.transaction?.lastUpdateTime?.substring(
-                            0,
-                            10
-                          )}
-                        </span>
                       </h6>
                       <h6>{`${rating.user.name} ${rating.user.surname}`}</h6>
                       <h6>
