@@ -1,5 +1,6 @@
-import { Card, Form, Button, Table, Container } from "react-bootstrap";
+import { Card, Table, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   getTransactions,
   ITransaction,
@@ -70,10 +71,13 @@ const Fundings = () => {
                             : transaction?.buyer?.email}
                         </td>
                         <td>{transaction?.offer?.title}</td>
+
                         <td>
-                          <a href="#" style={{ textDecoration: "none" }}>
-                            {"jeszcze nwm co"}
-                          </a>
+                          {transaction?.buyer?.email == user?.email && (
+                            <Link to={`/AddReview/${transaction?.offer?.id}`}>
+                              Dodaj opinię
+                            </Link>
+                          )}
                         </td>
                       </tr>
                     </>
