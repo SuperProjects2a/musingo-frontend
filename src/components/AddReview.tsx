@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Form, Button, Container } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
-import { useNavigate } from "react-router-dom";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
   const [ratingValidation, setRatingValidation] = useState(false);
   const [commentText, setCommentText] = useState("");
-  //   const [commentTextLength, setCommentTextLength] = useState(0);
   const [commentTextValidation, setCommentTextValidation] = useState(false);
-  const navigate = useNavigate();
 
   const handleRating = (rate: number) => {
     setRating(rate);
@@ -21,10 +18,13 @@ const AddReview = () => {
       ? setCommentTextValidation(false)
       : setCommentTextValidation(true);
   };
+
   const validationSchema = () => {
     rating > 0 || setRatingValidation(true);
     commentText.length > 0 || setCommentTextValidation(true);
-    // ratingValidation == true || navigate("/");
+    if (rating > 0 && commentText.length > 0) {
+      window.location.href = "/UserProfile/Fundings";
+    }
   };
   return (
     <Container className="py-5">
@@ -60,10 +60,7 @@ const AddReview = () => {
               placeholder="Opisz kontakt ze sprzedającym. Czy opis i zdjęcia produktu są zgodne z rzeczywistością?"
               autoComplete="description"
               onBlur={(e) => handleCommentText(e.target.value)}
-              //   value={values.description}
-              //   onBlur={handleBlur}
               onChange={(e) => handleCommentText(e.target.value)}
-              //   isInvalid={touched.description && !!errors.description}
             />
             <Form.Text>
               Maksymalna długość: <strong>{commentText.length}/300</strong>
