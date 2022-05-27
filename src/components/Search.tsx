@@ -8,8 +8,7 @@ import PaginationSearch from "./announcement/PaginationSearch";
 import FilterSearch from "./announcement/FilterSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToiletPaperSlash } from "@fortawesome/free-solid-svg-icons";
-import { getOffers, getPromotedOffers, IAnnouncement } from "../services/offerService";
-import { getOffers, getOffersByFiler, getOffersByName, IAnnouncement, IOfferFilter } from "../services/offerService";
+import { getOffers,getPromotedOffers, getOffersByFiler, getOffersByName, IAnnouncement, IOfferFilter } from "../services/offerService";
 
 
 const Search = () => {
