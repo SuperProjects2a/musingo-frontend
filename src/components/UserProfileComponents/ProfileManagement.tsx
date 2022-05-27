@@ -83,10 +83,9 @@ const ProfileManagement = () => {
                     : avatar
                 }
                 style={{
-                  height: " calc(11vh + 4vw)",
-                  minHeight: "150px",
+                  height: " 150px",
                   width: "150px",
-                  objectFit: "cover",
+                  objectFit: "fill",
                   borderRadius: "100px",
                 }}
                 className="pt-2 announcementImg"
