@@ -12,7 +12,6 @@ const Messages = () => {
   const [user, setUser] = useState<IUser>();
 
   useEffect(() => {
-
     const fetchData = async () => {
       setLoading(true);
       var m = await getMessages();
@@ -22,19 +21,18 @@ const Messages = () => {
       setLoading(false);
     };
     fetchData();
-   
   }, []);
   return (
     <>
       {loading === true ? (
-        <div className="px-sm-5 px-lg-0 py-5 mb-5">
+        <div className="userProfileDiv px-sm-5 px-lg-0 py-5 mb-5 d-flex justify-content-center">
           <Spinner
             animation="border"
             style={{ height: "50px", width: "50px" }}
           />
         </div>
       ) : (
-        <div className="userProfileDiv pt-4 ">
+        <div className="userProfileDiv py-4 ">
           {messages.length > 0 ? (
             messages.map((message, index) => (
               <Row className="px-2">
@@ -95,16 +93,18 @@ const Messages = () => {
               </Row>
             ))
           ) : (
-            <Container className="d-flex justify-content-center">
-              <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
-                <FontAwesomeIcon
-                  icon={faCommentSlash}
-                  style={{ height: "100px" }}
-                  className="py-3"
-                />
-                <h5>Obecnie nie prowadzisz żadnej konwersacji.</h5>
-              </div>
-            </Container>
+            <div className="userProfileDiv">
+              <Container className="d-flex justify-content-center">
+                <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
+                  <FontAwesomeIcon
+                    icon={faCommentSlash}
+                    style={{ height: "100px" }}
+                    className="py-3"
+                  />
+                  <h5>Obecnie nie prowadzisz żadnej konwersacji.</h5>
+                </div>
+              </Container>
+            </div>
           )}
         </div>
       )}

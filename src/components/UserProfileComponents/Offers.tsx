@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
 import Pagination from "../announcement/PaginationSearch";
 import OffersPagin from "./Offers/OffersPagin";
-import {getProfileOffers} from "../../services/profileService"
+import { getProfileOffers } from "../../services/profileService";
 import { IAnnouncement } from "../../services/offerService";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 
 const Offers = () => {
   const [offers, setOffers] = useState<IAnnouncement[]>([] as IAnnouncement[]);
@@ -22,7 +23,6 @@ const Offers = () => {
     fetchOffers();
   }, []);
 
-
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -39,7 +39,12 @@ const Offers = () => {
         <>
           <div>
             <Row className="d-flex justify-content-center px-sm-2 px-md-4 px-lg-5 m-0">
-              <OffersPagin offers={currentAnnouncements} loading={loading} setOffers={setOffers} offs ={offers} />
+              <OffersPagin
+                offers={currentAnnouncements}
+                loading={loading}
+                setOffers={setOffers}
+                offs={offers}
+              />
             </Row>
             <Row className="pt-3 m-0">
               <Pagination
@@ -52,9 +57,14 @@ const Offers = () => {
           </div>
         </>
       ) : (
-        <Container className="py-4">
-          <div style={{ textAlign: "center" }}>
-            <h4>Nie masz aktywnych ogłoszeń.</h4>
+        <Container className="d-flex justify-content-center">
+          <div className="py-5" style={{ textAlign: "center" }}>
+            <FontAwesomeIcon
+              icon={faHeartCrack}
+              style={{ height: "100px" }}
+              className="py-3"
+            />
+            <h5>Nie masz aktywnych ogłoszeń.</h5>
           </div>
         </Container>
       )}
