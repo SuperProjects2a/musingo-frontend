@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Card,
-  Row,
-  Col,
-  Form,
-  Button,
-  Container,
-  FloatingLabel,
-} from "react-bootstrap";
+import { Card, Row, Col, Form, Button, Container } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
 
 const AddReview = () => {
@@ -46,13 +38,26 @@ const AddReview = () => {
               //   isInvalid={touched.description && !!errors.description}
             />
           </Form>
-          <Row style={{ float: "right" }}>
-            <Col xs={12}>
+          <Row>
+            <Col
+              xs={12}
+              md={{ span: 4, offset: 8 }}
+              lg={{ span: 3, offset: 9 }}
+              xl={{ span: 2, offset: 10 }}
+              className="d-grid"
+            >
               <Button className="mt-3" variant="dark">
                 Dodaj opinię
               </Button>
             </Col>
           </Row>
+          {/* <Row style={{ float: "right" }}>
+            <Col xs={12} className="d-grid gap-2">
+              <Button className="mt-3" variant="dark">
+                Dodaj opinię
+              </Button>
+            </Col>
+          </Row> */}
         </Card.Body>
       </Card>
     </Container>
