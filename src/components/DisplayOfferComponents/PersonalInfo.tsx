@@ -4,6 +4,7 @@ import { Col, Row, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass, faStar } from "@fortawesome/free-solid-svg-icons";
 import { IOwner } from "../../services/offerService";
+import avatar from "../../images/avatar.png"
 
 const informationsUser = [
   {
@@ -24,7 +25,7 @@ const PersonalInfo: FunctionComponent<{user: IOwner | undefined, city: string | 
     <Row>
       <Card.Img
         variant="top"
-        src={props.user?.imageUrl}
+        src={props.user?.imageUrl !== null ? props.user?.imageUrl : avatar}
         style={{
           height: "calc(11vh + 4vw)",
           width: "calc(11vh + 4vw)",
