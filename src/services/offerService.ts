@@ -32,6 +32,16 @@ export interface IOfferFilter {
   PriceTo: string | null;
   Sorting: string | null;
 }
+export interface ICreateOffer{
+  title:string;
+  description:string;
+  cost:number;
+  itemCategory:string;
+  imageUrls: string[];
+  email:string;
+  city:string;
+  phoneNumber:string;
+}
 
 export const getOffers  = () : Promise<IAnnouncement[]> => {
   return http({method: 'get', url: '/Offer?Sorting=Latest'})
@@ -71,5 +81,9 @@ export const getPromotedOffers  = () : Promise<IAnnouncement[]> => {
 }
 export const getUserOtherOffers  = (email:string,offerId:number) : Promise<IAnnouncement[]> => {
   return http({method: 'get', url: `/Offer/User?Email=${email}&OfferId=${offerId}`})
+    .then((response) => response.data);
+}
+export const postOffer  = (data:ICreateOffer) : Promise<IAnnouncement> => {
+  return http({method: 'post', url: `/Offer`,data:data})
     .then((response) => response.data);
 }
