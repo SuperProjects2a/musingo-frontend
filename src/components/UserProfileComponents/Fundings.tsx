@@ -79,7 +79,7 @@ const Fundings = () => {
                               Dodaj opinię
                             </Link>
                           )}
-                          // Zobacz opinię o sprzedającym?
+                          {/* Zobacz opinię o sprzedającym? */}
                         </td>
                       </tr>
                     </>
