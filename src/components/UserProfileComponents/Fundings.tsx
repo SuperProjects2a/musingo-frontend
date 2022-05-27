@@ -28,7 +28,7 @@ const Fundings = () => {
   return (
     <>{
       transactions.length > 0 ? (
-    <div className="userProfileDiv p-4 px-5">
+    <div className="userProfileDiv py-4 px-3 px-md-5">
       <Card style={{ borderRadius: "20px" }}>
         <Card.Body>
           <Card.Title>Historia płatności</Card.Title>

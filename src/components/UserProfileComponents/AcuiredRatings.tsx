@@ -50,9 +50,9 @@ const AcuiredRatings = () => {
   return (
     <>
       { ratings.length > 0 ? (   
-      <div className="userProfileDiv p-4 px-5">
+      <div className="userProfileDiv py-4 px-3 px-md-5">
         <Card style={{ borderRadius: "20px" }}>
-          <Card.Body className="px-5">
+          <Card.Body className="px-3 px-md-5">
             <Card.Title>Otrzymane oceny</Card.Title>
             <Row>
               <div style={{ width: "100px", float: "left" }}>
