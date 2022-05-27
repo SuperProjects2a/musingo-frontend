@@ -12,7 +12,7 @@ const Messages = () => {
   const [user, setUser] = useState<IUser>();
 
   useEffect(() => {
-    
+
     const fetchData = async () => {
       setLoading(true);
       var m = await getMessages();

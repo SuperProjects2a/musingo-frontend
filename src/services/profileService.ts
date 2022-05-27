@@ -1,4 +1,6 @@
 import http from "./HTTPcommon";
+import { IOwner } from "./offerService";
+import { ITransaction } from "./transactionService";
 
 
 export const getProfile = () =>{
@@ -13,11 +15,11 @@ export const getProfileOffers = () =>{
     return http({method: 'get', url: 'Profile/Offers'})
            .then((response) => response.data);;
 };
-export const getProfileComments = () =>{
+export const getProfileComments = ():Promise<IProfile[]> =>{
     return http({method: 'get', url: 'Profile/Comments'})
            .then((response) => response.data);;
 };
-export const getProfileRatings = () =>{
+export const getProfileRatings = () :Promise<IProfile[]> =>{
     return http({method: 'get', url: 'Profile/Ratings'})
            .then((response) => response.data);;
 };
@@ -35,4 +37,11 @@ export interface IProfile{
     postCode: string;
     gender: string;
     birth: string;
+}
+
+export interface IRating {
+    transaction:ITransaction;
+    rating:number;
+    commentText:string;
+    user:IOwner;
 }
