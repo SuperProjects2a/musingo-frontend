@@ -1,13 +1,15 @@
-import { Card, Form, Button, Table } from "react-bootstrap";
+import { Card, Form, Button, Table, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import {
   getTransactions,
   ITransaction,
 } from "../../services/transactionService";
 import { getUser, IUser } from "../../services/userService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 
 const Fundings = () => {
-  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [transactions, setTransactions] = useState<ITransaction[]>([] as ITransaction[]);
   const [user, setUser] = useState<IUser>();
 
   useEffect(() => {
@@ -24,6 +26,8 @@ const Fundings = () => {
   }, []);
 
   return (
+    <>{
+      transactions.length > 0 ? (
     <div className="userProfileDiv p-4 px-5">
       <Card style={{ borderRadius: "20px" }}>
         <Card.Body>
@@ -68,7 +72,18 @@ const Fundings = () => {
           </Table>
         </Card.Body>
       </Card>
-    </div>
+    </div>) : ( <Container className="d-flex justify-content-center">
+              <div className="py-5 m-sm-4" style={{ textAlign: "center" }}>
+                <FontAwesomeIcon
+                  icon={faHeartCrack}
+                  style={{ height: "100px" }}
+                  className="py-3"
+                />
+                <h5>Nie masz jescze żadnej historii płatności.</h5>
+              </div>
+            </Container>)
+}
+    </>
   );
 };
 
