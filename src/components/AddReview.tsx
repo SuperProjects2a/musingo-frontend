@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Form, Button, Container } from "react-bootstrap";
 import { Rating } from "react-simple-star-rating";
+import { useNavigate, useParams } from "react-router-dom";
+import { getOffer, IAnnouncement } from "../services/offerService";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
   const [ratingValidation, setRatingValidation] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [commentTextValidation, setCommentTextValidation] = useState(false);
+
+  const navigate = useNavigate();
+  const [offer, setOffer] = useState<IAnnouncement | undefined>(undefined);
+  const { id } = useParams();
 
   const handleRating = (rate: number) => {
     setRating(rate);
@@ -26,13 +32,22 @@ const AddReview = () => {
       window.location.href = "/UserProfile/Fundings";
     }
   };
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      let idNumber = Number(id);
+      let receivedOffer = await getOffer(idNumber);
+      setOffer(receivedOffer);
+    };
+
+    fetchAnnouncements();
+  }, [navigate]);
+
   return (
     <Container className="py-5">
       <Card className="p-2" style={{ textAlign: "left" }}>
         <Card.Body>
-          <Card.Title style={{ fontSize: "25px" }}>
-            Gitara elektryczna
-          </Card.Title>
+          <Card.Title style={{ fontSize: "25px" }}>{offer?.title}</Card.Title>
           <Form>
             <Row>
               <Form.Label>Twoja ocena</Form.Label>
