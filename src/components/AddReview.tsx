@@ -4,9 +4,12 @@ import { Rating } from "react-simple-star-rating";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
+  const [ratingValidation, setRatingValidation] = useState(false);
   const handleRating = (rate: number) => {
     setRating(rate);
-    console.log(rate);
+  };
+  const validationSchema = () => {
+    rating > 0 || setRatingValidation(true);
   };
   return (
     <Container className="py-5">
@@ -19,17 +22,26 @@ const AddReview = () => {
             <Row>
               <Form.Label>Twoja ocena</Form.Label>
             </Row>
-            <Row className="pb-2">
+            <Row>
               <Rating onClick={handleRating} ratingValue={rating} size={30} />
             </Row>
+            {ratingValidation == true && (
+              <Row className="">
+                <Form.Text className="text-danger">
+                  <small>Wybierz ocenę dla produktu.</small>
+                </Form.Text>
+              </Row>
+            )}
 
-            <Form.Label>Oceń zakupiony produkt oraz sprzedającego</Form.Label>
+            <Form.Label className="pt-2">
+              Oceń zakupiony produkt oraz sprzedającego
+            </Form.Label>
             <Form.Control
               className="formInputs"
               as="textarea"
               rows={4}
               type="text"
-              maxLength={5000}
+              maxLength={300}
               placeholder="Opisz kontakt ze sprzedającym. Czy opis i zdjęcia produktu były zgodny z rzeczywistością?"
               autoComplete="description"
               //   value={values.description}
@@ -46,18 +58,17 @@ const AddReview = () => {
               xl={{ span: 2, offset: 10 }}
               className="d-grid"
             >
-              <Button className="mt-3" variant="dark">
+              <Button
+                className="mt-3"
+                variant="dark"
+                onClick={() => {
+                  validationSchema();
+                }}
+              >
                 Dodaj opinię
               </Button>
             </Col>
           </Row>
-          {/* <Row style={{ float: "right" }}>
-            <Col xs={12} className="d-grid gap-2">
-              <Button className="mt-3" variant="dark">
-                Dodaj opinię
-              </Button>
-            </Col>
-          </Row> */}
         </Card.Body>
       </Card>
     </Container>
