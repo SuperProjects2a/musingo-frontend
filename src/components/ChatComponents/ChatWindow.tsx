@@ -85,6 +85,7 @@ const ChatWindow = () => {
                       </Form.Control.Feedback>
                     </Form.Group>
                     <Button
+                    style={{float: 'right'}}
                       variant="dark"
                       type="submit"
                       disabled={isSubmitting}
