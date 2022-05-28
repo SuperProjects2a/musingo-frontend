@@ -53,7 +53,7 @@ const DisplayOffer = () => {
             <PersonalInfo user={offer?.owner} city={offer?.city} />
           </Col>
           <Col className="pt-2 pt-lg-4 px-lg-3 px-xxl-0">
-            <FavoriteBox />
+            <FavoriteBox offerId={offer?.id ?? -1} />
           </Col>
         </Col>
         <Col
