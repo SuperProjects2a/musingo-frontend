@@ -2,9 +2,8 @@ import React from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { Form, Col, Row, Button } from "react-bootstrap";
 
-export function EditImage(params:any) {
+export function UploadImageSingle(params:any) {
  
-  const maxNumber = 5;
 
   const onChangeImage = (
     imageList: ImageListType,
@@ -14,15 +13,11 @@ export function EditImage(params:any) {
     params.setImages(imageList as never[]);
   };
 
-
-
   return (
     <div>
       <ImageUploading
-        multiple
         value={params.images}
         onChange={onChangeImage}
-        maxNumber={maxNumber}
         maxFileSize={5242880}
         acceptType={["jpg", "jpeg", "png", "bmp"]}
       >
@@ -39,10 +34,6 @@ export function EditImage(params:any) {
           (
             <div className="upload__image-wrapper">
               <Form.Group>
-                <h4>
-                  <strong>Zdjęcia</strong>
-                </h4>
-                <Form.Label>Dodaj zdjęcia</Form.Label>
                 <Row className="mb-3">
                   <Col xs={12} sm={8}>
                     <Button
@@ -56,31 +47,13 @@ export function EditImage(params:any) {
                   </Col>
                 </Row>
               </Form.Group>
-              {imageList.map((image, index) => (
-                <div key={index} className="pb-3 image-item">
-                  <img src={image.dataURL} alt="" width="200" />
-                  <div className="image-item__btn-wrapper">
-                    <Button
-                      variant="outline-dark light"
-                      onClick={() => onImageUpdate(index)}
-                    >
-                      Zmień
-                    </Button>
-                    <Button
-                      variant="outline-dark light"
-                      onClick={() => onImageRemove(index)}
-                    >
-                      Usuń
-                    </Button>
-                  </div>
-                </div>
-              ))}
+              
             </div>
           )
         }
       </ImageUploading>
       <Form.Text>
-        Możesz dodać maksymalnie <strong>5</strong> zdjęć w formacie:
+        Możesz dodać zdjęcie w formacie:
         <strong>.png .jpg .jpeg .bpm</strong> o maksymalnym rozmiarze{" "}
         <strong>5 MB</strong>
       </Form.Text>
@@ -88,4 +61,4 @@ export function EditImage(params:any) {
   );
 }
 
-export default EditImage;
+export default UploadImageSingle;

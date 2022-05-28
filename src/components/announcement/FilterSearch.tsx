@@ -1,19 +1,34 @@
 import { Container, Form, Col, Row, InputGroup } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 
-const FilterSearch = () => {
-  const [minPrice, setMinPrice] = useState<number | undefined>();
-  const [maxPrice, setMaxPrice] = useState<number | undefined>();
+const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}) => {
+  const [minPrice, setMinPrice] = useState<number | null>();
+  const [maxPrice, setMaxPrice] = useState<number | null>();
+  const [category, setCategory] = useState<string | null>();
+  const [sorting, setSorting] = useState<string | null>('Latest');
   const [validated, setValidated] = useState(false);
 
+  const setFilters = () => {
+    let cat = category === "null" ? null : category;
+    let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
+    let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
+    onFilterChange({PriceFrom: priceFrom, PriceTo: priceTo, Category: cat, Sorting: sorting})
+  }
+
   useEffect(() => {
+    setFilters();
     setValidated(false);
-    if (minPrice != undefined && maxPrice != undefined) {
-      if (maxPrice < minPrice) {
+    if (minPrice !== null && maxPrice !== null) {
+      if (maxPrice! < minPrice!) {
+        
         setValidated(true);
       }
     }
   }, [minPrice, maxPrice]);
+
+  useEffect(() => {
+    setFilters();
+  }, [category, sorting])
 
   return (
     <Container fluid style={{ textAlign: "left" }}>
@@ -32,18 +47,21 @@ const FilterSearch = () => {
             <Form.Select
               aria-label="Default select example"
               className="selectColor"
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
             >
-              <option>Wybierz kategorię</option>
-              <option value="1">Gitary</option>
-              <option value="2">Dęte</option>
-              <option value="3">Klawiszowe</option>
-              <option value="4">Perkusyjne</option>
-              <option value="5">Smyczkowe</option>
-              <option value="6">Mikrofony</option>
-              <option value="7">Słuchawki</option>
-              <option value="8">Akcesoria</option>
-              <option value="9">Nuty, książki</option>
-              <option value="10">Inne</option>
+              <option value="null">Wybierz kategorię</option>
+              <option value="Guitars">Gitary</option>
+              <option value="WindInstruments">Dęte</option>
+              <option value="Keyboards">Klawiszowe</option>
+              <option value="Percussion">Perkusyjne</option>
+              <option value="String">Smyczkowe</option>
+              <option value="Microphones">Mikrofony</option>
+              <option value="Headphones">Słuchawki</option>
+              <option value="Accessories">Akcesoria</option>
+              <option value="NotesBooks">Nuty, książki</option>
+              <option value="Other">Inne</option>
             </Form.Select>
           </Col>
           <Col
@@ -60,7 +78,6 @@ const FilterSearch = () => {
                   type="number"
                   min="0"
                   placeholder="od"
-                  value={minPrice}
                   onChange={(e) => {
                     setMinPrice(parseInt(e.target.value));
                   }}
@@ -70,7 +87,6 @@ const FilterSearch = () => {
                   type="number"
                   min="0"
                   placeholder="do"
-                  value={maxPrice}
                   onChange={(e) => setMaxPrice(parseInt(e.target.value))}
                 />
               </InputGroup>
@@ -93,11 +109,14 @@ const FilterSearch = () => {
             <Form.Select
               aria-label="Default select example"
               className="selectColor"
+              onChange={(e) => {
+                setSorting(e.target.value);
+              }}
             >
-              <option value="1">Od najnowszych</option>
-              <option value="2">Od najstarszych</option>
-              <option value="3">Cena: od najtańszych</option>
-              <option value="4">Cena: od najdroższych</option>
+              <option value="Latest">Od najnowszych</option>
+              <option value="Oldest">Od najstarszych</option>
+              <option value="Ascending">Cena: od najtańszych</option>
+              <option value="Descending">Cena: od najdroższych</option>
             </Form.Select>
           </Col>
         </Row>

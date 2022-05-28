@@ -1,25 +1,38 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, OverlayTrigger, Tooltip, Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import { putOffer, putPromote } from "../../../services/offerService";
 
-interface IOffer {
-  link: string;
-  title: string;
-  date: string;
-  promote: boolean;
-}
-
-const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
+const OfferCard = (params: any) => {
+  const [isPromoted, setIsPromoted] = useState(false);
+  const promote = async () => {
+    putPromote(params.offer?.id).then(() => {
+      setIsPromoted(true);
+    });
+  };
+  const deleteOffer = async () => {
+    params.offer.offerStatus="Cancelled";
+    putOffer(params.offer).then(() => {
+      
+      const arr = params.offers;
+      arr.splice(params.offers?.indexOf(params.offer), 1);
+      params.setOffers([]);
+      params.setOffers(arr);
+    });
+  };
+  useEffect(()=>{
+    setIsPromoted(params.offer.isPromoted);
+  },[])
   return (
     <>
       <Card>
-        <Link to={link} className="cardTitle">
+        <Link to={`/DisplayOffer/${params.offer?.id}`} className="cardTitle">
           <Card.Img
             variant="top"
-            src={`https://picsum.photos/200/300?random=${Math.random() * 100}`}
+            src={params.offer.imageUrls[0]}
             style={{
               height: " calc(11vh + 4vw)",
               minHeight: "150px",
@@ -31,11 +44,13 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
           />
         </Link>
         <Card.Body className="p-2">
-          <Link to={link} className="cardTitle">
+          <Link to={`/DisplayOffer/${params.offer?.id}`} className="cardTitle">
             <OverlayTrigger
               placement="top"
               delay={{ show: 250, hide: 400 }}
-              overlay={<Tooltip id="tooltip-disabled">{title}</Tooltip>}
+              overlay={
+                <Tooltip id="tooltip-disabled">{params.offer?.title}</Tooltip>
+              }
             >
               <div
                 style={{
@@ -45,15 +60,16 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
                   lineHeight: "21px",
                 }}
               >
-                {title.length > 20 ? (
-                  /\s+$/.test(title.substring(0, 17)) == true ||
-                  /[-_(),.]$/.test(title.substring(0, 17)) == true ? (
-                    <p>{title.substring(0, 16)}...</p>
+                {params.offer?.title.length > 20 ? (
+                  /\s+$/.test(params.offer?.title.substring(0, 17)) == true ||
+                  /[-_(),.]$/.test(params.offer?.title.substring(0, 17)) ==
+                    true ? (
+                    <p>{params.offer?.title.substring(0, 16)}...</p>
                   ) : (
-                    <p>{title.substring(0, 17)}...</p>
+                    <p>{params.offer?.title.substring(0, 17)}...</p>
                   )
                 ) : (
-                  <p>{title}</p>
+                  <p>{params.offer?.title}</p>
                 )}
               </div>
             </OverlayTrigger>
@@ -68,12 +84,12 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
                   paddingLeft: "1.5px",
                 }}
               />
-              {date}
+              {params.offer?.createTime.substring(0, 10)}
             </div>
           </div>
           <div>
             <Col xs={12}>
-              <Link to="/EditOffer">
+              <Link to={`/EditOffer/${params.offer?.id}`}>
                 <Button
                   className="my-1"
                   variant="dark"
@@ -83,8 +99,13 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
                 </Button>
               </Link>
             </Col>
-            {promote == true ? (
-              <Button className="mb-1" variant="dark" style={{ width: "100%" }}>
+            {isPromoted === false ? (
+              <Button
+                onClick={promote}
+                className="mb-1"
+                variant="dark"
+                style={{ width: "100%" }}
+              >
                 Promuj
               </Button>
             ) : (
@@ -97,7 +118,7 @@ const OfferCard: FC<IOffer> = ({ link, title, date, promote }) => {
                 Wypromowane
               </Button>
             )}
-            <Button variant="danger" style={{width: "100%" }}>
+            <Button onClick={deleteOffer} variant="danger" style={{ width: "100%" }}>
               Usuń
             </Button>
           </div>

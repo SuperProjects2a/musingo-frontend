@@ -50,7 +50,7 @@ function App() {
           <Route path="/Watch" element={<Watch />}></Route>
           <Route path="/SignInUp" element={<SignInUp />}></Route>
           <Route path="/AddOffer" element={<AddOffer />}></Route>
-          <Route path="/EditOffer" element={<EditOffer />}></Route>
+          <Route path="/EditOffer/:id" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
           <Route path="/ChatWindow" element={<ChatWindow />}></Route>   
@@ -58,7 +58,7 @@ function App() {
           <Route path="/Error403" element={<Error403 />}></Route>
           <Route
             path="/FundAdd"
-            element={<FundAdd onFundAdd={FundAdd}></FundAdd>}
+            element={<FundAdd></FundAdd>}
           ></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>

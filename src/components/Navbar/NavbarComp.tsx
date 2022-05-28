@@ -25,7 +25,6 @@ const NavbarComp = () => {
 
   return (
     <>
-      {console.log(user)}
       <div className="header">
         <Navbar
           collapseOnSelect
