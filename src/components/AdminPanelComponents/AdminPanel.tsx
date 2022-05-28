@@ -2,27 +2,34 @@ import { Tabs, Tab } from "react-bootstrap";
 import OfferTab from "./OfferTab";
 import OfferList from "./OfferList";
 import UserTab from "./UserTab";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-const AdminPanel = () => {
-  const [key, setKey] = useState("Oferty");
+const AdminPanel = (params:any) => {
+  const navigate = useNavigate();
+  const [key, setKey] = useState(params.activeTabs);
   var bgClass = key === "Oferty" ? "UserTab" : "OfferTab";
+  
+  useEffect(()=>{
+    setKey(params.activeTabs);
+  },[navigate])
+
   return (
     <Container className={`${bgClass} py-5`}>
       <div className="tabsdminPanel">
         <Tabs
-          defaultActiveKey="Oferty"
+          activeKey={key}
           className="nav-fill"
-          onSelect={(k: any) => setKey(k)}
+          onSelect={(k: any) =>  navigate("/AdminPanel/" + k?.toString())}
         >
           <Tab eventKey="Oferty" title="Oferty">
             <OfferTab />
           </Tab>
-          <Tab eventKey="Lista ofert" title="Zgłoszone oferty">
+          <Tab eventKey="ListaOfert" title="Zgłoszone oferty">
             <OfferList />
           </Tab>
-          <Tab eventKey="Użytkownicy" title="Użytkownicy">
+          <Tab eventKey="Uzytkownicy" title="Użytkownicy">
             <UserTab />
           </Tab>
         </Tabs>
