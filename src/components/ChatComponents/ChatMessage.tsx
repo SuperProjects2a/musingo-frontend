@@ -19,8 +19,6 @@ const informationsMessage = [
   },
 ];
 
-let userID: number = 0;
-
 const ChatMessage = () => {
   return (
     <div>
