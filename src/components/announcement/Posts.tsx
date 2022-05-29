@@ -28,6 +28,7 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
             city={announcement.city}
             watch={announcement.isWatched}
             imgUrls={announcement.imageUrls}
+            id={announcement.id}
           />
         </Col>
       ))}

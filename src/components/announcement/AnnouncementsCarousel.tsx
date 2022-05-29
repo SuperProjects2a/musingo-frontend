@@ -75,6 +75,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                   city={announcement.city}
                   watch={announcement.isWatched}
                   imgUrls={announcement.imageUrls}
+                  id={announcement.id}
                 />
               </Col>
             ))}
@@ -106,6 +107,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       city={announcement.city}
                                       watch={announcement.isWatched}
                                       imgUrls={announcement.imageUrls}
+                                      id={announcement.id}
                                     />
                                   </Col>
                                 ))}
@@ -138,6 +140,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       city={announcement.city}
                                       watch={announcement.isWatched}
                                       imgUrls={announcement.imageUrls}
+                                      id={announcement.id}
                                     />
                                   </Col>
                                 ))}
@@ -155,6 +158,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                       city={announcement.city}
                                       watch={announcement.isWatched}
                                       imgUrls={announcement.imageUrls}
+                                      id={announcement.id}
                                     />
                                   </Col>
                                 ))}
@@ -179,6 +183,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                     city={announcement.city}
                                     watch={announcement.isWatched}
                                     imgUrls={announcement.imageUrls}
+                                    id={announcement.id}
                                   />
                                 </Col>
                               ))}
@@ -196,6 +201,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                     city={announcement.city}
                                     watch={announcement.isWatched}
                                     imgUrls={announcement.imageUrls}
+                                    id={announcement.id}
                                   />
                                 </Col>
                               ))}
@@ -220,6 +226,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                   city={announcement.city}
                                   watch={announcement.isWatched}
                                   imgUrls={announcement.imageUrls}
+                                  id={announcement.id}
                                 />
                               </Col>
                             ))}
@@ -241,6 +248,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                   city={announcement.city}
                                   watch={announcement.isWatched}
                                   imgUrls={announcement.imageUrls}
+                                  id={announcement.id}
                                 />
                               </Col>
                             ))}
@@ -265,6 +273,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 city={announcement.city}
                                 watch={announcement.isWatched}
                                 imgUrls={announcement.imageUrls}
+                                id={announcement.id}
                               />
                             </Col>
                           ))}
@@ -282,6 +291,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                                 city={announcement.city}
                                 watch={announcement.isWatched}
                                 imgUrls={announcement.imageUrls}
+                                id={announcement.id}
                               />
                             </Col>
                           ))}
@@ -317,6 +327,7 @@ const AnnouncementsCarousel: FC<IAnnouncements> = ({
                               city={announcement.city}
                               watch={announcement.isWatched}
                               imgUrls={announcement.imageUrls}
+                              id={announcement.id}
                             />
                           </Col>
                         ))}
