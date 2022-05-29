@@ -20,7 +20,7 @@ const UserProfile = (activeTabs: any) => {
     getU();
     setKey(activeTabs.activeTabs);
 
-  });
+  },[navigate]);
   return (
     <div className="userProfileNav pt-3">
       <h5>{user?.name} {user?.surname}</h5>

@@ -52,7 +52,19 @@ function App() {
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/EditOffer/:id" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
-          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route
+            path="/AdminPanel/Oferty"
+            element={<AdminPanel activeTabs="Oferty" />}
+          ></Route>
+          <Route
+            path="/AdminPanel/ListaOfert"
+            element={<AdminPanel activeTabs="ListaOfert" />}
+          ></Route>
+          <Route
+            path="/AdminPanel/Uzytkownicy"
+            element={<AdminPanel activeTabs="Uzytkownicy" />}
+          ></Route>
+          <Route path="/ReportOffer/:id" element={<ReportOffer />}></Route>
           <Route path="/Error404" element={<Error404 />}></Route>
           <Route path="/Error403" element={<Error403 />}></Route>
           <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>

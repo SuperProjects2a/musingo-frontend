@@ -3,8 +3,12 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import UploadImage from "./UploadImage";
 import { uploadFile } from "../../azure-storage-blob";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImageListType } from "react-images-uploading";
+import { postOffer, ICreateOffer } from "../../services/offerService";
+import { getUser, IUser } from "../../services/userService";
+import { useNavigate } from "react-router-dom";
+
 const AddOffer = () => {
   const addOfferSchema = Yup.object().shape({
     title: Yup.string()
@@ -33,7 +37,7 @@ const AddOffer = () => {
     category: Yup.string()
       .required("Wybierz kategorię")
       .matches(
-        /^[gitary, dete, klawiszowe, perkusyjne, smyczkowe, mikrofony, sluchawki,  akcesoria, inne]*$/i,
+        /^[Guitars, WindInstruments, Keyboards, Percussion, String, Microphones, Headphones,  NotesBooks, Other]*$/i,
         "Wybierz kategorię"
       ),
     tos: Yup.boolean()
@@ -42,7 +46,23 @@ const AddOffer = () => {
   });
 
   const [images, setImages] = useState<ImageListType>([]);
+  const [user, setUser] = useState<IUser>();
+  const [isZeroImage, setIsZeroImage] = useState(false);
+  const navigate = useNavigate();
 
+  const createOffer = async (newOffer: ICreateOffer) => {
+    postOffer(newOffer).then((res) => {
+      navigate("/DisplayOffer/" + res.id);
+    });
+  };
+
+  useEffect(() => {
+    const getU = async () => {
+      const u = await getUser();
+      setUser(u);
+    };
+    getU();
+  }, []);
   return (
     <div className="px-1 px-md-2 px-lg-5 mx-md-1 mx-lg-5">
       <Container
@@ -59,21 +79,43 @@ const AddOffer = () => {
                 title: "",
                 category: "",
                 description: "",
-                email: "",
-                phoneNumber: "",
-                city: "",
+                email: user?.email,
+                phoneNumber: user?.phoneNumber,
+                city: user?.city,
                 price: 0,
                 tos: false,
               }}
               validationSchema={addOfferSchema}
+              enableReinitialize={true}
               onSubmit={async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
-                const urls: string[] = [];
-                images.forEach(async (file) => {
-                  const url = await uploadFile(file.file!);
-                  urls.push(url);
-                });
-                //this urls will be added to database
+
+                setIsZeroImage(false);
+                if (images.length === 0) {
+                  setIsZeroImage(true);
+                  return;
+                }
+                const urls: string[] = [] as string[];
+
+                await Promise.all(
+                  images.map(async (file) => {
+                    const contents = await uploadFile(file.file!);
+                    urls.push(contents);
+                  })
+                );
+
+                const newOffer: ICreateOffer = {
+                  title: values.title,
+                  description: values.description,
+                  cost: values.price,
+                  itemCategory: values.category,
+                  imageUrls: urls,
+                  email: values.email!,
+                  city: values.city!,
+                  phoneNumber: values.phoneNumber!,
+                };
+
+                createOffer(newOffer);
                 resetForm();
                 setSubmitting(false);
               }}
@@ -126,16 +168,16 @@ const AddOffer = () => {
                           isInvalid={touched.category && !!errors.category}
                         >
                           <option> Wybierz kategorię </option>
-                          <option value="gitary">Gitaty</option>
-                          <option value="dete">Dęte</option>
-                          <option value="klawiszowe">Klawiszowe</option>
-                          <option value="perkusyjne">Perkusyjne</option>
-                          <option value="smyczkowe">Smyczkowe</option>
-                          <option value="mikrofony">Mikrofony</option>
-                          <option value="sluchawki">Słuchawki</option>
-                          <option value="nuty">Nuty, Książki</option>
-                          <option value="akcesoria">Akcesoria</option>
-                          <option value="inne">Inne</option>
+                          <option value="Guitars">Gitary</option>
+                          <option value="WindInstruments">Dęte</option>
+                          <option value="Keyboards">Klawiszowe</option>
+                          <option value="Percussion">Perkusyjne</option>
+                          <option value="String">Smyczkowe</option>
+                          <option value="Microphones">Mikrofony</option>
+                          <option value="Headphones">Słuchawki</option>
+                          <option value="Accessories">Akcesoria</option>
+                          <option value="NotesBooks">Nuty, książki</option>
+                          <option value="Other">Inne</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                           {errors.category}
@@ -250,7 +292,17 @@ const AddOffer = () => {
                       </Form.Group>
                     </Col>
                   </Form.Group>
-                  <Row className="py-5">
+                  {isZeroImage == true && (
+                    <div className=" mt-3">
+                      <p
+                        className="text-danger"
+                        style={{ textAlign: "center" }}
+                      >
+                        Proszę dodać przynajmniej jedno zdjęcie
+                      </p>
+                    </div>
+                  )}
+                  <Row className="">
                     <Col>
                       <Form.Group>
                         <Form.Check
