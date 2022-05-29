@@ -328,7 +328,7 @@ const AddOffer = () => {
                       className="d-grid"
                     >
                       <Button
-                        className=" mt-3"
+                        className=" mt-3 mb-2"
                         variant="dark"
                         type="submit"
                         disabled={isSubmitting}
