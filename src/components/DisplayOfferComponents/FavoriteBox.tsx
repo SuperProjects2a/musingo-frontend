@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FunctionComponent } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -9,11 +9,19 @@ import {
   removeWatch,
 } from "../../services/offerInteractionService";
 
-const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
-  props
-) => {
+const FavoriteBox = ({
+  offerId,
+  isWatched,
+}: {
+  offerId: number;
+  isWatched: boolean;
+}) => {
   const navigate = useNavigate();
-  const [watched, setWatched] = useState(props.offer?.isWatched ?? false);
+  const [watched, setWatched] = useState(isWatched);
+
+  useEffect(() => {
+    setWatched(isWatched);
+  }, []);
 
   return (
     <Card className="py-4 px-4">
@@ -22,7 +30,7 @@ const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
           className=""
           variant="outline-dark light"
           onClick={() => {
-            removeWatch({ offerId: props.offer?.id ?? -1 }).then(() => {
+            removeWatch({ offerId: offerId }).then(() => {
               setWatched(false);
             });
           }}
@@ -34,7 +42,7 @@ const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
           className=""
           variant="outline-dark light"
           onClick={() => {
-            watchOffer({ offerId: props.offer?.id ?? -1 }).then(() => {
+            watchOffer({ offerId: offerId }).then(() => {
               setWatched(true);
             });
           }}
@@ -47,7 +55,7 @@ const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
         className="mt-2"
         variant="dark"
         onClick={() => {
-          buyOffer({ offerId: props.offer?.id ?? -1 }).then(() => {
+          buyOffer({ offerId: offerId }).then(() => {
             navigate("/UserProfile/Fundings");
           });
         }}
