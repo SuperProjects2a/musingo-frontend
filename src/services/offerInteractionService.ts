@@ -7,3 +7,7 @@ export const buyOffer = ({ offerId }: { offerId: number }) => {
 export const watchOffer = ({ offerId }: { offerId: number }) => {
   return http({ method: "put", url: `/OfferInteraction/watch/${offerId}` });
 };
+
+export const removeWatch = ({ offerId }: { offerId: number }) => {
+  return http({ method: "delete", url: `/OfferInteraction/watch/${offerId}` });
+};
