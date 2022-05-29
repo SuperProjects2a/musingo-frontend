@@ -14,9 +14,8 @@ import { getOffer, IAnnouncement } from "../services/offerService";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
-  const [ratingValidation, setRatingValidation] = useState(false);
+  const [ratingIsValidation, setRatingValidation] = useState(false);
   const [commentText, setCommentText] = useState("");
-  const [commentTextValidation, setCommentTextValidation] = useState(false);
 
   const navigate = useNavigate();
   const [offer, setOffer] = useState<IAnnouncement | undefined>(undefined);
@@ -25,20 +24,6 @@ const AddReview = () => {
   const handleRating = (rate: number) => {
     setRating(rate);
     setRatingValidation(false);
-  };
-  const handleCommentText = (text: string) => {
-    setCommentText(text);
-    text.length > 0
-      ? setCommentTextValidation(false)
-      : setCommentTextValidation(true);
-  };
-
-  const validationSchema = () => {
-    rating > 0 || setRatingValidation(true);
-    commentText.length > 0 || setCommentTextValidation(true);
-    if (rating > 0 && commentText.length > 0) {
-      window.location.href = "/UserProfile/Fundings";
-    }
   };
 
   useEffect(() => {
@@ -50,6 +35,22 @@ const AddReview = () => {
 
     fetchAnnouncements();
   }, [navigate]);
+
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event: any) => {
+    const form = event.currentTarget;
+    if (rating === 0) setRatingValidation(true);
+    if (form.checkValidity() === false || rating === 0) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      event.preventDefault();
+      window.location.href = "/UserProfile/Fundings";
+    }
+
+    setValidated(true);
+  };
 
   return (
     <Container className="py-5">
@@ -83,73 +84,85 @@ const AddReview = () => {
                   </Card.Subtitle>
                 </Col>
               </Row>
-              <Form>
+              <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Row className="pt-4">
                   <Form.Label>Twoja ocena:</Form.Label>
                 </Row>
                 <Row>
-                  <Rating
-                    onClick={handleRating}
-                    ratingValue={rating}
-                    size={30}
-                  />
+                  <Form.Group>
+                    <Rating
+                      onClick={handleRating}
+                      ratingValue={rating}
+                      size={30}
+                      allowHalfIcon={false}
+                      showTooltip={true}
+                      tooltipArray={[
+                        "beznadzieny",
+                        "słaby",
+                        "przeciętny",
+                        "ok",
+                        "super",
+                      ]}
+                      tooltipDefaultText={""}
+                      tooltipStyle={{
+                        backgroundColor: "white",
+                        color: "gray",
+                        fontSize: "13px",
+                        marginLeft: "-6px",
+                      }}
+                    />
+                    {ratingIsValidation == true && (
+                      <Row className="">
+                        <Form.Text className="text-danger">
+                          Wybierz ocenę od 1 do 5.
+                        </Form.Text>
+                      </Row>
+                    )}
+                  </Form.Group>
                 </Row>
-                {ratingValidation == true && (
-                  <Row className="">
-                    <Form.Text className="text-danger">
-                      <small>Wybierz ocenę od 1 do 5.</small>
-                    </Form.Text>
-                  </Row>
-                )}
+                <Form.Group>
+                  <Form.Label className="pt-3">
+                    Oceń zakupiony produkt oraz sprzedającego:
+                  </Form.Label>
+                  <Form.Control
+                    // className="formInputs"
+                    as="textarea"
+                    rows={4}
+                    type="text"
+                    maxLength={300}
+                    placeholder="Opisz kontakt ze sprzedającym. Czy opis i zdjęcia produktu są zgodne z rzeczywistością?"
+                    autoComplete="description"
+                    required
+                    className="mb-5"
+                  />
+                  <Form.Text
+                    className="d-flex justify-content-end"
+                    style={{ marginTop: "-45px" }}
+                  >
+                    {commentText.length}/300
+                  </Form.Text>
+                  <Form.Control.Feedback
+                    type="invalid"
+                    style={{ marginTop: "-21px" }}
+                  >
+                    To pole jest wymagane.
+                  </Form.Control.Feedback>
+                </Form.Group>
 
-                <Form.Label className="pt-3">
-                  Oceń zakupiony produkt oraz sprzedającego:
-                </Form.Label>
-                <Form.Control
-                  // className="formInputs"
-                  as="textarea"
-                  rows={4}
-                  type="text"
-                  maxLength={300}
-                  placeholder="Opisz kontakt ze sprzedającym. Czy opis i zdjęcia produktu są zgodne z rzeczywistością?"
-                  autoComplete="description"
-                  onBlur={(e) => handleCommentText(e.target.value)}
-                  onChange={(e) => handleCommentText(e.target.value)}
-                />
-                <Row className="pt-1">
-                  {commentTextValidation == true && (
-                    <Col>
-                      <Form.Text className="text-danger">
-                        <small>To pole jest wymagane.</small>
-                      </Form.Text>
-                    </Col>
-                  )}
-                  <Col>
-                    <Form.Text className="d-flex justify-content-end">
-                      {commentText.length}/300
-                    </Form.Text>
+                <Row className="mt-4">
+                  <Col
+                    xs={12}
+                    md={{ span: 4, offset: 8 }}
+                    lg={{ span: 3, offset: 9 }}
+                    xl={{ span: 2, offset: 10 }}
+                    className="d-grid"
+                  >
+                    <Button className="mt-2" variant="dark" type="submit">
+                      Dodaj opinię
+                    </Button>
                   </Col>
                 </Row>
               </Form>
-              <Row className="mt-4">
-                <Col
-                  xs={12}
-                  md={{ span: 4, offset: 8 }}
-                  lg={{ span: 3, offset: 9 }}
-                  xl={{ span: 2, offset: 10 }}
-                  className="d-grid"
-                >
-                  <Button
-                    className="mt-2"
-                    variant="dark"
-                    onClick={() => {
-                      validationSchema();
-                    }}
-                  >
-                    Dodaj opinię
-                  </Button>
-                </Col>
-              </Row>
             </Col>
           </Row>
         </Card.Body>
