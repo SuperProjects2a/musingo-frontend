@@ -24,6 +24,7 @@ export interface IAnnouncement {
   email: string;
   phoneNumber: string;
   isPromoted: boolean;
+  isWatched: boolean;
 }
 
 export interface IOfferFilter {
