@@ -8,7 +8,7 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
@@ -35,6 +35,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
   imgUrls,
   id,
 }) => {
+  const [watched, setWatched] = useState(watch);
   return (
     <>
       <Card>
@@ -91,7 +92,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
               className="pt-1 d-flex justify-content-end"
               style={{ textAlign: "right" }}
             >
-              {watch == true ? (
+              {watched == true ? (
                 <OverlayTrigger
                   placement="top"
                   delay={{ show: 250, hide: 400 }}
@@ -106,7 +107,9 @@ const AnnouncementCard: FC<IAnnouncement> = ({
                     className="heartButton"
                     type="submit"
                     onClick={() => {
-                      removeWatch({ offerId: id });
+                      removeWatch({ offerId: id }).then(() => {
+                        setWatched(false);
+                      });
                     }}
                   >
                     <FontAwesomeIcon
@@ -125,7 +128,11 @@ const AnnouncementCard: FC<IAnnouncement> = ({
                     variant="light"
                     className="heartButton"
                     type="submit"
-                    onClick={() => watchOffer({ offerId: id })}
+                    onClick={() =>
+                      watchOffer({ offerId: id }).then(() => {
+                        setWatched(true);
+                      })
+                    }
                   >
                     <FontAwesomeIcon
                       icon={faHeartRegular}
