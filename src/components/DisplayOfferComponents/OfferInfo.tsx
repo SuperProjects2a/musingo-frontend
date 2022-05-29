@@ -24,13 +24,15 @@ const OfferInfo: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
           </Card.Subtitle>
           <strong>Opis</strong>
           <Card.Text>{props.offer?.description}</Card.Text>
-          <Link to={`/ReportOffer/${props.offer?.id}`} style={{ float: "right", color: "red" }}>
+          <Link
+            to={`/ReportOffer/${props.offer?.id}`}
+            style={{ float: "right", color: "red" }}
+          >
             <FontAwesomeIcon className="px-2" icon={faFontAwesome} />
             Zgłoś
           </Link>
         </Card.Body>
       </Card>
-      )
     </div>
   );
 };
