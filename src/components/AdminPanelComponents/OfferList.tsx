@@ -4,6 +4,7 @@ import { reportedOffers } from "../../services/adminService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown,faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { offerBanUnban } from "../../services/adminService"
+import { Link } from "react-router-dom";
 
 const OfferList = () => {
   interface IReportOffer {
@@ -103,6 +104,7 @@ const OfferList = () => {
                       >
                         Zbanuj
                       </Button>
+                      <Link to ={`/DisplayOffer/${off.id}`}>
                       <Button
                         variant="dark"
                         style={{ marginRight: "5px" }}
@@ -110,6 +112,7 @@ const OfferList = () => {
                       >
                         Zobacz ofertę
                       </Button>
+                      </Link>
                     </>
                   )}
                   <Button

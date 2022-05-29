@@ -36,7 +36,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
         <Link to={linkA} className="categories">
           <Card.Img
             variant="top"
-            src={imgUrls[0]}
+            src={imgUrls?.length > 0 ? imgUrls[0]: ""}
             style={{
               height: " calc(11vh + 4vw)",
               minHeight: "150px",

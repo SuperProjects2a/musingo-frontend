@@ -18,7 +18,7 @@ const ChatWindow = () => {
   });
 
   return (
-    <div>
+    <div id='menu' >
       {informationsUser.map((informationUser, index) => (
         <Container
           style={{ textAlign: "left" }}
