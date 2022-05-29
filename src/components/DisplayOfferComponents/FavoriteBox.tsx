@@ -4,6 +4,7 @@ import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { buyOffer } from "../../services/offerInteractionService";
 import { IAnnouncement } from "../../services/offerService";
+import { watchOffer } from "../../services/offerInteractionService";
 
 const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
   props
@@ -13,11 +14,17 @@ const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
   return (
     <Card className="py-4 px-4">
       {props.offer?.isWatched ? (
-        <Button className="" variant="outline-dark light">
+        <Button className="" variant="outline-dark light" onClick={() => {}}>
           <strong>Usuń z obserwowanych</strong>
         </Button>
       ) : (
-        <Button className="" variant="outline-dark light">
+        <Button
+          className=""
+          variant="outline-dark light"
+          onClick={() => {
+            watchOffer({ offerId: props.offer?.id ?? -1 });
+          }}
+        >
           <strong>Dodaj do obserwowanych</strong>
         </Button>
       )}
