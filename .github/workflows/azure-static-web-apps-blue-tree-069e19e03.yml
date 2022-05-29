@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - hotfix
 
 env:
   NODE_VERSION: 'v16.13.1'
