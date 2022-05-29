@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Col, Row, Container } from "react-bootstrap";
 import OfferCarousel from "./OfferCarousel";
@@ -7,28 +7,36 @@ import PersonalInfo from "./PersonalInfo";
 import FavoriteBox from "./FavoriteBox";
 import OfferInfo from "./OfferInfo";
 import AnnouncementsCarousel from "../announcement/AnnouncementsCarousel";
-import { getOffers, getOffer, IAnnouncement, getPromotedOffers, getUserOtherOffers } from "../../services/offerService";
+import {
+  getOffers,
+  getOffer,
+  IAnnouncement,
+  getPromotedOffers,
+  getUserOtherOffers,
+} from "../../services/offerService";
 
 const DisplayOffer = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
-  const [promotedAnnouncements, setPromotedAnnouncements] = useState<IAnnouncement[]>(
-    [] as IAnnouncement[]
-  );
+  const [promotedAnnouncements, setPromotedAnnouncements] = useState<
+    IAnnouncement[]
+  >([] as IAnnouncement[]);
   const [loading, setLoading] = useState(true);
   const [offer, setOffer] = useState<IAnnouncement | undefined>(undefined);
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-
     const fetchAnnouncements = async () => {
       setLoading(true);
       let idNumber = Number(id);
       let receivedOffer = await getOffer(idNumber);
       setOffer(receivedOffer);
-      let offers = await getUserOtherOffers(receivedOffer?.owner?.email,idNumber);
+      let offers = await getUserOtherOffers(
+        receivedOffer?.owner?.email,
+        idNumber
+      );
       let promotedOffers = await getPromotedOffers();
       setPromotedAnnouncements(promotedOffers);
       setAnnouncements(offers);
@@ -53,14 +61,14 @@ const DisplayOffer = () => {
             <PersonalInfo user={offer?.owner} city={offer?.city} />
           </Col>
           <Col className="pt-2 pt-lg-4 px-lg-3 px-xxl-0">
-            <FavoriteBox offerId={offer?.id ?? -1} />
+            <FavoriteBox offer={offer} />
           </Col>
         </Col>
         <Col
           xs={{ offset: 12, span: 12, order: 2 }}
           className="pt-2 pt-lg-4 px-lg-4"
         >
-          <OfferInfo offer={offer}/>
+          <OfferInfo offer={offer} />
         </Col>
       </Row>
       <Row className="pt-3 px-4">

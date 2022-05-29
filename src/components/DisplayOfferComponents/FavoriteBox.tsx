@@ -1,21 +1,32 @@
 import React from "react";
+import { FunctionComponent } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { buyOffer } from "../../services/offerInteractionService";
+import { IAnnouncement } from "../../services/offerService";
 
-const FavoriteBox = ({ offerId }: { offerId: number }) => {
+const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
+  props
+) => {
   const navigate = useNavigate();
 
   return (
     <Card className="py-4 px-4">
-      <Button className="" variant="outline-dark light">
-        <strong>Dodaj do obserwowanych</strong>
-      </Button>
+      {props.offer?.isWatched ? (
+        <Button className="" variant="outline-dark light">
+          <strong>Usuń z obserwowanych</strong>
+        </Button>
+      ) : (
+        <Button className="" variant="outline-dark light">
+          <strong>Dodaj do obserwowanych</strong>
+        </Button>
+      )}
+
       <Button
         className="mt-2"
         variant="dark"
         onClick={() => {
-          buyOffer({ offerId }).then(() => {
+          buyOffer({ offerId: props.offer?.id ?? -1 }).then(() => {
             navigate("/UserProfile/Fundings");
           });
         }}
