@@ -57,24 +57,28 @@ const AddReview = () => {
       <Card className="p-2" style={{ textAlign: "left" }}>
         <Card.Body>
           <Row>
-            <Col md={3} lg={2} className="d-none d-md-block">
-              <Image
-                src={offer?.imageUrls[0]}
-                style={{ maxWidth: "95%" }}
-              ></Image>
-            </Col>
-            <Col xs={12} md={9} lg={10}>
+            {offer?.imageUrls[0] === null || (
+              <Col md={3} lg={2} className="d-none d-md-block">
+                <Image
+                  src={offer?.imageUrls[0]}
+                  style={{ maxWidth: "95%" }}
+                ></Image>
+              </Col>
+            )}
+            <Col>
               <Row>
-                <Col xs={4} className="d-block d-md-none">
-                  <Image
-                    src={offer?.imageUrls[0]}
-                    style={{
-                      maxWidth: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  ></Image>
-                </Col>
+                {offer?.imageUrls[0] === null || (
+                  <Col xs={4} className="d-block d-md-none">
+                    <Image
+                      src={offer?.imageUrls[0]}
+                      style={{
+                        maxWidth: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    ></Image>
+                  </Col>
+                )}
                 <Col>
                   <Card.Title style={{ fontSize: "25px" }}>
                     {offer?.title}
@@ -131,7 +135,7 @@ const AddReview = () => {
                     type="text"
                     maxLength={300}
                     placeholder="Opisz kontakt ze sprzedającym. Czy opis i zdjęcia produktu są zgodne z rzeczywistością?"
-                    autoComplete="description"
+                    onChange={(e) => setCommentText(e.target.value)}
                     required
                     className="mb-5"
                   />
@@ -149,7 +153,7 @@ const AddReview = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Row className="mt-4">
+                <Row className="mt-3">
                   <Col
                     xs={12}
                     md={{ span: 4, offset: 8 }}
