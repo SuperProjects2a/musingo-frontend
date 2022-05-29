@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FunctionComponent } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -13,15 +13,18 @@ const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
   props
 ) => {
   const navigate = useNavigate();
+  const [watched, setWatched] = useState(props.offer?.isWatched ?? false);
 
   return (
     <Card className="py-4 px-4">
-      {props.offer?.isWatched ? (
+      {watched ? (
         <Button
           className=""
           variant="outline-dark light"
           onClick={() => {
-            removeWatch({ offerId: props.offer?.id ?? -1 });
+            removeWatch({ offerId: props.offer?.id ?? -1 }).then(() => {
+              setWatched(false);
+            });
           }}
         >
           <strong>Usuń z obserwowanych</strong>
@@ -31,7 +34,9 @@ const FavoriteBox: FunctionComponent<{ offer: IAnnouncement | undefined }> = (
           className=""
           variant="outline-dark light"
           onClick={() => {
-            watchOffer({ offerId: props.offer?.id ?? -1 });
+            watchOffer({ offerId: props.offer?.id ?? -1 }).then(() => {
+              setWatched(true);
+            });
           }}
         >
           <strong>Dodaj do obserwowanych</strong>
