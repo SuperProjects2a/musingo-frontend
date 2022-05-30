@@ -11,7 +11,7 @@ import {
   sendMessage,
 } from "../../services/messageService";
 import { getUser, IUser } from "../../services/userService";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 const ChatWindow = () => {
@@ -56,6 +56,7 @@ const ChatWindow = () => {
         <Container style={{ textAlign: "left" }}>
           {/* <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5 mt-sm-5 mb-sm-5 chatWindow"> */}
           <Card className="rounded border border-light my-2 chatWindow">
+            <Link to = {`/DisplayOffer/${messages[0]?.transaction?.offer?.id.toString()}`} className="link">
             <Card.Header as="h5" className="my-0 py-1">
               <Card.Img
                 variant="top"
@@ -75,6 +76,7 @@ const ChatWindow = () => {
                                 : `${messages[0]?.transaction?.buyer?.name} ${messages[0]?.transaction?.buyer?.surname} - `}
                               {messages[0]?.transaction?.offer?.title}
             </Card.Header>
+            </Link>
             <Card.Body className="px-sm-4 px-md- pt-0">
               <ChatMessage
                 messages={messages}
