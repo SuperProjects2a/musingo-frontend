@@ -19,7 +19,7 @@ const Fundings = () => {
     const getT = async () => {
       const t = (await getTransactions()) as ITransaction[];
       setTransactions(
-        t.filter((transaction) => transaction?.offer?.offerStatus === "Sold")
+        t.filter((transaction) => transaction?.status === "Finished")
       );
     };
     const getU = async () => {
@@ -32,6 +32,7 @@ const Fundings = () => {
 
   return (
     <>
+    {console.log(transactions)}
       {transactions.length > 0 ? (
         <div className="userProfileDiv py-4 px-3 px-md-5">
           <Card style={{ borderRadius: "20px" }}>
