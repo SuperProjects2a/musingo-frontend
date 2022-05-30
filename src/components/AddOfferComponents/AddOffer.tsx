@@ -89,6 +89,7 @@ const AddOffer = () => {
               enableReinitialize={true}
               onSubmit={async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);
+
                 setIsZeroImage(false);
                 if (images.length === 0) {
                   setIsZeroImage(true);
@@ -321,12 +322,13 @@ const AddOffer = () => {
                       </Form.Group>
                     </Col>
                     <Col
-                      xl={{ span: 2, offset: 10 }}
-                      lg={{ span: 3, offset: 9 }}
+                      xs={12}
                       md={{ span: 4, offset: 8 }}
+                      xl={{ span: 3, offset: 9 }}
+                      className="d-grid"
                     >
                       <Button
-                        className="mt-3 mb-2"
+                        className=" mt-3 mb-2"
                         variant="dark"
                         type="submit"
                         disabled={isSubmitting}
