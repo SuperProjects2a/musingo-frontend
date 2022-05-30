@@ -5,6 +5,7 @@ import {
   Button,
   InputGroup,
   Col,
+  Row,
 } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -68,7 +69,7 @@ const ChatWindow = () => {
                 }) => (
                   <Form onSubmit={handleSubmit}>
                     <Form.Group className="pt-1">
-                      <InputGroup>
+                    <InputGroup>
                         <Form.Control
                           name="message"
                           type="text"
@@ -79,9 +80,10 @@ const ChatWindow = () => {
                           onChange={handleChange}
                           isInvalid={touched.message && !!errors.message}
                         />
+
                         {values?.message?.length > 0 ? (
-                          <Col>
                             <Button
+                              className="mx-2"
                               style={{ float: "right" }}
                               variant="dark"
                               type="submit"
@@ -91,11 +93,11 @@ const ChatWindow = () => {
                                 icon={faPaperPlane}
                               ></FontAwesomeIcon>
                             </Button>
-                          </Col>
+                          
                         ) : (
                           <></>
                         )}
-                      </InputGroup>
+                        </InputGroup>
                       <Form.Text>
                         Maksymalna długość:{" "}
                         <strong>{values.message.length}/200</strong>
