@@ -75,7 +75,7 @@ const Fundings = () => {
 
                         <td>
                           {transaction.rating === 0 ? (
-                            <Link to={`/AddReview/${transaction?.offer?.id}`}>
+                            <Link to={`/AddReview/${transaction?.id}`}>
                               Dodaj opinię
                             </Link>
                           ) : (
