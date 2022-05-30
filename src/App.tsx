@@ -23,6 +23,7 @@ import FundFailure from "./components/funds/FundFailure";
 import Watch from "./components/Watch";
 import Error404 from "./components/errors/Error404";
 import Error403 from "./components/errors/Error403";
+import ChatWindow from "./components/ChatComponents/ChatWindow";
 import AddReview from "./components/AddReview";
 import { Outlet } from "react-router";
 
@@ -52,6 +53,8 @@ function App() {
           <Route path="/AddOffer" element={<AddOffer />}></Route>
           <Route path="/EditOffer/:id" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
+          <Route path="/ReportOffer" element={<ReportOffer />}></Route>
+          <Route path="/ChatWindow" element={<ChatWindow />}></Route>   
           <Route
             path="/AdminPanel/Oferty"
             element={<AdminPanel activeTabs="Oferty" />}
