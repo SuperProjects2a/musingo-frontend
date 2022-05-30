@@ -1,61 +1,52 @@
-import React, { useEffect } from "react";
-import { Form, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form, Col, Spinner } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { getChatWindow, getMessages, IMessage } from "../../services/messageService";
+import { getUser, IUser } from "../../services/userService";
 
-const informationsMessage = [
-  {
-    date: "10.10.2022 15:46",
-    text: "jakasadasd asd asd asd d asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosc",
-    id: "1",
-  },
-  {
-    date: "10.10.2022 15:46",
-    text: "jakasadasd asd asd asd d asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgd asd asd asd as dasd wiahfgas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosas dasd wiahfghfghfghfghfghfghfghfghfghfghdomosc",
-    id: "0",
-  },
-  {
-    date: "10.10.2022 15:47",
-    text: "nie kupuje",
-    id: "1",
-  },
-  {
-    date: "10.10.2022 15:48",
-    text: "to spadaj",
-    id: "0",
-  },
-  {
-    date: "10.10.2022 15:48",
-    text: "to spadaj",
-    id: "0",
-  },
-  {
-    date: "10.10.2022 15:48",
-    text: "to spadaj",
-    id: "0",
-  },
-  {
-    date: "10.10.2022 15:48",
-    text: "to spadaj",
-    id: "0",
-  },
-];
 
 const ChatMessage = () => {
+  const [messages,setMessages] = useState<IMessage[]>([] as IMessage[])
+  const [loading,setLoading] = useState(false);
+  const [user,setUser] = useState<IUser>();
+  const { id } = useParams();
+  const [numberId,setNumberId] = useState(0);
   useEffect(() => {
+    setNumberId(Number(id));
     const chat = document.getElementById("end-point");
     chat?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    const getM = async ()=>{
+      setLoading(true);
+      const m = await getChatWindow(Number(id));
+      setMessages(m);
+      const u = await getUser();
+      setUser(u);
+      setLoading(false);
+    }
+    getM();
   }, []);
   return (
+    <>{loading == true ? (
+      <Col
+        xs={{ offset: 5 }}
+        lg={{ offset: 6 }}
+        className="px-sm-5 px-lg-0 py-5 mb-5"
+      >
+        <Spinner
+          animation="border"
+          style={{ height: "50px", width: "50px" }}
+        />
+      </Col>
+    ) : (
     <div
       style={{
         height: "60vh",
         overflowY: "scroll",
-        // display: "flex",
-        // flexDirection: "column-reverse",
       }}
     >
-      {informationsMessage.map((informationMessage, index) => (
+      {messages?.map((message:IMessage, index) => (
         <Col>
-          {informationMessage.id === "0" ? (
+          {message?.sender?.email === user?.email ? (
             <p>
               <div
                 className="rounded border border-light chatMessageUser py-2 px-3 mt-1"
@@ -63,9 +54,9 @@ const ChatMessage = () => {
               >
                 <Form.Text style={{ color: "white" }}>
                   <Col style={{ fontWeight: "100", lineHeight: "80%" }}>
-                    <small>{informationMessage.date}</small>
+                    <small>{message.sendTime}</small>
                   </Col>
-                  {informationMessage.text}
+                  {message.text}
                 </Form.Text>
               </div>
             </p>
@@ -77,9 +68,9 @@ const ChatMessage = () => {
               >
                 <Form.Text style={{ color: "black" }}>
                   <Col style={{ fontWeight: "100", lineHeight: "80%" }}>
-                    <small>{informationMessage.date}</small>
+                    <small>{message.sendTime}</small>
                   </Col>
-                  {informationMessage.text}
+                  {message.text}
                 </Form.Text>
               </div>
             </p>
@@ -87,7 +78,8 @@ const ChatMessage = () => {
         </Col>
       ))}
       <div id="end-point"></div>
-    </div>
+    </div>)}
+    </>
   );
 };
 

@@ -54,7 +54,7 @@ function App() {
           <Route path="/EditOffer/:id" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
-          <Route path="/ChatWindow" element={<ChatWindow />}></Route>   
+          <Route path="/ChatWindow/:id" element={<ChatWindow />}></Route>   
           <Route
             path="/AdminPanel/Oferty"
             element={<AdminPanel activeTabs="Oferty" />}
