@@ -47,7 +47,7 @@ const ChatMessage = (params:any) => {
               >
                 <Form.Text style={{ color: "black" }}>
                   <Col style={{ fontWeight: "100", lineHeight: "80%" }}>
-                    <small>{message.sendTime}</small>
+                    <small>{convertTime(message.sendTime )}</small>
                   </Col>
                   {message.text}
                 </Form.Text>
