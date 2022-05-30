@@ -18,6 +18,7 @@ const FavoriteBox = ({
 }) => {
   const navigate = useNavigate();
   const [watched, setWatched] = useState(isWatched);
+  const [poor, setPoor] = useState(false);
 
   useEffect(() => {
     setWatched(isWatched);
@@ -55,13 +56,30 @@ const FavoriteBox = ({
         className="mt-2"
         variant="dark"
         onClick={() => {
-          buyOffer({ offerId: offerId }).then(() => {
-            navigate("/UserProfile/Fundings");
-          });
+          buyOffer({ offerId: offerId })
+            .then(() => {
+              navigate("/UserProfile/Fundings");
+            })
+            .catch((reason) => {
+              setPoor(true);
+              setTimeout(() => {
+                setPoor(false);
+              }, 5000);
+            });
         }}
       >
         <strong>Kup teraz</strong>
       </Button>
+      {poor ? (
+        <div
+          style={{ color: "red", fontWeight: "bold", fontSize: "24px" }}
+          className="pt-3"
+        >
+          JESTEŚ BIEDAKIEM
+        </div>
+      ) : (
+        <></>
+      )}
     </Card>
   );
 };
