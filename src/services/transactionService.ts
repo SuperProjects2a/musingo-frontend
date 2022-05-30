@@ -31,4 +31,5 @@ export interface ITransaction {
   buyer: IOwner;
   lastUpdateTime: string;
   cost: number;
+  rating: number;
 }
