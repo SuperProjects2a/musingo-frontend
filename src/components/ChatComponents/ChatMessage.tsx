@@ -32,7 +32,7 @@ const ChatMessage = () => {
   return (
     <div
       style={{
-        height: "55vh",
+        height: "60vh",
         overflowY: "scroll",
         // display: "flex",
         // flexDirection: "column-reverse",
@@ -43,11 +43,11 @@ const ChatMessage = () => {
           {informationMessage.id === "0" ? (
             <p>
               <div
-                className="rounded border border-light chatMessageUser py-3 px-3"
+                className="rounded border border-light chatMessageUser py-2 px-3 mt-1"
                 style={{ backgroundColor: "#0084ff" }}
               >
                 <Form.Text style={{ color: "white" }}>
-                  <Col style={{ fontWeight: "100" }}>
+                  <Col style={{ fontWeight: "100", lineHeight: "80%" }}>
                     <small>{informationMessage.date}</small>
                   </Col>
                   {informationMessage.text}
@@ -57,11 +57,11 @@ const ChatMessage = () => {
           ) : (
             <p>
               <div
-                className="rounded border border-light chatMessageSender py-3 px-3 "
+                className="rounded border border-light chatMessageSender py-2 px-3 mt-1 "
                 style={{ backgroundColor: "#e4e6eb" }}
               >
                 <Form.Text style={{ color: "black" }}>
-                  <Col style={{ fontWeight: "100" }}>
+                  <Col style={{ fontWeight: "100", lineHeight: "80%" }}>
                     <small>{informationMessage.date}</small>
                   </Col>
                   {informationMessage.text}

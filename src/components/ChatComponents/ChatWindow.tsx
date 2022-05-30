@@ -1,8 +1,10 @@
-import { Container, Form, Card, Button } from "react-bootstrap";
+import { Container, Form, Card, Button, InputGroup } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import ChatMessage from "./ChatMessage";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const informationsUser = [
   {
@@ -64,16 +66,28 @@ const ChatWindow = () => {
                 }) => (
                   <Form onSubmit={handleSubmit}>
                     <Form.Group className="pt-1">
-                      <Form.Control
-                        name="message"
-                        type="text"
-                        maxLength={200}
-                        placeholder="Wyślij wiadomość"
-                        autoComplete="message"
-                        value={values.message}
-                        onChange={handleChange}
-                        isInvalid={touched.message && !!errors.message}
-                      />
+                      <InputGroup>
+                        <Form.Control
+                          name="message"
+                          type="text"
+                          maxLength={200}
+                          placeholder="Wyślij wiadomość"
+                          autoComplete="message"
+                          value={values.message}
+                          onChange={handleChange}
+                          isInvalid={touched.message && !!errors.message}
+                        />
+                        <Button
+                          style={{ float: "right" }}
+                          variant="dark"
+                          type="submit"
+                          disabled={isSubmitting}
+                        >
+                          <FontAwesomeIcon
+                            icon={faPaperPlane}
+                          ></FontAwesomeIcon>
+                        </Button>
+                      </InputGroup>
                       <Form.Text>
                         Maksymalna długość:{" "}
                         <strong>{values.message.length}/200</strong>
@@ -82,14 +96,6 @@ const ChatWindow = () => {
                         {errors.message}
                       </Form.Control.Feedback>
                     </Form.Group>
-                    <Button
-                      style={{ float: "right" }}
-                      variant="dark"
-                      type="submit"
-                      disabled={isSubmitting}
-                    >
-                      Wyślij
-                    </Button>
                   </Form>
                 )}
               </Formik>
