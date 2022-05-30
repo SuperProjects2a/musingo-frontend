@@ -32,4 +32,5 @@ export interface ITransaction {
   lastUpdateTime: string;
   cost: number;
   rating: number;
+  status:string;
 }

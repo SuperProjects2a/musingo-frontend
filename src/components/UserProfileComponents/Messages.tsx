@@ -37,7 +37,7 @@ const Messages = () => {
             messages.map((message, index) => (
               <Row className="px-2">
                 <Col xs={{ span: 12 }} md={{ span: 8, offset: 2 }}>
-                  <Link className="categories" to="/Test">
+                  <Link className="categories" to={`/ChatWindow/${message?.transaction?.id?.toString()}`}>
                     <Card
                       className="mx-sm-3 mx-md-0 mx-lg-3 mx-xl-5 mb-2 "
                       style={{ borderRadius: "20px" }}

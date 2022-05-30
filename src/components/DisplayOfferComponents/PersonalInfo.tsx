@@ -5,11 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass, faStar } from "@fortawesome/free-solid-svg-icons";
 import { IOwner } from "../../services/offerService";
 import avatar from "../../images/avatar.png";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PersonalInfo: FunctionComponent<{
   user: IOwner | undefined;
   city: string | undefined;
 }> = (props) => {
+  const {id} = useParams();
+  const navigate = useNavigate();
   return (
     <div>
       <Card className="py-3 px-4">
@@ -49,7 +52,7 @@ const PersonalInfo: FunctionComponent<{
         <Button className="" variant="outline-dark light">
           <strong>Zadzwoń</strong>
         </Button>
-        <Button className="mt-2" variant="outline-dark light">
+        <Button onClick = {()=>{navigate(`/AskForItem/${id}`)}} className="mt-2" variant="outline-dark light">
           <strong>Zapytaj o przedmiot</strong>
         </Button>
       </Card>
@@ -58,3 +61,4 @@ const PersonalInfo: FunctionComponent<{
 };
 
 export default PersonalInfo;
+
