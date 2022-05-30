@@ -68,7 +68,7 @@ const ChatWindow = () => {
                     <Form.Group className="pt-1">
                     <InputGroup>
                         <Form.Control
-                          className="noBorderLine"
+                          className="noBorderLine rounded"
                           name="message"
                           type="text"
                           maxLength={200}
@@ -81,7 +81,7 @@ const ChatWindow = () => {
 
                         {values?.message?.length > 0 ? (
                             <Button
-                              className="mx-2"
+                              className="mx-2 rounded"
                               style={{ float: "right" }}
                               variant="dark"
                               type="submit"
