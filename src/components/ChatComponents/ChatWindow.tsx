@@ -123,7 +123,7 @@ const ChatWindow = () => {
                           type="text"
                           maxLength={200}
                           placeholder="Wyślij wiadomość"
-                          autoComplete="message"
+                          autoComplete="off"
                           value={values.message}
                           onChange={handleChange}
                           isInvalid={touched.message && !!errors.message}
