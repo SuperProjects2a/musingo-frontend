@@ -24,6 +24,7 @@ import Watch from "./components/Watch";
 import Error404 from "./components/errors/Error404";
 import Error403 from "./components/errors/Error403";
 import ChatWindow from "./components/ChatComponents/ChatWindow";
+import AddReview from "./components/AddReview";
 import { Outlet } from "react-router";
 
 function ScrollToTop() {
@@ -69,12 +70,10 @@ function App() {
           <Route path="/ReportOffer/:id" element={<ReportOffer />}></Route>
           <Route path="/Error404" element={<Error404 />}></Route>
           <Route path="/Error403" element={<Error403 />}></Route>
-          <Route
-            path="/FundAdd"
-            element={<FundAdd></FundAdd>}
-          ></Route>
+          <Route path="/FundAdd" element={<FundAdd></FundAdd>}></Route>
           <Route path="/FundSuccess" element={<FundSuccess />}></Route>
           <Route path="/FundFailure" element={<FundFailure />}></Route>
+          <Route path="/AddReview/:id" element={<AddReview />}></Route>
           {/* UserProfile */}
           <Route
             path="/UserProfile/ProfileManagement"
