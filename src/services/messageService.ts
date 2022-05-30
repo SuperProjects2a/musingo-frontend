@@ -7,7 +7,7 @@ export const getMessages = (): Promise<IMessage[]> => {
   );
 };
 export const sendMessage = (data: ISendMessage): Promise<IMessage> => {
-  return http({ methso: "post", url: "/Message" }).then(
+  return http({ method: "post", url: "/Message",data:data }).then(
     (response) => response.data
   );
 };
@@ -39,12 +39,10 @@ export const convertTime = (dateTime: string) => {
   let diffInDays = Math.floor(
     (currentDay.getTime() - date.getTime()) / (1000 * 3600 * 24)
   );
-  let month = ("0" + (date.getMonth() + 1)).slice(-2);
   let year = date.getFullYear();
   let dayName = date.toLocaleDateString("pl", { weekday: "short" });
   let monthName = date.toLocaleDateString("pl", { month: "short" });
   let dayOfTheMonth = date.getDate();
-  let day = date.getDate();
   let hours = date.getHours();
   let minutes: number | string = date.getMinutes();
   hours = hours;

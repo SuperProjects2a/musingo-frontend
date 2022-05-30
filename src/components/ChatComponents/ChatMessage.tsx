@@ -1,32 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Form, Col, Spinner } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { convertTime, getChatWindow, getMessages, IMessage } from "../../services/messageService";
-import { getUser, IUser } from "../../services/userService";
 
 
-const ChatMessage = () => {
-  const [messages,setMessages] = useState<IMessage[]>([] as IMessage[])
-  const [loading,setLoading] = useState(false);
-  const [user,setUser] = useState<IUser>();
-  const { id } = useParams();
-  const [numberId,setNumberId] = useState(0);
-  useEffect(() => {
-    setNumberId(Number(id));
-    const chat = document.getElementById("end-point");
-    chat?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    const getM = async ()=>{
-      setLoading(true);
-      const m = await getChatWindow(Number(id));
-      setMessages(m);
-      const u = await getUser();
-      setUser(u);
-      setLoading(false);
-    }
-    getM();
-  }, []);
+const ChatMessage = (params:any) => {
   return (
-    <>{loading == true ? (
+    <>{params.loading == true ? (
       <Col
         xs={{ offset: 5 }}
         lg={{ offset: 6 }}
@@ -44,9 +23,9 @@ const ChatMessage = () => {
         overflowY: "scroll",
       }}
     >
-      {messages?.map((message:IMessage, index) => (
+      {params.messages?.map((message:IMessage) => (
         <Col>
-          {message?.sender?.email === user?.email ? (
+          {message?.sender?.email === params.user?.email ? (
             <p>
               <div
                 className="rounded border border-light chatMessageUser py-2 px-3 mt-1"
@@ -54,7 +33,7 @@ const ChatMessage = () => {
               >
                 <Form.Text style={{ color: "white" }}>
                   <Col style={{ fontWeight: "100", lineHeight: "80%" }}>
-                    <small>{convertTime(message.sendTime)}</small>
+                    <small>{convertTime(message.sendTime )}</small>
                   </Col>
                   {message.text}
                 </Form.Text>
