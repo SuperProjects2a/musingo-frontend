@@ -6,7 +6,6 @@ export const getTransactions = () => {
     (response) => response.data
   );
 };
-
 export interface IOfferShort {
   id: number;
   title: string;
