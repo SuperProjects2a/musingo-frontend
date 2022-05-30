@@ -22,6 +22,21 @@ const informationsMessage = [
     text: "to spadaj",
     id: "0",
   },
+  {
+    date: "10.10.2022 15:48",
+    text: "to spadaj",
+    id: "0",
+  },
+  {
+    date: "10.10.2022 15:48",
+    text: "to spadaj",
+    id: "0",
+  },
+  {
+    date: "10.10.2022 15:48",
+    text: "to spadaj",
+    id: "0",
+  },
 ];
 
 const ChatMessage = () => {

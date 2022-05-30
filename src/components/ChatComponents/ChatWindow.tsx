@@ -1,4 +1,11 @@
-import { Container, Form, Card, Button, InputGroup } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Card,
+  Button,
+  InputGroup,
+  Col,
+} from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import ChatMessage from "./ChatMessage";
@@ -14,10 +21,6 @@ const informationsUser = [
 ];
 
 const ChatWindow = () => {
-  const addOfferSchema = Yup.object().shape({
-    message: Yup.string().required("To pole nie może być puste"),
-  });
-
   return (
     <div id="menu">
       {informationsUser.map((informationUser, index) => (
@@ -48,7 +51,6 @@ const ChatWindow = () => {
                 initialValues={{
                   message: "",
                 }}
-                validationSchema={addOfferSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                   setSubmitting(true);
                   resetForm();
@@ -77,24 +79,27 @@ const ChatWindow = () => {
                           onChange={handleChange}
                           isInvalid={touched.message && !!errors.message}
                         />
-                        <Button
-                          style={{ float: "right" }}
-                          variant="dark"
-                          type="submit"
-                          disabled={isSubmitting}
-                        >
-                          <FontAwesomeIcon
-                            icon={faPaperPlane}
-                          ></FontAwesomeIcon>
-                        </Button>
+                        {values?.message?.length > 0 ? (
+                          <Col>
+                            <Button
+                              style={{ float: "right" }}
+                              variant="dark"
+                              type="submit"
+                              disabled={isSubmitting}
+                            >
+                              <FontAwesomeIcon
+                                icon={faPaperPlane}
+                              ></FontAwesomeIcon>
+                            </Button>
+                          </Col>
+                        ) : (
+                          <></>
+                        )}
                       </InputGroup>
                       <Form.Text>
                         Maksymalna długość:{" "}
                         <strong>{values.message.length}/200</strong>
                       </Form.Text>
-                      <Form.Control.Feedback type="invalid">
-                        {errors.message}
-                      </Form.Control.Feedback>
                     </Form.Group>
                   </Form>
                 )}
