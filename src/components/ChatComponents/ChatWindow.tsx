@@ -17,13 +17,12 @@ const ChatWindow = () => {
   });
 
   return (
-    <div id='menu' >
+    <div id="menu">
       {informationsUser.map((informationUser, index) => (
-        <Container
-          style={{ textAlign: "left" }}
-        >
-          <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5 mt-sm-5 mb-sm-5 chatWindow">
-            <Card.Header as="h5">
+        <Container style={{ textAlign: "left" }}>
+          {/* <Card className="rounded border border-light mx-sm-1 mx-md-3 mx-lg-5 mt-sm-5 mb-sm-5 chatWindow"> */}
+          <Card className="rounded border border-light my-2 chatWindow">
+            <Card.Header as="h5" className="my-0 py-1">
               <Card.Img
                 variant="top"
                 src={`https://picsum.photos/200/300?random=${
@@ -41,7 +40,7 @@ const ChatWindow = () => {
               />
               {informationUser.name} {informationUser.surname}
             </Card.Header>
-            <Card.Body className="px-sm-4 px-md-5">
+            <Card.Body className="px-sm-4 px-md- pt-0">
               <ChatMessage />
               <Formik
                 initialValues={{
@@ -64,7 +63,7 @@ const ChatWindow = () => {
                   isSubmitting,
                 }) => (
                   <Form onSubmit={handleSubmit}>
-                    <Form.Group className="py-3">
+                    <Form.Group className="pt-1">
                       <Form.Control
                         name="message"
                         type="text"
@@ -84,7 +83,7 @@ const ChatWindow = () => {
                       </Form.Control.Feedback>
                     </Form.Group>
                     <Button
-                    style={{float: 'right'}}
+                      style={{ float: "right" }}
                       variant="dark"
                       type="submit"
                       disabled={isSubmitting}
