@@ -75,7 +75,7 @@ const Fundings = () => {
                         <td>
                           {transaction?.buyer?.email == user?.email && (
                             // Sprawdzić czy opinia była już dodana
-                            <Link to={`/AddReview/${transaction?.offer?.id}`}>
+                            <Link to={`/AddReview/${transaction?.id}`}>
                               Dodaj opinię
                             </Link>
                           )}
