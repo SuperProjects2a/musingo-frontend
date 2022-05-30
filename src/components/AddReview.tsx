@@ -52,6 +52,8 @@ const AddReview = () => {
         transactionId: Number(id),
         rating: rating / 20,
         commentText: commentText,
+      }).then(() => {
+        navigate("/UserProfile/Fundings");
       });
     }
 
