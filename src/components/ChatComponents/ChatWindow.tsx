@@ -4,10 +4,7 @@ import {
   Card,
   Button,
   InputGroup,
-  Col,
-  Row,
 } from "react-bootstrap";
-import * as Yup from "yup";
 import { Formik } from "formik";
 import ChatMessage from "./ChatMessage";
 import React from "react";
@@ -71,6 +68,7 @@ const ChatWindow = () => {
                     <Form.Group className="pt-1">
                     <InputGroup>
                         <Form.Control
+                          className="noBorderLine"
                           name="message"
                           type="text"
                           maxLength={200}
