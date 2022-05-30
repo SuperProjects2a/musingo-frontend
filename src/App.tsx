@@ -26,6 +26,7 @@ import Error403 from "./components/errors/Error403";
 import ChatWindow from "./components/ChatComponents/ChatWindow";
 import AddReview from "./components/AddReview";
 import { Outlet } from "react-router";
+import AskForItem from "./components/AskForItem";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -54,7 +55,7 @@ function App() {
           <Route path="/EditOffer/:id" element={<EditOffer />}></Route>
           <Route path="/AdminPanel" element={<AdminPanel />}></Route>
           <Route path="/ReportOffer" element={<ReportOffer />}></Route>
-          <Route path="/ChatWindow" element={<ChatWindow />}></Route>   
+          <Route path="/ChatWindow/:id" element={<ChatWindow />}></Route>   
           <Route
             path="/AdminPanel/Oferty"
             element={<AdminPanel activeTabs="Oferty" />}
@@ -94,6 +95,10 @@ function App() {
           <Route
             path="/UserProfile/Messages"
             element={<UserProfile activeTabs="Messages" />}
+          ></Route>
+        <Route
+            path="/AskForItem/:id"
+            element={<AskForItem/>}
           ></Route>
         </Route>
       </Routes>
