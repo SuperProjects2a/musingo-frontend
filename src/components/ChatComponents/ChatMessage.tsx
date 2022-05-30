@@ -42,7 +42,7 @@ const informationsMessage = [
 const ChatMessage = () => {
   useEffect(() => {
     const chat = document.getElementById("end-point");
-    chat?.scrollIntoView();
+    chat?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }, []);
   return (
     <div
