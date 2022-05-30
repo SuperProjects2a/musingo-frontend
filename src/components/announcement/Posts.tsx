@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
 import AnnouncementCard from "./AnnouncementCard";
-import {IAnnouncement} from "../../services/offerService";
+import { IAnnouncement } from "../../services/offerService";
 
 interface IPost {
   announcements: IAnnouncement[];
@@ -26,8 +26,9 @@ const Posts: FC<IPost> = ({ announcements, loading }) => {
             title={announcement.title}
             price={announcement.cost}
             city={announcement.city}
-            watch={false}
+            watch={announcement.isWatched}
             imgUrls={announcement.imageUrls}
+            id={announcement.id}
           />
         </Col>
       ))}

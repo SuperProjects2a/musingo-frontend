@@ -5,7 +5,7 @@ import PaginationSearch from "./announcement/PaginationSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import data from "../data.json";
-import { getOffers, IAnnouncement } from "../services/offerService";
+import { getWatchedOffers, IAnnouncement } from "../services/offerService";
 
 const Watch = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
@@ -24,7 +24,7 @@ const Watch = () => {
     // };
     const fetchAnnouncements = async () => {
       setLoading(true);
-      let offers = await getOffers();
+      let offers = await getWatchedOffers();
       setAnnouncements(offers);
       setLoading(false);
     };

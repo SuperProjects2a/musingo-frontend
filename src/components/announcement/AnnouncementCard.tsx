@@ -8,11 +8,14 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  watchOffer,
+  removeWatch,
+} from "../../services/offerInteractionService";
 interface IAnnouncement {
   linkA: string;
   title: string;
@@ -20,6 +23,7 @@ interface IAnnouncement {
   city: string;
   watch: boolean;
   imgUrls: string[];
+  id: number;
 }
 
 const AnnouncementCard: FC<IAnnouncement> = ({
@@ -28,15 +32,17 @@ const AnnouncementCard: FC<IAnnouncement> = ({
   price,
   city,
   watch,
-  imgUrls
+  imgUrls,
+  id,
 }) => {
+  const [watched, setWatched] = useState(watch);
   return (
     <>
       <Card>
         <Link to={linkA} className="categories">
           <Card.Img
             variant="top"
-            src={imgUrls?.length > 0 ? imgUrls[0]: ""}
+            src={imgUrls?.length > 0 ? imgUrls[0] : ""}
             style={{
               height: " calc(11vh + 4vw)",
               minHeight: "150px",
@@ -86,7 +92,7 @@ const AnnouncementCard: FC<IAnnouncement> = ({
               className="pt-1 d-flex justify-content-end"
               style={{ textAlign: "right" }}
             >
-              {watch == true ? (
+              {watched == true ? (
                 <OverlayTrigger
                   placement="top"
                   delay={{ show: 250, hide: 400 }}
@@ -96,7 +102,16 @@ const AnnouncementCard: FC<IAnnouncement> = ({
                     </Tooltip>
                   }
                 >
-                  <Button variant="light" className="heartButton" type="submit">
+                  <Button
+                    variant="light"
+                    className="heartButton"
+                    type="submit"
+                    onClick={() => {
+                      removeWatch({ offerId: id }).then(() => {
+                        setWatched(false);
+                      });
+                    }}
+                  >
                     <FontAwesomeIcon
                       icon={faHeartSolid}
                       style={{ height: "28px" }}
@@ -113,7 +128,11 @@ const AnnouncementCard: FC<IAnnouncement> = ({
                     variant="light"
                     className="heartButton"
                     type="submit"
-                    onClick={() => console.log("klik reg")}
+                    onClick={() =>
+                      watchOffer({ offerId: id }).then(() => {
+                        setWatched(true);
+                      })
+                    }
                   >
                     <FontAwesomeIcon
                       icon={faHeartRegular}
