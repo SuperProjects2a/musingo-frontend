@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Col, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { getChatWindow, getMessages, IMessage } from "../../services/messageService";
+import { convertTime, getChatWindow, getMessages, IMessage } from "../../services/messageService";
 import { getUser, IUser } from "../../services/userService";
 
 
@@ -54,7 +54,7 @@ const ChatMessage = () => {
               >
                 <Form.Text style={{ color: "white" }}>
                   <Col style={{ fontWeight: "100", lineHeight: "80%" }}>
-                    <small>{message.sendTime}</small>
+                    <small>{convertTime(message.sendTime)}</small>
                   </Col>
                   {message.text}
                 </Form.Text>
