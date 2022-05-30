@@ -2,7 +2,7 @@ import { Container, Form, Card, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import ChatMessage from "./ChatMessage";
-import React, { useState } from "react";
+import React from "react";
 
 const informationsUser = [
   {
@@ -12,7 +12,6 @@ const informationsUser = [
 ];
 
 const ChatWindow = () => {
-  const [count, setCount] = useState(0);
   const addOfferSchema = Yup.object().shape({
     message: Yup.string().required("To pole nie może być puste"),
   });
