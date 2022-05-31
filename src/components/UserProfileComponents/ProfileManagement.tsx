@@ -27,7 +27,8 @@ const ProfileManagement = () => {
   useEffect(() => {
     navigationService.navigation = navigate;
     const getP = async () => {
-      const p = (await getProfile()) as IUser;
+      const p = await getProfile() as IUser;
+      console.log("elo");
       setProfile(p);
       setUpdateProfile({
           email: p.email,
@@ -50,16 +51,18 @@ const ProfileManagement = () => {
     ) {
       getP();
     }
-  }, [error]);
+  });
   const update = async () => {
     setError("");
     if (images.length === 1) {
       const url = await uploadFile(images[0].file!);
       updateProfile!.imageUrl= url;
     }
-    await putProfile(updateProfile).then((res: any) => {
+    //console.log(updateProfile);
+    await putProfile(updateProfile!).then((res: any) => {
       setProfile(res);
     }).catch((err) => {
+      console.log(err)
       setError(err.data.detail)
     });
   };

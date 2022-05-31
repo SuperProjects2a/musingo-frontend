@@ -7,7 +7,7 @@ export const getProfile = () =>{
     return http({method: 'get', url: 'Profile'})
            .then((response) => response.data);;
 };
-export const putProfile = (data:any) =>{
+export const putProfile = (data:IProfile) =>{
     return http({method: 'put', url: 'Profile',data: data})
            .then((response) => response.data);
 };
