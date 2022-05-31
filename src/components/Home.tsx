@@ -24,27 +24,25 @@ import { getOffers, getPromotedOffers } from "../services/offerService";
 import { IAnnouncement } from "../services/offerService";
 
 const categories = [
-  { link: "/Search", text: "Gitary", imgLink: guitarCategory },
-  { link: "/Search", text: "Dęte", imgLink: windCategory },
-  { link: "/Search", text: "Klawiszowe", imgLink: keyboarCategory },
-  { link: "/Search", text: "Perkusyjne", imgLink: percussionCategory },
-  { link: "/Search", text: "Smyczkowe", imgLink: stringCategory },
-  { link: "/Search", text: "Mikrofony", imgLink: microphonesCategory },
-  { link: "/Search", text: "Słuchawki", imgLink: handsetCategory },
-  { link: "/Search", text: "Akcesoria", imgLink: accessoriesCategory },
-  { link: "/Search", text: "Nuty, książki", imgLink: bookNoteCategory },
-  { link: "/Search", text: "Inne", imgLink: otherCategory },
+  { link: "/Search", text: "Gitary", imgLink: guitarCategory,query:"Guitars" },
+  { link: "/Search", text: "Dęte", imgLink: windCategory,query:"WindInstruments" },
+  { link: "/Search", text: "Klawiszowe", imgLink: keyboarCategory,query:"Keyboards" },
+  { link: "/Search", text: "Perkusyjne", imgLink: percussionCategory,query:"Percussion" },
+  { link: "/Search", text: "Smyczkowe", imgLink: stringCategory,query:"String" },
+  { link: "/Search", text: "Mikrofony", imgLink: microphonesCategory,query:"Microphones" },
+  { link: "/Search", text: "Słuchawki", imgLink: handsetCategory,query:"Headphones" },
+  { link: "/Search", text: "Akcesoria", imgLink: accessoriesCategory,query:"Accessories" },
+  { link: "/Search", text: "Nuty, książki", imgLink: bookNoteCategory,query:"NotesBooks" },
+  { link: "/Search", text: "Inne", imgLink: otherCategory,query:"Other"  },
 ];
-
-
 
 const Home = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>(
     [] as IAnnouncement[]
   );
-  const [promotedAnnouncements, setPromotedAnnouncements] = useState<IAnnouncement[]>(
-    [] as IAnnouncement[]
-  );
+  const [promotedAnnouncements, setPromotedAnnouncements] = useState<
+    IAnnouncement[]
+  >([] as IAnnouncement[]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -83,7 +81,14 @@ const Home = () => {
             </Col>
           </Row>
           <Row className="py-3">
-            <Link to="/AddOffer">
+            <Link
+              to={
+                typeof localStorage.getItem("token") === "string" &&
+                localStorage.getItem("token") !== null
+                  ? "/AddOffer"
+                  : "/SignInUp"
+              }
+            >
               <Button className="btn btn-danger" size="lg">
                 Dodaj ogłoszenie
               </Button>
@@ -104,7 +109,7 @@ const Home = () => {
         <Row className="d-flex justify-content-center pb-lg-2">
           {categories.map((category, index) => (
             <Col xs={12} sm={5} key={index}>
-              <Link to={category.link} className="categories">
+              <Link to={`${category.link}?Category=${category.query}`} className="categories">
                 <h5 className="py-1" style={{ textAlign: "center" }}>
                   {category.text}
                 </h5>
@@ -125,7 +130,7 @@ const Home = () => {
               .filter((item, index) => index < 5)
               .map((filteredItem) => (
                 <Col sm={2}>
-                  <Link to={filteredItem.link} className="categories">
+                  <Link to={`${filteredItem.link}?Category=${filteredItem.query}`} className="categories">
                     <Image
                       src={filteredItem.imgLink}
                       fluid
@@ -141,7 +146,7 @@ const Home = () => {
               .filter((item, index) => index > 4)
               .map((filteredItem) => (
                 <Col sm={2}>
-                  <Link to={filteredItem.link} className="categories">
+                  <Link to={`${filteredItem.link}?Category=${filteredItem.query}`} className="categories">
                     <Image
                       src={filteredItem.imgLink}
                       fluid

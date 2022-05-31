@@ -38,7 +38,7 @@ const PersonalInfo: FunctionComponent<{
               <FontAwesomeIcon icon={faStar} className="iconsDisplayOffer" />
               {props.user?.avgRating === 0  ? "brak opinii" :
               (<>
-                {props.user?.avgRating}
+                {props.user?.avgRating?.toFixed(2)}
                 <small className="text-muted">/5</small>
                 </>)
               }

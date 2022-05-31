@@ -37,7 +37,7 @@ const AddOffer = () => {
     category: Yup.string()
       .required("Wybierz kategorię")
       .matches(
-        /^[Guitars, WindInstruments, Keyboards, Percussion, String, Microphones, Headphones,  NotesBooks, Other]*$/i,
+        /^[Guitars, WindInstruments, Keyboards, Percussion, String, Microphones, Headphones, Accessories, NotesBooks, Other]*$/i,
         "Wybierz kategorię"
       ),
     tos: Yup.boolean()

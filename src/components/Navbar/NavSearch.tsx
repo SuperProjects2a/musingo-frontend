@@ -1,6 +1,6 @@
 import { Container, InputGroup, Button, Col, Form } from "react-bootstrap";
 import React, { useCallback, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import NavbarComp from "./NavbarComp";
@@ -8,6 +8,7 @@ import NavbarComp from "./NavbarComp";
 const NavSearch = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const handleOnClickEnter = useCallback(
     () => navigate("/Search", { replace: true }),
     [navigate]
@@ -15,7 +16,12 @@ const NavSearch = () => {
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
       setSearchValue(e.target.value);
-      handleOnClickEnter();
+      let categoryQuery = searchParams.get("Category");
+      submitQuery(
+        categoryQuery !== "null" && categoryQuery !== undefined && categoryQuery
+          ? `${e.target.value}&Category=${categoryQuery}`
+          : e.target.value
+      );
     }
   };
   const handleBlur = (e: any) => {
@@ -23,8 +29,8 @@ const NavSearch = () => {
   };
 
   const submitQuery = (queryString: string) => {
-    navigate({pathname:'/Search', search:'?Name='+queryString});
-  }
+    navigate({ pathname: "/Search", search: "?Name=" + queryString });
+  };
 
   return (
     <>
@@ -52,14 +58,23 @@ const NavSearch = () => {
                 }}
               />
               <Button
-                  variant="light"
-                  id="button-addon2"
-                  className="navBorder selectColor"
-                  type="submit"
-                  onClick={() => submitQuery(searchValue)}
-                >
-                  <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-                </Button>
+                variant="light"
+                id="button-addon2"
+                className="navBorder selectColor"
+                type="submit"
+                onClick={() => {
+                  let categoryQuery = searchParams.get("Category");
+                  submitQuery(
+                    categoryQuery !== "null" &&
+                      categoryQuery !== undefined &&
+                      categoryQuery
+                      ? `${searchValue}&Category=${categoryQuery}`
+                      : searchValue
+                  );
+                }}
+              >
+                <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+              </Button>
             </InputGroup>
           </Col>
         </Container>
