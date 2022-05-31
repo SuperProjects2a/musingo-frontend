@@ -16,7 +16,6 @@ const FilterSearch: FunctionComponent<{ onFilterChange: any }> = ({
     let categoryQuery = searchParams.get("Category");
     setCategory(categoryQuery)
     let cat = categoryQuery !== "null" && categoryQuery !== undefined && categoryQuery ? categoryQuery: ""
-    console.log(cat);
     let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
     let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
     onFilterChange({
