@@ -1,6 +1,6 @@
 import { Container, InputGroup, Button, Col, Form } from "react-bootstrap";
 import React, { useCallback, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import NavbarComp from "./NavbarComp";
@@ -8,6 +8,7 @@ import NavbarComp from "./NavbarComp";
 const NavSearch = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const handleOnClickEnter = useCallback(
     () => navigate("/Search", { replace: true }),
     [navigate]
@@ -56,7 +57,7 @@ const NavSearch = () => {
                   id="button-addon2"
                   className="navBorder selectColor"
                   type="submit"
-                  onClick={() => submitQuery(searchValue)}
+                  onClick={() => submitQuery(searchParams.get('Category') === null ? searchValue :`${searchValue}&Category=${searchParams.get('Category')}`)}
                 >
                   <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
                 </Button>

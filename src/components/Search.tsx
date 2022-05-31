@@ -57,7 +57,8 @@ const Search = () => {
   useEffect(() => {
     const updateAnnouncements = async () => {
       let nameQuery = searchParams.get('Name');
-      let filter = {Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category};
+      let categoryQuery = searchParams.get('Category');
+      let filter = {Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: categoryQuery};
       let offers = await getOffersByFiler(filter);
       setAnnouncements(offers);
     }

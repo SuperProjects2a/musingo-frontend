@@ -1,26 +1,35 @@
 import { Container, Form, Col, Row, InputGroup } from "react-bootstrap";
 import React, { useState, useEffect, FunctionComponent } from "react";
+import { useSearchParams } from "react-router-dom";
 
-const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}) => {
+const FilterSearch: FunctionComponent<{ onFilterChange: any }> = ({
+  onFilterChange,
+}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [minPrice, setMinPrice] = useState<number | null>();
   const [maxPrice, setMaxPrice] = useState<number | null>();
   const [category, setCategory] = useState<string | null>();
-  const [sorting, setSorting] = useState<string | null>('Latest');
+  const [sorting, setSorting] = useState<string | null>("Latest");
   const [validated, setValidated] = useState(false);
 
   const setFilters = () => {
+    setCategory(searchParams.get("Category"));
     let cat = category === "null" ? null : category;
     let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
     let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
-    onFilterChange({PriceFrom: priceFrom, PriceTo: priceTo, Category: cat, Sorting: sorting})
-  }
+    onFilterChange({
+      PriceFrom: priceFrom,
+      PriceTo: priceTo,
+      Category: cat,
+      Sorting: sorting,
+    });
+  };
 
   useEffect(() => {
     setFilters();
     setValidated(false);
     if (minPrice !== null && maxPrice !== null) {
       if (maxPrice! < minPrice!) {
-        
         setValidated(true);
       }
     }
@@ -28,8 +37,29 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
 
   useEffect(() => {
     setFilters();
-  }, [category, sorting])
+  }, [sorting]);
 
+  useEffect(()=>{
+    
+    if (category !=="null" && category !== undefined) {
+      let isNotFind = true;
+      const arr = [...searchParams];
+      for (let i: number = 0; i < arr.length; i++) {
+        if (arr[i][0] === 'Category'){ arr[i][1] = category!; isNotFind =false;};
+      }
+      if(isNotFind)
+        arr.push(['Category',category!])
+      setSearchParams(arr);
+    }
+    if(category == "null")
+    {
+      searchParams.delete('Category');
+      setSearchParams(searchParams);
+    }
+    
+    
+
+  },[category])
   return (
     <Container fluid style={{ textAlign: "left" }}>
       <h4>
@@ -47,6 +77,7 @@ const FilterSearch: FunctionComponent<{onFilterChange: any}> = ({onFilterChange}
             <Form.Select
               aria-label="Default select example"
               className="selectColor"
+              value={category!}
               onChange={(e) => {
                 setCategory(e.target.value);
               }}
