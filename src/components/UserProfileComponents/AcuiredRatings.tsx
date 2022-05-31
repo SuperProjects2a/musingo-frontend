@@ -58,7 +58,7 @@ const AcuiredRatings = () => {
                 <div style={{ width: "100px", float: "left" }}>
                   <p>
                     {" "}
-                    <span style={{ fontSize: "30px" }}>{avg} </span>
+                    <span style={{ fontSize: "24px" }}>{avg?.toFixed(2)} </span>
                     <span style={{ fontSize: "20px", color: "grey" }}>/ 5</span>
                   </p>{" "}
                   <p>{sumOfRatings} Ocen</p>
