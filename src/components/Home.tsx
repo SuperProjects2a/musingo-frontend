@@ -83,7 +83,8 @@ const Home = () => {
             </Col>
           </Row>
           <Row className="py-3">
-            <Link to="/AddOffer">
+            <Link to={typeof localStorage.getItem("token") === "string" &&
+      localStorage.getItem("token") !== null ? "/AddOffer" : "/SignInUp"}>
               <Button className="btn btn-danger" size="lg">
                 Dodaj ogłoszenie
               </Button>
