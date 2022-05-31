@@ -13,8 +13,10 @@ const FilterSearch: FunctionComponent<{ onFilterChange: any }> = ({
   const [validated, setValidated] = useState(false);
 
   const setFilters = () => {
-    setCategory(searchParams.get("Category"));
-    let cat = category === "null" ? null : category;
+    let categoryQuery = searchParams.get("Category");
+    setCategory(categoryQuery)
+    let cat = categoryQuery !== "null" && categoryQuery !== undefined && categoryQuery ? categoryQuery: ""
+    console.log(cat);
     let priceFrom = !isNaN(minPrice as number) ? minPrice : null;
     let priceTo = !isNaN(maxPrice as number) ? maxPrice : null;
     onFilterChange({
@@ -39,27 +41,24 @@ const FilterSearch: FunctionComponent<{ onFilterChange: any }> = ({
     setFilters();
   }, [sorting]);
 
-  useEffect(()=>{
-    
-    if (category !=="null" && category !== undefined) {
+  useEffect(() => {
+    if (category !== "null" && category !== undefined && category) {
       let isNotFind = true;
       const arr = [...searchParams];
       for (let i: number = 0; i < arr.length; i++) {
-        if (arr[i][0] === 'Category'){ arr[i][1] = category!; isNotFind =false;};
+        if (arr[i][0] === "Category") {
+          arr[i][1] = category!;
+          isNotFind = false;
+        }
       }
-      if(isNotFind)
-        arr.push(['Category',category!])
+      if (isNotFind) arr.push(["Category", category!]);
       setSearchParams(arr);
     }
-    if(category == "null")
-    {
-      searchParams.delete('Category');
+    if (category == "null") {
+      searchParams.delete("Category");
       setSearchParams(searchParams);
     }
-    
-    
-
-  },[category])
+  }, [category]);
   return (
     <Container fluid style={{ textAlign: "left" }}>
       <h4>

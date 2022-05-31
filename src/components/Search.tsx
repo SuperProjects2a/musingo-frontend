@@ -23,7 +23,7 @@ const Search = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [offerFilter, setOfferFilter] = useState<IOfferFilter>({Sorting: 'Latest', Search: null, PriceFrom: null, PriceTo: null, Category: null});
+  const [offerFilter, setOfferFilter] = useState<IOfferFilter>({Sorting: 'Latest', Search: null, PriceFrom: null, PriceTo: null, Category: ""});
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
@@ -35,7 +35,7 @@ const Search = () => {
       setLoading(false);
       let nameQuery = searchParams.get('Name');
       let categoryQuery = searchParams.get('Category');
-      setOfferFilter({Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: categoryQuery})
+      setOfferFilter({Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: ""})
     };
 
     fetchAnnouncements();
@@ -48,7 +48,7 @@ const Search = () => {
       let priceFromQuery = searchParams.get('PriceFrom');
       let priceToQuery = searchParams.get('PriceTo');
       let categoryQuery = searchParams.get('Category');
-      setOfferFilter({Search: nameQuery, Sorting: sortingQuery, PriceFrom: priceFromQuery, PriceTo: priceToQuery, Category: categoryQuery});
+      setOfferFilter({Search: nameQuery, Sorting: sortingQuery, PriceFrom: priceFromQuery, PriceTo: priceToQuery, Category: ""});
       
     };
     fetchAnnouncements();
@@ -58,7 +58,7 @@ const Search = () => {
     const updateAnnouncements = async () => {
       let nameQuery = searchParams.get('Name');
       let categoryQuery = searchParams.get('Category');
-      let filter = {Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: categoryQuery};
+      let filter = {Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: categoryQuery !== "null" && categoryQuery !== undefined && categoryQuery ? categoryQuery: ""};
       let offers = await getOffersByFiler(filter);
       setAnnouncements(offers);
     }

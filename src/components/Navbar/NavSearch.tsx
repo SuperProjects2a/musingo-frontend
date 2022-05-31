@@ -16,7 +16,12 @@ const NavSearch = () => {
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
       setSearchValue(e.target.value);
-      handleOnClickEnter();
+      let categoryQuery = searchParams.get("Category");
+      submitQuery(
+        categoryQuery !== "null" && categoryQuery !== undefined && categoryQuery
+          ? `${e.target.value}&Category=${categoryQuery}`
+          : e.target.value
+      );
     }
   };
   const handleBlur = (e: any) => {
@@ -24,8 +29,8 @@ const NavSearch = () => {
   };
 
   const submitQuery = (queryString: string) => {
-    navigate({pathname:'/Search', search:'?Name='+queryString});
-  }
+    navigate({ pathname: "/Search", search: "?Name=" + queryString });
+  };
 
   return (
     <>
@@ -53,14 +58,23 @@ const NavSearch = () => {
                 }}
               />
               <Button
-                  variant="light"
-                  id="button-addon2"
-                  className="navBorder selectColor"
-                  type="submit"
-                  onClick={() => submitQuery(searchParams.get('Category') === null ? searchValue :`${searchValue}&Category=${searchParams.get('Category')}`)}
-                >
-                  <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-                </Button>
+                variant="light"
+                id="button-addon2"
+                className="navBorder selectColor"
+                type="submit"
+                onClick={() => {
+                  let categoryQuery = searchParams.get("Category");
+                  submitQuery(
+                    categoryQuery !== "null" &&
+                      categoryQuery !== undefined &&
+                      categoryQuery
+                      ? `${searchValue}&Category=${categoryQuery}`
+                      : searchValue
+                  );
+                }}
+              >
+                <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+              </Button>
             </InputGroup>
           </Col>
         </Container>
