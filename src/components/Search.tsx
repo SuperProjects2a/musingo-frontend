@@ -42,8 +42,7 @@ const Search = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    const fetchAnnouncements = async () => {
-      setLoading(true);
+    const fetchAnnouncements = async () => {;
       let nameQuery = searchParams.get('Name');
       let sortingQuery = searchParams.get('Sorting') === null ? 'Latest' : searchParams.get('Sorting');
       let priceFromQuery = searchParams.get('PriceFrom');
@@ -61,7 +60,6 @@ const Search = () => {
       let filter = {Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category};
       let offers = await getOffersByFiler(filter);
       setAnnouncements(offers);
-      setLoading(false);
     }
     updateAnnouncements();
     
