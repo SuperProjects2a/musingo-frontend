@@ -8,6 +8,7 @@ import {
 import { getUser, IUser } from "../../services/userService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSackXmark } from "@fortawesome/free-solid-svg-icons";
+import { Rating } from "react-simple-star-rating";
 
 const Fundings = () => {
   const [transactions, setTransactions] = useState<ITransaction[]>(
@@ -74,11 +75,16 @@ const Fundings = () => {
                         <td>{transaction?.offer?.title}</td>
 
                         <td>
-                          {transaction?.buyer?.email == user?.email && (
-                            // Sprawdzić czy opinia była już dodana
-                            <Link to={`/AddReview/${transaction?.offer?.id}`}>
+                          {transaction.rating === 0 ? (
+                            <Link to={`/AddReview/${transaction?.id}`}>
                               Dodaj opinię
                             </Link>
+                          ) : (
+                            <Rating
+                              ratingValue={transaction.rating * 20}
+                              size={20}
+                              readonly={true}
+                            ></Rating>
                           )}
                           {/* Zobacz opinię o sprzedającym? */}
                         </td>

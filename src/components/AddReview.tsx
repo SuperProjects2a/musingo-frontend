@@ -11,6 +11,8 @@ import {
 import { Rating } from "react-simple-star-rating";
 import { useNavigate, useParams } from "react-router-dom";
 import { getOffer, IAnnouncement } from "../services/offerService";
+import { postComent } from "../services/commentService";
+import { getTransaction } from "../services/transactionService";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
@@ -29,8 +31,8 @@ const AddReview = () => {
   useEffect(() => {
     const fetchAnnouncements = async () => {
       let idNumber = Number(id);
-      let receivedOffer = await getOffer(idNumber);
-      setOffer(receivedOffer);
+      let transaction = await getTransaction({ transactionId: idNumber });
+      setOffer(transaction.offer as IAnnouncement);
     };
 
     fetchAnnouncements();
@@ -46,7 +48,13 @@ const AddReview = () => {
       event.stopPropagation();
     } else {
       event.preventDefault();
-      window.location.href = "/UserProfile/Fundings";
+      postComent({
+        transactionId: Number(id),
+        rating: rating / 20,
+        commentText: commentText,
+      }).then(() => {
+        navigate("/UserProfile/Fundings");
+      });
     }
 
     setValidated(true);

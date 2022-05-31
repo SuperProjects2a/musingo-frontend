@@ -6,6 +6,17 @@ export const getTransactions = () => {
     (response) => response.data
   );
 };
+
+export const getTransaction = ({
+  transactionId,
+}: {
+  transactionId: number;
+}) => {
+  return http({ method: "get", url: `/Transaction/${transactionId}` }).then(
+    (response) => response.data
+  );
+};
+
 export interface IOfferShort {
   id: number;
   title: string;
@@ -20,5 +31,6 @@ export interface ITransaction {
   buyer: IOwner;
   lastUpdateTime: string;
   cost: number;
+  rating: number;
   status:string;
 }
