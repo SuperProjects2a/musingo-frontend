@@ -36,7 +36,7 @@ const EditOffer = () => {
     category: Yup.string()
       .required("Wybierz kategorię")
       .matches(
-        /^[Guitars, WindInstruments, Keyboards, Percussion, String, Microphones, Headphones,  NotesBooks, Other]*$/i,
+        /^[Guitars, WindInstruments, Keyboards, Percussion, String, Microphones, Headphones, Accessories, NotesBooks, Other]*$/i,
         "Wybierz kategorię"
       ),
   });
@@ -114,7 +114,6 @@ const EditOffer = () => {
                       );
                       setIsVisible(true);
                     });
-                  
                 }
                 setSubmitting(false);
               }}
@@ -291,10 +290,19 @@ const EditOffer = () => {
                     </Col>
                   </Form.Group>
                   {isVisible && (
-                        <div className=" mt-3">
-                          <p className={message.includes("Pomyślnie zaktualizowano oferte") ? "text-success":"text-danger" } style={{ textAlign: "center" }}>{message}</p>
-                        </div>
-                      )}
+                    <div className=" mt-3">
+                      <p
+                        className={
+                          message.includes("Pomyślnie zaktualizowano oferte")
+                            ? "text-success"
+                            : "text-danger"
+                        }
+                        style={{ textAlign: "center" }}
+                      >
+                        {message}
+                      </p>
+                    </div>
+                  )}
                   <Row className="py-5">
                     <Col
                       xl={{ span: 2, offset: 10 }}

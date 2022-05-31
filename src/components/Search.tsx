@@ -34,7 +34,8 @@ const Search = () => {
       setPromotedAnnouncements(promotedOffers);
       setLoading(false);
       let nameQuery = searchParams.get('Name');
-      setOfferFilter({Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: offerFilter.Category})
+      let categoryQuery = searchParams.get('Category');
+      setOfferFilter({Search: nameQuery, Sorting: offerFilter.Sorting, PriceFrom: offerFilter.PriceFrom, PriceTo: offerFilter.PriceTo, Category: categoryQuery})
     };
 
     fetchAnnouncements();
