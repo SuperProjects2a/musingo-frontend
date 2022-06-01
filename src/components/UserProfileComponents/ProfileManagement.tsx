@@ -28,7 +28,6 @@ const ProfileManagement = () => {
     navigationService.navigation = navigate;
     const getP = async () => {
       const p = await getProfile() as IUser;
-      console.log("elo");
       setProfile(p);
       setUpdateProfile({
           email: p.email,
@@ -58,11 +57,9 @@ const ProfileManagement = () => {
       const url = await uploadFile(images[0].file!);
       updateProfile!.imageUrl= url;
     }
-    //console.log(updateProfile);
     await putProfile(updateProfile!).then((res: any) => {
       setProfile(res);
     }).catch((err) => {
-      console.log(err)
       setError(err.data.detail)
     });
   };
